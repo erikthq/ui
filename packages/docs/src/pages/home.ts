@@ -101,7 +101,7 @@ export async function HomePage(path: string) {
             tabindex="0"
           >
             <div class="home-themes-showcase">
-              <div class="home-themes-scales">
+              <ul>
                 ${[
                   "primary",
                   "neutral",
@@ -115,22 +115,24 @@ export async function HomePage(path: string) {
                   "color6",
                 ].map(
                   (name) => html`
-                    <div class="home-themes-scale">
-                      ${[
-                        50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
-                      ].map(
-                        (step) => html`
-                          <div
-                            class="home-themes-swatch"
-                            style="background:var(--ui-${name}-${step})"
-                            title="${name}-${step}"
-                          ></div>
-                        `,
-                      )}
-                    </div>
+                    <li>
+                      <ul>
+                        ${[
+                          50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
+                        ].map(
+                          (step) => html`
+                            <li
+                              class="home-themes-swatch"
+                              style="background:var(--ui-${name}-${step})"
+                              title="${name}-${step}"
+                            ></li>
+                          `,
+                        )}
+                      </ul>
+                    </li>
                   `,
                 )}
-              </div>
+              </ul>
 
               <div class="home-themes-modes">
                 <div class="home-themes-mode" style="color-scheme:light">
