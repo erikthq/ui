@@ -20,7 +20,7 @@ input[type="week"] {
   &::-webkit-datetime-edit-ampm-field:focus {
     background-color: var(--ui-primary);
     color: var(--ui-neutral-0);
-    border-radius: 2px;
+    border-radius: 0.14rem;
     outline: none;
   }
 }

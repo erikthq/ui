@@ -3,7 +3,7 @@ kbd {
   align-items: center;
   justify-content: center;
   min-width: 1.5em;
-  border-radius: 4px;
+  border-radius: 0.28rem;
   padding-block: calc(var(--ui-spacing) / 2);
   padding-inline: var(--ui-spacing-2);
   background: var(--ui-neutral-100);

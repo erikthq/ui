@@ -3,6 +3,6 @@
   font-size: 0.9em;
   background: var(--ui-neutral-100);
   border: 1px solid var(--ui-neutral-200);
-  border-radius: 4px;
+  border-radius: 0.28rem;
   padding: 0.15em 0.4em;
 }

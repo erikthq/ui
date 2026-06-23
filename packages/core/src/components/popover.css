@@ -18,7 +18,7 @@
   /* visual */
   background: var(--ui-background-color);
   border: 1px solid var(--ui-neutral-200);
-  border-radius: 12px;
+  border-radius: calc(0.57rem + var(--ui-spacing-1));
   box-shadow: 0 4px 16px oklch(0% 0 0 / 0.08);
 
   & > article {

@@ -14,11 +14,11 @@ fieldset[role="group"] {
     box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
 
     &:first-child {
-      border-radius: 8px 0 0 8px;
+      border-radius: 0.57rem 0 0 0.57rem;
     }
 
     &:last-child {
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 0.57rem 0.57rem 0;
       margin-right: 0;
     }
 
@@ -37,7 +37,7 @@ fieldset[role="group"] {
   }
 
   & > :only-child:not(.field) {
-    border-radius: 8px;
+    border-radius: 0.57rem;
   }
 
   & > input {

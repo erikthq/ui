@@ -22,6 +22,7 @@ const routes = [
   "/components/textarea",
   "/components/empty",
   "/components/menu",
+  "/components/number-field",
   "/components/expander",
   "/components/file-drop",
   "/components/code",

@@ -8,6 +8,7 @@ const toc = [
   { id: "custom-columns", label: "Custom columns" },
   { id: "overflow", label: "Overflow" },
   { id: "with-actions", label: "With actions" },
+  { id: "zebra", label: "Zebra" },
 ];
 
 export async function TablePage(path: string) {
@@ -344,6 +345,52 @@ export async function TablePage(path: string) {
   </tbody>
 </table>`),
           )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="zebra">Zebra</h2>
+        <p>
+          Add <code>class="zebra"</code> to the table to alternate row
+          backgrounds.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <table class="zebra">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alice</td>
+                <td>Engineer</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>Bob</td>
+                <td>Designer</td>
+                <td>Away</td>
+              </tr>
+              <tr>
+                <td>Carol</td>
+                <td>Manager</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>David</td>
+                <td>Engineer</td>
+                <td>Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="code-block">
+          ${raw(await highlight(`<table class="zebra">...</table>`))}
         </div>
       </div>
     `,

@@ -3,18 +3,17 @@ details {
 
   width: 100%;
   border-bottom: 1px solid var(--ui-neutral-200);
-  /* border-radius: 8px; */
 
   &::details-content {
     transition:
       block-size 300ms var(--ease-glide),
       content-visibility 200ms allow-discrete;
     overflow: hidden;
-    block-size: 0; /* Or also:  height:0; */
+    block-size: 0;
   }
 
   &[open]::details-content {
-    block-size: auto; /* Or also:  height:auto; */
+    block-size: auto;
   }
 
   summary {
@@ -58,7 +57,7 @@ details {
     &:focus-visible {
       outline: 2px solid var(--ui-neutral-950);
       outline-offset: 2px;
-      border-radius: 8px;
+      border-radius: 0.57rem;
     }
   }
 

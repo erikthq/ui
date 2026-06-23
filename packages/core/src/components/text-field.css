@@ -27,7 +27,7 @@ input[type="week"] {
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
-  border-radius: 8px;
+  border-radius: 0.57rem;
 
   font: inherit;
   line-height: calc((16 / 14) * 1rem);
@@ -104,7 +104,7 @@ label:not(.toggle):has(> [data-prefix], > [data-suffix]) {
     padding: var(--ui-spacing-2) var(--ui-spacing-2);
     font-size: smaller;
     height: calc(100% - 8px);
-    border-radius: 4px;
+    border-radius: calc(0.57rem - 3px);
 
     &:last-child {
       margin-inline-end: 4px;

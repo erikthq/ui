@@ -10,7 +10,7 @@ menu {
     width: 100%;
     padding-block: var(--ui-spacing-2);
     padding-inline: var(--ui-spacing-3);
-    border-radius: 8px;
+    border-radius: 0.57rem;
     white-space: nowrap;
     cursor: pointer;
     user-select: none;

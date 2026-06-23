@@ -9,7 +9,7 @@
     width: fit-content;
 
     background-color: var(--ui-neutral-200);
-    border-radius: 9px;
+    border-radius: calc(0.57rem + 1px);
 
     anchor-name: --hovered-link;
     anchor-scope: --hovered-link;
@@ -27,7 +27,7 @@
       bottom: calc(anchor(bottom) + 1px);
       z-index: 0;
 
-      border-radius: 8px;
+      border-radius: 0.57rem;
       background-color: var(--ui-neutral-50);
       pointer-events: none;
 
@@ -68,7 +68,7 @@
       &:has(input:focus-visible) {
         outline: 2px solid var(--ui-neutral-950);
         outline-offset: 2px;
-        border-radius: 8px;
+        border-radius: 0.57rem;
       }
 
       &:has(input:disabled) {
@@ -82,7 +82,7 @@
   [role="tabpanel"]:focus-visible {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 4px;
-    border-radius: 4px;
+    border-radius: 0.28rem;
   }
 
   [role="tabpanel"] {

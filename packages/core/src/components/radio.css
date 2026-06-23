@@ -41,7 +41,7 @@ input[type="radio"] {
   }
 
   &:focus-visible {
-    border-radius: 8px;
+    border-radius: 0.57rem;
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
   }

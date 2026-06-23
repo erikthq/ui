@@ -17,14 +17,162 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--ui-spacing-3) center;
-  background-size: 1rem;
+  background-size: 1lh;
 
-  &:focus {
+  /* &:focus {
     box-shadow: 0 0 0 1px currentColor inset;
+  } */
+
+  &:focus-visible {
+    outline: 2px solid var(--ui-neutral-950);
+    outline-offset: 2px;
+    border-radius: 0.57rem;
   }
 
   &:disabled {
     opacity: 0.4;
     cursor: default;
+  }
+}
+
+@supports (appearance: base-select) {
+  select,
+  select::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    box-shadow: none;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    cursor: default;
+  }
+
+  /* Trigger button inherits base button styles; override to outlined variant */
+  select > button {
+    width: 100%;
+    justify-content: space-between;
+    background-color: transparent;
+    color: var(--ui-neutral-950);
+    box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--ui-neutral-100);
+      }
+    }
+
+    &:active {
+      background-color: var(--ui-neutral-200);
+      translate: 0;
+    }
+  }
+
+  select:open > button {
+    background-color: var(--ui-neutral-100);
+  }
+
+  select:disabled > button {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Chevron rotation when open */
+  select > button > svg:last-child {
+    transition: rotate 100ms var(--ease-glide);
+  }
+
+  select:open > button > svg:last-child {
+    rotate: 180deg;
+  }
+
+  select::picker-icon {
+    display: none;
+  }
+
+  /* Picker listbox -- matches [popover] visual style */
+  select::picker(select) {
+    margin: 0;
+    padding: var(--ui-spacing-1);
+    border: 1px solid var(--ui-neutral-200);
+    border-radius: calc(0.57rem + var(--ui-spacing-1));
+    background: var(--ui-background-color);
+    box-shadow: 0 4px 16px oklch(0% 0 0 / 0.08);
+    min-width: anchor-size(width);
+
+    opacity: 0;
+    translate: 0 -2px;
+    transition:
+      opacity 100ms var(--ease-glide),
+      translate 100ms var(--ease-glide),
+      display 100ms allow-discrete,
+      overlay 100ms allow-discrete;
+  }
+
+  select:open::picker(select) {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    select:open::picker(select) {
+      opacity: 0;
+      translate: 0 -2px;
+    }
+  }
+
+  /* Options -- match ghost menu item style */
+  select option {
+    display: flex;
+    flex-direction: row-reverse;
+
+    align-items: center;
+    padding-block: var(--ui-spacing-2);
+    padding-inline: var(--ui-spacing-3);
+    border-radius: 0.57rem;
+    cursor: pointer;
+
+    @media (hover: hover) {
+      &:hover {
+        background: var(--ui-neutral-100);
+      }
+    }
+  }
+
+  option::checkmark {
+    content: "";
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    mask-size: 1lh;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    width: 1lh;
+    height: 1lh;
+    margin-left: auto;
+  }
+
+  /* Separator */
+  select hr {
+    margin-block: var(--ui-spacing-1);
+  }
+
+  optgroup {
+    font-size: 0.8125rem;
+    font-weight: normal;
+    color: var(--ui-neutral-500);
+    user-select: none;
+    padding-top: var(--ui-spacing-2);
+  }
+
+  optgroup > option {
+    font-size: 1rem;
+    color: var(--ui-neutral-950);
+
+    &:first-child {
+      margin-block-start: var(--ui-spacing-1);
+    }
   }
 }

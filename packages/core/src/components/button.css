@@ -6,7 +6,7 @@ button,
 
   background-color: var(--ui-primary);
   border: none;
-  color: var(--ui-neutral-50);
+  color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
 
   display: inline-flex;
   align-items: center;
@@ -15,7 +15,7 @@ button,
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
-  border-radius: 8px;
+  border-radius: 0.57rem;
 
   font: inherit;
   line-height: calc((16 / 14) * 1rem);

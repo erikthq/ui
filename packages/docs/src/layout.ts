@@ -209,6 +209,11 @@ export const components: {
     description: "Vertical list of actions with icons and shortcuts.",
   },
   {
+    label: "Number Field",
+    path: "/components/number-field",
+    description: "Native number input with unit suffix support.",
+  },
+  {
     label: "Popover",
     path: "/components/popover",
     description: "Floating panel anchored to a trigger element.",

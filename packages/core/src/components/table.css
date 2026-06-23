@@ -154,3 +154,13 @@ tfoot > tr > :is(th, td) {
 tfoot > tr:first-child > :is(th, td) {
   border-top: 1px solid var(--ui-neutral-200);
 }
+
+table.zebra > tbody > tr:nth-child(even) > td {
+  background: var(--ui-neutral-50);
+}
+
+@media (hover: hover) {
+  table.zebra > tbody > tr:nth-child(even):hover > td {
+    background: var(--ui-neutral-100);
+  }
+}

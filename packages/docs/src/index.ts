@@ -40,6 +40,7 @@ import { ComboboxPage } from './pages/combobox'
 import { SubmenuPage } from './pages/submenu'
 import { EmptyPage } from './pages/empty'
 import { MenuPage } from './pages/menu'
+import { NumberFieldPage } from './pages/number-field'
 import { FieldPage } from './pages/field'
 import { FocusGroupPage } from './pages/focus-group'
 import { BlocksPage } from './pages/blocks'
@@ -100,6 +101,7 @@ app.get('/components/combobox', (c) => c.html(ComboboxPage(c.req.path)))
 app.get('/components/submenu', (c) => c.html(SubmenuPage(c.req.path)))
 app.get('/components/empty', (c) => c.html(EmptyPage(c.req.path)))
 app.get('/components/menu', (c) => c.html(MenuPage(c.req.path)))
+app.get('/components/number-field', (c) => c.html(NumberFieldPage(c.req.path)))
 app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))
 app.get('/components/focus-group', (c) => c.html(FocusGroupPage(c.req.path)))
 app.get('/components/radio-group', (c) => c.html(RadioGroupPage(c.req.path)))
