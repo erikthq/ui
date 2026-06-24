@@ -12,7 +12,9 @@
     line-height: 1.4;
   }
 
-  p {
+  p,
+  ul,
+  ol {
     line-height: 1.6;
     max-width: 65ch;
   }
@@ -46,7 +48,7 @@
     margin-block: 1.61em;
 
     &:before {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       height: 100%;

@@ -1,23 +1,23 @@
 ---
 name: erikt-ui
-description: Teaches agents how to use the @erikt/ui design system. Use when writing HTML/CSS for a project that uses @erikt/ui, or when asked to add UI components with @erikt/ui.
+description: Teaches agents how to use the erikt/ui design system. Use when writing HTML/CSS for a project that uses erikt/ui, or when asked to add UI components with erikt/ui.
 ---
 
-# @erikt/ui Design System
+# erikt/ui Design System
 
-@erikt/ui is a single CSS file that styles native HTML elements directly. No class names required for most things. Link the stylesheet and write semantic HTML.
+erikt/ui is a single CSS file that styles native HTML elements directly. No class names required for most things. Link the stylesheet and write semantic HTML.
 
-Docs: https://erikthq.github.io/ui/
+Docs: https://ui.erikt.me
 
 ## Setup
 
 ```html
-<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />
+<link rel="stylesheet" href="https://esm.sh/erikt/ui" />
 ```
 
 ## Core idea
 
-@erikt/ui styles native elements. A `<button>` is already a styled button. An `<input>` is already a styled input. No wrapper divs or base classes needed.
+erikt/ui styles native elements. A `<button>` is already a styled button. An `<input>` is already a styled input. No wrapper divs or base classes needed.
 
 ```html
 <button>Click me</button>
@@ -27,7 +27,7 @@ Docs: https://erikthq.github.io/ui/
 
 ## Layout
 
-@erikt/ui does not provide layout utilities. Use CSS `flex` and `grid` directly.
+erikt/ui does not provide layout utilities. Use CSS `flex` and `grid` directly.
 
 ```html
 <div style="display:flex;gap:1rem">
@@ -132,7 +132,7 @@ Add `required` to the input and a `*` appears on the label automatically.
 <input type="range" min="0" max="100" value="50" />
 ```
 
-Note: @erikt/ui uses a `--pct` CSS custom property for the fill. Set it via JS:
+Note: erikt/ui uses a `--pct` CSS custom property for the fill. Set it via JS:
 ```js
 el.style.setProperty('--pct', (el.value - el.min) / (el.max - el.min))
 el.addEventListener('input', () =>
@@ -448,7 +448,7 @@ Override seed variables on `:root` after the stylesheet. All color scales are de
 
 ## Dark mode
 
-@erikt/ui responds to `prefers-color-scheme` automatically (via `color-scheme: light dark`). To force a theme, set `color-scheme` on the root:
+erikt/ui responds to `prefers-color-scheme` automatically (via `color-scheme: light dark`). To force a theme, set `color-scheme` on the root:
 
 ```css
 :root { color-scheme: dark; }
@@ -494,6 +494,7 @@ Or inline:
 - `Kbd`
 - `Loading`
 - `Menu`
+- `Number Field`
 - `Popover`
 - `Progress`
 - `Prose`
