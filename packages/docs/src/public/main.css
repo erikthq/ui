@@ -63,7 +63,7 @@ body {
 /* Sidebar */
 .docs-sidebar {
   position: fixed;
-  top: 0;
+  top: 0rem;
   left: 0;
   height: 100svh;
   width: 260px;
@@ -74,19 +74,20 @@ body {
   overflow-x: clip;
   overscroll-behavior: contain;
   border-right: 1px solid var(--border);
-  padding-block: 1rem;
+  padding-block: 1rem 3rem;
   padding-inline: 0.5rem;
   background: var(--ui-background-color);
 
   @media (min-width: 769px) {
     position: sticky;
-    top: 4.5rem;
+    top: 5.5rem;
     width: auto;
     bottom: auto;
     z-index: auto;
     translate: none;
     transition: none;
     padding-inline: 0.5rem;
+    max-height: calc(100vh - var(--header-h));
   }
 
   small,
@@ -270,7 +271,6 @@ body:has(.sidebar-toggle:checked) {
   &:hover {
     background: var(--ui-neutral-100);
   }
-
 }
 
 .search-result-body {

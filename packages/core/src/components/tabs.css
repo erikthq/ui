@@ -1,6 +1,15 @@
 @scope (.tabs) to (.tabs .tabs) {
   :scope {
     width: stretch;
+
+    &:has(> [role="tabpanel"]) {
+      display: grid;
+
+      [role="tabpanel"] {
+        grid-column: 1;
+        grid-row: 2;
+      }
+    }
   }
 
   [role="tablist"] {
@@ -94,14 +103,30 @@
     opacity: 0;
   }
 
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(1 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(1 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(2 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(2 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(3 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(3 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(4 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(4 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(5 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(5 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(6 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(6 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(7 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(7 of [role="tabpanel"]),
-  :scope:has([role="tablist"]:not(:scope .tabs [role="tablist"]) label:nth-child(8 of label) input:checked) [role="tabpanel"]:not(:scope .tabs [role="tabpanel"]):nth-child(8 of [role="tabpanel"]) {
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(1 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(1 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(2 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(2 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(3 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(3 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(4 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(4 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(5 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(5 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(6 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(6 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(7 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(7 of [role="tabpanel"]),
+  :scope:not(.tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs [role="tablist"]) label:nth-child(8 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"]):nth-child(8 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(1 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(1 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(2 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(2 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(3 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(3 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(4 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(4 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(5 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(5 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(6 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(6 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(7 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(7 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs):not(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"]:not(.tabs .tabs .tabs [role="tablist"]) label:nth-child(8 of label) input:checked) [role="tabpanel"]:not(.tabs [role="tabpanel"] [role="tabpanel"] [role="tabpanel"]):nth-child(8 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(1 of label) input:checked) [role="tabpanel"]:nth-child(1 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(2 of label) input:checked) [role="tabpanel"]:nth-child(2 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(3 of label) input:checked) [role="tabpanel"]:nth-child(3 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(4 of label) input:checked) [role="tabpanel"]:nth-child(4 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(5 of label) input:checked) [role="tabpanel"]:nth-child(5 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(6 of label) input:checked) [role="tabpanel"]:nth-child(6 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(7 of label) input:checked) [role="tabpanel"]:nth-child(7 of [role="tabpanel"]),
+  :scope:is(.tabs [role="tabpanel"] .tabs [role="tabpanel"] .tabs):has([role="tablist"] label:nth-child(8 of label) input:checked) [role="tabpanel"]:nth-child(8 of [role="tabpanel"]) {
     display: block;
     opacity: 1;
 

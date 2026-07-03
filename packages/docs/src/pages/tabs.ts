@@ -27,20 +27,46 @@ export async function TabsPage(path: string) {
         </hgroup>
 
         <h2 id="default">Default</h2>
-        <p>
-          Each <code>label</code> wraps a radio <code>input</code>. Add
-          <code>checked</code> to the first input to set the default tab. Panels
-          are plain <code>div</code> elements placed after the labels. Give the
-          <code>header</code> a <code>role="tablist"</code> and an
-          <code>aria-label</code>, connect each input to its panel via
-          <code>id</code> / <code>aria-controls</code>, and mark each panel with
-          <code>role="tabpanel"</code>, <code>aria-labelledby</code>, and
-          <code>tabindex="0"</code> so keyboard users can Tab into the content.
-        </p>
+        <ul>
+          <li>
+            Each <code>label</code> wraps a hidden radio <code>input</code>. Add
+            <code>checked</code> to set the default tab. <br /><small
+              >CSS uses <code>:has()</code> to watch the checked state inside
+              <code>[role="tablist"]</code> and show the panel at the matching
+              position, with no JavaScript.</small
+            >
+          </li>
+          <li>
+            Give the <code>header</code> <code>role="tablist"</code> and an
+            <code>aria-label</code>. <br /><small
+              >The tab bar styling targets
+              <code>[role="tablist"]</code> directly. Screen readers also use
+              this to announce the group and let users navigate between
+              tabs.</small
+            >
+          </li>
+          <li>
+            Connect each input to its panel with matching <code>id</code> and
+            <code>aria-controls</code>. <br /><small
+              >Lets assistive technology jump directly from a tab to its
+              associated content.</small
+            >
+          </li>
+          <li>
+            Mark each panel with <code>role="tabpanel"</code>,
+            <code>aria-labelledby</code>, and <code>tabindex="0"</code>.
+            <br /><small
+              >All <code>[role="tabpanel"]</code> elements are hidden by
+              default. The Nth panel is revealed when the Nth tab is checked.
+              <code>aria-labelledby</code> names the panel after its tab, and
+              <code>tabindex="0"</code> makes it reachable by keyboard.</small
+            >
+          </li>
+        </ul>
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <section class="tabs" style="display: grid; gap: 1rem;">
+          <section class="tabs">
             <header role="tablist" aria-label="Account settings">
               <label>
                 <input
@@ -77,7 +103,6 @@ export async function TabsPage(path: string) {
               id="panel-demo-account"
               aria-labelledby="tab-demo-account"
               tabindex="0"
-              style="grid-column: 1; grid-row: 2;"
             >
               <p>Manage your account settings and preferences.</p>
             </div>
@@ -86,7 +111,6 @@ export async function TabsPage(path: string) {
               id="panel-demo-password"
               aria-labelledby="tab-demo-password"
               tabindex="0"
-              style="grid-column: 1; grid-row: 2;"
             >
               <p>Change your password and security settings.</p>
             </div>
@@ -95,7 +119,6 @@ export async function TabsPage(path: string) {
               id="panel-demo-notifications"
               aria-labelledby="tab-demo-notifications"
               tabindex="0"
-              style="grid-column: 1; grid-row: 2;"
             >
               <p>Configure how and when you receive notifications.</p>
             </div>
@@ -103,7 +126,7 @@ export async function TabsPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<section class="tabs" style="display: grid; gap: 1rem;">
+            await highlight(`<section class="tabs">
   <header role="tablist" aria-label="Account settings">
     <label>
     <input type="radio" name="tabs" id="tab-1" checked aria-controls="panel-1" /> Account
@@ -116,13 +139,13 @@ export async function TabsPage(path: string) {
     </label>
   </header>
 
-  <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0" style="grid-column: 1; grid-row: 2;">
+  <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
     <p>Manage your account settings and preferences.</p>
   </div>
-  <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" style="grid-column: 1; grid-row: 2;">
+  <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0">
     <p>Change your password and security settings.</p>
   </div>
-  <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" style="grid-column: 1; grid-row: 2;">
+  <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0">
     <p>Configure how and when you receive notifications.</p>
   </div>
 </section>`),
@@ -136,7 +159,10 @@ export async function TabsPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <section class="tabs">
+          <section
+            class="tabs"
+            style="display: grid; grid-templates-areas: header tabs"
+          >
             <header role="tablist" aria-label="Dashboard">
               <label>
                 <input
@@ -173,6 +199,7 @@ export async function TabsPage(path: string) {
               id="panel-disabled-overview"
               aria-labelledby="tab-disabled-overview"
               tabindex="0"
+              style="display: grid; gap: 1rem;"
             >
               <p>Overview content goes here.</p>
             </div>
@@ -489,29 +516,43 @@ export async function TabsPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <section class="tabs parent-tabs" style="display:grid;gap:1rem">
+          <!-- Level 1 -->
+          <section class="tabs parent-tabs">
             <header role="tablist" aria-label="Outer tabs">
-              <label
-                ><input type="radio" name="outer" checked /> Overview</label
-              >
+              <label>
+                <input type="radio" name="outer" checked /> Overview
+              </label>
               <label><input type="radio" name="outer" /> Settings</label>
             </header>
 
             <div role="tabpanel">
-              <p style="margin-bottom:1rem">
-                Outer panel one — contains a nested tabs:
-              </p>
-              <section class="tabs child-tabs" style="display:grid;gap:0.75rem">
+              <p>Outer panel one — contains a nested tabs:</p>
+              <!-- Level 2 -->
+              <section class="tabs child-tabs">
                 <header role="tablist" aria-label="Inner tabs">
-                  <label
-                    ><input type="radio" name="inner" checked /> Week</label
-                  >
-                  <label><input type="radio" name="inner" /> Month</label>
-                  <label><input type="radio" name="inner" /> Year</label>
+                  <label><input type="radio" name="inner" /> Info</label>
+                  <label>
+                    <input type="radio" name="inner" checked /> Animals
+                  </label>
                 </header>
-                <div role="tabpanel"><p>Weekly view</p></div>
-                <div role="tabpanel"><p>Monthly view</p></div>
-                <div role="tabpanel"><p>Yearly view</p></div>
+
+                <div role="tabpanel">
+                  <p>There's another tabs component in the other tab</p>
+                </div>
+                <div role="tabpanel">
+                  <!-- Level 3 -->
+                  <section class="tabs third-tabs">
+                    <header role="tablist" aria-label="Inner tabs">
+                      <label>
+                        <input type="radio" name="third" checked /> Dog
+                      </label>
+                      <label><input type="radio" name="third" /> Cat</label>
+                    </header>
+
+                    <div role="tabpanel"><p>Woof</p></div>
+                    <div role="tabpanel"><p>Meow</p></div>
+                  </section>
+                </div>
               </section>
             </div>
 
@@ -530,44 +571,74 @@ export async function TabsPage(path: string) {
               padding: 1rem;
               background-color: var(--ui-neutral-100);
             }
+
+            .third-tabs {
+              padding: 1rem;
+              background-color: var(--ui-neutral-0);
+            }
           </style>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<section class="tabs parent">
-  <header role="tablist" aria-label="Outer tabs">
-    <label><input type="radio" name="outer" checked /> Overview</label>
-    <label><input type="radio" name="outer" /> Settings</label>
-  </header>
+            await highlight(`<!-- Level 1 -->
+          <section class="tabs first">
+            <header role="tablist" aria-label="Outer tabs">
+              <label>
+                <input type="radio" name="outer" checked /> Overview
+              </label>
+              <label><input type="radio" name="outer" /> Settings</label>
+            </header>
 
-  <div role="tabpanel">
-    <section class="tabs child">
-      <header role="tablist" aria-label="Inner tabs">
-        <label><input type="radio" name="inner" checked /> Week</label>
-        <label><input type="radio" name="inner" /> Month</label>
-        <label><input type="radio" name="inner" /> Year</label>
-      </header>
-      <div role="tabpanel"><p>Weekly view</p></div>
-      <div role="tabpanel"><p>Monthly view</p></div>
-      <div role="tabpanel"><p>Yearly view</p></div>
-    </section>
-  </div>
+            <div role="tabpanel">
+              <p>Outer panel one — contains a nested tabs:</p>
+              <!-- Level 2 -->
+              <section class="tabs second">
+                <header role="tablist" aria-label="Inner tabs">
+                  <label><input type="radio" name="inner" /> Info</label>
+                  <label>
+                    <input type="radio" name="inner" checked /> Animals
+                  </label>
+                </header>
 
-  <div role="tabpanel">
-    <p>Outer panel two.</p>
-  </div>
-</section>
+                <div role="tabpanel">
+                  <p>There's another tabs component in the other tab</p>
+                </div>
+                <div role="tabpanel">
+                  <!-- Level 3 -->
+                  <section class="tabs third">
+                    <header role="tablist" aria-label="Inner tabs">
+                      <label>
+                        <input type="radio" name="third" checked /> Dog
+                      </label>
+                      <label><input type="radio" name="third" /> Cat</label>
+                    </header>
+
+                    <div role="tabpanel"><p>Woof</p></div>
+                    <div role="tabpanel"><p>Meow</p></div>
+                  </section>
+                </div>
+              </section>
+            </div>
+
+            <div role="tabpanel">
+              <p>Outer panel two.</p>
+            </div>
+          </section>
 
           <style>
             .tabs {
               padding: 1rem;
 
-              .parent {
+              .first {
                 border: 1px solid var(--ui-neutral-100);
               }
 
-              .child {
+              .second {
                 background-color: var(--ui-neutral-100);
+              }
+              
+              .third {
+                background-color: var(--ui-neutral-0);
               }
             }
 
