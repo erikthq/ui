@@ -51,10 +51,10 @@ export async function SeparatorPage(path: string) {
           class="preview preview-padded"
           style="flex-direction:column;gap:1rem;width:100%"
         >
-          <hr data-label="Appearance Settings" />
+          <hr data-label="Appearance Settings" style="--bg-color: var(--ui-neutral-0)" />
         </div>
         <div class="code-block">
-          ${raw(await highlight(`<hr data-label="Appearance Settings" />`))}
+          ${raw(await highlight(`<hr data-label="Appearance Settings" style="--bg-color: var(--ui-neutral-0)" />`))}
         </div>
       </div>
     `,
