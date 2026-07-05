@@ -41,6 +41,8 @@ import { ComboboxPage } from './pages/combobox'
 import { SubmenuPage } from './pages/submenu'
 import { EmptyPage } from './pages/empty'
 import { SkeletonPage } from './pages/skeleton'
+import { MarqueePage } from './pages/marquee'
+import { TreeViewPage } from './pages/tree-view'
 import { MenuPage } from './pages/menu'
 import { NumberFieldPage } from './pages/number-field'
 import { FieldPage } from './pages/field'
@@ -104,6 +106,8 @@ app.get('/components/combobox', (c) => c.html(ComboboxPage(c.req.path)))
 app.get('/components/submenu', (c) => c.html(SubmenuPage(c.req.path)))
 app.get('/components/empty', (c) => c.html(EmptyPage(c.req.path)))
 app.get('/components/skeleton', (c) => c.html(SkeletonPage(c.req.path)))
+app.get('/components/marquee', (c) => c.html(MarqueePage(c.req.path)))
+app.get('/components/tree-view', (c) => c.html(TreeViewPage(c.req.path)))
 app.get('/components/menu', (c) => c.html(MenuPage(c.req.path)))
 app.get('/components/number-field', (c) => c.html(NumberFieldPage(c.req.path)))
 app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))

@@ -44,6 +44,8 @@
 @import "./components/prose.css" layer(ui);
 @import "./components/empty.css" layer(ui);
 @import "./components/skeleton.css" layer(ui);
+@import "./components/marquee.css" layer(ui);
+@import "./components/tree-view.css" layer(ui);
 
 @layer ui {
   :root {

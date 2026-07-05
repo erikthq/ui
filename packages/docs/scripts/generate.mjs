@@ -23,6 +23,8 @@ const routes = [
   "/components/textarea",
   "/components/empty",
   "/components/skeleton",
+  "/components/marquee",
+  "/components/tree-view",
   "/components/menu",
   "/components/number-field",
   "/components/expander",

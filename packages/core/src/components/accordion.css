@@ -45,7 +45,7 @@ details {
       width: 1rem;
       aspect-ratio: 1;
       flex-shrink: 0;
-      transition: transform 300ms var(--ease-glide);
+      transition: rotate 300ms var(--ease-glide);
     }
 
     @media (hover: hover) {
@@ -62,7 +62,7 @@ details {
   }
 
   &[open] > summary::after {
-    transform: rotate(-180deg);
+    rotate: -180deg;
   }
 
   > *:not(summary) {

@@ -494,6 +494,7 @@ Or inline:
 - `Focus Group`
 - `Kbd`
 - `Loading`
+- `Marquee` (0.0.13)
 - `Menu`
 - `Number Field`
 - `Popover`
@@ -503,7 +504,7 @@ Or inline:
 - `Radio Group`
 - `Select`
 - `Separator`
-- `Skeleton`
+- `Skeleton` (0.0.13)
 - `Slider`
 - `Submenu`
 - `Switch`
@@ -514,3 +515,4 @@ Or inline:
 - `Toggle`
 - `Toggle Group`
 - `Tooltip`
+- `Tree View` (0.0.13)

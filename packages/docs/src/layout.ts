@@ -215,6 +215,13 @@ export const components: {
     description: "Animated spinner for async operations.",
   },
   {
+    label: "Marquee",
+    path: "/components/marquee",
+    description: "Infinitely scrolling row of content.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
+  },
+  {
     label: "Menu",
     path: "/components/menu",
     description: "Vertical list of actions with icons and shortcuts.",
@@ -317,6 +324,13 @@ export const components: {
     label: "Tooltip",
     path: "/components/tooltip",
     description: "Contextual label shown on hover or focus.",
+  },
+  {
+    label: "Tree View",
+    path: "/components/tree-view",
+    description: "Nested file or folder hierarchy with disclosures.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
   },
 ];
 

@@ -1,0 +1,81 @@
+.tree {
+  position: relative;
+  isolation: isolate;
+  padding-inline: var(--ui-spacing-2);
+
+  ul {
+    margin-inline-start: 0.5lh; /* halv icon size */
+    padding-block: 0;
+    /* border-inline-start: 1px solid var(--ui-neutral-200); */
+  }
+
+  details {
+    border-bottom: none;
+    padding-inline-start: var(--ui-spacing-3);
+
+    > summary {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--ui-spacing-2);
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      text-decoration: none;
+      padding-block: var(--ui-spacing-2);
+
+      &::after {
+        order: -1;
+        rotate: -90deg;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--ui-primary);
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-neutral-950);
+        outline-offset: 2px;
+      }
+
+      /* with two icons, the second is the "open" state, hidden until expanded */
+      svg:not(:only-of-type):last-of-type {
+        display: none;
+      }
+    }
+
+    &[open] > summary {
+      &::after {
+        rotate: 0deg;
+      }
+
+      svg:not(:only-of-type):first-of-type {
+        display: none;
+      }
+
+      svg:not(:only-of-type):last-of-type {
+        display: inline-block;
+      }
+    }
+  }
+
+  li li:not(:has(> details)) {
+    /* margin-inline-start: var(--ui-spacing-1); */
+  }
+
+  li:not(:has(> details)) {
+    display: flex;
+    align-items: center;
+
+    margin-inline-start: calc(1rem + var(--ui-spacing-2));
+
+    > button,
+    > .button {
+      width: 100%;
+      justify-content: flex-start;
+      white-space: nowrap;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@keyframes ui-marquee-scroll {
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap)));
+  }
+}
+
+.marquee {
+  --marquee-gap: var(--ui-spacing-6);
+  --marquee-duration: 20s;
+
+  display: flex;
+  gap: var(--marquee-gap);
+  width: stretch;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black var(--ui-spacing-8), black calc(100% - var(--ui-spacing-8)), transparent);
+
+  ul {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: inherit;
+    animation: ui-marquee-scroll var(--marquee-duration) linear infinite;
+
+    li {
+      list-style: none;
+      flex-shrink: 0;
+    }
+  }
+
+  &:hover ul {
+    animation-play-state: paused;
+  }
+
+  &.reverse ul {
+    animation-direction: reverse;
+  }
+}

@@ -81,7 +81,8 @@ export async function AvatarPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<img  class="avatar square" src="/avatar.jpg" alt="" />`,
+            await highlight(
+              `<img  class="avatar square" src="/avatar.jpg" alt="" />`,
             ),
           )}
         </div>
@@ -92,36 +93,37 @@ export async function AvatarPage(path: string) {
         <p>
           Nest a <code>&lt;span class="badge"&gt;</code> inside the avatar to
           show a presence dot in the corner. Any
-          <a href="${url("/components/badge")}">Badge</a> color modifier
-          works.
+          <a href="${url("/components/badge")}">Badge</a> color modifier works.
         </p>
       </div>
       <div class="example">
         <div class="preview">
-          <span class="avatar">
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-1"
-              alt=""
-            />
-            <span class="badge constructive">
-              ${raw(icon('plus'))}
+          <span>
+            <span class="avatar">
+              <img
+                src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-1"
+                alt=""
+              />
+              <span class="badge constructive"> ${raw(icon("plus"))} </span>
             </span>
           </span>
-          <span class="avatar" style="margin-inline-start:0;box-shadow:none">
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-2"
-              alt=""
-            />
-            <span class="badge destructive">
-              ${raw(icon('trash'))}
+          <span>
+            <span class="avatar">
+              <img
+                src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-2"
+                alt=""
+              />
+              <span class="badge destructive"> ${raw(icon("trash"))} </span>
             </span>
           </span>
-          <span class="avatar" style="margin-inline-start:0;box-shadow:none">
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-3"
-              alt=""
-            />
-            <span class="badge color2"></span>
+          <span>
+            <span class="avatar">
+              <img
+                src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-3"
+                alt=""
+              />
+              <span class="badge color2"></span>
+            </span>
           </span>
         </div>
         <div class="code-block">
@@ -180,8 +182,9 @@ export async function AvatarPage(path: string) {
       <div class="prose">
         <h2 id="with-tooltip">With tooltip</h2>
         <p>
-          Add <code>data-tooltip</code>, and <code>aria-label</code> to show a
-          name on hover or keyboard focus.
+          See the
+          <a href="${url("/components/tooltip")}">Tooltip</a> page for placement
+          options.
         </p>
       </div>
       <div class="example">
@@ -212,9 +215,9 @@ export async function AvatarPage(path: string) {
       <div class="prose">
         <h2 id="with-popover">With popover</h2>
         <p>
-          Turn the avatar into a <code>&lt;button&gt;</code> and connect it to a
-          <code>[popover]</code> with <code>popovertarget</code> to show a menu
-          on click.
+          See the
+          <a href="${url("/components/popover")}">Popover</a> page for more
+          variants.
         </p>
       </div>
       <div class="example">
