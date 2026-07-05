@@ -43,6 +43,9 @@ import { EmptyPage } from './pages/empty'
 import { SkeletonPage } from './pages/skeleton'
 import { MarqueePage } from './pages/marquee'
 import { TreeViewPage } from './pages/tree-view'
+import { PaginationPage } from './pages/pagination'
+import { TagGroupPage } from './pages/tag-group'
+import { InputOtpPage } from './pages/input-otp'
 import { MenuPage } from './pages/menu'
 import { NumberFieldPage } from './pages/number-field'
 import { FieldPage } from './pages/field'
@@ -108,6 +111,9 @@ app.get('/components/empty', (c) => c.html(EmptyPage(c.req.path)))
 app.get('/components/skeleton', (c) => c.html(SkeletonPage(c.req.path)))
 app.get('/components/marquee', (c) => c.html(MarqueePage(c.req.path)))
 app.get('/components/tree-view', (c) => c.html(TreeViewPage(c.req.path)))
+app.get('/components/pagination', (c) => c.html(PaginationPage(c.req.path)))
+app.get('/components/tag-group', (c) => c.html(TagGroupPage(c.req.path)))
+app.get('/components/input-otp', (c) => c.html(InputOtpPage(c.req.path)))
 app.get('/components/menu', (c) => c.html(MenuPage(c.req.path)))
 app.get('/components/number-field', (c) => c.html(NumberFieldPage(c.req.path)))
 app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))

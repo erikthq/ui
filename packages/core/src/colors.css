@@ -43,13 +43,13 @@
 
   --ui-neutral-50: light-dark(color-mix(in oklab, var(--ui-neutral), white 95%), color-mix(in oklab, var(--ui-neutral), black 73.75%));
 
-  --ui-neutral-100: light-dark(color-mix(in oklab, var(--ui-neutral), white 87%), color-mix(in oklab, var(--ui-neutral), black 58.5%));
+  --ui-neutral-100: light-dark(color-mix(in oklab, var(--ui-neutral), white 88%), color-mix(in oklab, var(--ui-neutral), black 68%));
 
-  --ui-neutral-200: light-dark(color-mix(in oklab, var(--ui-neutral), white 70%), color-mix(in oklab, var(--ui-neutral), black 43.5%));
+  --ui-neutral-200: light-dark(color-mix(in oklab, var(--ui-neutral), white 77%), color-mix(in oklab, var(--ui-neutral), black 60%));
 
-  --ui-neutral-300: light-dark(color-mix(in oklab, var(--ui-neutral), white 47%), color-mix(in oklab, var(--ui-neutral), black 28.25%));
+  --ui-neutral-300: light-dark(color-mix(in oklab, var(--ui-neutral), white 60%), color-mix(in oklab, var(--ui-neutral), black 45%));
 
-  --ui-neutral-400: light-dark(color-mix(in oklab, var(--ui-neutral), white 23%), color-mix(in oklab, var(--ui-neutral), black 15.5%));
+  --ui-neutral-400: light-dark(color-mix(in oklab, var(--ui-neutral), white 40%), color-mix(in oklab, var(--ui-neutral), black 25%));
 
   --ui-neutral-500: var(--ui-neutral);
 

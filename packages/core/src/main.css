@@ -46,6 +46,9 @@
 @import "./components/skeleton.css" layer(ui);
 @import "./components/marquee.css" layer(ui);
 @import "./components/tree-view.css" layer(ui);
+@import "./components/pagination.css" layer(ui);
+@import "./components/tag-group.css" layer(ui);
+@import "./components/input-otp.css" layer(ui);
 
 @layer ui {
   :root {

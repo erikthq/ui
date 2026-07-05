@@ -4,23 +4,21 @@
   padding-inline: var(--ui-spacing-2);
 
   ul {
-    margin-inline-start: 0.5lh; /* halv icon size */
+    margin-inline-start: 0.5rem; /* halv icon size */
     padding-block: 0;
-    /* border-inline-start: 1px solid var(--ui-neutral-200); */
+    border-inline-start: 1px solid var(--ui-neutral-200);
   }
 
   details {
     border-bottom: none;
-    padding-inline-start: var(--ui-spacing-3);
+    padding-inline-start: var(--ui-spacing-1);
 
     > summary {
       display: flex;
       align-items: center;
       justify-content: flex-start;
       gap: var(--ui-spacing-2);
-      cursor: pointer;
       user-select: none;
-      list-style: none;
       text-decoration: none;
       padding-block: var(--ui-spacing-2);
 
@@ -61,16 +59,9 @@
     }
   }
 
-  li li:not(:has(> details)) {
-    /* margin-inline-start: var(--ui-spacing-1); */
-  }
-
   li:not(:has(> details)) {
-    display: flex;
-    align-items: center;
-
-    margin-inline-start: calc(1rem + var(--ui-spacing-2));
-
+    margin-inline-start: 1rem;
+    
     > button,
     > .button {
       width: 100%;

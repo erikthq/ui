@@ -1,0 +1,26 @@
+.pagination {
+  ul {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-2);
+  }
+
+  li:not(:has(button, .button)) {
+    color: var(--ui-neutral-400);
+    text-align: center;
+    user-select: none;
+  }
+
+  li:not(:has(button, .button)),
+  button,
+  .button {
+    min-width: calc(1lh + var(--ui-spacing-2) * 2);
+  }
+
+  button,
+  .button {
+    &[aria-current="page"] {
+      text-decoration: underline;
+    }
+  }
+}

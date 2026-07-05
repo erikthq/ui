@@ -1,0 +1,94 @@
+.otp {
+  --otp-length: 6;
+  --otp-cell-size: 2.75rem;
+
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  width: calc(var(--otp-length) * var(--otp-cell-size));
+  height: var(--otp-cell-size);
+
+  &:has(> input[maxlength="1"]) {
+    --otp-length: 1;
+  }
+
+  &:has(> input[maxlength="2"]) {
+    --otp-length: 2;
+  }
+
+  &:has(> input[maxlength="3"]) {
+    --otp-length: 3;
+  }
+
+  &:has(> input[maxlength="4"]) {
+    --otp-length: 4;
+  }
+
+  &:has(> input[maxlength="5"]) {
+    --otp-length: 5;
+  }
+
+  &:has(> input[maxlength="6"]) {
+    --otp-length: 6;
+  }
+
+  &:has(> input[maxlength="7"]) {
+    --otp-length: 7;
+  }
+
+  &:has(> input[maxlength="8"]) {
+    --otp-length: 8;
+  }
+
+  &:has(> input[maxlength="9"]) {
+    --otp-length: 9;
+  }
+
+  &:has(> input[maxlength="10"]) {
+    --otp-length: 10;
+  }
+
+  > input {
+    appearance: none;
+    border: none;
+    /* padding-inline-start: calc((var(--otp-cell-size) - 1ch)); */
+
+    /* one extra cell of slack so the caret and trailing letter-spacing */
+    /* never need to scroll into view — the wrapper crops the overflow */
+    width: calc((var(--otp-length) + 1) * var(--otp-cell-size));
+    height: var(--otp-cell-size);
+
+    background-color: var(--ui-neutral-100);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='22' fill='black'/%3E%3C/svg%3E");
+    mask-repeat: repeat-x;
+    mask-size: var(--otp-cell-size) 100%;
+    mask-position: left center;
+
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.25rem;
+    font-weight: 600;
+    caret-color: var(--ui-primary);
+    letter-spacing: calc(var(--otp-cell-size) - 1ch);
+
+    transition: outline-color 100ms;
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-primary);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+    }
+
+    &::placeholder {
+      color: var(--ui-neutral-300);
+      letter-spacing: inherit;
+    }
+
+    &::selection {
+      background-color: var(--ui-primary-200);
+    }
+  }
+}

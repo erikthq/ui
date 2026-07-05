@@ -492,11 +492,13 @@ Or inline:
 - `Field`
 - `File Drop`
 - `Focus Group`
+- `Input OTP` (0.0.13)
 - `Kbd`
 - `Loading`
 - `Marquee` (0.0.13)
 - `Menu`
 - `Number Field`
+- `Pagination` (0.0.13)
 - `Popover`
 - `Progress`
 - `Prose`
@@ -510,6 +512,7 @@ Or inline:
 - `Switch`
 - `Table`
 - `Tabs` (0.0.2)
+- `Tag Group` (0.0.13)
 - `Text Field`
 - `Textarea`
 - `Toggle`

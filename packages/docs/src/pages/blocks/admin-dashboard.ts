@@ -421,26 +421,53 @@ export async function AdminDashboardPage(path: string) {
                 <span>0 of 100 row(s) selected.</span>
                 <div style="display:flex;align-items:center;gap:1rem">
                   <span>Rows per page</span>
-                  <select style="width:auto">
+                  <select>
+                    <button>
+                      <selectedcontent></selectedcontent>
+                      ${raw(icon("chevron-down"))}
+                    </button>
                     <option>10</option>
                     <option>20</option>
                     <option>50</option>
                   </select>
-                  <span>Page 1 of 10</span>
-                  <fieldset role="group">
-                    <button class="outlined square" disabled>
-                      ${raw(icon("chevrons-left", { size: 14 }))}
-                    </button>
-                    <button class="outlined square" disabled>
-                      ${raw(icon("chevron-left", { size: 14 }))}
-                    </button>
-                    <button class="outlined square">
-                      ${raw(icon("chevron-right", { size: 14 }))}
-                    </button>
-                    <button class="outlined square">
-                      ${raw(icon("chevrons-right", { size: 14 }))}
-                    </button>
-                  </fieldset>
+
+                  <nav class="pagination" aria-label="Pagination">
+                    <ul>
+                      <li>
+                        <a
+                          href="?page=0"
+                          class="button ghost square"
+                          aria-label="Previous page"
+                          aria-disabled="true"
+                        >
+                          ${raw(icon("chevron-left"))}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="?page=1"
+                          class="button ghost square"
+                          aria-current="page"
+                          >1</a
+                        >
+                      </li>
+                      <li>
+                        <a href="?page=2" class="button ghost square">2</a>
+                      </li>
+                      <li>
+                        <a href="?page=3" class="button ghost square">3</a>
+                      </li>
+                      <li>
+                        <a
+                          href="?page=2"
+                          class="button ghost square"
+                          aria-label="Next page"
+                        >
+                          ${raw(icon("chevron-right"))}
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </small>
             </main>

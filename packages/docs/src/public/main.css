@@ -90,6 +90,10 @@ body {
     max-height: calc(100vh - var(--header-h));
   }
 
+  @media (min-width: 1024px) {
+    top: 4.2rem;
+  }
+
   small,
   a {
     display: flex;

@@ -205,6 +205,12 @@ export const components: {
     description: "Arrow-key navigation for custom widget groups.",
   },
   {
+    label: "Input OTP",
+    path: "/components/input-otp",
+    description: "One-time passcode input styled as separate boxes.",
+    badge: "WIP",
+  },
+  {
     label: "Kbd",
     path: "/components/kbd",
     description: "Keyboard shortcut key labels.",
@@ -230,6 +236,13 @@ export const components: {
     label: "Number Field",
     path: "/components/number-field",
     description: "Native number input with unit suffix support.",
+  },
+  {
+    label: "Pagination",
+    path: "/components/pagination",
+    description: "Page navigation with numbered controls.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
   },
   {
     label: "Popover",
@@ -298,6 +311,12 @@ export const components: {
     path: "/components/tabs",
     description: "Panel navigation using accessible tab controls.",
     badge: "0.0.2",
+  },
+  {
+    label: "Tag Group",
+    path: "/components/tag-group",
+    description: "Selectable tags built from badges and checkboxes or radios.",
+    badge: "0.0.13",
     badgeClass: "constructive",
   },
   {

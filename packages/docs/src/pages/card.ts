@@ -4,6 +4,9 @@ import { highlight } from "../highlight";
 
 const toc = [
   { id: "default", label: "Default" },
+  { id: "secondary", label: "Secondary" },
+  { id: "tertiary", label: "Tertiary" },
+  { id: "transparent", label: "Transparent" },
   { id: "with-header-footer", label: "With header & footer" },
 ];
 
@@ -34,6 +37,69 @@ export async function CardPage(path: string) {
           ${raw(
             await highlight(`<article>
   <p>This is a simple card with some content inside.</p>
+</article>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="secondary">Secondary</h2>
+        <p>
+          Add <code>secondary</code> for a slightly recessed panel, useful
+          for nesting a card inside another card.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <article class="secondary" style="width:100%">
+            <p>This is a secondary card variant.</p>
+          </article>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<article class="secondary">
+  <p>This is a secondary card variant.</p>
+</article>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="tertiary">Tertiary</h2>
+        <p>Add <code>tertiary</code> for even more contrast against the page.</p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <article class="tertiary" style="width:100%">
+            <p>This is a tertiary card variant.</p>
+          </article>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<article class="tertiary">
+  <p>This is a tertiary card variant.</p>
+</article>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="transparent">Transparent</h2>
+        <p>
+          Add <code>transparent</code> for no background, suitable for
+          overlays and cards with a custom background.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <article class="transparent" style="width:100%">
+            <p>This is a transparent card variant.</p>
+          </article>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<article class="transparent">
+  <p>This is a transparent card variant.</p>
 </article>`),
           )}
         </div>

@@ -1,0 +1,31 @@
+label:has(> .badge):has(> input[type="checkbox"], > input[type="radio"]) {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 999px;
+  transition: box-shadow 200ms var(--ease-glide);
+
+  > input[type="checkbox"],
+  > input[type="radio"] {
+    appearance: none;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &:has(> input:checked) {
+    box-shadow: 0 0 0 1px var(--ui-neutral-800);
+  }
+
+  &:has(> input:focus-visible) > .badge {
+    outline: 2px solid var(--ui-neutral-950);
+    outline-offset: 2px;
+  }
+
+  &:has(> input:disabled) {
+    opacity: 0.4;
+    cursor: default;
+  }
+}

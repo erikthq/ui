@@ -1,10 +1,35 @@
 article {
   --card-border-radius: 12px;
 
+  background-color: var(--ui-neutral-0);
   box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
   border-radius: var(--card-border-radius);
   overflow: hidden;
   padding: var(--ui-spacing-4);
+
+  &.secondary {
+    box-shadow: none;
+    background-color: var(--ui-neutral-100);
+
+    > header,
+    > footer {
+      box-shadow: none;
+    }
+  }
+
+  &.tertiary {
+    box-shadow: none;
+    background-color: var(--ui-neutral-200);
+
+    > header,
+    > footer {
+      box-shadow: none;
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
 
   &:has(> header, > footer) {
     padding: 0;
