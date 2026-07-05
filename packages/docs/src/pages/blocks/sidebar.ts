@@ -244,10 +244,8 @@ export async function SidebarPage(path: string) {
                 popovertarget="sidebar-user-menu"
               >
                 <img
+                  class="avatar square"
                   src="https://api.dicebear.com/9.x/pixel-art/svg?seed=erikt-ui"
-                  width="26"
-                  height="26"
-                  style="border-radius:var(--radius)"
                   alt=""
                 />
                 <div style="display:grid">
@@ -264,10 +262,8 @@ export async function SidebarPage(path: string) {
                     style="display:flex;align-items:center;gap:var(--ui-spacing-3);padding:var(--ui-spacing-2) var(--ui-spacing-3)"
                   >
                     <img
+                      class="avatar square"
                       src="https://api.dicebear.com/9.x/pixel-art/svg?seed=erikt-ui"
-                      width="32"
-                      height="32"
-                      style="border-radius:var(--radius)"
                       alt=""
                     />
                     <div style="display:grid">
@@ -277,10 +273,7 @@ export async function SidebarPage(path: string) {
                   </li>
                   <li><hr /></li>
                   <li>
-                    <button
-                      class="ghost"
-                      style="color: var(--ui-color2-600);"
-                    >
+                    <button class="ghost" style="color: var(--ui-color2-600);">
                       ${raw(icon("sparkles"))} Upgrade to Pro
                     </button>
                   </li>

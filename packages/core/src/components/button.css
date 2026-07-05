@@ -83,7 +83,7 @@ button,
     border-radius: 100px;
   }
 
-  &.square {
+  &.square:not(.avatar) {
     padding-inline: var(--ui-spacing-2);
   }
 

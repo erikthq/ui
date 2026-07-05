@@ -1,0 +1,33 @@
+@keyframes ui-skeleton-shimmer {
+  from {
+    background-position: 250% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+
+.skeleton {
+  border-radius: 0.28rem;
+  background-color: var(--ui-neutral-100);
+  background-image: linear-gradient(90deg, transparent, var(--ui-neutral-50), transparent);
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  animation: ui-skeleton-shimmer 1600ms var(--ease-glide) infinite;
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+
+  * {
+    visibility: hidden;
+  }
+
+  &.circle {
+    border-radius: 999px;
+    aspect-ratio: 1;
+  }
+
+  &:not(.circle) {
+    height: 1lh;
+  }
+}

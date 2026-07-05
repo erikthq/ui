@@ -12,7 +12,10 @@ import copyCode from "./components/copy-code";
 const b = (process.env.BASE_URL ?? "/").replace(/\/$/, "");
 export const url = (path: string) => b + path;
 
-const siteOrigin = (process.env.SITE_URL ?? "https://ui.erikt.me").replace(/\/$/, "");
+const siteOrigin = (process.env.SITE_URL ?? "https://ui.erikt.me").replace(
+  /\/$/,
+  "",
+);
 export const siteUrl = siteOrigin + b;
 
 type TocItem = { id: string; label: string };
@@ -58,7 +61,8 @@ export const sections: { label: string; path: string; description: string }[] =
     {
       label: "Skills",
       path: "/getting-started/skills",
-      description: "Reference guide for AI-assisted development with @erikt/ui.",
+      description:
+        "Reference guide for AI-assisted development with @erikt/ui.",
     },
   ];
 
@@ -106,6 +110,13 @@ export const components: {
     label: "Accordion",
     path: "/components/accordion",
     description: "Collapsible sections for progressive disclosure.",
+  },
+  {
+    label: "Avatar",
+    path: "/components/avatar",
+    description: "User picture, initials, or icon with status indicator.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
   },
   {
     label: "Badge",
@@ -249,6 +260,13 @@ export const components: {
     description: "Horizontal rule to divide content sections.",
   },
   {
+    label: "Skeleton",
+    path: "/components/skeleton",
+    description: "Shimmering placeholder for loading content.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
+  },
+  {
     label: "Slider",
     path: "/components/slider",
     description: "Range input for selecting a numeric value.",
@@ -304,7 +322,8 @@ export const components: {
 
 const pageDescriptions: Record<string, string> = {
   "/": "The CSS design system that lives in one <link> tag. Drop in a single stylesheet and get a full component library, theming, and dark mode — no build step required.",
-  "/blocks": "Ready-to-use UI blocks built with @erikt/ui. Copy-paste layouts for authentication, dashboards, navigation, and more.",
+  "/blocks":
+    "Ready-to-use UI blocks built with @erikt/ui. Copy-paste layouts for authentication, dashboards, navigation, and more.",
   "/typography": "Typography scale and text utility styles in @erikt/ui.",
   ...Object.fromEntries(sections.map((s) => [s.path, s.description])),
   ...Object.fromEntries(components.map((c) => [c.path, c.description])),
@@ -312,10 +331,12 @@ const pageDescriptions: Record<string, string> = {
 };
 
 const COVER_IMAGE = `${siteUrl}/cover-min.jpg`;
-const FALLBACK_DESC = "The CSS design system that lives in one <link> tag. No build step, no class soup — just HTML and one stylesheet.";
+const FALLBACK_DESC =
+  "The CSS design system that lives in one <link> tag. No build step, no class soup — just HTML and one stylesheet.";
 
 function head(title: string, path: string, descriptionOverride?: string) {
-  const description = descriptionOverride ?? pageDescriptions[path] ?? FALLBACK_DESC;
+  const description =
+    descriptionOverride ?? pageDescriptions[path] ?? FALLBACK_DESC;
   const canonicalUrl = `${siteUrl}${path === "/" ? "" : path}`;
   const pageTitle = `${title} – @erikt/ui`;
   const isHome = path === "/";
@@ -352,8 +373,18 @@ function head(title: string, path: string, descriptionOverride?: string) {
         breadcrumb: {
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "@erikt/ui", item: siteUrl },
-            { "@type": "ListItem", position: 2, name: title, item: canonicalUrl },
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "@erikt/ui",
+              item: siteUrl,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: title,
+              item: canonicalUrl,
+            },
           ],
         },
       };
@@ -442,7 +473,11 @@ async function header(path: string) {
 
   return html`
     <header>
-      <a href="${url("/")}" class="docs-logo" aria-label="@erikt/ui docs homepage">
+      <a
+        href="${url("/")}"
+        class="docs-logo"
+        aria-label="@erikt/ui docs homepage"
+      >
         <svg
           height="24"
           viewBox="0 0 401 512"
@@ -578,7 +613,12 @@ async function header(path: string) {
   `;
 }
 
-export function HomeLayout({ title, path, description, content }: Omit<LayoutProps, "toc">) {
+export function HomeLayout({
+  title,
+  path,
+  description,
+  content,
+}: Omit<LayoutProps, "toc">) {
   return html`<!doctype html>
     <html lang="en">
       <head>
@@ -598,7 +638,14 @@ export function HomeLayout({ title, path, description, content }: Omit<LayoutPro
     </html>`;
 }
 
-export function Layout({ title, path, description, toc, wide, content }: LayoutProps) {
+export function Layout({
+  title,
+  path,
+  description,
+  toc,
+  wide,
+  content,
+}: LayoutProps) {
   return html`<!doctype html>
     <html lang="en">
       <head>

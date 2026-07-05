@@ -33,12 +33,14 @@ import { ToggleGroupPage } from './pages/toggle-group'
 import { IconsPage, IconsData, IconsFilledData } from './pages/icons'
 import { CustomizationPage } from './pages/customization'
 import { BadgePage } from './pages/badge'
+import { AvatarPage } from './pages/avatar'
 import { DropdownPage } from './pages/dropdown'
 import { SelectPage } from './pages/select'
 import { DatalistPage } from './pages/datalist'
 import { ComboboxPage } from './pages/combobox'
 import { SubmenuPage } from './pages/submenu'
 import { EmptyPage } from './pages/empty'
+import { SkeletonPage } from './pages/skeleton'
 import { MenuPage } from './pages/menu'
 import { NumberFieldPage } from './pages/number-field'
 import { FieldPage } from './pages/field'
@@ -94,12 +96,14 @@ app.get('/icons.json', (c) => c.json(JSON.parse(IconsData())))
 app.get('/icons-filled.json', (c) => c.json(JSON.parse(IconsFilledData())))
 app.get('/getting-started/customization', (c) => c.html(CustomizationPage(c.req.path)))
 app.get('/components/badge', (c) => c.html(BadgePage(c.req.path)))
+app.get('/components/avatar', (c) => c.html(AvatarPage(c.req.path)))
 app.get('/components/dropdown', (c) => c.html(DropdownPage(c.req.path)))
 app.get('/components/select', (c) => c.html(SelectPage(c.req.path)))
 app.get('/components/datalist', (c) => c.html(DatalistPage(c.req.path)))
 app.get('/components/combobox', (c) => c.html(ComboboxPage(c.req.path)))
 app.get('/components/submenu', (c) => c.html(SubmenuPage(c.req.path)))
 app.get('/components/empty', (c) => c.html(EmptyPage(c.req.path)))
+app.get('/components/skeleton', (c) => c.html(SkeletonPage(c.req.path)))
 app.get('/components/menu', (c) => c.html(MenuPage(c.req.path)))
 app.get('/components/number-field', (c) => c.html(NumberFieldPage(c.req.path)))
 app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))

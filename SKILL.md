@@ -474,6 +474,7 @@ Or inline:
 ## Available components
 
 - `Accordion`
+- `Avatar` (0.0.13)
 - `Badge`
 - `Button`
 - `Button Group`
@@ -502,6 +503,7 @@ Or inline:
 - `Radio Group`
 - `Select`
 - `Separator`
+- `Skeleton`
 - `Slider`
 - `Submenu`
 - `Switch`

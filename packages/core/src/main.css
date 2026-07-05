@@ -6,6 +6,7 @@
 @import "./colors.css" layer(ui);
 
 @import "./components/badge.css" layer(ui);
+@import "./components/avatar.css" layer(ui);
 @import "./components/accordion.css" layer(ui);
 @import "./components/card.css" layer(ui);
 @import "./components/button.css" layer(ui);
@@ -42,6 +43,7 @@
 @import "./components/tabs.css" layer(ui);
 @import "./components/prose.css" layer(ui);
 @import "./components/empty.css" layer(ui);
+@import "./components/skeleton.css" layer(ui);
 
 @layer ui {
   :root {

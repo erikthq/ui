@@ -1,0 +1,53 @@
+@media (hover: hover) {
+  *:has(> .avatar:hover) .avatar + .avatar {
+    transition-delay: 0ms;
+    margin-inline-start: 0rem;
+  }
+}
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  height: calc(var(--ui-spacing-2) * 2 + 1lh);
+  border-radius: 999px;
+  background-color: var(--ui-neutral-200);
+  color: var(--ui-neutral-700);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: calc((16 / 14) * 1rem);
+  user-select: none;
+  padding-inline: 0;
+  padding-block: 0;
+
+  transition: margin-inline-start 150ms 100ms var(--ease-glide);
+
+  + .avatar {
+    margin-inline-start: -0.6em;
+    box-shadow: 0 0 0 0.15em var(--ui-background-color);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  &.square {
+    border-radius: 0.57rem;
+  }
+
+  > .badge {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1.2em;
+    height: 1.2em;
+    padding: 0.2em;
+    box-shadow: 0 0 0 0.15em var(--ui-background-color);
+  }
+}
