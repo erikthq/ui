@@ -65,10 +65,30 @@ export async function TagGroupPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(`<div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
-  <label><input type="checkbox" checked /><span class="badge"><svg><!-- palette --></svg> Design</span></label>
-  <label><input type="checkbox" /><span class="badge"><svg><!-- code --></svg> Engineering</span></label>
-  <label><input type="checkbox" checked /><span class="badge"><svg><!-- box --></svg> Product</span></label>
-  <label><input type="checkbox" /><span class="badge"><svg><!-- speakerphone --></svg> Marketing</span></label>
+  <label>
+  <input type="checkbox" checked />
+  <span class="badge">
+  <svg><!-- palette --></svg> Design
+  </span>
+  </label>
+  <label>
+  <input type="checkbox" />
+  <span class="badge">
+  <svg><!-- code --></svg> Engineering
+  </span>
+  </label>
+  <label>
+  <input type="checkbox" checked />
+  <span class="badge">
+  <svg><!-- box --></svg> Product
+  </span>
+  </label>
+  <label>
+  <input type="checkbox" />
+  <span class="badge">
+  <svg><!-- speakerphone --></svg> Marketing
+  </span>
+  </label>
 </div>`),
           )}
         </div>

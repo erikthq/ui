@@ -10,6 +10,7 @@ dialog {
   border-radius: 12px;
   padding: 0;
   max-width: min(480px, calc(100vw - 2rem));
+  max-height: none;
   width: 100%;
 
   pointer-events: none;
@@ -19,8 +20,8 @@ dialog {
   transition:
     opacity 300ms var(--ease-glide),
     translate 300ms var(--ease-glide),
-    display 100ms allow-discrete,
-    overlay 100ms allow-discrete;
+    display 300ms allow-discrete,
+    overlay 300ms allow-discrete;
 
   &[open] {
     opacity: 1;
@@ -41,8 +42,8 @@ dialog {
     backdrop-filter: blur(2px);
     transition:
       opacity 200ms var(--ease-glide),
-      display 100ms allow-discrete,
-      overlay 100ms allow-discrete;
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
   }
 
   &[open]::backdrop {

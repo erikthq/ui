@@ -1,4 +1,4 @@
-fieldset[role="group"] {
+fieldset[role="group"]:not(.color-swatch) {
   display: inline-flex;
   align-items: stretch;
   padding: 0;

@@ -72,7 +72,7 @@ label:not(.field).toggle {
   } */
 
   &:has(> input:checked) {
-    background-color: var(--ui-neutral-100);
+    background-color: var(--ui-neutral-200);
 
     [data-checked] {
       display: revert;

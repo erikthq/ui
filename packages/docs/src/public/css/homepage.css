@@ -139,32 +139,6 @@
   }
 }
 
-.home-color-swatches {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.home-swatch-btn {
-  width: 1.5rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--swatch);
-  transition: all 120ms ease;
-  box-shadow: 0 0 0 2px transparent;
-
-  /* &:hover {
-    scale: 1.15;
-  } */
-
-  &.active {
-    box-shadow:
-      0 0 0 2px var(--ui-background-color),
-      0 0 0 4px var(--ui-primary);
-  }
-}
-
 .home-themes-showcase {
   display: flex;
   flex-direction: column;

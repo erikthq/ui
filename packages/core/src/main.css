@@ -12,7 +12,9 @@
 @import "./components/button.css" layer(ui);
 @import "./components/button-group.css" layer(ui);
 @import "./components/dialog.css" layer(ui);
+@import "./components/drawer.css" layer(ui);
 @import "./components/checkbox.css" layer(ui);
+@import "./components/color-swatch.css" layer(ui);
 @import "./components/color-input.css" layer(ui);
 @import "./components/date-input.css" layer(ui);
 @import "./components/radio.css" layer(ui);

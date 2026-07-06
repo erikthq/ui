@@ -154,6 +154,13 @@ export const components: {
     description: "Native color picker with hex value display.",
   },
   {
+    label: "Color Swatch",
+    path: "/components/color-swatch",
+    description: "Selectable or decorative circular color indicator.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
+  },
+  {
     label: "Combobox",
     path: "/components/combobox",
     description: "Searchable dropdown with autocomplete suggestions.",
@@ -173,6 +180,13 @@ export const components: {
     label: "Dialog",
     path: "/components/dialog",
     description: "Modal overlay for focused tasks or confirmations.",
+  },
+  {
+    label: "Drawer",
+    path: "/components/drawer",
+    description: "Dialog variant that slides in from the edge of the screen.",
+    badge: "0.0.13",
+    badgeClass: "constructive",
   },
   {
     label: "Dropdown",

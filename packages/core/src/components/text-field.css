@@ -81,7 +81,7 @@ label:not(.toggle):has(> [data-prefix], > [data-suffix]) {
 
   > [data-prefix]:not(button),
   > [data-suffix]:not(button) {
-    color: var(--ui-neutral-400);
+    color: var(--ui-neutral-600);
   }
 
   > [data-prefix] {

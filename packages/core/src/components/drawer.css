@@ -1,0 +1,79 @@
+dialog.drawer {
+  inset: 0;
+  margin: 0;
+  max-width: none;
+  width: min(420px, 100vw);
+  height: 100vh;
+  border-radius: 12px 0 0 12px;
+  
+  inset-inline-start: auto;
+  translate: 100% 0;
+  opacity: 1;
+  
+  &[open] {
+    translate: 0 0;
+  }
+
+  @starting-style {
+    &[open] {
+      translate: 100% 0;
+    }
+  }
+
+  &[data-position="left"] {
+    inset-inline-start: 0;
+    inset-inline-end: auto;
+    border-radius: 0 12px 12px 0;
+    translate: -100% 0;
+
+    &[open] {
+      translate: 0 0;
+    }
+
+    @starting-style {
+      &[open] {
+        translate: -100% 0;
+      }
+    }
+  }
+
+  &[data-position="top"] {
+    inset-block-start: 0;
+    inset-block-end: auto;
+    inset-inline: 0;
+    width: 100vw;
+    height: min(420px, 100vh);
+    border-radius: 0 0 12px 12px;
+    translate: 0 -100%;
+
+    &[open] {
+      translate: 0 0;
+    }
+
+    @starting-style {
+      &[open] {
+        translate: 0 -100%;
+      }
+    }
+  }
+
+  &[data-position="bottom"] {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline: 0;
+    width: 100vw;
+    height: min(420px, 100vh);
+    border-radius: 12px 12px 0 0;
+    translate: 0 100%;
+
+    &[open] {
+      translate: 0 0;
+    }
+
+    @starting-style {
+      &[open] {
+        translate: 0 100%;
+      }
+    }
+  }
+}

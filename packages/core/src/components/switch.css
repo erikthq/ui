@@ -4,7 +4,7 @@ input[type="checkbox"].switch {
   height: 1.2lh;
   border-radius: 100px;
   box-shadow: none;
-  background-color: var(--ui-neutral-200);
+  background-color: var(--ui-neutral-300);
   cursor: pointer;
   flex-shrink: 0;
   position: relative;
@@ -28,6 +28,7 @@ input[type="checkbox"].switch {
   &:checked {
     background-color: var(--ui-primary);
     background-image: none;
+    mask-image: none;
 
     &::after {
       left: calc(100% - 1lh - 2px - 1px);

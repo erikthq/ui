@@ -5,7 +5,7 @@
   display: inline-block;
   overflow: hidden;
   vertical-align: middle;
-  width: calc(var(--otp-length) * var(--otp-cell-size));
+  width: calc((var(--otp-length) + 0) * var(--otp-cell-size));
   height: var(--otp-cell-size);
 
   &:has(> input[maxlength="1"]) {
@@ -48,27 +48,25 @@
     --otp-length: 10;
   }
 
-  > input {
-    appearance: none;
-    border: none;
-    /* padding-inline-start: calc((var(--otp-cell-size) - 1ch)); */
+  text-overflow: clip;
 
-    /* one extra cell of slack so the caret and trailing letter-spacing */
-    /* never need to scroll into view — the wrapper crops the overflow */
-    width: calc((var(--otp-length) + 1) * var(--otp-cell-size));
+  > input {
+    width: calc((var(--otp-length) + 2) * var(--otp-cell-size));
     height: var(--otp-cell-size);
 
     background-color: var(--ui-neutral-100);
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='22' fill='black'/%3E%3C/svg%3E");
+    /* mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='6' width='88' height='88' rx='22' fill='black'/%3E%3C/svg%3E");
     mask-repeat: repeat-x;
     mask-size: var(--otp-cell-size) 100%;
-    mask-position: left center;
+    mask-position: left center; */
 
-    font: inherit;
+    /* float: left;
+    unicode-bidi: bidi-override;
+    direction: rtl; */
+
     font-variant-numeric: tabular-nums;
     font-size: 1.25rem;
     font-weight: 600;
-    caret-color: var(--ui-primary);
     letter-spacing: calc(var(--otp-cell-size) - 1ch);
 
     transition: outline-color 100ms;

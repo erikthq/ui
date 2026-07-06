@@ -13,6 +13,7 @@ import { ThemesPage } from './pages/themes'
 import { ProsePage } from './pages/prose'
 import { AccordionPage } from './pages/accordion'
 import { DialogPage } from './pages/dialog'
+import { DrawerPage } from './pages/drawer'
 import { CodePage } from './pages/code'
 import { KbdPage } from './pages/kbd'
 import { CardPage } from './pages/card'
@@ -33,6 +34,7 @@ import { ToggleGroupPage } from './pages/toggle-group'
 import { IconsPage, IconsData, IconsFilledData } from './pages/icons'
 import { CustomizationPage } from './pages/customization'
 import { BadgePage } from './pages/badge'
+import { ColorSwatchPage } from './pages/color-swatch'
 import { AvatarPage } from './pages/avatar'
 import { DropdownPage } from './pages/dropdown'
 import { SelectPage } from './pages/select'
@@ -73,6 +75,7 @@ app.get('/getting-started/themes', (c) => c.html(ThemesPage(c.req.path)))
 app.get('/components/prose', (c) => c.html(ProsePage(c.req.path)))
 app.get('/components/accordion', (c) => c.html(AccordionPage(c.req.path)))
 app.get('/components/dialog', (c) => c.html(DialogPage(c.req.path)))
+app.get('/components/drawer', (c) => c.html(DrawerPage(c.req.path)))
 app.get('/components/code', (c) => c.html(CodePage(c.req.path)))
 app.get('/components/kbd', (c) => c.html(KbdPage(c.req.path)))
 app.get('/components/card', (c) => c.html(CardPage(c.req.path)))
@@ -101,6 +104,7 @@ app.get('/icons.json', (c) => c.json(JSON.parse(IconsData())))
 app.get('/icons-filled.json', (c) => c.json(JSON.parse(IconsFilledData())))
 app.get('/getting-started/customization', (c) => c.html(CustomizationPage(c.req.path)))
 app.get('/components/badge', (c) => c.html(BadgePage(c.req.path)))
+app.get('/components/color-swatch', (c) => c.html(ColorSwatchPage(c.req.path)))
 app.get('/components/avatar', (c) => c.html(AvatarPage(c.req.path)))
 app.get('/components/dropdown', (c) => c.html(DropdownPage(c.req.path)))
 app.get('/components/select', (c) => c.html(SelectPage(c.req.path)))

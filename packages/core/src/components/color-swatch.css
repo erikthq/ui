@@ -1,0 +1,82 @@
+@property --mask-position {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 66%;
+}
+
+fieldset.color-swatch {
+  display: inline-flex;
+  gap: var(--ui-spacing-2);
+  border: none;
+
+  > input[type="radio"],
+  > input[type="checkbox"] {
+    appearance: none;
+
+    position: relative;
+    isolation: isolate;
+
+    width: calc(20 / 14 * 1rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--swatch-color, var(--ui-neutral-300));
+    box-shadow: none;
+
+    flex-shrink: 0;
+
+    --mask-position: 59%;
+    
+    mask-image: radial-gradient(black, black var(--mask-position), transparent var(--mask-position), transparent 59%, black 59%);
+
+    transition:
+      scale 100ms var(--ease-glide),
+      translate 100ms ease-out,
+      --mask-position var(--mask-transition, 200ms var(--ease-glide));
+
+    &:checked {
+      --mask-transition: 500ms var(--ease-snap);
+      --mask-position: 50%;
+      
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3l7 -7' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 10.5l3 3l7 -7' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+          no-repeat center / 60%,
+        var(--swatch-color, var(--ui-neutral-300));
+
+      mask-size: 100% 100%;
+      mask-repeat: no-repeat;
+      mask-position: center;
+
+      scale: 1.15;
+    }
+
+    &:focus-visible {
+      border-radius: 50%;
+      outline: 2px solid var(--ui-neutral-950);
+      outline-offset: 3px;
+    }
+
+    @media (hover: hover) {
+      &:hover:not(:checked) {
+        scale: 1.1;
+      }
+    }
+
+    &:active {
+      translate: 0 1px;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+}
+
+span.color-swatch {
+  display: inline-block;
+  width: calc(20 / 14 * 1rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--swatch-color, var(--ui-neutral-300));
+  flex-shrink: 0;
+}

@@ -175,7 +175,7 @@ body:has(.sidebar-toggle:checked) {
   margin-bottom: 2rem;
 }
 
-.color-swatch {
+.preview-color-swatch {
   flex: 1;
   display: flex;
   flex-direction: column;

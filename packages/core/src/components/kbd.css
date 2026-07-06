@@ -6,7 +6,7 @@ kbd {
   border-radius: 0.28rem;
   padding-block: calc(var(--ui-spacing) / 2);
   padding-inline: var(--ui-spacing-2);
-  background: var(--ui-neutral-100);
+  background: var(--ui-neutral-200);
   color: var(--ui-neutral-800);
   font-family: inherit;
   font-size: 0.85em;

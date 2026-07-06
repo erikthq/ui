@@ -7,10 +7,7 @@ export function ThemePicker() {
       localStorage.removeItem("ui-primary-dark");
       const storedColor = localStorage.getItem("ui-primary");
       if (storedColor) {
-        document.documentElement.style.setProperty(
-          "--ui-primary",
-          storedColor,
-        );
+        document.documentElement.style.setProperty("--ui-primary", storedColor);
       }
       function syncSwatch() {
         var stored = localStorage.getItem("ui-primary");
@@ -18,8 +15,8 @@ export function ThemePicker() {
           b.classList.toggle("secondary", b.dataset.primary === stored);
           b.classList.toggle("ghost", b.dataset.primary !== stored);
         });
-        document.querySelectorAll(".home-swatch-btn").forEach(function (b) {
-          b.classList.toggle("active", b.dataset.color === stored);
+        document.querySelectorAll('input[name="color"]').forEach(function (b) {
+          b.checked = b.value === stored;
         });
       }
       document.addEventListener("DOMContentLoaded", function () {
@@ -35,82 +32,79 @@ export function ThemePicker() {
       ${raw(icon("palette"))} <small>Theme</small>
     </button>
 
-    <menu id="color-picker" popover class="color-picker-popover">
-      ${(
-        [
-          { color: "dodgerblue", name: "Blue" },
-          { color: "#7c3aed", name: "Violet" },
-          { color: "#db2777", name: "Pink" },
-          { color: "#dc2626", name: "Red" },
-          { color: "#ea580c", name: "Orange" },
-          { color: "#16a34a", name: "Green" },
-          { color: "#0891b2", name: "Cyan" },
-        ] as const
-      ).map(
-        ({ color, name }) => html`
-          <li>
-            <button
-              class="color-swatch-btn ghost"
-              style="--swatch-color:${color}"
-              aria-label="${name}"
-              data-primary="light-dark(${color}, color-mix(in oklab, ${color}, white 20%))"
-              onclick="
-              const val = 'light-dark(${color}, color-mix(in oklab, ${color}, white 20%))';
+    <div id="color-picker" popover>
+      <menu class="color-picker-popover">
+        ${(
+          [
+            { color: "dodgerblue", name: "Blue" },
+            { color: "#7c3aed", name: "Violet" },
+            { color: "#db2777", name: "Pink" },
+            { color: "#dc2626", name: "Red" },
+            { color: "#ea580c", name: "Orange" },
+            { color: "#16a34a", name: "Green" },
+            { color: "#0891b2", name: "Cyan" },
+          ] as const
+        ).map(
+          ({ color, name }) => html`
+            <li>
+              <button
+                class="color-swatch-btn ghost"
+                style="--swatch-color:${color}"
+                aria-label="${name}"
+                data-primary="light-dark(${color}, color-mix(in oklab, ${color}, white 20%))"
+                onclick="
+                const val = 'light-dark(${color}, color-mix(in oklab, ${color}, white 20%))';
+                document.documentElement.style.setProperty('--ui-primary', val);
+                localStorage.setItem('ui-primary', val);
+                document.getElementById('color-picker').hidePopover();
+                syncSwatch();
+              "
+              >
+                <span class="circle"></span>
+                <span class="name">${name}</span>
+              </button>
+            </li>
+          `,
+        )}
+        <li>
+          <button
+            class="color-swatch-btn ghost"
+            style="--swatch-color:linear-gradient(135deg, #111 50%, #fff 50%)"
+            aria-label="Mono"
+            data-primary="light-dark(#111111, #ffffff)"
+            onclick="
+              const val = 'light-dark(#111111, #ffffff)';
               document.documentElement.style.setProperty('--ui-primary', val);
               localStorage.setItem('ui-primary', val);
               document.getElementById('color-picker').hidePopover();
               syncSwatch();
             "
-            >
-              <span class="circle"></span>
-              <span class="name">${name}</span>
-            </button>
-          </li>
-        `,
-      )}
-      <li>
-        <button
-          class="color-swatch-btn ghost"
-          style="--swatch-color:linear-gradient(135deg, #111 50%, #fff 50%)"
-          aria-label="Mono"
-          data-primary="light-dark(#111111, #ffffff)"
-          onclick="
-            const val = 'light-dark(#111111, #ffffff)';
-            document.documentElement.style.setProperty('--ui-primary', val);
-            localStorage.setItem('ui-primary', val);
-            document.getElementById('color-picker').hidePopover();
-            syncSwatch();
-          "
-        >
-          <span
-            class="circle"
-            style="box-shadow:0 0 0 1px var(--ui-neutral-300) inset"
-          ></span>
-          <span class="name">Mono</span>
-        </button>
-      </li>
-      <li class="color-picker-custom">
-        <label class="field">
-          <span>Custom</span>
-          <input
-            type="color"
-            value="#6366f1"
-            oninput="
-            document.documentElement.style.setProperty('--ui-primary', this.value);
-            localStorage.setItem('ui-primary', this.value);
-          "
-          />
-        </label>
-      </li>
-    </menu>
+          >
+            <span
+              class="circle"
+              style="box-shadow:0 0 0 1px var(--ui-neutral-300) inset"
+            ></span>
+            <span class="name">Mono</span>
+          </button>
+        </li>
+        <li class="color-picker-custom">
+          <label class="field">
+            <span>Custom</span>
+            <input
+              type="color"
+              value="#6366f1"
+              oninput="
+              document.documentElement.style.setProperty('--ui-primary', this.value);
+              localStorage.setItem('ui-primary', this.value);
+            "
+            />
+          </label>
+        </li>
+      </menu>
+    </div>
 
     <style>
       .color-picker-popover {
-        position-anchor: --color-picker;
-        top: calc(var(--header-h) - 0.5rem);
-        left: unset;
-        right: anchor(right);
-        padding: 0.75rem;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 0.25rem;
@@ -140,7 +134,6 @@ export function ThemePicker() {
 
       .color-picker-custom {
         grid-column: 1 / -1;
-        padding-top: 0.5rem;
         border-top: 1px solid var(--ui-neutral-200);
         margin-top: 0.25rem;
 

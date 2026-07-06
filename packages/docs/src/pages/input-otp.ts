@@ -54,7 +54,7 @@ export async function InputOtpPage(path: string) {
               type="text"
               inputmode="numeric"
               pattern="\\d*"
-              maxlength="6"
+              maxlength="4"
               autocomplete="one-time-code"
               aria-label="One-time passcode"
             />
@@ -68,7 +68,7 @@ export async function InputOtpPage(path: string) {
     type="text"
     inputmode="numeric"
     pattern="\\d*"
-    maxlength="6"
+    maxlength="4"
     autocomplete="one-time-code"
     aria-label="One-time passcode"
   />

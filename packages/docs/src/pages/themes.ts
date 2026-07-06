@@ -19,7 +19,7 @@ function colorScale(name: string) {
     <div class="color-scale">
       ${steps.map(
         (step) => html`
-          <div class="color-swatch">
+          <div class="preview-color-swatch">
             <div
               class="color-swatch-block"
               style="background: var(--ui-${name}-${step})"

@@ -8,28 +8,40 @@ const colors = [
   { color: "#ea580c", name: "Orange" },
   { color: "#16a34a", name: "Green" },
   { color: "#0891b2", name: "Cyan" },
-  { color: "light-dark(#111111, #ffffff)", name: "Mono", display: "linear-gradient(135deg, #111 50%, #fff 50%)" },
+  {
+    color: "light-dark(#111111, #ffffff)",
+    name: "Black/White",
+    display: "linear-gradient(135deg, #111 50%, #fff 50%)",
+  },
 ] as const;
 
 export function ColorSwatches() {
   return html`
-    <div class="home-color-swatches">
-      ${colors.map(
-        (c) => html`
-          <button
-            class="home-swatch-btn"
-            aria-label="${c.name}"
-            data-color="${"display" in c ? c.color : `light-dark(${c.color}, color-mix(in oklab, ${c.color}, white 20%))`}"
-            style="--swatch: ${"display" in c ? c.display : c.color}"
-            onclick="
-              const val = this.dataset.color;
-              document.documentElement.style.setProperty('--ui-primary', val);
-              localStorage.setItem('ui-primary', val);
-              syncSwatch();
-            "
-          ></button>
-        `,
-      )}
-    </div>
+    <script>
+      window.updateColor = (form) => {
+        const color = new FormData(form).get("color");
+
+        document.documentElement.style.setProperty("--ui-primary", color);
+        localStorage.setItem("ui-primary", color);
+        syncSwatch();
+      };
+    </script>
+    <form onchange="updateColor(this)">
+      <fieldset role="group" class="color-swatch">
+        ${colors.map(
+          (c) => html`
+            <input
+              type="radio"
+              name="color"
+              value="${"display" in c
+                ? c.color
+                : `light-dark(${c.color}, color-mix(in oklab, ${c.color}, white 20%))`}"
+              style="--swatch-color: ${"display" in c ? c.display : c.color}"
+              aria-label="${c.name}"
+            />
+          `,
+        )}
+      </fieldset>
+    </form>
   `;
 }

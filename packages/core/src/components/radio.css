@@ -24,7 +24,7 @@ input[type="radio"] {
     background-color 100ms,
     box-shadow 100ms;
 
-  &:checked {
+  &:checked:not(.color-swatch &) {
     background-color: var(--ui-primary);
     box-shadow: 0 0 0 1.5px var(--ui-primary) inset;
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -8 40 40' overflow='visible'%3E%3Crect x='-100' y='-100' width='200' height='200' fill='white'/%3E%3Ccircle cx='12' cy='12' r='6' fill='black'/%3E%3C/svg%3E");
