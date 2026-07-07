@@ -632,7 +632,7 @@ async function header(path: string) {
           href="https://github.com/erikthq/ui"
           target="_blank"
           rel="noopener"
-          class="button secondary ${stars === null ? "square" : ""}"
+          class="button ghost ${stars === null ? "square" : ""}"
           aria-label="GitHub"
           data-tooltip="bottom"
         >

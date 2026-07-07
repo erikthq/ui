@@ -9,8 +9,8 @@ fieldset.color-swatch {
   gap: var(--ui-spacing-2);
   border: none;
 
-  > input[type="radio"],
-  > input[type="checkbox"] {
+  input[type="radio"],
+  input[type="checkbox"] {
     appearance: none;
 
     position: relative;
@@ -25,7 +25,7 @@ fieldset.color-swatch {
     flex-shrink: 0;
 
     --mask-position: 59%;
-    
+
     mask-image: radial-gradient(black, black var(--mask-position), transparent var(--mask-position), transparent 59%, black 59%);
 
     transition:
@@ -36,7 +36,7 @@ fieldset.color-swatch {
     &:checked {
       --mask-transition: 500ms var(--ease-snap);
       --mask-position: 50%;
-      
+
       background:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3l7 -7' fill='none' stroke='black' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 10.5l3 3l7 -7' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
           no-repeat center / 60%,

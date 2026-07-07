@@ -1,5 +1,6 @@
 import { html, raw } from "hono/html";
 import { icon } from "../icon";
+import { colors } from "./color-swatches";
 
 export function ThemePicker() {
   return html`
@@ -25,7 +26,7 @@ export function ThemePicker() {
     </script>
 
     <button
-      class="secondary"
+      class="ghost"
       popovertarget="color-picker"
       style="anchor-name:--color-picker"
     >
@@ -33,113 +34,83 @@ export function ThemePicker() {
     </button>
 
     <div id="color-picker" popover>
-      <menu class="color-picker-popover">
-        ${(
-          [
-            { color: "dodgerblue", name: "Blue" },
-            { color: "#7c3aed", name: "Violet" },
-            { color: "#db2777", name: "Pink" },
-            { color: "#dc2626", name: "Red" },
-            { color: "#ea580c", name: "Orange" },
-            { color: "#16a34a", name: "Green" },
-            { color: "#0891b2", name: "Cyan" },
-          ] as const
-        ).map(
-          ({ color, name }) => html`
-            <li>
-              <button
-                class="color-swatch-btn ghost"
-                style="--swatch-color:${color}"
-                aria-label="${name}"
-                data-primary="light-dark(${color}, color-mix(in oklab, ${color}, white 20%))"
-                onclick="
-                const val = 'light-dark(${color}, color-mix(in oklab, ${color}, white 20%))';
-                document.documentElement.style.setProperty('--ui-primary', val);
-                localStorage.setItem('ui-primary', val);
-                document.getElementById('color-picker').hidePopover();
-                syncSwatch();
-              "
-              >
-                <span class="circle"></span>
-                <span class="name">${name}</span>
-              </button>
-            </li>
-          `,
-        )}
-        <li>
-          <button
-            class="color-swatch-btn ghost"
-            style="--swatch-color:linear-gradient(135deg, #111 50%, #fff 50%)"
-            aria-label="Mono"
-            data-primary="light-dark(#111111, #ffffff)"
-            onclick="
-              const val = 'light-dark(#111111, #ffffff)';
-              document.documentElement.style.setProperty('--ui-primary', val);
-              localStorage.setItem('ui-primary', val);
-              document.getElementById('color-picker').hidePopover();
-              syncSwatch();
-            "
-          >
-            <span
-              class="circle"
-              style="box-shadow:0 0 0 1px var(--ui-neutral-300) inset"
-            ></span>
-            <span class="name">Mono</span>
-          </button>
-        </li>
-        <li class="color-picker-custom">
-          <label class="field">
-            <span>Custom</span>
-            <input
-              type="color"
-              value="#6366f1"
-              oninput="
-              document.documentElement.style.setProperty('--ui-primary', this.value);
-              localStorage.setItem('ui-primary', this.value);
-            "
-            />
-          </label>
-        </li>
-      </menu>
+      <form onchange="updateColor(this)">
+        <menu class="grid">
+          ${colors.map(
+            (c) => html`
+              <li>
+                <fieldset role="group" class="color-swatch">
+                  <label>
+                    <input
+                      type="radio"
+                      name="color"
+                      value="${"display" in c
+                        ? c.color
+                        : `light-dark(${c.color}, color-mix(in oklab, ${c.color}, white 20%))`}"
+                      style="--swatch-color: ${"display" in c
+                        ? c.display
+                        : c.color}"
+                      aria-label="${c.name}"
+                    />
+
+                    <small>${c.name}</small>
+                  </label>
+                </fieldset>
+              </li>
+            `,
+          )}
+        </menu>
+      </form>
+
+      <form oninput="updateColor(this)">
+        <menu>
+          <li><hr /></li>
+          <li class="color-picker-custom">
+            <label class="field">
+              <span>Custom</span>
+              <input type="color" name="color" value="#6366f1" />
+            </label>
+          </li>
+        </menu>
+      </form>
     </div>
 
     <style>
-      .color-picker-popover {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.25rem;
-      }
+      #color-picker {
+        menu.grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.25rem;
+        }
 
-      .color-swatch-btn {
-        flex-direction: column;
+        li:not(.color-picker-custom),
+        label {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
 
-        .circle {
-          width: 2.5rem;
-          height: 2.5rem;
-          border-radius: 50%;
-          background: var(--swatch-color);
-          transition: scale 100ms;
+        label {
+          transition: background-color 200ms;
+          padding: var(--ui-spacing-2);
+          border-radius: 8px;
 
-          .color-swatch-btn:hover & {
-            scale: 1.08;
+          &:has(*:hover) {
+            background-color: var(--ui-neutral-100);
           }
         }
 
-        .name {
-          font-size: 0.6875rem;
-          color: var(--ui-neutral-600);
-          white-space: nowrap;
+        input:not([type="color"]) {
+          width: 2.5rem;
+        }
+
+        small {
+          color: var(--ui-neutral-500);
         }
       }
 
-      .color-picker-custom {
-        grid-column: 1 / -1;
-        border-top: 1px solid var(--ui-neutral-200);
-        margin-top: 0.25rem;
-
-        input[type="color"] {
-          width: 100%;
-        }
+      input[type="color"] {
+        width: 100%;
       }
     </style>
   `;

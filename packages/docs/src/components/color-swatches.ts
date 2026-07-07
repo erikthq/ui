@@ -1,6 +1,6 @@
 import { html } from "hono/html";
 
-const colors = [
+export const colors = [
   { color: "dodgerblue", name: "Blue" },
   { color: "#7c3aed", name: "Violet" },
   { color: "#db2777", name: "Pink" },
@@ -10,7 +10,7 @@ const colors = [
   { color: "#0891b2", name: "Cyan" },
   {
     color: "light-dark(#111111, #ffffff)",
-    name: "Black/White",
+    name: "Mono",
     display: "linear-gradient(135deg, #111 50%, #fff 50%)",
   },
 ] as const;
