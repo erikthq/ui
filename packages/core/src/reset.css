@@ -52,6 +52,10 @@ img {
   max-width: 100%;
 }
 
+strong {
+  font-weight: 600;
+}
+
 svg {
   width: 1lh;
   height: 1lh;

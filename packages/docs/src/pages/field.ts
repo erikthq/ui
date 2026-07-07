@@ -6,6 +6,7 @@ import { icon } from "../icon";
 const toc = [
   { id: "default", label: "Default" },
   { id: "required", label: "Required" },
+  { id: "error-messages", label: "Error messages" },
   { id: "with-textarea", label: "With textarea" },
   { id: "with-progress", label: "With progress" },
   { id: "with-slider", label: "With slider" },
@@ -71,6 +72,76 @@ export async function FieldPage(path: string) {
   <span>Username</span>
   <input type="text" placeholder="johndoe" required />
 </label>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="error-messages">Error messages</h2>
+        <p>
+          Add one <code>&lt;small data-error="..."&gt;</code> per error type
+          and the right one shows automatically, no JavaScript involved. It
+          works off native validity state:
+          <code>:user-invalid</code> only matches after the user has
+          interacted with the field (so errors don't show on page load),
+          <code>:placeholder-shown</code> tells apart an empty required field
+          from one with a bad value, and <code>:out-of-range</code> catches
+          <code>min</code>/<code>max</code> violations. Each message
+          animates in with <code>@starting-style</code>. Try submitting the
+          form below empty, then with an out-of-range age, then with an
+          invalid email.
+        </p>
+        <p>
+          The <code>novalidate</code> attribute on the
+          <code>&lt;form&gt;</code> suppresses the browser's own validation
+          bubble, which can't be restyled. It only disables that
+          automatic popup and submit-blocking, the
+          <code>:invalid</code>/<code>:user-invalid</code>/<code
+            >:out-of-range</code
+          >
+          pseudo-classes above still work exactly the same, so this stays
+          entirely CSS-driven.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <form
+            novalidate
+            style="display:flex;flex-direction:column;gap:var(--ui-spacing-4);width:100%"
+            onsubmit="return false"
+          >
+            <label class="field">
+              <span>Email</span>
+              <input type="email" placeholder="you@example.com" required />
+              <small data-error="required">Email is required.</small>
+              <small data-error="invalid">Enter a valid email address.</small>
+            </label>
+            <label class="field">
+              <span>Age</span>
+              <input type="number" placeholder="18" min="18" max="99" required />
+              <small data-error="required">Age is required.</small>
+              <small data-error="range">Must be between 18 and 99.</small>
+            </label>
+            <button>Submit</button>
+          </form>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<form novalidate>
+  <label class="field">
+    <span>Email</span>
+    <input type="email" placeholder="you@example.com" required />
+    <small data-error="required">Email is required.</small>
+    <small data-error="invalid">Enter a valid email address.</small>
+  </label>
+
+  <label class="field">
+    <span>Age</span>
+    <input type="number" placeholder="18" min="18" max="99" required />
+    <small data-error="required">Age is required.</small>
+    <small data-error="range">Must be between 18 and 99.</small>
+  </label>
+</form>`),
           )}
         </div>
       </div>

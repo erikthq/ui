@@ -112,6 +112,11 @@ export const components: {
     description: "Collapsible sections for progressive disclosure.",
   },
   {
+    label: "Alert",
+    path: "/components/alert",
+    description: "Contextual message for status, updates, or errors.",
+  },
+  {
     label: "Avatar",
     path: "/components/avatar",
     description: "User picture, initials, or icon with status indicator.",
@@ -122,6 +127,11 @@ export const components: {
     label: "Badge",
     path: "/components/badge",
     description: "Small labels for status, counts, or categories.",
+  },
+  {
+    label: "Breadcrumbs",
+    path: "/components/breadcrumbs",
+    description: "Shows the current page's position in a hierarchy.",
   },
   {
     label: "Button",
@@ -342,6 +352,11 @@ export const components: {
     label: "Textarea",
     path: "/components/textarea",
     description: "Multi-line text input.",
+  },
+  {
+    label: "Toast",
+    path: "/components/toast",
+    description: "Top-layer notification popover with configurable placement.",
   },
   {
     label: "Toggle",

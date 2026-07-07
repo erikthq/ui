@@ -53,9 +53,11 @@ export async function AvatarPage(path: string) {
       </div>
       <div class="example">
         <div class="preview" style="gap:0.5rem">
-          <span class="avatar">JR</span>
-          <span class="avatar" style="margin-inline-start:0;box-shadow:none">
-            ${raw(icon("user"))}
+          <span>
+            <span class="avatar">JR</span>
+          </span>
+          <span>
+            <span class="avatar"> ${raw(icon("user"))} </span>
           </span>
         </div>
         <div class="code-block">
@@ -99,13 +101,13 @@ export async function AvatarPage(path: string) {
       <div class="example">
         <div class="preview">
           <span>
-            <span class="avatar">
+            <button class="avatar secondary">
               <img
                 src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-1"
                 alt=""
               />
               <span class="badge constructive"> ${raw(icon("plus"))} </span>
-            </span>
+            </button>
           </span>
           <span>
             <span class="avatar">
@@ -129,12 +131,12 @@ export async function AvatarPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(
-              `<span class="avatar">
+              `<button class="avatar secondary">
   <img src="/avatar.jpg" alt="" />
   <span class="badge constructive">
   <svg><!-- icon --></svg>
   </span>
-</span>`,
+</button>`,
             ),
           )}
         </div>
@@ -149,31 +151,31 @@ export async function AvatarPage(path: string) {
       </div>
       <div class="example">
         <div class="preview">
-          <span class="avatar">
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-1"
-              alt=""
-            />
-          </span>
-          <span class="avatar">
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-2"
-              alt=""
-            />
-          </span>
-          <span class="avatar">
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-3"
-              alt=""
-            />
-          </span>
+          <img
+            class="avatar"
+            src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-1"
+            alt=""
+          />
+
+          <img
+            class="avatar"
+            src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-2"
+            alt=""
+          />
+
+          <img
+            class="avatar"
+            src="https://api.dicebear.com/9.x/pixel-art/svg?seed=avatar-3"
+            alt=""
+          />
+
           <span class="avatar">+3</span>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<span class="avatar"><img src="/a.jpg" alt="" /></span>
-<span class="avatar"><img src="/b.jpg" alt="" /></span>
-<span class="avatar"><img src="/c.jpg" alt="" /></span>
+            await highlight(`<img class="avatar" src="/a.jpg" alt="" />
+<img class="avatar" src="/b.jpg" alt="" />
+<img class="avatar" src="/c.jpg" alt="" />
 <span class="avatar">+3</span>`),
           )}
         </div>

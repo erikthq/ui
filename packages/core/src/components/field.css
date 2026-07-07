@@ -9,12 +9,37 @@
 
   > small {
     color: var(--ui-neutral-500);
-    font-size: 0.875em;
   }
 
   &:has(input:required) > span:not([data-prefix]):not([data-suffix])::after {
     content: " *";
     color: var(--ui-destructive);
+  }
+
+  > small[data-error] {
+    display: none;
+    color: var(--ui-destructive);
+  }
+
+  &:has(:user-invalid:placeholder-shown) > small[data-error="required"],
+  &:has(:user-invalid:out-of-range) > small[data-error="range"],
+  &:has(:user-invalid:not(:placeholder-shown):not(:out-of-range)) > small[data-error="invalid"] {
+    display: block;
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity 150ms var(--ease-glide),
+      translate 150ms var(--ease-glide),
+      display 150ms allow-discrete;
+  }
+
+  @starting-style {
+    &:has(:user-invalid:placeholder-shown) > small[data-error="required"],
+    &:has(:user-invalid:out-of-range) > small[data-error="range"],
+    &:has(:user-invalid:not(:placeholder-shown):not(:out-of-range)) > small[data-error="invalid"] {
+      opacity: 0;
+      translate: 0 -4px;
+    }
   }
 
   > input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not(.otp),

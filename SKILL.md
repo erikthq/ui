@@ -474,25 +474,29 @@ Or inline:
 ## Available components
 
 - `Accordion`
+- `Alert`
 - `Avatar` (0.0.13)
 - `Badge`
+- `Breadcrumbs`
 - `Button`
 - `Button Group`
 - `Card`
 - `Checkbox`
 - `Code`
 - `Color Input`
+- `Color Swatch` (0.0.13)
 - `Combobox` (WIP)
 - `Datalist`
 - `Date Input`
 - `Dialog`
+- `Drawer` (0.0.13)
 - `Dropdown`
 - `Empty State`
 - `Expander`
 - `Field`
 - `File Drop`
 - `Focus Group`
-- `Input OTP` (0.0.13)
+- `Input OTP` (WIP)
 - `Kbd`
 - `Loading`
 - `Marquee` (0.0.13)
@@ -515,6 +519,7 @@ Or inline:
 - `Tag Group` (0.0.13)
 - `Text Field`
 - `Textarea`
+- `Toast`
 - `Toggle`
 - `Toggle Group`
 - `Tooltip`

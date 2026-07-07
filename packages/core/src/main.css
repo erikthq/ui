@@ -51,6 +51,9 @@
 @import "./components/pagination.css" layer(ui);
 @import "./components/tag-group.css" layer(ui);
 @import "./components/input-otp.css" layer(ui);
+@import "./components/breadcrumbs.css" layer(ui);
+@import "./components/alert.css" layer(ui);
+@import "./components/toast.css" layer(ui);
 
 @layer ui {
   :root {

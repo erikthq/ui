@@ -17,15 +17,6 @@ export const colors = [
 
 export function ColorSwatches() {
   return html`
-    <script>
-      window.updateColor = (form) => {
-        const color = new FormData(form).get("color");
-
-        document.documentElement.style.setProperty("--ui-primary", color);
-        localStorage.setItem("ui-primary", color);
-        syncSwatch();
-      };
-    </script>
     <form onchange="updateColor(this)">
       <fieldset role="group" class="color-swatch">
         ${colors.map(

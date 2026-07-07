@@ -1,0 +1,303 @@
+[popover].toast {
+  inset: auto;
+  position-try-fallbacks: none;
+  width: max-content;
+  max-width: min(360px, calc(100vw - 2 * var(--ui-spacing-4)));
+
+  --_translate-from: 0 8px;
+  --_scale-from: 1;
+
+  /* stacking: how many later same-placement toasts are open right now */
+  --_stack-depth: 0;
+  --_stack-dir-x: 0;
+  --_stack-dir-y: 0;
+  --_stack-step: -8px;
+  --_stack-scale-step: 0.02;
+
+  opacity: 0;
+  translate: var(--_translate-from);
+  scale: var(--_scale-from);
+  transition:
+    opacity 200ms var(--ease-glide),
+    translate 200ms var(--ease-glide),
+    scale 200ms var(--ease-glide),
+    display 200ms allow-discrete,
+    overlay 200ms allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+    translate:
+      calc(var(--_stack-dir-x) * var(--_stack-depth) * var(--_stack-step))
+      calc(var(--_stack-dir-y) * var(--_stack-depth) * var(--_stack-step));
+    scale: calc(1 - var(--_stack-depth) * var(--_stack-scale-step));
+  }
+
+  @starting-style {
+    &:popover-open {
+      opacity: 0;
+      translate: var(--_translate-from);
+      scale: var(--_scale-from);
+    }
+  }
+
+  > article {
+    border-radius: var(--card-border-radius, 12px);
+    box-shadow:
+      0 0 0 1px var(--ui-neutral-100) inset,
+      0 12px 32px oklch(0% 0 0 / 0.14);
+  }
+
+  /* bottom right (and the unset default) */
+  &:is(:not([data-placement]), [data-placement="bottom right"]) {
+    bottom: var(--ui-spacing-4);
+    right: var(--ui-spacing-4);
+    --_translate-from: 0 8px;
+    --_stack-dir-y: 1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* top left */
+  &[data-placement="top left"] {
+    top: var(--ui-spacing-4);
+    left: var(--ui-spacing-4);
+    --_translate-from: 0 -8px;
+    --_stack-dir-y: -1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* top / top center */
+  &:is([data-placement="top"], [data-placement="top center"]) {
+    top: var(--ui-spacing-4);
+    left: var(--ui-spacing-4);
+    right: var(--ui-spacing-4);
+    margin-inline: auto;
+    --_translate-from: 0 -8px;
+    --_stack-dir-y: -1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* top right */
+  &[data-placement="top right"] {
+    top: var(--ui-spacing-4);
+    right: var(--ui-spacing-4);
+    --_translate-from: 0 -8px;
+    --_stack-dir-y: -1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* bottom left */
+  &[data-placement="bottom left"] {
+    bottom: var(--ui-spacing-4);
+    left: var(--ui-spacing-4);
+    --_translate-from: 0 8px;
+    --_stack-dir-y: 1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* bottom / bottom center */
+  &:is([data-placement="bottom"], [data-placement="bottom center"]) {
+    bottom: var(--ui-spacing-4);
+    left: var(--ui-spacing-4);
+    right: var(--ui-spacing-4);
+    margin-inline: auto;
+    --_translate-from: 0 8px;
+    --_stack-dir-y: 1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* left / left center */
+  &:is([data-placement="left"], [data-placement="left center"]) {
+    left: var(--ui-spacing-4);
+    top: var(--ui-spacing-4);
+    bottom: var(--ui-spacing-4);
+    margin-block: auto;
+    --_translate-from: -8px 0;
+    --_stack-dir-x: -1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* right / right center */
+  &:is([data-placement="right"], [data-placement="right center"]) {
+    right: var(--ui-spacing-4);
+    top: var(--ui-spacing-4);
+    bottom: var(--ui-spacing-4);
+    margin-block: auto;
+    --_translate-from: 8px 0;
+    --_stack-dir-x: 1;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+
+  /* dead center fades and scales in rather than sliding */
+  &:is([data-placement="center"], [data-placement="center center"]) {
+    top: var(--ui-spacing-4);
+    bottom: var(--ui-spacing-4);
+    left: var(--ui-spacing-4);
+    right: var(--ui-spacing-4);
+    margin: auto;
+    --_translate-from: 0 0;
+    --_scale-from: 0.95;
+
+    &:has(~ &:popover-open) {
+      --_stack-depth: 1;
+    }
+    &:has(~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 2;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 3;
+    }
+    &:has(~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open) {
+      --_stack-depth: 4;
+    }
+    &:has(
+        ~ &:popover-open ~ &:popover-open ~ &:popover-open ~ &:popover-open
+          ~ &:popover-open
+      ) {
+      --_stack-depth: 5;
+    }
+  }
+}

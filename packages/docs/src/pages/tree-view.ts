@@ -41,7 +41,7 @@ export async function TreeViewPage(path: string) {
         <div class="preview">
           <ul class="tree" style="min-width: 200px">
             <li>
-              <details open>
+              <details>
                 <summary>
                   ${raw(icon("folder"))} ${raw(icon("folder-open"))}
                   node_modules
@@ -56,7 +56,7 @@ export async function TreeViewPage(path: string) {
                     <button class="ghost">${raw(icon("file"))} panda</button>
                   </li>
                   <li>
-                    <details open>
+                    <details>
                       <summary>
                         ${raw(icon("folder"))} ${raw(icon("folder-open"))}
                         @types
@@ -110,7 +110,7 @@ export async function TreeViewPage(path: string) {
           ${raw(
             await highlight(`<ul class="tree">
   <li>
-    <details open>
+    <details>
       <summary>
         <svg><!-- folder --></svg>
         <svg><!-- folder-open --></svg>
@@ -122,7 +122,7 @@ export async function TreeViewPage(path: string) {
         </a></li>
         <li><button class="ghost"><svg><!-- file --></svg> panda</button></li>
         <li>
-          <details open>
+          <details>
             <summary>
               <svg><!-- folder --></svg>
               <svg><!-- folder-open --></svg>
