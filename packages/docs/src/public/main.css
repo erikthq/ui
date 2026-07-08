@@ -3,9 +3,9 @@
 @import "./css/site-header.css";
 @import "./css/table-of-contents.css";
 
-@view-transition {
+/* @view-transition {
   navigation: auto;
-}
+} */
 
 /* ::view-transition-group(root) {
   animation-duration: 200ms;

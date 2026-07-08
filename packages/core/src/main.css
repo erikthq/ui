@@ -9,6 +9,7 @@
 @import "./components/avatar.css" layer(ui);
 @import "./components/accordion.css" layer(ui);
 @import "./components/card.css" layer(ui);
+@import "./components/chart.css" layer(ui);
 @import "./components/button.css" layer(ui);
 @import "./components/button-group.css" layer(ui);
 @import "./components/dialog.css" layer(ui);

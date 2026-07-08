@@ -7,10 +7,10 @@ Add a new component to erikt/ui. The argument is the component name, e.g. `/add-
 Given the component name `$ARGUMENTS`:
 
 1. **Create the CSS file** at `packages/core/src/components/<name>.css`
-   - Wrap everything in `@layer ui { }`
    - Style native HTML elements or use a minimal class name matching the component name
    - Use `var(--ui-*)` color tokens, `var(--ui-spacing-*)` for spacing, `var(--ease-*)` for transitions
    - No hardcoded hex colors, no JavaScript, no em dashes in comments
+   - Use all the most modern CSS features, browser support is not to important.
 
 2. **Import it** in `packages/core/src/main.css`
 

@@ -149,6 +149,11 @@ export const components: {
     description: "Contained surface for grouping related content.",
   },
   {
+    label: "Chart",
+    path: "/components/chart",
+    description: "CSS-only bar chart drawn from a native table.",
+  },
+  {
     label: "Checkbox",
     path: "/components/checkbox",
     description: "Toggle boolean form values.",

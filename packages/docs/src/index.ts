@@ -32,6 +32,7 @@ import { ProgressPage } from './pages/progress'
 import { ColorInputPage } from './pages/color-input'
 import { DateInputPage } from './pages/date-input'
 import { TablePage } from './pages/table'
+import { ChartPage } from './pages/chart'
 import { TogglePage } from './pages/toggle'
 import { ToggleGroupPage } from './pages/toggle-group'
 import { IconsPage, IconsData, IconsFilledData } from './pages/icons'
@@ -97,6 +98,7 @@ app.get('/components/progress', (c) => c.html(ProgressPage(c.req.path)))
 app.get('/components/color-input', (c) => c.html(ColorInputPage(c.req.path)))
 app.get('/components/date-input', (c) => c.html(DateInputPage(c.req.path)))
 app.get('/components/table', (c) => c.html(TablePage(c.req.path)))
+app.get('/components/chart', (c) => c.html(ChartPage(c.req.path)))
 app.get('/components/toggle', (c) => c.html(TogglePage(c.req.path)))
 app.get('/components/toggle-group', (c) => c.html(ToggleGroupPage(c.req.path)))
 app.get('/components/button', (c) => c.html(ButtonPage(c.req.path)))

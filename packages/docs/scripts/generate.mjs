@@ -16,6 +16,7 @@ const routes = [
   "/components/button",
   "/components/button-group",
   "/components/card",
+  "/components/chart",
   "/components/checkbox",
   "/components/color-input",
   "/components/color-swatch",
