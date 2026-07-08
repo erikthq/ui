@@ -481,6 +481,7 @@ Or inline:
 - `Button`
 - `Button Group`
 - `Card`
+- `Carousel`
 - `Chart`
 - `Checkbox`
 - `Code`

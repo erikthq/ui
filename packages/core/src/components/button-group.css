@@ -69,6 +69,7 @@ fieldset[role="group"]:has(> label.toggle > input[type="radio"]) {
     box-shadow: none;
     margin-right: 0;
     background-color: transparent;
+    line-height: calc((16 / 14) * 1rem);
 
     &:has(> input:checked) {
       anchor-name: --toggle-highlight;

@@ -1,0 +1,117 @@
+.carousel {
+  /* set --carousel-anchor inline per instance if more than one carousel is on the page */
+  --_anchor: var(--carousel-anchor, --carousel);
+
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-marker-group: after;
+  anchor-name: var(--_anchor);
+
+  list-style: none;
+  margin: 0;
+  margin-block-end: 2.5rem;
+  padding: 0;
+  gap: var(--ui-spacing-2);
+  border-radius: 12px;
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > li {
+    flex: 1 0 100%;
+    list-style: none;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+
+    > img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+
+  &::scroll-button(*) {
+    position: absolute;
+    position-anchor: var(--_anchor);
+    top: anchor(center);
+    translate: 0 -50%;
+
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    background-color: var(--ui-neutral-0);
+    cursor: pointer;
+
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+
+    filter: drop-shadow(0 1px 3px oklch(0% 0 0 / 0.5));
+    transition: opacity 150ms var(--ease-glide);
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &::scroll-button(left) {
+    content: "" / "Previous slide";
+    left: calc(anchor(left) + var(--ui-spacing-3));
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 6l-6 6l6 6' /%3E%3C/svg%3E");
+  }
+
+  &::scroll-button(right) {
+    content: "" / "Next slide";
+    left: calc(anchor(right) - var(--ui-spacing-3) - 1.5rem);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6l-6 6' /%3E%3C/svg%3E");
+  }
+
+  &::scroll-marker-group {
+    position: absolute;
+    position-anchor: var(--_anchor);
+    top: calc(anchor(bottom) + var(--ui-spacing-3));
+    left: anchor(center);
+    translate: -50% 0;
+
+    display: flex;
+    gap: var(--ui-spacing-2);
+  }
+
+  > li::scroll-marker {
+    /* an empty content string gives markers a blank accessible name and
+       breaks them, so pull real text from data-accname and hide it visually */
+    content: attr(data-accname);
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 100%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--ui-neutral-200);
+    transition:
+      background-color 150ms var(--ease-glide),
+      scale 150ms var(--ease-glide);
+  }
+
+  li::scroll-marker:target-current {
+    background-color: var(--ui-neutral-950);
+    scale: 1.3;
+  }
+}

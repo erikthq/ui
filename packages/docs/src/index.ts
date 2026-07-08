@@ -15,6 +15,7 @@ import { AccordionPage } from './pages/accordion'
 import { AlertPage } from './pages/alert'
 import { ToastPage } from './pages/toast'
 import { BreadcrumbsPage } from './pages/breadcrumbs'
+import { CarouselPage } from './pages/carousel'
 import { DialogPage } from './pages/dialog'
 import { DrawerPage } from './pages/drawer'
 import { CodePage } from './pages/code'
@@ -81,6 +82,7 @@ app.get('/components/accordion', (c) => c.html(AccordionPage(c.req.path)))
 app.get('/components/alert', (c) => c.html(AlertPage(c.req.path)))
 app.get('/components/toast', (c) => c.html(ToastPage(c.req.path)))
 app.get('/components/breadcrumbs', (c) => c.html(BreadcrumbsPage(c.req.path)))
+app.get('/components/carousel', (c) => c.html(CarouselPage(c.req.path)))
 app.get('/components/dialog', (c) => c.html(DialogPage(c.req.path)))
 app.get('/components/drawer', (c) => c.html(DrawerPage(c.req.path)))
 app.get('/components/code', (c) => c.html(CodePage(c.req.path)))

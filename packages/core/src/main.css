@@ -55,6 +55,7 @@
 @import "./components/breadcrumbs.css" layer(ui);
 @import "./components/alert.css" layer(ui);
 @import "./components/toast.css" layer(ui);
+@import "./components/carousel.css" layer(ui);
 
 @layer ui {
   :root {

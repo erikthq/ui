@@ -7,10 +7,6 @@ table.chart {
   padding-inline-start: clamp(2rem, 6cqi, 3rem);
 
   caption {
-    text-align: left;
-    color: var(--ui-neutral-400);
-    padding-block-end: var(--ui-spacing-3);
-
     .chart-y-axis {
       position: absolute;
       inset-block: 0 var(--chart-x-axis-height, 1.75rem);
@@ -44,9 +40,7 @@ table.chart {
   }
 
   tbody {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(2rem, 1fr);
+    display: flex;
     align-items: end;
     column-gap: var(--ui-spacing-2);
     background-image: repeating-linear-gradient(to top, var(--ui-neutral-100) 0 1px, transparent 1px 25%);
@@ -77,7 +71,7 @@ table.chart {
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        width: 100%;
+        width: 2rem;
         height: var(--chart-height);
         padding: 0;
         border-bottom: none;
@@ -101,7 +95,7 @@ table.chart {
           height: calc(var(--v) * 1%);
           min-height: 3px;
           background: var(--chart-color);
-          border-radius: 999px 999px 0 0;
+          border-radius: 999px;
           transition: height 0.3s var(--ease-glide);
         }
       }

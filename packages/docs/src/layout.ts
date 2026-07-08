@@ -149,6 +149,11 @@ export const components: {
     description: "Contained surface for grouping related content.",
   },
   {
+    label: "Carousel",
+    path: "/components/carousel",
+    description: "Scroll-snap gallery with CSS-generated buttons and dots.",
+  },
+  {
     label: "Chart",
     path: "/components/chart",
     description: "CSS-only bar chart drawn from a native table.",

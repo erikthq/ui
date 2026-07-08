@@ -19,7 +19,7 @@
   scale: var(--_scale-from);
   transition:
     opacity 200ms var(--ease-glide),
-    translate 200ms var(--ease-glide),
+    translate 600ms var(--ease-snap),
     scale 200ms var(--ease-glide),
     display 200ms allow-discrete,
     overlay 200ms allow-discrete;

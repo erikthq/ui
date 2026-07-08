@@ -12,6 +12,7 @@ const routes = [
   "/components/alert",
   "/components/toast",
   "/components/breadcrumbs",
+  "/components/carousel",
   "/components/avatar",
   "/components/button",
   "/components/button-group",
