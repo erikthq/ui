@@ -120,8 +120,6 @@ export const components: {
     label: "Avatar",
     path: "/components/avatar",
     description: "User picture, initials, or icon with status indicator.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Badge",
@@ -152,12 +150,13 @@ export const components: {
     label: "Carousel",
     path: "/components/carousel",
     description: "Scroll-snap gallery with CSS-generated buttons and dots.",
+    badge: 'WIP'
   },
-  {
-    label: "Chart",
-    path: "/components/chart",
-    description: "CSS-only bar chart drawn from a native table.",
-  },
+  // {
+  //   label: "Chart",
+  //   path: "/components/chart",
+  //   description: "CSS-only bar chart drawn from a native table.",
+  // },
   {
     label: "Checkbox",
     path: "/components/checkbox",
@@ -177,8 +176,6 @@ export const components: {
     label: "Color Swatch",
     path: "/components/color-swatch",
     description: "Selectable or decorative circular color indicator.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Combobox",
@@ -205,8 +202,6 @@ export const components: {
     label: "Drawer",
     path: "/components/drawer",
     description: "Dialog variant that slides in from the edge of the screen.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Dropdown",
@@ -238,12 +233,12 @@ export const components: {
     path: "/components/focus-group",
     description: "Arrow-key navigation for custom widget groups.",
   },
-  {
-    label: "Input OTP",
-    path: "/components/input-otp",
-    description: "One-time passcode input styled as separate boxes.",
-    badge: "WIP",
-  },
+  // {
+  //   label: "Input OTP",
+  //   path: "/components/input-otp",
+  //   description: "One-time passcode input styled as separate boxes.",
+  //   badge: "WIP",
+  // },
   {
     label: "Kbd",
     path: "/components/kbd",
@@ -258,8 +253,6 @@ export const components: {
     label: "Marquee",
     path: "/components/marquee",
     description: "Infinitely scrolling row of content.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Menu",
@@ -275,8 +268,6 @@ export const components: {
     label: "Pagination",
     path: "/components/pagination",
     description: "Page navigation with numbered controls.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Popover",
@@ -317,8 +308,6 @@ export const components: {
     label: "Skeleton",
     path: "/components/skeleton",
     description: "Shimmering placeholder for loading content.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Slider",
@@ -350,8 +339,6 @@ export const components: {
     label: "Tag Group",
     path: "/components/tag-group",
     description: "Selectable tags built from badges and checkboxes or radios.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
   {
     label: "Text Field",
@@ -387,8 +374,6 @@ export const components: {
     label: "Tree View",
     path: "/components/tree-view",
     description: "Nested file or folder hierarchy with disclosures.",
-    badge: "0.0.13",
-    badgeClass: "constructive",
   },
 ];
 
