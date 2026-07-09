@@ -54,13 +54,11 @@ export async function LoadingPage(path: string) {
       </div>
       <div class="example">
         <div class="preview">
-          <div style="width: 1rem; height: 1rem;" aria-busy="true"></div>
+          <div style="width: 1lh" aria-busy="true"></div>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(
-              '<div style="width: 1rem; height: 1rem;" aria-busy="true"></div>',
-            ),
+            await highlight('<div style="width: 1lh" aria-busy="true"></div>'),
           )}
         </div>
       </div>

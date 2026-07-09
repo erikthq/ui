@@ -7,8 +7,8 @@
   display: inline-block;
   background-color: currentColor;
   mask-image: var(--ui-loading);
-  mask-size: 1em;
-  width: 1em;
+  mask-size: 1lh;
+  width: 1lh;
   aspect-ratio: 1;
   mask-repeat: no-repeat;
 }
