@@ -1,13 +1,14 @@
 {
   "name": "@erikt/ui",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "type": "module",
   "homepage": "https://ui.erikt.me",
   "exports": {
-    ".": "./ui.css"
+    ".": "./dist/ui.css",
+    "./elements": "./dist/elements.js"
   },
-  "style": "./ui.css",
-  "files": ["ui.css", "ui.css.map", "README.md"],
+  "style": "./dist/ui.css",
+  "files": ["dist", "README.md"],
   "scripts": {
     "dev": "node build.mjs --watch",
     "build": "node build.mjs"

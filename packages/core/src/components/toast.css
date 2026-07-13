@@ -4,7 +4,7 @@
   width: max-content;
   max-width: min(360px, calc(100vw - 2 * var(--ui-spacing-4)));
 
-  --_translate-from: 0 8px;
+  --_translate-from: 0 4px;
   --_scale-from: 1;
 
   /* stacking: how many later same-placement toasts are open right now */
@@ -51,7 +51,7 @@
   &:is(:not([data-placement]), [data-placement="bottom right"]) {
     bottom: var(--ui-spacing-4);
     right: var(--ui-spacing-4);
-    --_translate-from: 0 8px;
+    --_translate-from: 0 4px;
     --_stack-dir-y: 1;
 
     &:has(~ &:popover-open) {
@@ -78,7 +78,7 @@
   &[data-placement="top left"] {
     top: var(--ui-spacing-4);
     left: var(--ui-spacing-4);
-    --_translate-from: 0 -8px;
+    --_translate-from: 0 -4px;
     --_stack-dir-y: -1;
 
     &:has(~ &:popover-open) {
@@ -107,7 +107,7 @@
     left: var(--ui-spacing-4);
     right: var(--ui-spacing-4);
     margin-inline: auto;
-    --_translate-from: 0 -8px;
+    --_translate-from: 0 -4px;
     --_stack-dir-y: -1;
 
     &:has(~ &:popover-open) {
@@ -134,7 +134,7 @@
   &[data-placement="top right"] {
     top: var(--ui-spacing-4);
     right: var(--ui-spacing-4);
-    --_translate-from: 0 -8px;
+    --_translate-from: 0 -4px;
     --_stack-dir-y: -1;
 
     &:has(~ &:popover-open) {
@@ -161,7 +161,7 @@
   &[data-placement="bottom left"] {
     bottom: var(--ui-spacing-4);
     left: var(--ui-spacing-4);
-    --_translate-from: 0 8px;
+    --_translate-from: 0 4px;
     --_stack-dir-y: 1;
 
     &:has(~ &:popover-open) {
@@ -190,7 +190,7 @@
     left: var(--ui-spacing-4);
     right: var(--ui-spacing-4);
     margin-inline: auto;
-    --_translate-from: 0 8px;
+    --_translate-from: 0 4px;
     --_stack-dir-y: 1;
 
     &:has(~ &:popover-open) {
@@ -219,7 +219,7 @@
     top: var(--ui-spacing-4);
     bottom: var(--ui-spacing-4);
     margin-block: auto;
-    --_translate-from: -8px 0;
+    --_translate-from: -4px 0;
     --_stack-dir-x: -1;
 
     &:has(~ &:popover-open) {
@@ -248,7 +248,7 @@
     top: var(--ui-spacing-4);
     bottom: var(--ui-spacing-4);
     margin-block: auto;
-    --_translate-from: 8px 0;
+    --_translate-from: 4px 0;
     --_stack-dir-x: 1;
 
     &:has(~ &:popover-open) {

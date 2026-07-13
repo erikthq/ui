@@ -1,11 +1,12 @@
 import { html } from "hono/html";
-import { sections, components, blocks, url } from "../layout";
+import { sections, components, utilities, blocks, url } from "../layout";
 
 const slug = (p: string) => "/" + p.split("/").pop();
 
 export function SidebarNav(path: string) {
   const isGettingStarted = sections.some((s) => slug(s.path) === slug(path));
-  const isComponents = path.startsWith("/components/");
+  const isComponents =
+    path.startsWith("/components/") || path.startsWith("/utilities/");
   const isBlocks = path === "/blocks" || path.startsWith("/blocks/");
 
   if (isGettingStarted) {
@@ -47,6 +48,21 @@ export function SidebarNav(path: string) {
                 >${c.label}${c.badge
                   ? html` <span class="badge ${c.badgeClass ?? ""}">${c.badge}</span>`
                   : ""}</a
+              >
+            </li>`,
+        )}
+      </menu>
+
+      <menu>
+        <li><small>Utilities</small></li>
+        ${utilities.map(
+          (u) =>
+            html`<li>
+              <a
+                class="button ghost"
+                href="${url(u.path)}"
+                ${path === u.path ? 'aria-current="page"' : ""}
+                >${u.label}</a
               >
             </li>`,
         )}

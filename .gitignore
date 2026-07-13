@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# keep the built stylesheet committed so the readme's size badge can read it from git
+!packages/core/dist/
+packages/core/dist/elements.js
+!packages/core/dist/ui.css
+!packages/core/dist/ui.css.map
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

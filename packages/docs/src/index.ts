@@ -69,6 +69,8 @@ import { EasingsPage } from './pages/easings'
 import { LlmsPage } from './pages/llms'
 import { SkillPage } from './pages/skill'
 import { SkillsPage } from './pages/skills'
+import { RelativeTimePage } from './pages/utilities/relative-time'
+import { CopyToClipboardPage } from './pages/utilities/copy-to-clipboard'
 
 const app = new Hono()
 
@@ -145,5 +147,7 @@ app.get('/typography', (c) => c.html(TypographyPage(c.req.path)))
 app.get('/llms.txt', (c) => c.text(LlmsPage()))
 app.get('/skill.md', (c) => c.text(SkillPage()))
 app.get('/getting-started/skills', (c) => c.html(SkillsPage(c.req.path)))
+app.get('/utilities/relative-time', (c) => c.html(RelativeTimePage(c.req.path)))
+app.get('/utilities/copy-to-clipboard', (c) => c.html(CopyToClipboardPage(c.req.path)))
 
 export default app

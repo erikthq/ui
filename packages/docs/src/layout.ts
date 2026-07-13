@@ -99,6 +99,22 @@ export const blocks: { label: string; path: string; description: string }[] = [
   },
 ];
 
+export const utilities: { label: string; path: string; description: string }[] =
+  [
+    {
+      label: "Relative time",
+      path: "/utilities/relative-time",
+      description:
+        'Format a JavaScript date as relative time (e.g. "3 hours ago").',
+    },
+    {
+      label: "Copy to Clipboard",
+      path: "/utilities/copy-to-clipboard",
+      description:
+        "Copy text or an element's content to the clipboard from a CSS selector or a literal string.",
+    },
+  ];
+
 export const components: {
   label: string;
   path: string;
@@ -384,6 +400,7 @@ const pageDescriptions: Record<string, string> = {
   "/typography": "Typography scale and text utility styles in @erikt/ui.",
   ...Object.fromEntries(sections.map((s) => [s.path, s.description])),
   ...Object.fromEntries(components.map((c) => [c.path, c.description])),
+  ...Object.fromEntries(utilities.map((u) => [u.path, u.description])),
   ...Object.fromEntries(blocks.map((bl) => [bl.path, bl.description])),
 };
 

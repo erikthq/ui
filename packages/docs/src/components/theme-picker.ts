@@ -99,6 +99,13 @@ export function ThemePicker() {
           align-items: center;
         }
 
+        fieldset,
+        label {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+
         label {
           transition: background-color 200ms;
           padding: var(--ui-spacing-2);

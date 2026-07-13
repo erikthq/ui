@@ -5,6 +5,7 @@ import { highlight } from "../highlight";
 const toc = [
   { id: "default", label: "Default" },
   { id: "images", label: "Images" },
+  { id: "visible", label: "Multiple visible slides" },
   { id: "multiple", label: "Multiple carousels" },
 ];
 
@@ -73,14 +74,14 @@ export async function CarouselPage(path: string) {
         <div class="preview" style="width:100%">
           <ul
             class="carousel"
-            style="width:100%;max-width:480px;margin:auto;--carousel-anchor:--carousel-default"
+            style="width:100%;max-width:480px;margin:auto"
           >
             ${slides("Slide")}
           </ul>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<ul class="carousel" style="--carousel-anchor: --carousel-default">
+            await highlight(`<ul class="carousel">
   <li>Slide 1</li>
   <li>Slide 2</li>
   <li>Slide 3</li>
@@ -101,7 +102,7 @@ export async function CarouselPage(path: string) {
         <div class="preview" style="width:100%">
           <ul
             class="carousel"
-            style="width:100%;max-width:480px;margin:auto;--carousel-anchor:--carousel-images"
+            style="width:100%;max-width:480px;margin:auto"
           >
             <li data-accname="Slide 1">
               <img
@@ -125,7 +126,7 @@ export async function CarouselPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<ul class="carousel" style="--carousel-anchor: --carousel-images">
+            await highlight(`<ul class="carousel">
   <li data-accname="Slide 1"><img src="/slide-1.jpg" alt="" /></li>
   <li data-accname="Slide 2"><img src="/slide-2.jpg" alt="" /></li>
   <li data-accname="Slide 3"><img src="/slide-3.jpg" alt="" /></li>
@@ -135,38 +136,66 @@ export async function CarouselPage(path: string) {
       </div>
 
       <div class="prose">
+        <h2 id="visible">Multiple visible slides</h2>
+        <p>
+          Set <code>--visible</code> inline to show more than one slide per
+          view, useful for showcasing a grid-like row of cards that still
+          scroll-snaps a page at a time.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview" style="width:100%">
+          <ul
+            class="carousel"
+            style="width:100%;max-width:480px;margin:auto;--visible:3"
+          >
+            ${slides("Slide")}
+          </ul>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<ul class="carousel" style="--visible: 3">
+  <li>Slide 1</li>
+  <li>Slide 2</li>
+  <li>Slide 3</li>
+  <li>Slide 4</li>
+  <li>Slide 5</li>
+</ul>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="multiple">Multiple carousels</h2>
         <p>
-          The buttons and dots are positioned with CSS anchor positioning, which
-          needs a unique <code>anchor-name</code> per carousel. A single
-          carousel works out of the box, but with more than one on the same
-          page, set <code>--carousel-anchor</code> inline to a unique value on
-          each so their buttons don't anchor to the wrong carousel.
+          The buttons and dots are positioned with CSS anchor positioning.
+          Each carousel scopes its own anchor internally, so multiple
+          carousels on the same page just work, no extra markup needed.
         </p>
       </div>
       <div class="example">
         <div class="preview" style="width:100%;flex-direction:column;gap:2rem">
           <ul
             class="carousel"
-            style="width:100%;max-width:480px;margin:auto;--carousel-anchor:--carousel-a"
+            style="width:100%;max-width:480px;margin:auto"
           >
             ${slides("A")}
           </ul>
           <ul
             class="carousel"
-            style="width:100%;max-width:480px;margin:auto;--carousel-anchor:--carousel-b"
+            style="width:100%;max-width:480px;margin:auto"
           >
             ${slides("B")}
           </ul>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<ul class="carousel" style="--carousel-anchor: --carousel-a">
+            await highlight(`<ul class="carousel">
   <li data-accname="A1">A1</li>
   <li data-accname="A2">A2</li>
 </ul>
 
-<ul class="carousel" style="--carousel-anchor: --carousel-b">
+<ul class="carousel">
   <li data-accname="B1">B1</li>
   <li data-accname="B2">B2</li>
 </ul>`),

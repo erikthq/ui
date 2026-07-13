@@ -1,9 +1,16 @@
 [data-tooltip][aria-label]:not(input, select, textarea) {
-  position: relative;
+  anchor-name: --ui-tooltip-anchor;
+  anchor-scope: --ui-tooltip-anchor;
+
+  /* an active-state translate would make this element its own tooltip's containing block, breaking the anchor; button.css's :active rule outranks this selector on specificity, so !important is needed to reliably win */
+  &:active {
+    translate: none !important;
+  }
 
   &::before,
   &::after {
-    position: absolute;
+    position: fixed;
+    position-anchor: --ui-tooltip-anchor;
     z-index: 2147483647;
     pointer-events: none;
     opacity: 0;
@@ -31,13 +38,13 @@
 
   /* top (default) */
   &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::before {
-    bottom: calc(100% + 0.5rem);
-    left: 50%;
+    bottom: calc(anchor(top) + 0.5rem);
+    left: anchor(center);
     translate: -50% 0;
   }
   &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::after {
-    bottom: calc(100% + 0.5rem);
-    left: 50%;
+    bottom: calc(anchor(top) + 0.5rem);
+    left: anchor(center);
     translate: -50% 50%;
     mask-image: linear-gradient(-45deg, black 51%, transparent 50%);
     border-end-end-radius: 2px;
@@ -45,13 +52,13 @@
 
   /* bottom */
   &[data-tooltip="bottom"]::before {
-    top: calc(100% + 0.5rem);
-    left: 50%;
+    top: calc(anchor(bottom) + 0.5rem);
+    left: anchor(center);
     translate: -50% 0;
   }
   &[data-tooltip="bottom"]::after {
-    top: calc(100% + 0.5rem);
-    left: 50%;
+    top: calc(anchor(bottom) + 0.5rem);
+    left: anchor(center);
     translate: -50% -50%;
     mask-image: linear-gradient(-45deg, transparent 50%, black 50%);
     border-start-start-radius: 2px;
@@ -59,13 +66,13 @@
 
   /* left */
   &[data-tooltip="left"]::before {
-    right: calc(100% + 0.5rem);
-    top: 50%;
+    right: calc(anchor(left) + 0.5rem);
+    top: anchor(center);
     translate: 0 -50%;
   }
   &[data-tooltip="left"]::after {
-    right: calc(100% + 0.5rem);
-    top: 50%;
+    right: calc(anchor(left) + 0.5rem);
+    top: anchor(center);
     translate: 50% -50%;
     mask-image: linear-gradient(45deg, transparent 50%, black 50%);
     border-start-end-radius: 2px;
@@ -73,13 +80,13 @@
 
   /* right */
   &[data-tooltip="right"]::before {
-    left: calc(100% + 0.5rem);
-    top: 50%;
+    left: calc(anchor(right) + 0.5rem);
+    top: anchor(center);
     translate: 0 -50%;
   }
   &[data-tooltip="right"]::after {
-    left: calc(100% + 0.5rem);
-    top: 50%;
+    left: calc(anchor(right) + 0.5rem);
+    top: anchor(center);
     translate: -50% -50%;
     mask-image: linear-gradient(45deg, black 50%, transparent 50%);
     border-end-start-radius: 2px;

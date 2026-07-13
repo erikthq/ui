@@ -74,6 +74,11 @@ fieldset[role="group"]:has(> label.toggle > input[type="radio"]) {
     &:has(> input:checked) {
       anchor-name: --toggle-highlight;
       background-color: transparent;
+
+      /* keep the tooltip anchor alive when this same toggle also has [data-tooltip] */
+      &[data-tooltip] {
+        anchor-name: --toggle-highlight, --ui-tooltip-anchor;
+      }
     }
   }
 

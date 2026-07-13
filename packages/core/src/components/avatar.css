@@ -21,7 +21,7 @@
   }
 
   &:has(+ .avatar) {
-    mask-image: radial-gradient(100% 100% at 122%,#0000 0% 56%,#000 35% 100%);
+    mask-image: radial-gradient(100% 100% at calc(50% + (var(--ui-spacing-2) + 0.5lh + 0.6em - 2px)), #0000 0% calc(50% + 2px), #000 0% 100%);
   }
 
   img {

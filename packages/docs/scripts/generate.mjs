@@ -73,6 +73,8 @@ const routes = [
   "/getting-started/easings",
   "/typography",
   "/getting-started/skills",
+  "/utilities/relative-time",
+  "/utilities/copy-to-clipboard",
   "/llms.txt",
 ];
 
@@ -92,16 +94,19 @@ for (const route of routes) {
   console.log(`  ${route}`);
 }
 
-// Copy ui.css to dist
-const rootCss = new URL("../../../ui.css", import.meta.url).pathname;
-await copyFile(rootCss, join(outDir, "ui.css"));
+// Copy ui.css and elements.js to dist
+const coreCss = new URL("../../core/dist/ui.css", import.meta.url).pathname;
+await copyFile(coreCss, join(outDir, "ui.css"));
 
-// Regenerate SKILL.md at repo root so it stays in sync with the build
+const coreElements = new URL("../../core/dist/elements.js", import.meta.url).pathname;
+await copyFile(coreElements, join(outDir, "elements.js"));
+
+// Regenerate SKILL.md in packages/skill so it stays in sync with the build
 const skillResponse = await app.fetch(new Request("http://localhost/skill.md"));
 const skillContent = await skillResponse.text();
-const repoRoot = new URL("../../..", import.meta.url).pathname;
-await writeFile(join(repoRoot, "SKILL.md"), skillContent);
-console.log("  SKILL.md → repo root");
+const skillPackageDir = new URL("../../skill", import.meta.url).pathname;
+await writeFile(join(skillPackageDir, "SKILL.md"), skillContent);
+console.log("  SKILL.md → packages/skill");
 
 // Copy minisearch ESM bundle
 const miniSearchSrc = new URL("../node_modules/minisearch/dist/es/index.js", import.meta.url).pathname;

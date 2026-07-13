@@ -97,12 +97,12 @@ export async function ToastPage(path: string) {
             </article>
           </div>
 
-          <button popovertarget="toast-center">Center</button>
-          <div id="toast-center" popover class="toast" data-placement="center">
+          <button popovertarget="toast-bottom">Bottom</button>
+          <div id="toast-bottom" popover class="toast" data-placement="bottom">
             <article role="status">
               ${raw(icon("info-circle"))}
-              <strong>Center</strong>
-              <p>Fades and scales in, dead center of the viewport.</p>
+              <strong>Bottom center</strong>
+              <p>Centered along the bottom edge.</p>
             </article>
           </div>
 
@@ -119,7 +119,7 @@ export async function ToastPage(path: string) {
           ${raw(
             await highlight(`<div popover class="toast" data-placement="top left">...</div>
 <div popover class="toast" data-placement="top">...</div>
-<div popover class="toast" data-placement="center">...</div>
+<div popover class="toast" data-placement="bottom">...</div>
 <div popover class="toast" data-placement="bottom right">...</div>`),
           )}
         </div>

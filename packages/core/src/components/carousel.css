@@ -1,7 +1,4 @@
 .carousel {
-  /* set --carousel-anchor inline per instance if more than one carousel is on the page */
-  --_anchor: var(--carousel-anchor, --carousel);
-
   position: relative;
   display: flex;
   overflow-x: auto;
@@ -9,7 +6,8 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scroll-marker-group: after;
-  anchor-name: var(--_anchor);
+  anchor-name: --carousel;
+  anchor-scope: --carousel;
 
   list-style: none;
   margin: 0;
@@ -24,23 +22,18 @@
   }
 
   > li {
-    flex: 1 0 100%;
+    flex: 1 0 calc((100% - (var(--visible, 1) - 1) * var(--ui-spacing-2)) / var(--visible, 1));
     list-style: none;
     scroll-snap-align: center;
     scroll-snap-stop: always;
 
-    > img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border-radius: 12px;
-    }
+    border-radius: inherit;
+    overflow: clip;
   }
 
   &::scroll-button(*) {
     position: absolute;
-    position-anchor: var(--_anchor);
+    position-anchor: --carousel;
     top: anchor(center);
     translate: 0 -50%;
 
@@ -84,7 +77,7 @@
 
   &::scroll-marker-group {
     position: absolute;
-    position-anchor: var(--_anchor);
+    position-anchor: --carousel;
     top: calc(anchor(bottom) + var(--ui-spacing-3));
     left: anchor(center);
     translate: -50% 0;

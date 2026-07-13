@@ -475,36 +475,34 @@ Or inline:
 
 - `Accordion`
 - `Alert`
-- `Avatar` (0.0.13)
+- `Avatar`
 - `Badge`
 - `Breadcrumbs`
 - `Button`
 - `Button Group`
 - `Card`
-- `Carousel`
-- `Chart`
+- `Carousel` (WIP)
 - `Checkbox`
 - `Code`
 - `Color Input`
-- `Color Swatch` (0.0.13)
+- `Color Swatch`
 - `Combobox` (WIP)
 - `Datalist`
 - `Date Input`
 - `Dialog`
-- `Drawer` (0.0.13)
+- `Drawer`
 - `Dropdown`
 - `Empty State`
 - `Expander`
 - `Field`
 - `File Drop`
 - `Focus Group`
-- `Input OTP` (WIP)
 - `Kbd`
 - `Loading`
-- `Marquee` (0.0.13)
+- `Marquee`
 - `Menu`
 - `Number Field`
-- `Pagination` (0.0.13)
+- `Pagination`
 - `Popover`
 - `Progress`
 - `Prose`
@@ -512,17 +510,17 @@ Or inline:
 - `Radio Group`
 - `Select`
 - `Separator`
-- `Skeleton` (0.0.13)
+- `Skeleton`
 - `Slider`
 - `Submenu`
 - `Switch`
 - `Table`
 - `Tabs` (0.0.2)
-- `Tag Group` (0.0.13)
+- `Tag Group`
 - `Text Field`
 - `Textarea`
 - `Toast`
 - `Toggle`
 - `Toggle Group`
 - `Tooltip`
-- `Tree View` (0.0.13)
+- `Tree View`
