@@ -1,6 +1,0 @@
-{
-  "name": "skill",
-  "private": true,
-  "version": "0.0.1",
-  "description": "Downloadable AI agent skill for @erikt/ui. Regenerated on every docs build, do not edit SKILL.md by hand. Install with: npx skills add erikthq/ui/packages/skill"
-}

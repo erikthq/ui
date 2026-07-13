@@ -1,13 +1,21 @@
 ---
 name: erikt-ui
-description: Teaches agents how to use the erikt/ui design system. Use when writing HTML/CSS for a project that uses erikt/ui, or when asked to add UI components with erikt/ui.
+description: Teaches agents how to use the erikt/ui CSS design system, which native HTML elements and minimal class names already come styled (buttons, forms, dialogs, menus, cards, tabs, tooltips, toasts, and more) so no custom CSS or component library is needed. Use this whenever writing, reviewing, or fixing HTML/CSS in a project that depends on erikt/ui or @erikt/ui — signals include a <link>/@import referencing erikt/ui or esm.sh/@erikt/ui, an @erikt/ui entry in package.json, or --ui-* CSS custom properties. Also use whenever asked to add or style any UI component, even if erikt/ui isn't named explicitly.
 ---
 
 # erikt/ui Design System
 
 erikt/ui is a single CSS file that styles native HTML elements directly. No class names required for most things. Link the stylesheet and write semantic HTML.
 
-Docs: https://ui.erikt.me
+Full docs: https://ui.erikt.me. For any component below without an example, or for variants and options beyond what's shown here, fetch https://ui.erikt.me/llms.txt for the exact docs URL of that component before guessing at markup.
+
+## Mindset: minimal markup, minimal CSS
+
+Default to plain HTML using the elements and class names shown in this file. Most UI needs zero custom CSS, so resist adding wrapper `<div>`s, extra classes, or inline styles unless the layout genuinely needs them (e.g. `flex`/`grid` for arrangement, since erikt/ui intentionally has no layout opinions).
+
+When matching a target design (a screenshot, a mockup, "make it look like X"), get close using erikt/ui's existing components and tokens rather than pixel-matching with heavy overrides. A result that's 90% right with plain erikt/ui markup is usually the better outcome over one that's 100% right but held together by dozens of one-off inline styles, since the latter fights the system instead of using it.
+
+If a real style deviation is needed, change it globally instead of per instance: override the seed variables on `:root` (see Theming below) rather than sprinkling inline `style` attributes or one-off classes across individual elements. Unlayered styles always win over erikt/ui without needing `!important`, so a single `:root` override is cheap and keeps the whole UI consistent. Reach for a per-instance override only for something genuinely one-of-a-kind, not as the default way to match a design.
 
 ## Setup
 
@@ -156,6 +164,22 @@ el.addEventListener('input', () =>
 <span class="badge outlined">Outline</span>
 ```
 
+## Alert
+
+An `<article>` with `role="alert"` or `role="status"`, reusing the card surface. `role="alert"` interrupts a screen reader for urgent messages, `role="status"` is for calmer updates.
+
+```html
+<article role="status">Saved successfully.</article>
+<article role="alert" class="color2">Something went wrong.</article>
+```
+
+## Avatar
+
+```html
+<img class="avatar" src="/avatar.jpg" alt="" />
+<span class="avatar">JR</span>
+```
+
 ## Card
 
 ```html
@@ -166,6 +190,18 @@ el.addEventListener('input', () =>
   <p>Body</p>
   <footer>Actions</footer>
 </article>
+```
+
+## Breadcrumbs
+
+```html
+<nav aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/products">Products</a></li>
+    <li aria-current="page">Laptop</li>
+  </ol>
+</nav>
 ```
 
 ## Accordion
@@ -191,6 +227,15 @@ el.addEventListener('input', () =>
   </article>
 </dialog>
 <button onclick="document.getElementById('my-dialog').showModal()">Open</button>
+```
+
+## Popover
+
+The native Popover API, declarative, no JavaScript. `popovertarget` on a trigger opens the element with matching `id`. Menu, Dropdown, Submenu, and Toast below are all built on this.
+
+```html
+<button popovertarget="my-popover">Open</button>
+<div id="my-popover" popover>Content</div>
 ```
 
 ## Menu
@@ -260,6 +305,17 @@ A `[popover]` that is a sibling of a `<button>` inside a menu `<li>` becomes a s
       </div>
     </li>
   </menu>
+</div>
+```
+
+## Toast
+
+A `[popover]` promoted to the top layer, so it always renders above everything else with no `z-index` needed. Put an Alert inside for the message, open it with `popovertarget`.
+
+```html
+<button popovertarget="my-toast">Show toast</button>
+<div id="my-toast" popover class="toast">
+  <article role="status">Saved successfully.</article>
 </div>
 ```
 
@@ -373,6 +429,32 @@ Use `<label class="toggle">` inside `<fieldset role="group">`. Radio for mutuall
 </fieldset>
 ```
 
+## Tabs
+
+A `.tabs` section with a `[role="tablist"]` of `<label>`-wrapped radio inputs. CSS `:has()` shows the matching panel, no JavaScript. Wire each tab to its panel with matching `id`/`aria-controls`/`aria-labelledby`.
+
+```html
+<section class="tabs">
+  <header role="tablist" aria-label="Account settings">
+    <label>
+      <input type="radio" name="tab" id="tab-account" checked aria-controls="panel-account" />
+      Account
+    </label>
+    <label>
+      <input type="radio" name="tab" id="tab-password" aria-controls="panel-password" />
+      Password
+    </label>
+  </header>
+
+  <div role="tabpanel" id="panel-account" aria-labelledby="tab-account" tabindex="0">
+    <p>Manage your account settings.</p>
+  </div>
+  <div role="tabpanel" id="panel-password" aria-labelledby="tab-password" tabindex="0">
+    <p>Change your password.</p>
+  </div>
+</section>
+```
+
 ## Code and Kbd
 
 ```html
@@ -471,56 +553,23 @@ Or inline:
 - `--ease-snap` — fast with a slight overshoot, great for toggles
 - `--ease-heavy` — dramatic elastic overshoot
 
-## Available components
+## Web components (optional)
 
-- `Accordion`
-- `Alert`
-- `Avatar`
-- `Badge`
-- `Breadcrumbs`
-- `Button`
-- `Button Group`
-- `Card`
-- `Carousel` (WIP)
-- `Checkbox`
-- `Code`
-- `Color Input`
-- `Color Swatch`
-- `Combobox` (WIP)
-- `Datalist`
-- `Date Input`
-- `Dialog`
-- `Drawer`
-- `Dropdown`
-- `Empty State`
-- `Expander`
-- `Field`
-- `File Drop`
-- `Focus Group`
-- `Kbd`
-- `Loading`
-- `Marquee`
-- `Menu`
-- `Number Field`
-- `Pagination`
-- `Popover`
-- `Progress`
-- `Prose`
-- `Radio`
-- `Radio Group`
-- `Select`
-- `Separator`
-- `Skeleton`
-- `Slider`
-- `Submenu`
-- `Switch`
-- `Table`
-- `Tabs` (0.0.2)
-- `Tag Group`
-- `Text Field`
-- `Textarea`
-- `Toast`
-- `Toggle`
-- `Toggle Group`
-- `Tooltip`
-- `Tree View`
+Two dependency-free custom elements ship alongside the stylesheet. Opt-in only, nothing else depends on them.
+
+```html
+<script type="module" src="https://esm.sh/@erikt/ui/elements"></script>
+
+<relative-time datetime="2026-07-12T09:00:00.000Z"></relative-time>
+
+<copy-to-clipboard value="npm install @erikt/ui">
+  <button type="button">Copy</button>
+</copy-to-clipboard>
+<copy-to-clipboard for="#some-id">
+  <button type="button">Copy</button>
+</copy-to-clipboard>
+```
+
+## Full component list
+
+Every component in the library: Accordion, Alert, Avatar, Badge, Breadcrumbs, Button, Button Group, Card, Carousel (WIP), Checkbox, Code, Color Input, Color Swatch, Combobox (WIP), Datalist, Date Input, Dialog, Drawer, Dropdown, Empty State, Expander, Field, File Drop, Focus Group, Kbd, Loading, Marquee, Menu, Number Field, Pagination, Popover, Progress, Prose, Radio, Radio Group, Select, Separator, Skeleton, Slider, Submenu, Switch, Table, Tabs (0.0.2), Tag Group, Text Field, Textarea, Toast, Toggle, Toggle Group, Tooltip, Tree View. Each has a docs page with full markup, variants, and options — see https://ui.erikt.me/llms.txt for the exact URL of any one not covered by an example above.

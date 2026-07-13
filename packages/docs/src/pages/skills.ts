@@ -1,7 +1,20 @@
-import { html } from 'hono/html'
+import { html, raw } from 'hono/html'
 import { Layout } from '../layout'
+import { highlight } from '../highlight'
 
 export async function SkillsPage(path: string) {
+  const pnpmInstall = await highlight(
+    "pnpm dlx skills add erikthq/ui/packages/skill",
+    80,
+    "bash",
+  );
+  const npmBunInstall = await highlight(
+    `npx skills add erikthq/ui/packages/skill
+bunx skills add erikthq/ui/packages/skill`,
+    80,
+    "bash",
+  );
+
   return Layout({
     title: 'Skills',
     path,
@@ -25,7 +38,7 @@ export async function SkillsPage(path: string) {
       </div>
 
       <div class="example">
-        <div class="code-block"><pre><code>pnpm dlx skills add erikthq/ui/packages/skill</code></pre></div>
+        <div class="code-block">${raw(pnpmInstall)}</div>
       </div>
 
       <div class="prose">
@@ -33,8 +46,7 @@ export async function SkillsPage(path: string) {
       </div>
 
       <div class="example">
-        <div class="code-block"><pre><code>npx skills add erikthq/ui/packages/skill
-bunx skills add erikthq/ui/packages/skill</code></pre></div>
+        <div class="code-block">${raw(npmBunInstall)}</div>
       </div>
 
       <div class="prose">
