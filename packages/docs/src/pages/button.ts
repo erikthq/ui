@@ -185,13 +185,13 @@ export async function ButtonPage(path: string) {
       <div class="prose">
         <h2 id="loading">Loading</h2>
         <p>
-          Set <code>aria-busy="true"</code> to show an animated spinner before the
+          Set <code>aria-busy</code> to show an animated spinner before the
           label.
         </p>
       </div>
       <div class="example">
         <div class="preview" style="flex-direction:column;align-items:center;justify-contents:center;flex-start;gap:1rem">
-          <button id="btn-loading-demo" aria-busy="true">Please wait…</button>
+          <button id="btn-loading-demo" aria-busy>Please wait…</button>
           <label style="display:flex;align-items:center;gap:0.5rem">
             <input type="checkbox" checked onchange="this.checked ? document.getElementById('btn-loading-demo').setAttribute('aria-busy', 'true') : document.getElementById('btn-loading-demo').removeAttribute('aria-busy')" />
             Loading
@@ -199,7 +199,7 @@ export async function ButtonPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight('<button aria-busy="true">Please wait…</button>'),
+            await highlight('<button aria-busy>Please wait…</button>'),
           )}
         </div>
       </div>

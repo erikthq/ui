@@ -130,7 +130,7 @@ label:not(.toggle):has(> [data-prefix], > [data-suffix]) {
     transition: opacity 150ms var(--ease-glide);
   }
 
-  &:has(> input[aria-busy="true"]) {
+  &:has(> input[aria-busy]) {
     > [data-prefix] {
       opacity: 0;
     }
@@ -141,13 +141,13 @@ label:not(.toggle):has(> [data-prefix], > [data-suffix]) {
 }
 
 /* aria-busy spinner for inputs without adornments */
-label:not(.toggle):not(:has(> [data-prefix], > [data-suffix])):has(> input[aria-busy="true"]) {
+label:not(.toggle):not(:has(> [data-prefix], > [data-suffix])):has(> input[aria-busy]) {
   &::before {
     opacity: 1;
   }
 }
 
-label:not(.toggle):not(:has(> [data-prefix], > [data-suffix])):has(> input[aria-busy="true"]) {
+label:not(.toggle):not(:has(> [data-prefix], > [data-suffix])):has(> input[aria-busy]) {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;

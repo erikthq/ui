@@ -124,7 +124,7 @@ export async function TextFieldPage(path: string) {
       <div class="prose">
         <h2 id="loading">Loading</h2>
         <p>
-          Add <code>aria-busy="true"</code> to the input to show a spinner. It
+          Add <code>aria-busy</code> to the input to show a spinner. It
           works with or without adornments.
         </p>
       </div>
@@ -138,11 +138,11 @@ export async function TextFieldPage(path: string) {
           style="display:flex;flex-direction:column;gap:1rem"
         >
           <label style="width:100%">
-            <input style="width:100%" id="tf-loading-1" type="text" placeholder="Loading..." aria-busy="true" />
+            <input style="width:100%" id="tf-loading-1" type="text" placeholder="Loading..." aria-busy />
           </label>
           <label style="width:100%">
             ${raw(icon("search", { attrs: "data-prefix" }))}
-            <input style="width:100%" id="tf-loading-2" type="search" placeholder="Searching..." aria-busy="true" />
+            <input style="width:100%" id="tf-loading-2" type="search" placeholder="Searching..." aria-busy />
           </label>
           <label style="display:flex;align-items:center;gap:0.5rem">
             <input
@@ -157,13 +157,13 @@ export async function TextFieldPage(path: string) {
           ${raw(
             await highlight(`<!-- standalone input -->
 <label>
-  <input type="text" placeholder="Loading..." aria-busy="true" />
+  <input type="text" placeholder="Loading..." aria-busy />
 </label>
 
 <!-- with adornment -->
 <label>
   <svg data-prefix>...</svg>
-  <input type="search" placeholder="Searching..." aria-busy="true" />
+  <input type="search" placeholder="Searching..." aria-busy />
 </label>`),
           )}
         </div>

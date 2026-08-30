@@ -242,14 +242,14 @@ export async function AlertPage(path: string) {
       <div class="prose">
         <h2 id="loading">Loading</h2>
         <p>
-          Swap the icon for an element with <code>aria-busy="true"</code> to
+          Swap the icon for an element with <code>aria-busy</code> to
           get the built-in <a href="/components/loading">spinner</a>.
         </p>
       </div>
       <div class="example">
         <div class="preview" style="width:100%">
           <article role="status" class="primary" style="width:100%">
-            <span aria-busy="true"></span>
+            <span aria-busy></span>
             <strong>Processing your request</strong>
             <p>Please wait while we sync your data. This may take a few moments.</p>
           </article>
@@ -257,7 +257,7 @@ export async function AlertPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(`<article role="status" class="primary">
-  <span aria-busy="true"></span>
+  <span aria-busy></span>
   <strong>Processing your request</strong>
   <p>Please wait while we sync your data. This may take a few moments.</p>
 </article>`),

@@ -61,7 +61,7 @@ button,
     margin-left: auto;
   }
 
-  &[aria-busy="true"]:before {
+  &[aria-busy]:before {
     content: "";
     display: inline-block;
     background-color: currentColor;

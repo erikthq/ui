@@ -132,20 +132,20 @@ export async function BadgePage(path: string) {
       <div class="prose">
         <h2 id="loading">Loading</h2>
         <p>
-          Add <code>aria-busy="true"</code> to inject a spinner. Works on any
+          Add <code>aria-busy</code> to inject a spinner. Works on any
           variant.
         </p>
       </div>
       <div class="example">
         <div class="preview" style="gap:0.5rem">
-          <span class="badge" aria-busy="true">Syncing</span>
-          <span class="badge secondary" aria-busy="true">Uploading</span>
-          <span class="badge outlined" aria-busy="true">Processing</span>
+          <span class="badge" aria-busy>Syncing</span>
+          <span class="badge secondary" aria-busy>Uploading</span>
+          <span class="badge outlined" aria-busy>Processing</span>
         </div>
         <div class="code-block">
           ${raw(
             await highlight(
-              `<span class="badge" aria-busy="true">Syncing</span>`,
+              `<span class="badge" aria-busy>Syncing</span>`,
             ),
           )}
         </div>

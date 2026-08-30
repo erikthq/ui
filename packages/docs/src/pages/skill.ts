@@ -397,11 +397,11 @@ Control the number of visible lines with \`--lines\` (default: 3):
 
 ## Loading indicator
 
-Add \`aria-busy="true"\` to any element to show a spinner before it:
+Add \`aria-busy\` to any element to show a spinner before it:
 
 \`\`\`html
-<p aria-busy="true">Loading...</p>
-<button aria-busy="true">Saving</button>
+<p aria-busy>Loading...</p>
+<button aria-busy>Saving</button>
 \`\`\`
 
 ## Radio Group (fieldset with legend)

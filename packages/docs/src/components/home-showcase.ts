@@ -332,8 +332,8 @@ export default () => html`
     </div>
 
     <div class="showcase-cell">
-      <button aria-busy="true">Loading</button>
-      <button class="outlined" aria-busy="true">Saving</button>
+      <button aria-busy>Loading</button>
+      <button class="outlined" aria-busy>Saving</button>
     </div>
 
     <div class="showcase-cell">

@@ -19,7 +19,7 @@ export async function LoadingPage(path: string) {
           <h1>Loading</h1>
           <p>
             An animated SVG spinner injected via CSS whenever
-            <code>aria-busy="true"</code> is set.
+            <code>aria-busy</code> is set.
           </p>
         </hgroup>
 
@@ -30,7 +30,7 @@ export async function LoadingPage(path: string) {
           class="preview"
           style="flex-direction:column;align-items:center;justify-contents:center;gap:1rem"
         >
-          <button id="loading-btn" aria-busy="true">Saving…</button>
+          <button id="loading-btn" aria-busy>Saving…</button>
           <label style="display:flex;align-items:center;gap:0.5rem">
             <input
               type="checkbox"
@@ -41,24 +41,24 @@ export async function LoadingPage(path: string) {
           </label>
         </div>
         <div class="code-block">
-          ${raw(await highlight('<button aria-busy="true">Saving…</button>'))}
+          ${raw(await highlight('<button aria-busy>Saving…</button>'))}
         </div>
       </div>
 
       <div class="prose">
         <h2 id="custom">Custom element</h2>
         <p>
-          Any element with <code>aria-busy="true"</code> gets a spinner via
+          Any element with <code>aria-busy</code> gets a spinner via
           <code>::before</code>.
         </p>
       </div>
       <div class="example">
         <div class="preview">
-          <div style="width: 1lh" aria-busy="true"></div>
+          <div style="width: 1lh" aria-busy></div>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight('<div style="width: 1lh" aria-busy="true"></div>'),
+            await highlight('<div style="width: 1lh" aria-busy></div>'),
           )}
         </div>
       </div>
@@ -74,7 +74,7 @@ export async function LoadingPage(path: string) {
         <div class="preview">
           <article class="empty">
             <span
-              aria-busy="true"
+              aria-busy
               style="width:2.5rem;height:2.5rem;border-radius:8px;background:var(--ui-neutral-100);display:grid;place-items:center;"
             ></span>
             <h4>Processing your request</h4>
@@ -89,7 +89,7 @@ export async function LoadingPage(path: string) {
           ${raw(
             await highlight(`<article class="empty">
               <span
-                aria-busy="true"
+                aria-busy
                 style="width:2.5rem;height:2.5rem;border-radius:8px;background:var(--ui-neutral-100);display:grid;place-items:center;"
               ></span>
               <h4>Processing your request</h4>
