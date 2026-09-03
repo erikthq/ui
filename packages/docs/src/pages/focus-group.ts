@@ -15,8 +15,8 @@ export async function FocusGroupPage(path: string) {
         <hgroup>
           <h1>Focus Group</h1>
           <p class="lead">
-            A container that shows a shared focus ring when a designated child
-            is focused.
+            A container that draws one focus ring when a child inside it takes
+            focus.
           </p>
         </hgroup>
 

@@ -14,26 +14,26 @@ export async function ChartPage(path: string) {
         <hgroup>
           <h1>Chart</h1>
           <p class="lead">
-            A bar chart built from a native <code>&lt;table&gt;</code> only,
-            the most semantically correct element for tabular data. No
-            wrapper elements, no SVG, no JavaScript.
+            A bar chart that is a plain <code>&lt;table&gt;</code>. No wrapper
+            elements, no SVG, no JavaScript.
           </p>
         </hgroup>
 
         <h2 id="default">Default</h2>
         <p>
-          Each category is its own <code>&lt;tr&gt;</code> with a
+          Each category is one <code>&lt;tr&gt;</code> holding a
           <code>&lt;th scope="row"&gt;</code> label and a single
-          <code>&lt;td&gt;</code> value, the correct pairing for this data.
-          <code>grid-auto-flow: column</code> lays those rows out side by
-          side so each one renders as a vertical bar, while assistive tech
-          still reads them in their natural row order. Set <code>--v</code>
-          on each <code>&lt;td&gt;</code> to its value as a percentage of
-          <code>--chart-height</code>. The y-axis scale is a
-          <code>&lt;ul&gt;</code> nested inside <code>&lt;caption&gt;</code>,
-          the only element a table permits outside of rows. Column headers
-          become redundant once every row has its own label, so they are
-          visually hidden but kept for structure.
+          <code>&lt;td&gt;</code> value. <code>grid-auto-flow: column</code>
+          turns those rows sideways so each renders as a vertical bar, and a
+          screen reader still walks them row by row. Set <code>--v</code> on
+          each <code>&lt;td&gt;</code> to its value as a percentage of
+          <code>--chart-height</code>.
+        </p>
+        <p>
+          The y-axis is a <code>&lt;ul&gt;</code> inside
+          <code>&lt;caption&gt;</code>, the one place a table allows content
+          outside its rows. The column headers are redundant once every row is
+          labelled, so they stay in the markup but are hidden visually.
         </p>
       </div>
       <div class="example">

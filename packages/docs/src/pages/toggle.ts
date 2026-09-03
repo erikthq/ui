@@ -23,8 +23,8 @@ export async function TogglePage(path: string) {
         <hgroup>
           <h1>Toggle</h1>
           <p>
-            A pressable label that wraps a checkbox — looks like a button, works
-            like a toggle.
+            A pressable label wrapped around a checkbox. Looks like a button,
+            behaves like a toggle.
           </p>
         </hgroup>
 

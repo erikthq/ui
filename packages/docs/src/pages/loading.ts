@@ -66,8 +66,8 @@ export async function LoadingPage(path: string) {
       <div class="prose">
         <h2 id="card">Loading card</h2>
         <p>
-          Compose with an <code>article</code> and a centered layout to build a
-          blocking state panel.
+          Center a spinner in an <code>article</code> for a panel that blocks
+          the view while something loads.
         </p>
       </div>
       <div class="example">

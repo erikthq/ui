@@ -18,7 +18,7 @@ export async function SubmenuPage(path: string) {
           <h1>Submenu</h1>
           <p>
             A nested menu that opens to the side of a parent menu item. Built
-            with the native Popover API — no JavaScript required.
+            with the native Popover API. No JavaScript.
           </p>
         </hgroup>
 

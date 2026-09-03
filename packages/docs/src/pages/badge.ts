@@ -88,7 +88,7 @@ export async function BadgePage(path: string) {
 
       <div class="prose">
         <h2 id="with-icon">With icon</h2>
-        <p>Drop an <code>&lt;svg&gt;</code> inside — it sizes automatically.</p>
+        <p>Drop an <code>&lt;svg&gt;</code> inside and it sizes itself.</p>
       </div>
       <div class="example">
         <div class="preview" style="gap:0.5rem">

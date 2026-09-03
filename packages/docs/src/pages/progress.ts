@@ -18,7 +18,7 @@ export async function ProgressPage(path: string) {
         <hgroup>
           <h1>Progress</h1>
           <p>
-            Displays a completion state using the native
+            How far along something is, using the native
             <code>&lt;progress&gt;</code> element.
           </p>
         </hgroup>

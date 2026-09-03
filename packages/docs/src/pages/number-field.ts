@@ -20,7 +20,7 @@ export async function NumberFieldPage(path: string) {
         <hgroup>
           <h1>Number Field</h1>
           <p class="lead">
-            Styled native number input -- no classes needed.
+            Styled native number input. No classes needed.
           </p>
         </hgroup>
 

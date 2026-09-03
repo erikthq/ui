@@ -20,11 +20,10 @@ export async function ToastPage(path: string) {
         <hgroup>
           <h1>Toast</h1>
           <p>
-            A <code>[popover]</code> promoted to the top layer, so it always
-            renders above everything else on the page, no
-            <code>z-index</code> needed. Open and close it declaratively with
-            <code>popovertarget</code>, no JavaScript involved. Put an
-            <a href="/components/alert">Alert</a> inside for the actual
+            A <code>[popover]</code> in the top layer, so it paints above
+            everything else without a <code>z-index</code>.
+            <code>popovertarget</code> opens and closes it, so no JavaScript.
+            Put an <a href="/components/alert">Alert</a> inside for the
             message.
           </p>
         </hgroup>
@@ -128,21 +127,20 @@ export async function ToastPage(path: string) {
       <div class="prose">
         <h2 id="multiple">Multiple</h2>
         <p>
-          Use <code>popover="manual"</code> instead of the bare
-          <code>popover</code> (which defaults to <code>"auto"</code>) so
-          opening one toast doesn't close another. Toasts sharing the same
-          <code>data-placement</code> automatically fan out behind each
-          other as more of them open, up to 6 deep, purely with CSS
-          <code>:has()</code> counting how many later same-placement toasts
-          are currently open, no manual offsets and no JavaScript.
+          Use <code>popover="manual"</code> rather than the bare
+          <code>popover</code>, which defaults to <code>"auto"</code> and closes
+          one toast when the next opens. Toasts that share a
+          <code>data-placement</code> stack behind each other as more appear, up
+          to 6 deep. <code>:has()</code> counts how many later toasts at the
+          same placement are open, so there are no manual offsets to keep in
+          sync.
         </p>
         <p>
-          This only works between toasts that are DOM siblings (unrelated
-          content is fine in between, they don't need to be adjacent), since
-          CSS has no way to compare document position across different
-          parents. In practice that means keeping toasts together under one
-          shared container, commonly placed once near the end of
-          <code>&lt;body&gt;</code>, the same way most toast libraries work.
+          The counting only works between siblings, because CSS can't compare
+          document position across different parents. Other content between them
+          is fine, they just need the same parent. Keep the toasts in one
+          container near the end of <code>&lt;body&gt;</code>, which is where
+          most toast libraries put theirs anyway.
         </p>
       </div>
       <div class="example">

@@ -21,7 +21,7 @@ export async function TabsPage(path: string) {
           <h1>Tabs <sup class="badge constructive">New</sup></h1>
           <p>
             A set of <code>label</code> elements with hidden radio inputs inside
-            a <code>.tabs</code> container. No JavaScript needed -- CSS
+            a <code>.tabs</code> container. No JavaScript. CSS
             <code>:has()</code> handles panel switching.
           </p>
         </hgroup>
@@ -509,9 +509,8 @@ export async function TabsPage(path: string) {
       <div class="prose">
         <h2 id="nested">Nested</h2>
         <p>
-          Tabs can be nested freely. Each level is fully independent — switching
-          tabs in the outer component has no effect on the inner one and vice
-          versa.
+          Tabs nest as deep as you like. Each level is independent, so
+          switching the outer tabs leaves the inner ones where they were.
         </p>
       </div>
       <div class="example">
@@ -526,7 +525,7 @@ export async function TabsPage(path: string) {
             </header>
 
             <div role="tabpanel">
-              <p>Outer panel one — contains a nested tabs:</p>
+              <p>Outer panel one, holding another tabs component:</p>
               <!-- Level 2 -->
               <section class="tabs child-tabs">
                 <header role="tablist" aria-label="Inner tabs">
@@ -590,7 +589,7 @@ export async function TabsPage(path: string) {
             </header>
 
             <div role="tabpanel">
-              <p>Outer panel one — contains a nested tabs:</p>
+              <p>Outer panel one, holding another tabs component:</p>
               <!-- Level 2 -->
               <section class="tabs second">
                 <header role="tablist" aria-label="Inner tabs">

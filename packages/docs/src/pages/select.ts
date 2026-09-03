@@ -30,8 +30,8 @@ export async function SelectPage(path: string) {
         <p>
           In browsers that support <code>appearance: base-select</code> (Chrome
           135+), the picker opens as a styled popover matching the rest of the
-          UI. Older browsers get the original styled native select -- no extra
-          code needed.
+          UI. Older browsers get the plain styled native select, from the same
+          markup.
         </p>
 
         <p>

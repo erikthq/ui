@@ -68,7 +68,7 @@ export async function DialogPage(path: string) {
       <div class="prose">
         <h2 id="modal">Modal</h2>
         <p>
-          Call <code>.showModal()</code> to open as a modal — it blocks
+          Call <code>.showModal()</code> to open as a modal. It blocks
           interaction with the page and renders a backdrop.
         </p>
       </div>
@@ -165,15 +165,15 @@ export async function DialogPage(path: string) {
         </p>
         <ul>
           <li>
-            <code>closedby="any"</code> — closes on outside click or
+            <code>closedby="any"</code> closes on outside click or
             <kbd>Escape</kbd>
           </li>
           <li>
-            <code>closedby="closerequest"</code> — closes on <kbd>Escape</kbd>
+            <code>closedby="closerequest"</code> closes on <kbd>Escape</kbd>
             only (default for modal)
           </li>
           <li>
-            <code>closedby="none"</code> — only closeable via
+            <code>closedby="none"</code> only closes via
             <code>&lt;form method="dialog"&gt;</code>
           </li>
         </ul>

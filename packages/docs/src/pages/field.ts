@@ -79,28 +79,24 @@ export async function FieldPage(path: string) {
       <div class="prose">
         <h2 id="error-messages">Error messages</h2>
         <p>
-          Add one <code>&lt;small data-error="..."&gt;</code> per error type
-          and the right one shows automatically, no JavaScript involved. It
-          works off native validity state:
-          <code>:user-invalid</code> only matches after the user has
-          interacted with the field (so errors don't show on page load),
-          <code>:placeholder-shown</code> tells apart an empty required field
-          from one with a bad value, and <code>:out-of-range</code> catches
-          <code>min</code>/<code>max</code> violations. Each message
-          animates in with <code>@starting-style</code>. Try submitting the
-          form below empty, then with an out-of-range age, then with an
-          invalid email.
+          Add one <code>&lt;small data-error="..."&gt;</code> per error type and
+          the right one shows itself. No JavaScript. It runs on native validity
+          state. <code>:user-invalid</code> only matches once the user has
+          touched the field, so nothing shouts on page load.
+          <code>:placeholder-shown</code> separates an empty required field from
+          one holding a bad value, and <code>:out-of-range</code> catches
+          <code>min</code>/<code>max</code>. Each message animates in with
+          <code>@starting-style</code>. Submit the form below empty, then with
+          an age outside the range, then with a broken email.
         </p>
         <p>
-          The <code>novalidate</code> attribute on the
-          <code>&lt;form&gt;</code> suppresses the browser's own validation
-          bubble, which can't be restyled. It only disables that
-          automatic popup and submit-blocking, the
+          <code>novalidate</code> on the <code>&lt;form&gt;</code> hides the
+          browser's own validation bubble, which can't be restyled. It turns off
+          the popup and the blocked submit, nothing else. The
           <code>:invalid</code>/<code>:user-invalid</code>/<code
             >:out-of-range</code
           >
-          pseudo-classes above still work exactly the same, so this stays
-          entirely CSS-driven.
+          pseudo-classes keep working, so the messages above stay pure CSS.
         </p>
       </div>
       <div class="example">

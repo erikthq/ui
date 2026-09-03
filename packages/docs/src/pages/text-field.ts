@@ -18,7 +18,7 @@ export async function TextFieldPage(path: string) {
       <div class="prose">
         <hgroup>
           <h1>Text Field</h1>
-          <p class="lead">Styled native form inputs — no classes needed.</p>
+          <p class="lead">Styled native form inputs. No classes needed.</p>
         </hgroup>
 
         <h2 id="text">Text</h2>
@@ -129,8 +129,8 @@ export async function TextFieldPage(path: string) {
         </p>
       </div>
       <p class="callout">
-        The input must be wrapped in a <code>&lt;label&gt;</code> — the spinner
-        is rendered via the label's <code>::before</code> pseudo-element.
+        The input has to be wrapped in a <code>&lt;label&gt;</code>. The spinner
+        is drawn on the label's <code>::before</code>.
       </p>
       <div class="example">
         <div

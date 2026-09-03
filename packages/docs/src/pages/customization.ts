@@ -18,28 +18,28 @@ export async function CustomizationPage(path: string) {
         <hgroup>
           <h1>Customization</h1>
           <p>
-            @erikt/ui uses <code>@layer</code> to stay out of your way. Any styles you
-            write outside of a layer automatically win over @erikt/ui's defaults.
+            @erikt/ui lives in a <code>@layer</code>. Any styles you write
+            outside of a layer beat it.
           </p>
         </hgroup>
 
         <h2 id="how-it-works">How it works</h2>
         <p>
-          All @erikt/ui styles are scoped inside <code>@layer ui</code>. The CSS
-          cascade gives unlayered styles the highest priority, so you can override
-          anything simply by writing regular CSS — no <code>!important</code>, no
-          increased specificity needed.
+          Everything @erikt/ui ships sits inside <code>@layer ui</code>. The
+          cascade ranks unlayered styles above every layer, so plain CSS
+          overrides any of it. No <code>!important</code>, no specificity
+          games.
         </p>
       </div>
       <div class="example">
         <div class="code-block">
           ${raw(await highlight(
-            `/* erikt/ui internals — low priority */\n` +
+            `/* erikt/ui internals, low priority */\n` +
             `@layer ui {\n` +
             `  button { border-radius: 8px; }\n` +
             `}\n` +
             `\n` +
-            `/* your styles — always win */\n` +
+            `/* your styles, always win */\n` +
             `button { border-radius: 0; }`,
             80, 'css'
           ))}
@@ -49,8 +49,8 @@ export async function CustomizationPage(path: string) {
       <div class="prose">
         <h2 id="overriding-styles">Overriding styles</h2>
         <p>
-          Write your overrides in a plain stylesheet, after the @erikt/ui import. You
-          can target any element or class @erikt/ui exposes.
+          Put your overrides in a plain stylesheet loaded after @erikt/ui. Any
+          element or class it styles is fair game.
         </p>
       </div>
       <div class="example">
@@ -71,8 +71,8 @@ export async function CustomizationPage(path: string) {
 
         <h2 id="example">Example</h2>
         <p>
-          Here is a button with @erikt/ui's default styling next to one with
-          <code>border-radius: 0</code> applied via a local override.
+          A default button next to one with <code>border-radius: 0</code> from
+          a local override.
         </p>
       </div>
 
@@ -103,11 +103,10 @@ export async function CustomizationPage(path: string) {
 
       <div class="prose">
         <p>
-          The same technique works for any property — spacing, font sizes,
-          colors, transitions, and so on. @erikt/ui's token system (CSS custom
-          properties like <code>--ui-primary</code>) gives you an additional
-          lever: changing a token updates every component that references it at
-          once. See <a href="/themes">Themes</a> for details.
+          The same works for spacing, font sizes, colors, transitions, anything
+          else. Tokens like <code>--ui-primary</code> go further. Change one and
+          every component that reads it updates at once. See
+          <a href="/themes">Themes</a> for the full list.
         </p>
       </div>
     `,

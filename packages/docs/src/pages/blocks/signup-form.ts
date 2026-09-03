@@ -13,8 +13,8 @@ export async function SignupFormPage(path: string) {
         <hgroup>
           <h1>Signup Form</h1>
           <p>
-            A full account creation form with social login options, built from
-            native form elements and @erikt/ui components.
+            An account creation form with social logins, built from native form
+            elements.
           </p>
         </hgroup>
       </div>

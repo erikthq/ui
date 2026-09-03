@@ -8,7 +8,7 @@ const toc = [
 ];
 
 const loremIpsum = `@erikt/ui is a minimal CSS design system that styles native HTML elements
-directly — no utility classes, no component wrappers, no build step required.
+directly. No utility classes, no component wrappers, no build step.
 It ships as a single stylesheet and works with any framework or none at all.
 Colors, spacing, and easing are all driven by CSS custom properties, so
 theming is a matter of overriding a handful of variables. Dark mode is

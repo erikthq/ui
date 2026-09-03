@@ -32,8 +32,8 @@ export async function AccordionPage(path: string) {
             <summary>What is @erikt/ui?</summary>
             <div>
               @erikt/ui is a minimal CSS design system that styles native HTML
-              elements directly — no utility classes or component wrappers
-              needed.
+              elements directly, with no utility classes or component
+              wrappers.
             </div>
           </details>
         </div>
@@ -53,8 +53,8 @@ export async function AccordionPage(path: string) {
       <div class="prose">
         <h2 id="multiple">Multiple items</h2>
         <p>
-          Stack multiple <code>&lt;details&gt;</code> elements — they get
-          automatic spacing between them.
+          Stack several <code>&lt;details&gt;</code> elements and they space
+          themselves.
         </p>
       </div>
       <div class="example">
@@ -99,8 +99,8 @@ export async function AccordionPage(path: string) {
       <div class="prose">
         <h2 id="exclusive">Exclusive</h2>
         <p>
-          Give a group the same <code>name</code> attribute — only one item can
-          be open at a time.
+          Give a group the same <code>name</code> attribute and only one item
+          stays open at a time.
         </p>
       </div>
       <div class="example">

@@ -42,16 +42,17 @@ export async function ThemesPage(path: string) {
         <hgroup>
           <h1>Themes</h1>
           <p>
-            @erikt/ui is themed entirely through CSS custom properties — override the
-            seed colors to match your brand.
+            Theming is all CSS custom properties. Override the seed colors and
+            every scale below is regenerated from them.
           </p>
         </hgroup>
 
         <h2 id="primary-scale">Primary scale</h2>
         <p>
-          Used for interactive elements like buttons and focus rings. The
-          palette is derived from <code>--ui-primary</code>, which accepts a
-          <code>light-dark()</code> value for per-theme control.
+          Buttons, focus rings, anything interactive. The whole scale comes
+          from <code>--ui-primary</code>, which takes a
+          <code>light-dark()</code> value if you want a different tone per
+          theme.
         </p>
       </div>
       ${colorScale("primary")}
@@ -59,8 +60,8 @@ export async function ThemesPage(path: string) {
       <div class="prose">
         <h2 id="neutral-scale">Neutral scale</h2>
         <p>
-          Used for text, borders, and backgrounds. Override
-          <code>--ui-neutral</code> to adjust neutral tones.
+          Text, borders, and backgrounds. Override <code>--ui-neutral</code> to
+          shift them warmer or cooler.
         </p>
       </div>
       ${colorScale("neutral")}
@@ -68,7 +69,7 @@ export async function ThemesPage(path: string) {
       <div class="prose">
         <h2 id="constructive-scale">Constructive scale</h2>
         <p>
-          Used for success and positive states. Override
+          Success and confirmation states. Override
           <code>--ui-constructive</code>.
         </p>
       </div>
@@ -77,7 +78,7 @@ export async function ThemesPage(path: string) {
       <div class="prose">
         <h2 id="destructive-scale">Destructive scale</h2>
         <p>
-          Used for errors and danger states. Override
+          Errors and destructive actions. Override
           <code>--ui-destructive</code>.
         </p>
       </div>
@@ -86,9 +87,8 @@ export async function ThemesPage(path: string) {
       <div class="prose">
         <h2 id="color-scales">Color scales</h2>
         <p>
-          General-purpose accent colors. Override
-          <code>--ui-color1</code> through <code>--ui-color6</code> to suit
-          your palette.
+          Six accents for whatever else needs a color. Override
+          <code>--ui-color1</code> through <code>--ui-color6</code>.
         </p>
       </div>
       ${[1, 2, 3, 4, 5, 6].map((n) => colorScale(`color${n}`))}
@@ -124,10 +124,8 @@ export async function ThemesPage(path: string) {
       <div class="prose">
         <h2 id="dark-mode">Dark mode</h2>
         <p>
-          @erikt/ui responds to
-          <code>prefers-color-scheme: dark</code> automatically. You can also
-          force a mode on any element using the <code>color-scheme</code> CSS
-          property:
+          @erikt/ui follows <code>prefers-color-scheme: dark</code> on its own.
+          To pin a mode, set <code>color-scheme</code> on any element:
         </p>
       </div>
       <div class="example">

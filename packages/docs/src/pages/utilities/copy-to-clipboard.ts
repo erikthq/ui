@@ -100,11 +100,10 @@ export async function CopyToClipboardPage(path: string) {
         <h2 id="web-component">Web Component</h2>
         <p>
           Wrap the same logic in a custom element. Give it a
-          <code>for</code> attribute to copy the content of a matching element,
-          or a <code>value</code> attribute to copy a literal string directly.
-          It dispatches a bubbling <code>clipboard-copy</code> event on success,
-          so a page can react (e.g. show "Copied!") without the component being
-          opinionated about the UI.
+          <code>for</code> attribute to copy a matching element's content, or a
+          <code>value</code> attribute to copy a literal string. On success it
+          fires a bubbling <code>clipboard-copy</code> event, so the page decides
+          what "Copied!" looks like.
         </p>
       </div>
       <div class="example">

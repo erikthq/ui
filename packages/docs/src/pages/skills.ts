@@ -29,9 +29,9 @@ bunx skills add erikthq/ui/packages/skill`,
         </hgroup>
 
         <p>
-          @erikt/ui ships a <code>SKILL.md</code> file that gives agents like Claude
-          Code, Cursor, and Windsurf a concise reference for every component,
-          theming API, and HTML pattern in the library.
+          @erikt/ui ships a <code>SKILL.md</code> file. It gives agents like
+          Claude Code, Cursor, and Windsurf a short reference for every
+          component, the theming variables, and the HTML each pattern expects.
         </p>
 
         <p>Install it into your project using the <code>skills</code> CLI:</p>
@@ -51,13 +51,13 @@ bunx skills add erikthq/ui/packages/skill`,
 
       <div class="prose">
         <p>
-          Once installed, your agent will know how to reach for the right element
-          and pattern when building UI with @erikt/ui. No prompting required.
+          After that the agent reaches for the right element on its own. You
+          don't have to explain the library in every prompt.
         </p>
 
         <p>
-          The skill is kept in sync with the library and regenerated on every
-          release. You can also read it directly:
+          It is regenerated on every release, so it never drifts from the CSS.
+          You can also just read it:
           <a href="https://github.com/erikthq/ui/blob/main/packages/skill/SKILL.md" target="_blank" rel="noopener">SKILL.md on GitHub</a>.
         </p>
       </div>

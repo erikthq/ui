@@ -17,9 +17,9 @@ export async function ComboboxPage(path: string) {
         <hgroup>
           <h1>Combobox <sup class="badge">WIP</sup></h1>
           <p>
-            A searchable dropdown built from a text input and the native Popover
-            API. CSS handles all visual presentation; a small inline script
-            filters the list and wires up selection.
+            A searchable dropdown built from a text input and the native
+            Popover API. CSS does the presentation. A short inline script
+            filters the list and handles the pick.
           </p>
         </hgroup>
         <p>

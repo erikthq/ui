@@ -20,8 +20,8 @@ export async function EmptyPage(path: string) {
         <hgroup>
           <h1>Empty State</h1>
           <p class="lead">
-            A placeholder shown when there is no content to display, built with
-            the <code>.empty</code> class.
+            A placeholder for when there is nothing to show, using the
+            <code>.empty</code> class.
           </p>
         </hgroup>
 

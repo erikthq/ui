@@ -27,14 +27,16 @@ export async function TreeViewPage(path: string) {
 
         <h2 id="default">Default</h2>
         <p>
-          Wrap each folder in a <code>&lt;details&gt;</code> containing a
+          Wrap each folder in a <code>&lt;details&gt;</code> holding a
           <code>&lt;summary&gt;</code> and a nested <code>&lt;ul&gt;</code>.
-          Icons come from the markup: drop an <code>&lt;svg&gt;</code> before
-          the text in a <code>&lt;summary&gt;</code> or <code>&lt;li&gt;</code>.
+          Files are plain <code>&lt;li&gt;</code> items with no
+          <code>&lt;details&gt;</code>, and expanding works natively.
+        </p>
+        <p>
+          Icons come from the markup. Put an <code>&lt;svg&gt;</code> before the
+          text in a <code>&lt;summary&gt;</code> or <code>&lt;li&gt;</code>.
           Give a <code>&lt;summary&gt;</code> two icons and the first shows
-          while closed, the second while open. Files are plain
-          <code>&lt;li&gt;</code> items with no <code>&lt;details&gt;</code>.
-          Expand and collapse works natively, no JavaScript required.
+          while closed, the second while open.
         </p>
       </div>
       <div class="example">

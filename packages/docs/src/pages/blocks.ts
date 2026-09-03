@@ -16,9 +16,8 @@ export async function BlocksPage(path: string) {
         <hgroup>
           <h1>Copy-paste blocks for real interfaces</h1>
           <p style="">
-            Full UI compositions built entirely from @erikt/ui components wth minimal
-            extra CSS. No extra dependencies. Drop them straight into your
-            project.
+            Whole screens assembled from @erikt/ui components, with a few lines
+            of extra CSS at most. Nothing else to install. Copy one and edit it.
           </p>
         </hgroup>
 

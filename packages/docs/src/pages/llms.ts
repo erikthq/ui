@@ -15,7 +15,7 @@ export function LlmsPage() {
   const lines = [
     `# @erikt/ui`,
     ``,
-    `A minimal CSS design system. A single stylesheet — no build step, no JavaScript, no class names required. Drop in the stylesheet and use semantic HTML.`,
+    `A minimal CSS design system. A single stylesheet, no build step, no JavaScript, no class names required. Drop in the stylesheet and use semantic HTML.`,
     ``,
     `Documentation: ${base}/introduction`,
     ``,

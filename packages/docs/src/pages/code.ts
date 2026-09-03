@@ -17,7 +17,7 @@ export async function CodePage(path: string) {
         <hgroup>
           <h1>Code</h1>
           <p>
-            Displays inline code using the native <code>&lt;code&gt;</code>
+            Inline code, using the native <code>&lt;code&gt;</code>
             element.
           </p>
         </hgroup>

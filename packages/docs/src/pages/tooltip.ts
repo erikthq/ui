@@ -17,7 +17,7 @@ export async function TooltipPage(path: string) {
         <hgroup>
           <h1>Tooltip</h1>
           <p>
-            Show a tooltip using the <code>aria-label</code> attribute. Appears
+            A tooltip built from the <code>aria-label</code> attribute. Shows
             on hover and on keyboard focus.
           </p>
         </hgroup>
@@ -25,7 +25,7 @@ export async function TooltipPage(path: string) {
         <h2 id="default">Default</h2>
         <p>
           Add <code>data-tooltip</code> and <code>aria-label</code> to any
-          element. The tooltip appears on hover and keyboard focus.
+          element. The label is the tooltip text.
         </p>
       </div>
       <div class="example">

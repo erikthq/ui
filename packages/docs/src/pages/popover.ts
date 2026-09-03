@@ -28,7 +28,7 @@ export async function PopoverPage(path: string) {
         <p>
           Connect a <code>popovertarget</code> button to a
           <code>[popover]</code> element by matching IDs. The button acts as the
-          CSS anchor automatically — no extra markup needed.
+          CSS anchor. No extra markup.
         </p>
       </div>
       <div class="example">

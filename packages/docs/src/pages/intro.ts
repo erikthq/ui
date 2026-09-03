@@ -30,12 +30,11 @@ export async function IntroPage(path: string) {
           the things HTML can't express on its own.
         </p>
         <p>
-          It takes a lot of inspiration from
+          The core idea is borrowed from
           <a href="https://picocss.com" target="_blank" rel="noopener"
             >Pico CSS</a
-          >: the idea that a stylesheet should improve the browser's defaults
-          rather than replace them. erikt/ui adds a richer component set and a
-          theming layer on top of that.
+          >. A stylesheet should improve the browser's defaults, not replace
+          them. erikt/ui adds more components and a theming layer on top.
         </p>
 
         <h2 id="usage">Usage</h2>
@@ -83,10 +82,10 @@ export async function IntroPage(path: string) {
       <div class="prose">
         <h2 id="ui-not-layout">UI, not layout</h2>
         <p>
-          erikt/ui handles the look of interactive elements (buttons, inputs,
-          popovers) but deliberately stays out of the way of how you arrange
-          them on the page. CSS <code>flex</code> and <code>grid</code> are fast
-          to write, easy to read, and need no abstraction on top of them.
+          erikt/ui styles interactive elements (buttons, inputs, popovers) and
+          leaves the page layout to you. <code>flex</code> and <code>grid</code>
+          are already short to write and easy to read. Wrapping them in classes
+          doesn't make them better.
         </p>
       </div>
 
@@ -113,16 +112,14 @@ export async function IntroPage(path: string) {
       <div class="prose">
         <h2 id="with-tailwind">With Tailwind</h2>
         <p>
-          erikt/ui and Tailwind work well together. erikt/ui handles component styles,
-          Tailwind handles layout and one-off utilities. There is no conflict
-          because erikt/ui wraps all its styles in <code>@layer ui {}</code>,
-          which means any Tailwind utility class wins automatically without
-          needing <code>!</code>.
+          erikt/ui and Tailwind get along. erikt/ui handles component styles,
+          Tailwind handles layout and one-off utilities. Nothing collides,
+          because erikt/ui wraps everything in <code>@layer ui {}</code> and any
+          Tailwind utility beats it without the <code>!</code> prefix.
         </p>
         <p>
-          To get the layering right, declare the layer order before importing
-          either library. This ensures Tailwind's reset sits below erikt/ui, and
-          Tailwind's utilities sit above it:
+          Declare the layer order before importing either library. That puts
+          Tailwind's reset below erikt/ui and its utilities above:
         </p>
       </div>
 
@@ -141,15 +138,15 @@ export async function IntroPage(path: string) {
       <div class="prose">
         <h2 id="philosophy">Philosophy</h2>
         <p>
-          erikt/ui is also a personal testbed for modern CSS. New features like
-          anchor positioning, <code>@starting-style</code>, the Popover API, and
-          <code>:has()</code> are tried out here first. The aim is to see how
-          far CSS alone can get before JavaScript is needed.
+          erikt/ui is also where I try out new CSS. Anchor positioning,
+          <code>@starting-style</code>, the Popover API and <code>:has()</code>
+          all landed here first. The question I keep poking at is how far CSS
+          gets before JavaScript is needed.
         </p>
         <p>
-          Because of that, erikt/ui leans on newer browser features and isn't aimed
-          at projects that need broad compatibility. It's more of a place to
-          experiment than a production-ready toolkit.
+          So it leans on very new browser features and isn't meant for projects
+          that need broad support. Treat it as an experiment rather than a
+          production toolkit.
         </p>
       </div>
     `,

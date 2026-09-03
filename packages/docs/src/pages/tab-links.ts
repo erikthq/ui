@@ -138,7 +138,7 @@ export async function TabLinksPage(path: string) {
           The highlight is a <code>::before</code> on the bar rather than a
           background on the active link. One element, present on every page, in
           a different place each time. That is exactly what a view transition
-          needs in order to interpolate.
+          needs to interpolate.
         </p>
         <p>
           The component names it and tags it with a view transition class. It

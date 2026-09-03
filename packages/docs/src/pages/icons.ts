@@ -55,19 +55,19 @@ export function IconsPage(path: string) {
             @erikt/ui doesn't ship icons. The examples below use
             <a href="https://tabler.io/icons" target="_blank" rel="noopener"
               >Tabler Icons</a
-            >
-            — over ${outlineTotal} free, open-source SVG icons with a consistent
-            stroke style.
+            >, ${outlineTotal} free SVG icons drawn on the same stroke
+            grid.
           </p>
         </hgroup>
         <p>
-          Inline SVGs work especially well with @erikt/ui since they inherit
-          <code>currentColor</code> and scale with <code>font-size</code>. Click
-          any icon to copy its SVG.
+          Inline SVGs suit @erikt/ui well. They inherit
+          <code>currentColor</code> and scale with <code>font-size</code>, so an
+          icon in a button matches the label without extra rules. Click any icon
+          to copy its SVG.
         </p>
         <p>
-          Use the icon search — available from the header on any page — to find
-          and copy icons without leaving your current context.
+          The icon search sits in the header on every page, so you can grab one
+          without leaving the page you're reading.
         </p>
       </div>
       <button onclick="document.getElementById('icons-dialog').showModal()">

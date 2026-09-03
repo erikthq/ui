@@ -21,8 +21,8 @@ export async function TypographyPage(path: string) {
         <hgroup>
           <h1>Typography</h1>
           <p>
-            Native HTML text elements, unstyled and ready to inherit your
-            design.
+            Native text elements, styled just enough to read well and inherit
+            whatever you set on top.
           </p>
         </hgroup>
 

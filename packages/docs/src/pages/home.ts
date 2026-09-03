@@ -212,9 +212,9 @@ export async function HomePage(path: string) {
           <p><small>Reset + UI in one import</small></p>
           <h2>Batteries included</h2>
           <p>
-            @erikt/ui normalizes browser defaults and builds on top of them. You
-            get a consistent baseline and a full component library from a single
-            stylesheet.
+            @erikt/ui normalizes browser defaults and builds on top of them.
+            One stylesheet, one import, and you have both the reset and the
+            components.
           </p>
         </div>
 
@@ -224,8 +224,8 @@ export async function HomePage(path: string) {
           <p>
             Components map to native elements. A
             <code>&lt;button&gt;</code> is a button, a
-            <code>&lt;dialog&gt;</code> is a dialog — no wrappers or utility
-            classes needed.
+            <code>&lt;dialog&gt;</code> is a dialog. No wrappers, no utility
+            classes.
           </p>
         </div>
 

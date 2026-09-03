@@ -77,7 +77,7 @@ export async function EasingsPage(path: string) {
         <hgroup>
           <h1>Easings</h1>
           <p>
-            Custom easing curves for natural-feeling transitions and animations.
+            Easing curves that don't look like the browser defaults.
           </p>
         </hgroup>
       </div>
@@ -89,8 +89,8 @@ export async function EasingsPage(path: string) {
       <div class="prose">
         <h2 id="ease-glide">Glide</h2>
         <p>
-          Smooth deceleration with a soft landing. Works well for most UI
-          transitions — drawers, modals, expanding content.
+          Slows down gently and lands soft. The default choice for drawers,
+          modals, and anything that expands.
         </p>
       </div>
       <div class="example">
@@ -109,9 +109,8 @@ export async function EasingsPage(path: string) {
       <div class="prose">
         <h2 id="ease-snap">Snap</h2>
         <p>
-          Fast out with a slight overshoot that snaps into place. Great for
-          elements that should feel responsive and decisive — toggles,
-          selections.
+          Leaves fast, overshoots a little, settles. Good for toggles and
+          selections, where the response should feel immediate.
         </p>
       </div>
       <div class="example">
@@ -130,8 +129,8 @@ export async function EasingsPage(path: string) {
       <div class="prose">
         <h2 id="ease-heavy">Heavy</h2>
         <p>
-          Dramatic elastic overshoot for elements that need weight and impact.
-          Use sparingly for things that should demand attention.
+          A big elastic overshoot. It draws the eye, which is exactly why one
+          per screen is plenty.
         </p>
       </div>
       <div class="example">

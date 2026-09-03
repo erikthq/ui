@@ -47,8 +47,7 @@ export async function AlertPage(path: string) {
             ${raw(icon("info-circle"))}
             <strong>New features available</strong>
             <p>
-              Check out our latest updates including dark mode support and
-              improved accessibility features.
+              Dark mode and keyboard navigation shipped this week.
             </p>
           </article>
         </div>
@@ -58,8 +57,7 @@ export async function AlertPage(path: string) {
   <svg><!-- icon --></svg>
   <strong>New features available</strong>
   <p>
-    Check out our latest updates including dark mode support and improved
-    accessibility features.
+    Dark mode and keyboard navigation shipped this week.
   </p>
 </article>`),
           )}

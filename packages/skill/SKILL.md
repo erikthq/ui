@@ -1,6 +1,6 @@
 ---
 name: erikt-ui
-description: Teaches agents how to use the erikt/ui CSS design system, which native HTML elements and minimal class names already come styled (buttons, forms, dialogs, menus, cards, tabs, tooltips, toasts, and more) so no custom CSS or component library is needed. Use this whenever writing, reviewing, or fixing HTML/CSS in a project that depends on erikt/ui or @erikt/ui — signals include a <link>/@import referencing erikt/ui or esm.sh/@erikt/ui, an @erikt/ui entry in package.json, or --ui-* CSS custom properties. Also use whenever asked to add or style any UI component, even if erikt/ui isn't named explicitly.
+description: Teaches agents how to use the erikt/ui CSS design system, which native HTML elements and minimal class names already come styled (buttons, forms, dialogs, menus, cards, tabs, tooltips, toasts, and more) so no custom CSS or component library is needed. Use this whenever writing, reviewing, or fixing HTML/CSS in a project that depends on erikt/ui or @erikt/ui. Signals include a <link>/@import referencing erikt/ui or esm.sh/@erikt/ui, an @erikt/ui entry in package.json, or --ui-* CSS custom properties. Also use whenever asked to add or style any UI component, even if erikt/ui isn't named explicitly.
 ---
 
 # erikt/ui Design System
@@ -272,7 +272,7 @@ Radio and checkbox inputs inside `<label>`s show a checkmark indicator:
 
 ## Dropdown (popover menu)
 
-Place a `<menu>` inside any `[popover]` — styles and padding apply automatically:
+Place a `<menu>` inside any `[popover]` and styles and padding apply automatically:
 
 ```html
 <button popovertarget="my-menu">Options</button>
@@ -561,9 +561,9 @@ Or inline:
 
 ## Easing tokens
 
-- `--ease-glide` — smooth deceleration, good for most transitions
-- `--ease-snap` — fast with a slight overshoot, great for toggles
-- `--ease-heavy` — dramatic elastic overshoot
+- `--ease-glide`: smooth deceleration, the default for most transitions
+- `--ease-snap`: fast with a slight overshoot, for toggles and selections
+- `--ease-heavy`: a big elastic overshoot, use one per screen at most
 
 ## Web components (optional)
 
@@ -584,4 +584,4 @@ Two dependency-free custom elements ship alongside the stylesheet. Opt-in only, 
 
 ## Full component list
 
-Every component in the library: Accordion, Alert, Avatar, Badge, Breadcrumbs, Button, Button Group, Card, Carousel (WIP), Checkbox, Code, Color Input, Color Swatch, Combobox (WIP), Datalist, Date Input, Dialog, Drawer, Dropdown, Empty State, Expander, Field, File Drop, Focus Group, Kbd, Loading, Marquee, Menu, Number Field, Pagination, Popover, Progress, Prose, Radio, Radio Group, Select, Separator, Skeleton, Slider, Submenu, Switch, Table, Tab Links (New), Tabs (0.0.2), Tag Group, Text Field, Textarea, Toast, Toggle, Toggle Group, Tooltip, Tree View. Each has a docs page with full markup, variants, and options — see https://ui.erikt.me/llms.txt for the exact URL of any one not covered by an example above.
+Every component in the library: Accordion, Alert, Avatar, Badge, Breadcrumbs, Button, Button Group, Card, Carousel (WIP), Checkbox, Code, Color Input, Color Swatch, Combobox (WIP), Datalist, Date Input, Dialog, Drawer, Dropdown, Empty State, Expander, Field, File Drop, Focus Group, Kbd, Loading, Marquee, Menu, Number Field, Pagination, Popover, Progress, Prose, Radio, Radio Group, Select, Separator, Skeleton, Slider, Submenu, Switch, Table, Tab Links (New), Tabs (0.0.2), Tag Group, Text Field, Textarea, Toast, Toggle, Toggle Group, Tooltip, Tree View. Each has a docs page with full markup, variants, and options. See https://ui.erikt.me/llms.txt for the exact URL of any one not covered by an example above.

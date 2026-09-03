@@ -112,8 +112,7 @@ export async function RadioPage(path: string) {
       <div class="prose">
         <h2 id="choice-card">Choice card</h2>
         <p>
-          A card-style radio group built with a small CSS snippet and semantic
-          markup.
+          A card-style radio group. Semantic markup plus a few lines of CSS.
         </p>
       </div>
       <div class="example">

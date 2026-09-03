@@ -114,10 +114,10 @@ export async function RelativeTimePage(path: string) {
       <div class="prose">
         <h2 id="web-component">Web Component</h2>
         <p>
-          Wrap the same logic in a custom element for drop-in use in plain
-          HTML, no glue code required. It re-renders every second so
-          long-lived pages stay accurate, and updates automatically if the
-          <code>datetime</code> attribute changes.
+          Wrap the same logic in a custom element and it works from plain HTML.
+          It re-renders every second, so a tab left open all afternoon still
+          shows the right number, and it follows any change to the
+          <code>datetime</code> attribute.
         </p>
       </div>
       <div class="example">

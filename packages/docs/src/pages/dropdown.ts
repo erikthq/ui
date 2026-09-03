@@ -142,9 +142,9 @@ export async function DropdownPage(path: string) {
       <div class="prose">
         <h2 id="with-radios">With radios</h2>
         <p>
-          Radio inputs work naturally inside a dropdown — the checked state is
-          preserved between opens and a checkmark appears via CSS. The popover
-          stays open so the user can see their selection before dismissing.
+          Radio inputs work inside a dropdown as they do anywhere. The checked
+          state survives between opens, and CSS draws the checkmark. The popover
+          stays open after a pick so the choice is visible before dismissing.
         </p>
       </div>
       <div class="example">
@@ -206,9 +206,8 @@ export async function DropdownPage(path: string) {
       <div class="prose">
         <h2 id="with-checkboxes">With checkboxes</h2>
         <p>
-          Checkboxes allow multiple selections. An empty square indicates each
-          item is toggleable; a filled square with checkmark appears when
-          selected.
+          Checkboxes let more than one item be picked. Each shows an empty
+          square until it's selected, then a filled one with a checkmark.
         </p>
       </div>
       <div class="example">

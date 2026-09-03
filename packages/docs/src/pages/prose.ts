@@ -80,8 +80,8 @@ export async function ProsePage(path: string) {
       <div class="example">
         <div class="preview preview-padded prose" style="display: block;">
           <p>
-            @erikt/ui is a minimal CSS design system. It styles native HTML elements
-            directly — no class names required for most components.
+            @erikt/ui is a minimal CSS design system. It styles native HTML
+            elements directly, with no class names for most components.
           </p>
           <p>
             Drop in the stylesheet and start writing semantic HTML. The defaults

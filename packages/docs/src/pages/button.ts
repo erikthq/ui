@@ -161,7 +161,7 @@ export async function ButtonPage(path: string) {
       <div class="prose">
         <h2 id="square">Square</h2>
         <p>
-          Add <code>.square</code> for equal padding — useful for icon buttons.
+          Add <code>.square</code> for equal padding on all sides, which is what an icon button wants.
         </p>
       </div>
       <div class="example">

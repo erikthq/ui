@@ -27,17 +27,17 @@ export async function InputOtpPage(path: string) {
           </p>
         </hgroup>
         <p>
-          It's a real, single <code>&lt;input&gt;</code> under the hood, not
-          several inputs stitched together with JavaScript. That means
-          paste, backspace, and mobile SMS autofill via
-          <code>autocomplete="one-time-code"</code> all work natively, and
-          screen readers announce it as one text field. The wrapper's only
-          job is to clip the input's own overflow: the input is rendered a
-          cell wider than the wrapper, so there's always slack room for the
-          text cursor and it never has to auto-scroll into view. The
-          tradeoff: CSS can't read how many characters have been typed, so
-          the focus ring highlights the whole input rather than just the
-          box currently being filled.
+          One real <code>&lt;input&gt;</code> underneath, not six inputs
+          stitched together with JavaScript. Paste, backspace, and mobile SMS
+          autofill through <code>autocomplete="one-time-code"</code> all work on
+          their own, and a screen reader announces one text field.
+        </p>
+        <p>
+          The wrapper only clips overflow. The input is rendered one cell wider
+          than the wrapper, so the text cursor always has room and never scrolls
+          the field. The tradeoff is that CSS can't count typed characters, so
+          the focus ring covers the whole input instead of the box being
+          filled.
         </p>
 
         <h2 id="default">Default</h2>

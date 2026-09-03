@@ -22,7 +22,7 @@ export async function MenuPage(path: string) {
           <h1>Menu</h1>
           <p>
             A styled list of actions or options. The
-            <code>&lt;menu&gt;</code> element is styled directly — no class
+            <code>&lt;menu&gt;</code> element is styled directly, no class
             needed. Place it inside a <code>[popover]</code> for a dropdown, or
             use it standalone anywhere.
           </p>
@@ -211,8 +211,8 @@ export async function MenuPage(path: string) {
       <div class="prose">
         <h2 id="with-checkboxes">With checkboxes</h2>
         <p>
-          Checkboxes show a filled square when checked and a faint empty square
-          when unchecked, making each option clearly toggleable.
+          Checkboxes show a filled square when checked and a faint empty one
+          when not, so an option reads as toggleable either way.
         </p>
       </div>
       <div class="example">

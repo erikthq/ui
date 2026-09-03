@@ -21,8 +21,8 @@ export async function TablePage(path: string) {
         <hgroup>
           <h1>Table</h1>
           <p class="lead">
-            A data table built with the native <code>&lt;table&gt;</code> element,
-            laid out using CSS grid and subgrid for precise column alignment.
+            A native <code>&lt;table&gt;</code> laid out with grid and subgrid,
+            so every row shares the same columns.
           </p>
         </hgroup>
 
@@ -240,7 +240,7 @@ export async function TablePage(path: string) {
       <div class="prose">
         <h2 id="with-actions">With actions</h2>
         <p>
-          A dropdown menu in the last column gives each row contextual actions.
+          A dropdown in the last column gives each row its own actions.
         </p>
       </div>
       <div class="example">
