@@ -438,6 +438,18 @@ Use \`<label class="toggle">\` inside \`<fieldset role="group">\`. Radio for mut
 </fieldset>
 \`\`\`
 
+## Tab Links
+
+A \`nav.tab-links\` of plain links styled like the tabs bar, for switching between pages instead of panels. Put \`aria-current="page"\` on the link for the current URL. The highlight is a pseudo element with a view transition name, so adding \`@view-transition { navigation: auto; }\` to the page makes it glide between pages. Give each extra bar on a page its own \`--ui-tab-links-name\`, or \`none\` to opt out.
+
+\`\`\`html
+<nav class="tab-links" aria-label="Views">
+  <a href="/overview" aria-current="page">Overview</a>
+  <a href="/activity">Activity</a>
+  <a aria-disabled="true">Reports</a>
+</nav>
+\`\`\`
+
 ## Tabs
 
 A \`.tabs\` section with a \`[role="tablist"]\` of \`<label>\`-wrapped radio inputs. CSS \`:has()\` shows the matching panel, no JavaScript. Wire each tab to its panel with matching \`id\`/\`aria-controls\`/\`aria-labelledby\`.

@@ -44,6 +44,7 @@
 @import "./components/toggle.css" layer(ui);
 @import "./components/table.css" layer(ui);
 @import "./components/tabs.css" layer(ui);
+@import "./components/tab-links.css" layer(ui);
 @import "./components/prose.css" layer(ui);
 @import "./components/empty.css" layer(ui);
 @import "./components/skeleton.css" layer(ui);

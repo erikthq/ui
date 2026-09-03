@@ -1,6 +1,6 @@
 {
   "name": "@erikt/ui",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "type": "module",
   "homepage": "https://ui.erikt.me",
   "exports": {

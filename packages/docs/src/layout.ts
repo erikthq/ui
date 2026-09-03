@@ -20,7 +20,16 @@ export const siteUrl = siteOrigin + b;
 
 type TocItem = { id: string; label: string };
 
-type LayoutProps = {
+type ViewTransitionProps = {
+  // Cross document view transitions: the opt-in has to be render blocking, so
+  // it belongs in the head. See head() below.
+  viewTransition?: boolean;
+  // Element id the first render waits for, so the page is parsed far enough
+  // for the transition to capture it.
+  expect?: string;
+};
+
+type LayoutProps = ViewTransitionProps & {
   title: string;
   path: string;
   description?: string;
@@ -346,6 +355,14 @@ export const components: {
     description: "Structured data in rows and columns.",
   },
   {
+    label: "Tab Links",
+    path: "/components/tab-links",
+    description:
+      "Tab bar built from links, with a highlight that animates between pages.",
+    badge: "New",
+    badgeClass: "constructive",
+  },
+  {
     label: "Tabs",
     path: "/components/tabs",
     description: "Panel navigation using accessible tab controls.",
@@ -408,7 +425,12 @@ const COVER_IMAGE = `${siteUrl}/cover-min.jpg`;
 const FALLBACK_DESC =
   "The CSS design system that lives in one <link> tag. No build step, no class soup — just HTML and one stylesheet.";
 
-function head(title: string, path: string, descriptionOverride?: string) {
+function head(
+  title: string,
+  path: string,
+  descriptionOverride?: string,
+  { viewTransition, expect }: ViewTransitionProps = {},
+) {
   const description =
     descriptionOverride ?? pageDescriptions[path] ?? FALLBACK_DESC;
   const canonicalUrl = `${siteUrl}${path === "/" ? "" : path}`;
@@ -497,6 +519,26 @@ function head(title: string, path: string, descriptionOverride?: string) {
     />
     <link rel="stylesheet" href="${url("/ui.css")}" />
     <link rel="stylesheet" href="${url("/main.css")}" />
+    ${viewTransition
+      ? html`<style>
+            /*
+              The browser captures the new state right before the incoming
+              document's first rendering opportunity, so it has to know about
+              the opt-in by then. A style element in the body is a race the
+              opt-in usually loses once the stylesheets are warm in the cache.
+            */
+            @view-transition {
+              navigation: auto;
+            }
+
+            ::view-transition-group(root) {
+              animation-duration: 200ms;
+            }
+          </style>`
+      : ""}
+    ${viewTransition && expect
+      ? html`<link rel="expect" blocking="render" href="#${expect}" />`
+      : ""}
     ${import.meta.env.DEV
       ? raw('<script type="module" src="/@vite/client"></script>')
       : ""}
@@ -718,12 +760,14 @@ export function Layout({
   description,
   toc,
   wide,
+  viewTransition,
+  expect,
   content,
 }: LayoutProps) {
   return html`<!doctype html>
     <html lang="en">
       <head>
-        ${head(title, path, description)}
+        ${head(title, path, description, { viewTransition, expect })}
       </head>
 
       <body>

@@ -64,6 +64,9 @@ const routes = [
   "/components/focus-group",
   "/components/radio-group",
   "/components/tabs",
+  "/components/tab-links",
+  "/components/tab-links/activity",
+  "/components/tab-links/settings",
   "/blocks",
   "/blocks/richtext-editor",
   "/blocks/signup-form",
@@ -122,7 +125,8 @@ await writeFile(join(outDir, ".nojekyll"), "");
 // Generate sitemap.xml
 const siteOrigin = (process.env.SITE_URL ?? "https://ui.erikt.me").replace(/\/$/, "");
 const baseUrl = process.env.BASE_URL ? siteOrigin + process.env.BASE_URL.replace(/\/$/, "") : siteOrigin;
-const htmlRoutes = routes.filter(r => !r.includes("."));
+// The tab links demo sub routes are the same page, so keep them out of the sitemap
+const htmlRoutes = routes.filter(r => !r.includes(".") && !/^\/components\/tab-links\//.test(r));
 const today = new Date().toISOString().split("T")[0];
 const priorities = { "/": "1.0", default: "0.8" };
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

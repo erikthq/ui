@@ -65,6 +65,7 @@ import { ComplexMenuPage } from './pages/blocks/complex-menu'
 import { AdminDashboardPage } from './pages/blocks/admin-dashboard'
 import { RadioGroupPage } from './pages/radio-group'
 import { TabsPage } from './pages/tabs'
+import { TabLinksPage } from './pages/tab-links'
 import { EasingsPage } from './pages/easings'
 import { LlmsPage } from './pages/llms'
 import { SkillPage } from './pages/skill'
@@ -136,6 +137,9 @@ app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))
 app.get('/components/focus-group', (c) => c.html(FocusGroupPage(c.req.path)))
 app.get('/components/radio-group', (c) => c.html(RadioGroupPage(c.req.path)))
 app.get('/components/tabs', (c) => c.html(TabsPage(c.req.path)))
+app.get('/components/tab-links', (c) => c.html(TabLinksPage(c.req.path)))
+app.get('/components/tab-links/activity', (c) => c.html(TabLinksPage(c.req.path)))
+app.get('/components/tab-links/settings', (c) => c.html(TabLinksPage(c.req.path)))
 app.get('/blocks', (c) => c.html(BlocksPage(c.req.path)))
 app.get('/blocks/richtext-editor', (c) => c.html(RichtextEditorPage(c.req.path)))
 app.get('/blocks/signup-form', (c) => c.html(SignupFormPage(c.req.path)))

@@ -429,6 +429,18 @@ Use `<label class="toggle">` inside `<fieldset role="group">`. Radio for mutuall
 </fieldset>
 ```
 
+## Tab Links
+
+A `nav.tab-links` of plain links styled like the tabs bar, for switching between pages instead of panels. Put `aria-current="page"` on the link for the current URL. The highlight is a pseudo element with a view transition name, so adding `@view-transition { navigation: auto; }` to the page makes it glide between pages. Give each extra bar on a page its own `--ui-tab-links-name`, or `none` to opt out.
+
+```html
+<nav class="tab-links" aria-label="Views">
+  <a href="/overview" aria-current="page">Overview</a>
+  <a href="/activity">Activity</a>
+  <a aria-disabled="true">Reports</a>
+</nav>
+```
+
 ## Tabs
 
 A `.tabs` section with a `[role="tablist"]` of `<label>`-wrapped radio inputs. CSS `:has()` shows the matching panel, no JavaScript. Wire each tab to its panel with matching `id`/`aria-controls`/`aria-labelledby`.
@@ -572,4 +584,4 @@ Two dependency-free custom elements ship alongside the stylesheet. Opt-in only, 
 
 ## Full component list
 
-Every component in the library: Accordion, Alert, Avatar, Badge, Breadcrumbs, Button, Button Group, Card, Carousel (WIP), Checkbox, Code, Color Input, Color Swatch, Combobox (WIP), Datalist, Date Input, Dialog, Drawer, Dropdown, Empty State, Expander, Field, File Drop, Focus Group, Kbd, Loading, Marquee, Menu, Number Field, Pagination, Popover, Progress, Prose, Radio, Radio Group, Select, Separator, Skeleton, Slider, Submenu, Switch, Table, Tabs (0.0.2), Tag Group, Text Field, Textarea, Toast, Toggle, Toggle Group, Tooltip, Tree View. Each has a docs page with full markup, variants, and options — see https://ui.erikt.me/llms.txt for the exact URL of any one not covered by an example above.
+Every component in the library: Accordion, Alert, Avatar, Badge, Breadcrumbs, Button, Button Group, Card, Carousel (WIP), Checkbox, Code, Color Input, Color Swatch, Combobox (WIP), Datalist, Date Input, Dialog, Drawer, Dropdown, Empty State, Expander, Field, File Drop, Focus Group, Kbd, Loading, Marquee, Menu, Number Field, Pagination, Popover, Progress, Prose, Radio, Radio Group, Select, Separator, Skeleton, Slider, Submenu, Switch, Table, Tab Links (New), Tabs (0.0.2), Tag Group, Text Field, Textarea, Toast, Toggle, Toggle Group, Tooltip, Tree View. Each has a docs page with full markup, variants, and options — see https://ui.erikt.me/llms.txt for the exact URL of any one not covered by an example above.
