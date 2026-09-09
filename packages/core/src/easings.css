@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   --ease-glide: linear(
     0,
     0.001 0.4%,

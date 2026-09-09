@@ -59,7 +59,8 @@
 @import "./components/carousel.css" layer(ui);
 
 @layer ui {
-  :root {
+  :root,
+  :host {
     --ui-spacing: 0.25em;
 
     --ui-spacing-1: calc(var(--ui-spacing) * 1);

@@ -5,11 +5,11 @@ dialog.drawer {
   width: min(420px, 100vw);
   height: 100vh;
   border-radius: 12px 0 0 12px;
-  
+
   inset-inline-start: auto;
   translate: 100% 0;
   opacity: 1;
-  
+
   &[open] {
     translate: 0 0;
   }
@@ -17,6 +17,16 @@ dialog.drawer {
   @starting-style {
     &[open] {
       translate: 100% 0;
+    }
+  }
+
+  > article {
+    height: stretch;
+    display: flex;
+    flex-direction: column;
+
+    footer {
+      margin-top: auto;
     }
   }
 

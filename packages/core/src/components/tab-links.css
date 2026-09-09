@@ -42,7 +42,7 @@
       position-anchor: --ui-active-tab-link;
 
       view-transition-name: var(--ui-tab-links-name);
-      /* view-transition-class: ui-tab-links; */
+      view-transition-class: ui-tab-links;
 
       /* transition: var(--ease-glide) 200ms; */
     }
@@ -60,7 +60,7 @@
         the generated names unique, so any number of bars can share a page.
       */
       view-transition-name: match-element;
-      /* view-transition-class: ui-tab-link; */
+      view-transition-class: ui-tab-link;
 
       display: inline-flex;
       align-items: center;
@@ -108,13 +108,13 @@
   Every tab bar highlight shares the same view transition class, so one set of
   rules drives them all however many are on the page.
 */
-::view-transition-group(ui-tab-links) {
+::view-transition-group(.ui-tab-links) {
   animation-duration: 200ms;
   animation-timing-function: var(--ease-glide);
 }
 
-::view-transition-old(ui-tab-links),
-::view-transition-new(ui-tab-links) {
+::view-transition-old(.ui-tab-links),
+::view-transition-new(.ui-tab-links) {
   /* A plain rounded rectangle reads better stretched than cross faded. */
   width: 100%;
   height: 100%;
@@ -123,22 +123,23 @@
 }
 
 /*
-  Across documents the generated link names never match, so each label leaves as
-  an exit and arrives as an entry. Both sit at the same spot with the same text,
-  which makes the default cross fade read as the active label changing color.
+  In one document the generated link names match, so each label morphs from its
+  old snapshot to its new one. Across documents they never match, so a label
+  leaves as an exit and arrives as an entry at the same spot with the same text.
+  Either way the default cross fade reads as the active label changing color.
 */
-::view-transition-group(ui-tab-link),
-::view-transition-old(ui-tab-link),
-::view-transition-new(ui-tab-link) {
+::view-transition-group(.ui-tab-link),
+::view-transition-old(.ui-tab-link),
+::view-transition-new(.ui-tab-link) {
   animation-duration: 200ms;
   animation-timing-function: var(--ease-glide);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(ui-tab-links),
-  ::view-transition-group(ui-tab-link),
-  ::view-transition-old(ui-tab-link),
-  ::view-transition-new(ui-tab-link) {
+  ::view-transition-group(.ui-tab-links),
+  ::view-transition-group(.ui-tab-link),
+  ::view-transition-old(.ui-tab-link),
+  ::view-transition-new(.ui-tab-link) {
     animation-duration: 1ms;
   }
 }
