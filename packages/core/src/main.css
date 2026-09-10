@@ -18,6 +18,7 @@
 @import "./components/color-swatch.css" layer(ui);
 @import "./components/color-input.css" layer(ui);
 @import "./components/date-input.css" layer(ui);
+@import "./components/description-list.css" layer(ui);
 @import "./components/radio.css" layer(ui);
 @import "./components/separator.css" layer(ui);
 @import "./components/text-field.css" layer(ui);

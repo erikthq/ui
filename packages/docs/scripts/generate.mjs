@@ -24,6 +24,7 @@ const routes = [
   "/components/combobox",
   "/components/datalist",
   "/components/date-input",
+  "/components/description-list",
   "/components/dialog",
   "/components/drawer",
   "/components/text-field",

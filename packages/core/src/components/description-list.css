@@ -1,0 +1,45 @@
+/*
+  Description list: a native dl laid out as a two column grid.
+  Every dt sits in the label column with its dd beside it, so the values line
+  up all the way down the list. Wrapping each pair in a div is optional and
+  valid HTML. The wrapper takes its columns from the list with subgrid, so the
+  alignment survives either way.
+*/
+
+@scope (dl) to (dl dl) {
+  :scope {
+    /* Override for a fixed label column instead of one sized to its content. */
+    --ui-description-list-label: max-content;
+
+    display: grid;
+    grid-template-columns: var(--ui-description-list-label) 1fr;
+    align-items: baseline;
+    gap: var(--ui-spacing-2) var(--ui-spacing-6);
+  }
+
+  /*
+    A div per pair is the only child element a dl allows. It spans both tracks
+    and re-uses them, which keeps its dt and dd on the parent's columns.
+  */
+  div {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    gap: inherit;
+  }
+
+  dt {
+    grid-column: 1;
+    color: var(--ui-neutral-600);
+  }
+
+  /*
+    Pinning the column keeps a term with several dd values stacked under each
+    other instead of flowing back into the label column.
+  */
+  dd {
+    grid-column: 2;
+    color: var(--ui-text-color);
+  }
+}

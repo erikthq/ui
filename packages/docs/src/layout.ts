@@ -219,6 +219,11 @@ export const components: {
     description: "Styled date, time, and datetime-local inputs.",
   },
   {
+    label: "Description List",
+    path: "/components/description-list",
+    description: "Aligned term and value pairs from a native dl.",
+  },
+  {
     label: "Dialog",
     path: "/components/dialog",
     description: "Modal overlay for focused tasks or confirmations.",
