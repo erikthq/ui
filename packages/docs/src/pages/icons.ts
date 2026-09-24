@@ -39,6 +39,24 @@ export function IconsFilledData(): string {
   return buildData("filled");
 }
 
+type TablerMeta = {
+  category?: string;
+  tags?: (string | number)[];
+};
+
+export function IconsMetaData(): string {
+  const raw = readFileSync(join(tablerDir, "../icons.json"), "utf-8");
+  const meta: Record<string, TablerMeta> = JSON.parse(raw);
+  const data: Record<string, { t: string; c: string }> = {};
+  for (const [name, entry] of Object.entries(meta)) {
+    data[name] = {
+      t: (entry.tags ?? []).map(String).join(" "),
+      c: entry.category ?? "",
+    };
+  }
+  return JSON.stringify(data);
+}
+
 export function IconsPage(path: string) {
   const outlineTotal = readdirSync(join(tablerDir, "outline")).filter((f) =>
     f.endsWith(".svg"),

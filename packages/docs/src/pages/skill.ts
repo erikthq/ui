@@ -1,6 +1,6 @@
 import { components } from "../layout";
 
-const cdnUrl = `https://esm.sh/erikt/ui`;
+const cdnUrl = `https://esm.sh/@erikt/ui`;
 
 export function SkillPage() {
   const componentList = components

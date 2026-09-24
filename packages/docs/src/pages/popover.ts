@@ -6,6 +6,7 @@ const toc = [
   { id: "default", label: "Default" },
   { id: "with-card", label: "With card" },
   { id: "with-menu", label: "With menu" },
+  { id: "manual", label: "Manual" },
   { id: "placement", label: "Placement" },
 ];
 
@@ -129,6 +130,88 @@ export async function PopoverPage(path: string) {
     <li><hr /></li>
     <li><button class="ghost destructive">Delete</button></li>
   </menu>
+</div>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="manual">Manual</h2>
+        <p>
+          <code>popover="manual"</code> takes the popover out of the browser's
+          auto stack. Three things change. Clicking outside it does nothing,
+          <kbd>Esc</kbd> does nothing, and opening another popover no longer
+          closes it. Something has to hide it on purpose, so give it a button
+          with <code>popovertargetaction="hide"</code> or call
+          <code>hidePopover()</code>.
+        </p>
+        <p>
+          Open both of these at once, then click the page around them. They stay
+          put until you press Done.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview">
+          <div style="display:flex;gap:0.5rem">
+            <button class="outlined" popovertarget="popover-manual-filters">
+              Filters
+            </button>
+            <div id="popover-manual-filters" popover="manual">
+              <article>
+                <header>Filters</header>
+                <div style="display:grid;gap:0.5rem">
+                  <label><input type="checkbox" checked /> Open</label>
+                  <label><input type="checkbox" /> Archived</label>
+                </div>
+                <footer>
+                  <button
+                    popovertarget="popover-manual-filters"
+                    popovertargetaction="hide"
+                  >
+                    Done
+                  </button>
+                </footer>
+              </article>
+            </div>
+
+            <button class="outlined" popovertarget="popover-manual-sort">
+              Sort
+            </button>
+            <div id="popover-manual-sort" popover="manual">
+              <article>
+                <header>Sort</header>
+                <div style="display:grid;gap:0.5rem">
+                  <label><input type="radio" name="manual-sort" checked /> Newest</label>
+                  <label><input type="radio" name="manual-sort" /> Oldest</label>
+                </div>
+                <footer>
+                  <button
+                    popovertarget="popover-manual-sort"
+                    popovertargetaction="hide"
+                  >
+                    Done
+                  </button>
+                </footer>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<button popovertarget="my-popover">Filters</button>
+
+<div id="my-popover" popover="manual">
+  <article>
+    <header>Filters</header>
+    <div style="display:grid;gap:0.5rem">
+      <label><input type="checkbox" checked /> Open</label>
+      <label><input type="checkbox" /> Archived</label>
+    </div>
+    <footer>
+      <button popovertarget="my-popover"
+              popovertargetaction="hide">Done</button>
+    </footer>
+  </article>
 </div>`),
           )}
         </div>

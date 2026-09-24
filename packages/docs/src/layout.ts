@@ -389,6 +389,11 @@ export const components: {
     description: "Multi-line text input.",
   },
   {
+    label: "Timeline",
+    path: "/components/timeline",
+    description: "Vertical track of events built from an ordered list.",
+  },
+  {
     label: "Toast",
     path: "/components/toast",
     description: "Top-layer notification popover with configurable placement.",

@@ -17,6 +17,7 @@ export function IconsSearchDialog() {
   ).length;
   const dataUrl = `${b}/icons.json`;
   const filledDataUrl = `${b}/icons-filled.json`;
+  const metaUrl = `${b}/icons-meta.json`;
   const minisearchUrl = `${b}/minisearch.js`;
 
   return html`<dialog id="icons-dialog" class="icons-dialog" scroll-lock>
@@ -62,6 +63,7 @@ export function IconsSearchDialog() {
       import MiniSearch from "${minisearchUrl}";
 
       const URLS = { outline: "${dataUrl}", filled: "${filledDataUrl}" };
+      const META_URL = "${metaUrl}";
       const TOTALS = { outline: ${outlineTotal}, filled: ${filledTotal} };
       const SVG_ATTRS = {
         outline:
@@ -80,21 +82,41 @@ export function IconsSearchDialog() {
       const cache = {},
         indexes = {},
         promises = {};
+      let metaPromise;
+
+      const tokenize = (s) => s.split(/[-\\s]+/).filter(Boolean);
+
+      function fetchMeta() {
+        if (!metaPromise) {
+          metaPromise = fetch(META_URL)
+            .then((r) => r.json())
+            .catch(() => ({}));
+        }
+        return metaPromise;
+      }
 
       function fetchData(style) {
         if (promises[style]) return promises[style];
-        promises[style] = fetch(URLS[style])
-          .then((r) => r.json())
-          .then((json) => {
-            cache[style] = json;
-            const ms = new MiniSearch({
-              fields: ["name"],
-              storeFields: ["name"],
-              tokenize: (s) => s.split(/[-s]+/),
-            });
-            ms.addAll(Object.keys(json).map((name) => ({ id: name, name })));
-            indexes[style] = ms;
+        promises[style] = Promise.all([
+          fetch(URLS[style]).then((r) => r.json()),
+          fetchMeta(),
+        ]).then(([json, meta]) => {
+          cache[style] = json;
+          const ms = new MiniSearch({
+            fields: ["name", "tags", "category"],
+            storeFields: ["name"],
+            tokenize,
           });
+          ms.addAll(
+            Object.keys(json).map((name) => ({
+              id: name,
+              name,
+              tags: meta[name]?.t ?? "",
+              category: meta[name]?.c ?? "",
+            })),
+          );
+          indexes[style] = ms;
+        });
         return promises[style];
       }
 
@@ -116,7 +138,11 @@ export function IconsSearchDialog() {
           return;
         }
 
-        const results = ms.search(q, { prefix: true, fuzzy: 0.2 });
+        const results = ms.search(q, {
+          prefix: true,
+          fuzzy: 0.2,
+          boost: { name: 6, tags: 2, category: 1 },
+        });
         const attrs = SVG_ATTRS[style];
         empty.style.display = results.length === 0 ? "" : "none";
         count.textContent = results.length + " / " + TOTALS[style];

@@ -1,0 +1,90 @@
+@keyframes --ui-timeline-ring {
+  from {
+    opacity: 0;
+  }
+}
+
+.timeline {
+  --ui-timeline-dot: 0.75rem;
+  --ui-timeline-ring: 2px;
+  --ui-timeline-line: 1px;
+  --ui-timeline-gap: var(--ui-spacing-6);
+  --ui-timeline-color: var(--ui-primary);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-timeline-gap);
+
+  > li {
+    position: relative;
+    list-style: none;
+    padding-inline-start: calc(var(--ui-timeline-dot) + var(--ui-spacing-4));
+    color: var(--ui-text-color);
+
+    animation: --ui-timeline-ring 300ms var(--ease-glide);
+
+    /* The dot. It paints over the connector, so the line can run behind it. */
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset-inline-start: 0;
+      inset-block-start: calc((1lh - var(--ui-timeline-dot)) / 2);
+
+      width: var(--ui-timeline-dot);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: var(--ui-timeline-ring) solid var(--ui-timeline-color);
+      background-color: Canvas;
+
+      transition: background-color 300ms var(--ease-glide);
+    }
+
+    &[aria-busy]::before {
+      border: none;
+      border-radius: 0;
+      background-color: var(--ui-timeline-color);
+      mask-image: var(--ui-loading);
+      mask-size: 100%;
+      mask-repeat: no-repeat;
+    }
+
+    /*
+      The connector runs from this dot's centre to the next one, so it reaches
+      past the item's own box by the gap plus half a line. Every item draws one
+      and the last one collapses it to nothing, rather than the last one going
+      without. A pseudo element that stops matching is removed outright, and a
+      removed element cannot transition. One that is only zero high can.
+    */
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: calc((var(--ui-timeline-dot) - var(--ui-timeline-line)) / 2);
+      inset-block-start: calc(1lh / 2);
+
+      width: var(--ui-timeline-line);
+      height: calc(100% + var(--ui-timeline-gap));
+      background-color: var(--ui-neutral-200);
+      transition: height 400ms var(--ease-glide);
+    }
+
+    &:last-child::after {
+      height: 0;
+    }
+  }
+
+  /* Fill the whole track, or single items to show how far a process got. */
+  &[data-filled] > li::before,
+  > li[data-filled]::before {
+    background-color: var(--ui-timeline-color);
+  }
+
+  time {
+    color: var(--ui-neutral-600);
+  }
+
+  /* Give a description under the heading of an item room to breathe. */
+  p {
+    margin-block-start: var(--ui-spacing-1);
+  }
+}

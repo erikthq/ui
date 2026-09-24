@@ -37,7 +37,7 @@ import { TablePage } from './pages/table'
 import { ChartPage } from './pages/chart'
 import { TogglePage } from './pages/toggle'
 import { ToggleGroupPage } from './pages/toggle-group'
-import { IconsPage, IconsData, IconsFilledData } from './pages/icons'
+import { IconsPage, IconsData, IconsFilledData, IconsMetaData } from './pages/icons'
 import { CustomizationPage } from './pages/customization'
 import { BadgePage } from './pages/badge'
 import { ColorSwatchPage } from './pages/color-swatch'
@@ -66,6 +66,7 @@ import { ComplexMenuPage } from './pages/blocks/complex-menu'
 import { AdminDashboardPage } from './pages/blocks/admin-dashboard'
 import { RadioGroupPage } from './pages/radio-group'
 import { TabsPage } from './pages/tabs'
+import { TimelinePage } from './pages/timeline'
 import { TabLinksPage } from './pages/tab-links'
 import { EasingsPage } from './pages/easings'
 import { LlmsPage } from './pages/llms'
@@ -117,6 +118,7 @@ app.get('/components/loading', (c) => c.html(LoadingPage(c.req.path)))
 app.get('/getting-started/icons', (c) => c.html(IconsPage(c.req.path)))
 app.get('/icons.json', (c) => c.json(JSON.parse(IconsData())))
 app.get('/icons-filled.json', (c) => c.json(JSON.parse(IconsFilledData())))
+app.get('/icons-meta.json', (c) => c.json(JSON.parse(IconsMetaData())))
 app.get('/getting-started/customization', (c) => c.html(CustomizationPage(c.req.path)))
 app.get('/components/badge', (c) => c.html(BadgePage(c.req.path)))
 app.get('/components/color-swatch', (c) => c.html(ColorSwatchPage(c.req.path)))
@@ -139,6 +141,7 @@ app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))
 app.get('/components/focus-group', (c) => c.html(FocusGroupPage(c.req.path)))
 app.get('/components/radio-group', (c) => c.html(RadioGroupPage(c.req.path)))
 app.get('/components/tabs', (c) => c.html(TabsPage(c.req.path)))
+app.get('/components/timeline', (c) => c.html(TimelinePage(c.req.path)))
 app.get('/components/tab-links', (c) => c.html(TabLinksPage(c.req.path)))
 app.get('/blocks', (c) => c.html(BlocksPage(c.req.path)))
 app.get('/blocks/richtext-editor', (c) => c.html(RichtextEditorPage(c.req.path)))
