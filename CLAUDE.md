@@ -67,13 +67,13 @@ Key files:
 
 - `src/index.ts` — route definitions
 - `src/layout.ts` — shared layout, sidebar nav, `components` array
-- `src/pages/*.ts` — one file per page
+- `src/pages/**/*.ts` — one file per page, in a folder matching its URL (`/components/badge` lives at `src/pages/components/badge.ts`)
 - `src/docs.css` — docs-only styles (not part of the library)
 - `scripts/generate.mjs` — generates static HTML for all routes
 
 ### Adding a docs page
 
-1. Create `src/pages/my-page.ts` exporting an async function
+1. Create `src/pages/<section>/my-page.ts` exporting an async function, where `<section>` matches the URL
 2. Register the route in `src/index.ts`
 3. Add the path to the routes array in `scripts/generate.mjs`
 4. If it's a component page, add it to the `components` array in `src/layout.ts`
