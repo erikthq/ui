@@ -70,7 +70,6 @@ import { TimelinePage } from './pages/timeline'
 import { TabLinksPage } from './pages/tab-links'
 import { EasingsPage } from './pages/easings'
 import { LlmsPage } from './pages/llms'
-import { SkillPage } from './pages/skill'
 import { SkillsPage } from './pages/skills'
 import { RelativeTimePage } from './pages/utilities/relative-time'
 import { CopyToClipboardPage } from './pages/utilities/copy-to-clipboard'
@@ -152,7 +151,6 @@ app.get('/blocks/admin-dashboard', (c) => c.html(AdminDashboardPage(c.req.path))
 app.get('/getting-started/easings', (c) => c.html(EasingsPage(c.req.path)))
 app.get('/typography', (c) => c.html(TypographyPage(c.req.path)))
 app.get('/llms.txt', (c) => c.text(LlmsPage()))
-app.get('/skill.md', (c) => c.text(SkillPage()))
 app.get('/getting-started/skills', (c) => c.html(SkillsPage(c.req.path)))
 app.get('/utilities/relative-time', (c) => c.html(RelativeTimePage(c.req.path)))
 app.get('/utilities/copy-to-clipboard', (c) => c.html(CopyToClipboardPage(c.req.path)))

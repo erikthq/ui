@@ -1,17 +1,25 @@
 ---
 name: erikt-ui
-description: Teaches agents how to use the erikt/ui CSS design system, which native HTML elements and minimal class names already come styled (buttons, forms, dialogs, menus, cards, tabs, tooltips, toasts, and more) so no custom CSS or component library is needed. Use this whenever writing, reviewing, or fixing HTML/CSS in a project that depends on erikt/ui or @erikt/ui. Signals include a <link>/@import referencing erikt/ui or esm.sh/@erikt/ui, an @erikt/ui entry in package.json, or --ui-* CSS custom properties. Also use whenever asked to add or style any UI component, even if erikt/ui isn't named explicitly.
+description: Teaches agents how to use the erikt/ui CSS component library. Use this whenever writing, reviewing, or fixing HTML/CSS in a project that depends on @erikt/ui. Signals include a <link>/@import referencing erikt/ui or esm.sh/@erikt/ui, an @erikt/ui entry in package.json, or --ui-* CSS custom properties. Also use whenever asked to add or style any UI component, even if erikt/ui isn't named explicitly.
 ---
 
-# erikt/ui Design System
+# erikt/ui
 
-erikt/ui is a single CSS file that styles native HTML elements directly. No class names required for most things. Link the stylesheet and write semantic HTML.
+A component library for building ui and design systems, contained in a single CSS file that styles native HTML elements directly. Link the stylesheet and write semantic HTML.
 
-Full docs: https://ui.erikt.me. For any component below without an example, or for variants and options beyond what's shown here, fetch https://ui.erikt.me/llms.txt for the exact docs URL of that component before guessing at markup.
+Full docs: https://ui.erikt.me.
+List of all available components: https://ui.erikt.me/llms.txt.
+
+## Principles
+
+1. **Compose, don't reinvent.** Settings page = Tabs + Card + form controls.
+2. **Default to plain HTML** Most UI needs zero custom CSS. Unless it's layout (e.g. `flex`/`grid`).
+3. **Adapt to the environment** Write any custom JS/CSS in the way the project's setup (react code in React, tailwind classes in a Tailwind project etc.).
+4. **Modern CSS/HTML is capable** Use all modern features like `@starting-style` and `popover` instead of writing custom JS when needed.
 
 ## Mindset: minimal markup, minimal CSS
 
-Default to plain HTML using the elements and class names shown in this file. Most UI needs zero custom CSS, so resist adding wrapper `<div>`s, extra classes, or inline styles unless the layout genuinely needs them (e.g. `flex`/`grid` for arrangement, since erikt/ui intentionally has no layout opinions).
+Default to plain HTML using the elements and class names shown in this file. , or inline styles unless the layout genuinely needs them (e.g. `flex`/`grid` for arrangement, since erikt/ui intentionally has no layout opinions).
 
 When matching a target design (a screenshot, a mockup, "make it look like X"), get close using erikt/ui's existing components and tokens rather than pixel-matching with heavy overrides. A result that's 90% right with plain erikt/ui markup is usually the better outcome over one that's 100% right but held together by dozens of one-off inline styles, since the latter fights the system instead of using it.
 
@@ -30,7 +38,9 @@ erikt/ui styles native elements. A `<button>` is already a styled button. An `<i
 ```html
 <button>Click me</button>
 <input type="text" placeholder="Type here" />
-<select><option>Option</option></select>
+<select>
+  <option>Option</option>
+</select>
 ```
 
 ## Layout
@@ -141,18 +151,18 @@ Add `required` to the input and a `*` appears on the label automatically.
 ```
 
 Note: erikt/ui uses a `--pct` CSS custom property for the fill. Set it via JS:
+
 ```js
-el.style.setProperty('--pct', (el.value - el.min) / (el.max - el.min))
-el.addEventListener('input', () =>
-  el.style.setProperty('--pct', (el.value - el.min) / (el.max - el.min))
-)
+el.style.setProperty("--pct", (el.value - el.min) / (el.max - el.min));
+el.addEventListener("input", () =>
+  el.style.setProperty("--pct", (el.value - el.min) / (el.max - el.min)),
+);
 ```
 
 ## Progress
 
 ```html
-<progress value="65" max="100"></progress>
-<progress></progress>
+<progress value="65" max="100"></progress> <progress></progress>
 ```
 
 ## Badge
@@ -176,8 +186,7 @@ An `<article>` with `role="alert"` or `role="status"`, reusing the card surface.
 ## Avatar
 
 ```html
-<img class="avatar" src="/avatar.jpg" alt="" />
-<span class="avatar">JR</span>
+<img class="avatar" src="/avatar.jpg" alt="" /> <span class="avatar">JR</span>
 ```
 
 ## Card
@@ -221,7 +230,12 @@ An `<article>` with `role="alert"` or `role="status"`, reusing the card surface.
     <header>Title</header>
     <p>Content</p>
     <footer>
-      <button class="ghost" onclick="document.getElementById('my-dialog').close()">Cancel</button>
+      <button
+        class="ghost"
+        onclick="document.getElementById('my-dialog').close()"
+      >
+        Cancel
+      </button>
       <button>Confirm</button>
     </footer>
   </article>
@@ -265,8 +279,12 @@ Radio and checkbox inputs inside `<label>`s show a checkmark indicator:
 
 ```html
 <menu>
-  <li><label><input type="radio" name="sort" checked /> Newest</label></li>
-  <li><label><input type="radio" name="sort" /> Oldest</label></li>
+  <li>
+    <label><input type="radio" name="sort" checked /> Newest</label>
+  </li>
+  <li>
+    <label><input type="radio" name="sort" /> Oldest</label>
+  </li>
 </menu>
 ```
 
@@ -330,9 +348,17 @@ A `[popover]` promoted to the top layer, so it always renders above everything e
 
 ```html
 <table>
-  <thead><tr><th>Name</th><th>Status</th></tr></thead>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
   <tbody>
-    <tr><td>Alice</td><td>Active</td></tr>
+    <tr>
+      <td>Alice</td>
+      <td>Active</td>
+    </tr>
   </tbody>
 </table>
 ```
@@ -343,7 +369,9 @@ A `[popover]` promoted to the top layer, so it always renders above everything e
 <div class="prose">
   <h1>Title</h1>
   <p>Body text with correct spacing.</p>
-  <ul><li>List item</li></ul>
+  <ul>
+    <li>List item</li>
+  </ul>
 </div>
 ```
 
@@ -373,6 +401,7 @@ A `[popover]` promoted to the top layer, so it always renders above everything e
 ```
 
 Control the number of visible lines with `--lines` (default: 3):
+
 ```html
 <div class="expander" style="--lines:5">...</div>
 ```
@@ -449,19 +478,40 @@ A `.tabs` section with a `[role="tablist"]` of `<label>`-wrapped radio inputs. C
 <section class="tabs">
   <header role="tablist" aria-label="Account settings">
     <label>
-      <input type="radio" name="tab" id="tab-account" checked aria-controls="panel-account" />
+      <input
+        type="radio"
+        name="tab"
+        id="tab-account"
+        checked
+        aria-controls="panel-account"
+      />
       Account
     </label>
     <label>
-      <input type="radio" name="tab" id="tab-password" aria-controls="panel-password" />
+      <input
+        type="radio"
+        name="tab"
+        id="tab-password"
+        aria-controls="panel-password"
+      />
       Password
     </label>
   </header>
 
-  <div role="tabpanel" id="panel-account" aria-labelledby="tab-account" tabindex="0">
+  <div
+    role="tabpanel"
+    id="panel-account"
+    aria-labelledby="tab-account"
+    tabindex="0"
+  >
     <p>Manage your account settings.</p>
   </div>
-  <div role="tabpanel" id="panel-password" aria-labelledby="tab-password" tabindex="0">
+  <div
+    role="tabpanel"
+    id="panel-password"
+    aria-labelledby="tab-password"
+    tabindex="0"
+  >
     <p>Change your password.</p>
   </div>
 </section>
@@ -505,6 +555,7 @@ Put a `<kbd>` inside a button to show a keyboard shortcut hint:
 ```
 
 Add a button to give the user a clear next step:
+
 ```html
 <div class="empty">
   <svg><!-- icon --></svg>
@@ -531,11 +582,11 @@ Override seed variables on `:root` after the stylesheet. All color scales are de
 
 ```css
 :root {
-  --ui-primary: dodgerblue;               /* or light-dark(blue, lightblue) */
+  --ui-primary: dodgerblue; /* or light-dark(blue, lightblue) */
   --ui-neutral: #8b8c93;
-  --ui-constructive: #5dbb55;             /* success/positive actions */
-  --ui-destructive: #ef5655;             /* danger/error actions */
-  --ui-color1: crimson;                  /* accent colors 1-6 */
+  --ui-constructive: #5dbb55; /* success/positive actions */
+  --ui-destructive: #ef5655; /* danger/error actions */
+  --ui-color1: crimson; /* accent colors 1-6 */
   --ui-color2: gold;
 }
 ```
@@ -545,14 +596,20 @@ Override seed variables on `:root` after the stylesheet. All color scales are de
 erikt/ui responds to `prefers-color-scheme` automatically (via `color-scheme: light dark`). To force a theme, set `color-scheme` on the root:
 
 ```css
-:root { color-scheme: dark; }
-:root { color-scheme: light; }
+:root {
+  color-scheme: dark;
+}
+:root {
+  color-scheme: light;
+}
 ```
 
 Or inline:
 
 ```html
-<html style="color-scheme:dark">...</html>
+<html style="color-scheme:dark">
+  ...
+</html>
 ```
 
 ## Spacing tokens

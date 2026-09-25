@@ -105,13 +105,6 @@ await copyFile(coreCss, join(outDir, "ui.css"));
 const coreElements = new URL("../../core/dist/elements.js", import.meta.url).pathname;
 await copyFile(coreElements, join(outDir, "elements.js"));
 
-// Regenerate SKILL.md in packages/skill so it stays in sync with the build
-const skillResponse = await app.fetch(new Request("http://localhost/skill.md"));
-const skillContent = await skillResponse.text();
-const skillPackageDir = new URL("../../skill", import.meta.url).pathname;
-await writeFile(join(skillPackageDir, "SKILL.md"), skillContent);
-console.log("  SKILL.md → packages/skill");
-
 // Copy minisearch ESM bundle
 const miniSearchSrc = new URL("../node_modules/minisearch/dist/es/index.js", import.meta.url).pathname;
 await copyFile(miniSearchSrc, join(outDir, "minisearch.js"));
