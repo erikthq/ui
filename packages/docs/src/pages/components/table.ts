@@ -9,6 +9,7 @@ const toc = [
   { id: "overflow", label: "Overflow" },
   { id: "with-actions", label: "With actions" },
   { id: "zebra", label: "Zebra" },
+  { id: "align-left", label: "Align left" },
 ];
 
 export async function TablePage(path: string) {
@@ -391,6 +392,48 @@ export async function TablePage(path: string) {
         </div>
         <div class="code-block">
           ${raw(await highlight(`<table class="zebra">...</table>`))}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="align-left">Align left</h2>
+        <p>
+          The last column is right-aligned by default. Add
+          <code>class="align-left"</code> to the table to align it left like
+          the other columns.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <table class="align-left">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alice</td>
+                <td>Engineer</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>Bob</td>
+                <td>Designer</td>
+                <td>Away</td>
+              </tr>
+              <tr>
+                <td>Carol</td>
+                <td>Manager</td>
+                <td>Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="code-block">
+          ${raw(await highlight(`<table class="align-left">...</table>`))}
         </div>
       </div>
     `,

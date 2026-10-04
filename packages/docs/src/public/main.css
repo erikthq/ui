@@ -94,6 +94,10 @@ body {
     top: 4.2rem;
   }
 
+  li {
+    list-style: none;
+  }
+
   small,
   a {
     display: flex;
@@ -159,7 +163,7 @@ body:has(.sidebar-toggle:checked) {
   /* gap: 0.75rem; */
   align-items: center;
   justify-content: center;
-  min-height: 120px;
+  /* min-height: 120px; */
 }
 
 .preview-padded {

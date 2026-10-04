@@ -20,7 +20,8 @@ export async function AccordionPage(path: string) {
           <h1>Accordion</h1>
           <p>
             Collapsible content sections using the native
-            <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements.
+            <code>&lt;details&gt;</code> and
+            <code>&lt;summary&gt;</code> elements.
           </p>
         </hgroup>
 
@@ -30,10 +31,12 @@ export async function AccordionPage(path: string) {
         <div class="preview preview-padded">
           <details>
             <summary>What is @erikt/ui?</summary>
-            <div>
-              @erikt/ui is a minimal CSS design system that styles native HTML
-              elements directly, with no utility classes or component
-              wrappers.
+            <div class="prose">
+              <p>
+                @erikt/ui is a minimal CSS design system that styles native HTML
+                elements directly, with no utility classes or component
+                wrappers.
+              </p>
             </div>
           </details>
         </div>
@@ -61,20 +64,17 @@ export async function AccordionPage(path: string) {
         <div class="preview preview-padded">
           <details>
             <summary>Getting started</summary>
-            <div>
-              Import <code>@erikt/ui</code> and start writing HTML.
-            </div>
+            <div>Import <code>@erikt/ui</code> and start writing HTML.</div>
           </details>
           <details>
             <summary>Customization</summary>
-            <div>
-              Override CSS custom properties to match your brand.
-            </div>
+            <div>Override CSS custom properties to match your brand.</div>
           </details>
           <details>
             <summary>Dark mode</summary>
             <div>
-              @erikt/ui responds to <code>prefers-color-scheme</code> automatically.
+              @erikt/ui responds to
+              <code>prefers-color-scheme</code> automatically.
             </div>
           </details>
         </div>
@@ -116,7 +116,8 @@ export async function AccordionPage(path: string) {
           <details name="faq">
             <summary>Dark mode</summary>
             <div>
-              @erikt/ui responds to <code>prefers-color-scheme</code> automatically.
+              @erikt/ui responds to
+              <code>prefers-color-scheme</code> automatically.
             </div>
           </details>
         </div>
@@ -140,17 +141,13 @@ export async function AccordionPage(path: string) {
 
       <div class="prose">
         <h2 id="open">Open by default</h2>
-        <p>
-          Add the <code>open</code> attribute to expand an item on load.
-        </p>
+        <p>Add the <code>open</code> attribute to expand an item on load.</p>
       </div>
       <div class="example">
         <div class="preview preview-padded">
           <details open>
             <summary>This one is open</summary>
-            <div>
-              Use the <code>open</code> attribute to expand by default.
-            </div>
+            <div>Use the <code>open</code> attribute to expand by default.</div>
           </details>
         </div>
         <div class="code-block">

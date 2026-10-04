@@ -53,9 +53,19 @@ export const sections: { label: string; path: string; description: string }[] =
       description: "Override design tokens to match your brand.",
     },
     {
-      label: "Themes",
-      path: "/getting-started/themes",
-      description: "Control light and dark mode with color-scheme.",
+      label: "Theming",
+      path: "/getting-started/theming",
+      description: "Override components and custom properties with plain CSS.",
+    },
+    {
+      label: "Tokens",
+      path: "/getting-started/tokens",
+      description: "Custom properties for radius and other shared values.",
+    },
+    {
+      label: "Colors",
+      path: "/getting-started/colors",
+      description: "Color scales, seed colors, and dark mode.",
     },
     {
       label: "Icons",

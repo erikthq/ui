@@ -32,17 +32,17 @@ function colorScale(name: string) {
   `;
 }
 
-export async function ThemesPage(path: string) {
+export async function ColorsPage(path: string) {
   return Layout({
-    title: "Themes",
+    title: "Colors",
     path,
     toc,
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Themes</h1>
+          <h1>Colors</h1>
           <p>
-            Theming is all CSS custom properties. Override the seed colors and
+            Every color is a CSS custom property. Override the seed colors and
             every scale below is regenerated from them.
           </p>
         </hgroup>
@@ -51,8 +51,8 @@ export async function ThemesPage(path: string) {
         <p>
           Buttons, focus rings, anything interactive. The whole scale comes
           from <code>--ui-primary</code>, which takes a
-          <code>light-dark()</code> value if you want a different tone per
-          theme.
+          <code>light-dark()</code> value if you want a different tone in light
+          and dark mode.
         </p>
       </div>
       ${colorScale("primary")}
@@ -98,7 +98,7 @@ export async function ThemesPage(path: string) {
         <p>
           Override seed colors on <code>:root</code> after importing the
           stylesheet. Use <code>light-dark()</code> on
-          <code>--ui-primary</code> for per-theme control:
+          <code>--ui-primary</code> for per-mode control:
         </p>
       </div>
       <div class="example">
@@ -106,10 +106,10 @@ export async function ThemesPage(path: string) {
           ${raw(
             await highlight(
               `:root {
-  /* Same primary for both themes */
+  /* Same primary in light and dark */
   --ui-primary: #6366f1;
 
-  /* Or tune per-theme with light-dark() */
+  /* Or tune per mode with light-dark() */
   --ui-primary: light-dark(#4f46e5, #818cf8);
 
   --ui-neutral: #6b7280;

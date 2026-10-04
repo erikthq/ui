@@ -9,7 +9,9 @@ import { TextareaPage } from './pages/components/textarea'
 import { FileDropPage } from './pages/components/file-drop'
 import { ExpanderPage } from './pages/components/expander'
 import { LoadingPage } from './pages/components/loading'
-import { ThemesPage } from './pages/getting-started/themes'
+import { ColorsPage } from './pages/getting-started/colors'
+import { ThemingPage } from './pages/getting-started/theming'
+import { TokensPage } from './pages/getting-started/tokens'
 import { ProsePage } from './pages/components/prose'
 import { AccordionPage } from './pages/components/accordion'
 import { AlertPage } from './pages/components/alert'
@@ -80,7 +82,9 @@ app.use('/public/*', serveStatic({ root: './src' }))
 
 app.get('/', (c) => c.html(HomePage(c.req.path)))
 app.get('/getting-started/introduction', (c) => c.html(IntroPage(c.req.path)))
-app.get('/getting-started/themes', (c) => c.html(ThemesPage(c.req.path)))
+app.get('/getting-started/colors', (c) => c.html(ColorsPage(c.req.path)))
+app.get('/getting-started/theming', (c) => c.html(ThemingPage(c.req.path)))
+app.get('/getting-started/tokens', (c) => c.html(TokensPage(c.req.path)))
 app.get('/components/prose', (c) => c.html(ProsePage(c.req.path)))
 app.get('/components/accordion', (c) => c.html(AccordionPage(c.req.path)))
 app.get('/components/alert', (c) => c.html(AlertPage(c.req.path)))

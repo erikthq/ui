@@ -17,38 +17,16 @@
 
   /* visual */
   box-shadow: 0 4px 16px oklch(0% 0 0 / 0.08);
-  
+
   &:not(:has(article)) {
     background: var(--ui-background-color);
     border: 1px solid var(--ui-neutral-200);
-    border-radius: calc(0.57rem + var(--ui-spacing-1));
+    border-radius: calc(var(--ui-rounded-3) + var(--ui-spacing-1));
   }
-  
+
   &:has(article) {
     background: transparent;
-    border-radius: var(--card-border-radius);
-  }
-  
-  & > article {
-    /* box-shadow: none;
-    border-radius: 0; */
-
-    & > header,
-    & > footer {
-      padding: var(--ui-spacing-2) var(--ui-spacing-2);
-    }
-
-    & > header {
-      box-shadow: 0 -1px 0 0 inset var(--ui-neutral-100);
-    }
-
-    & > footer {
-      box-shadow: 0 1px 0 0 inset var(--ui-neutral-100);
-    }
-
-    &:has(> header, > footer) > :not(header):not(footer) {
-      padding: var(--ui-spacing-2);
-    }
+    border-radius: var(--ui-rounded-5);
   }
 
   /* animation */

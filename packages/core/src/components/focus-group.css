@@ -5,7 +5,7 @@
   }
 
   &:has([data-focus]:focus-visible) {
-    border-radius: 0.57rem;
+    border-radius: var(--ui-rounded-3);
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
   }

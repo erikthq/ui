@@ -5,640 +5,223 @@ description: Teaches agents how to use the erikt/ui CSS component library. Use t
 
 # erikt/ui
 
-A component library for building ui and design systems, contained in a single CSS file that styles native HTML elements directly. Link the stylesheet and write semantic HTML.
-
-Full docs: https://ui.erikt.me.
-List of all available components: https://ui.erikt.me/llms.txt.
-
-## Principles
-
-1. **Compose, don't reinvent.** Settings page = Tabs + Card + form controls.
-2. **Default to plain HTML** Most UI needs zero custom CSS. Unless it's layout (e.g. `flex`/`grid`).
-3. **Adapt to the environment** Write any custom JS/CSS in the way the project's setup (react code in React, tailwind classes in a Tailwind project etc.).
-4. **Modern CSS/HTML is capable** Use all modern features like `@starting-style` and `popover` instead of writing custom JS when needed.
-
-## Mindset: minimal markup, minimal CSS
-
-Default to plain HTML using the elements and class names shown in this file. , or inline styles unless the layout genuinely needs them (e.g. `flex`/`grid` for arrangement, since erikt/ui intentionally has no layout opinions).
-
-When matching a target design (a screenshot, a mockup, "make it look like X"), get close using erikt/ui's existing components and tokens rather than pixel-matching with heavy overrides. A result that's 90% right with plain erikt/ui markup is usually the better outcome over one that's 100% right but held together by dozens of one-off inline styles, since the latter fights the system instead of using it.
-
-If a real style deviation is needed, change it globally instead of per instance: override the seed variables on `:root` (see Theming below) rather than sprinkling inline `style` attributes or one-off classes across individual elements. Unlayered styles always win over erikt/ui without needing `!important`, so a single `:root` override is cheap and keeps the whole UI consistent. Reach for a per-instance override only for something genuinely one-of-a-kind, not as the default way to match a design.
-
-## Setup
+One CSS file that styles native HTML elements. A `<button>` is already a styled button. A `<dialog>` is already a styled modal. You write semantic HTML, add a class name for a few components, and the stylesheet does the rest.
 
 ```html
 <link rel="stylesheet" href="https://esm.sh/@erikt/ui" />
 ```
 
-## Core idea
+Full docs live at https://ui.erikt.me. Every component has a page at `https://ui.erikt.me/components/<name>`. The full list is at https://ui.erikt.me/llms.txt.
 
-erikt/ui styles native elements. A `<button>` is already a styled button. An `<input>` is already a styled input. No wrapper divs or base classes needed.
+## Principles
 
-```html
-<button>Click me</button>
-<input type="text" placeholder="Type here" />
-<select>
-  <option>Option</option>
-</select>
-```
+1. **Pick the right element first.** Most components are a native element. Card is `<article>`, accordion is `<details>`, separator is `<hr>`, progress is `<progress>`.
+2. **Compose, don't reinvent.** A settings page is tabs, cards and fields. A row menu is a ghost button plus a popover with a `<menu>`.
+3. **Use built-in variants before custom styles.** `class="outlined"`, `class="ghost destructive"`, `class="badge constructive"`.
+4. **Write CSS for layout only.** erikt/ui has no layout utilities on purpose. Use `flex` and `grid` to arrange things. Leave colors, borders, padding and type to the library.
+5. **Use the platform, not JavaScript.** Popover API for menus and toasts, `<dialog>` for modals, `<details>` for disclosure, radio inputs plus `:has()` for tabs.
+6. **Fit the project.** Write any extra code the way the project already does. JSX in React, Tailwind classes for layout in a Tailwind project. See [rules/frameworks.md](./rules/frameworks.md).
 
-## Layout
+## Critical rules
 
-erikt/ui does not provide layout utilities. Use CSS `flex` and `grid` directly.
+Each rule links to a file with incorrect and correct code.
 
-```html
-<div style="display:flex;gap:1rem">
-  <button>Cancel</button>
-  <button>Submit</button>
-</div>
-```
+### Styling → [rules/styling.md](./rules/styling.md)
 
-## Button variants
+- **No hardcoded colors.** Use `var(--ui-neutral-500)`, `var(--ui-primary)`, `var(--ui-destructive)` and the other tokens. Never hex values or named colors in component CSS.
+- **Change things once, on `:root`.** To match a brand, set seed variables like `--ui-primary` on `:root`. Don't put inline `style` overrides on each element.
+- **No `!important`.** erikt/ui lives in `@layer ui`. Any unlayered rule you write already wins.
+- **Spacing uses tokens.** `gap: var(--ui-spacing-4)`, not `gap: 13px`.
+- **Radius uses the rounded scale.** `var(--ui-rounded-3)` for controls, `var(--ui-rounded-5)` for surfaces, `var(--ui-rounded-full)` for pills and circles. Never `px` values or `50%`.
+- **Change roundness with `--ui-rounded-scale` on `:root`.** `0` makes every corner square. Don't override each component's radius.
+- **Don't size icons.** SVGs are `1lh` square by default, so they match the text next to them. No `width`/`height` on icons inside buttons, badges or menus.
+- **No `z-index` on overlays.** Dialog, popover, toast and drawer render in the browser's top layer.
+- **Dark mode is automatic.** The library uses `color-scheme: light dark`. Don't write `@media (prefers-color-scheme)` color overrides for components.
 
-```html
-<button>Primary</button>
-<button class="outlined">Outline</button>
-<button class="ghost">Ghost</button>
-<button class="secondary">Secondary</button>
-<button class="destructive">Delete</button>
-<button class="square">...</button>
-<button class="round">Pill</button>
-```
+### Forms → [rules/forms.md](./rules/forms.md)
 
-## Button group (joined buttons or input+button)
+- **Wrap each control in `label.field`.** `<span>` is the label, then the control, then an optional `<small>` hint.
+- **Groups of checkboxes or radios use `<fieldset>` + `<legend>`**, or `div.field` with a `<span>` title.
+- **Validation is CSS only.** Add `required`, `min`, `max` or `type="email"` to the input. Add `<small data-error="required|invalid|range">` messages inside the field. An input with `data-error="required"` needs a `placeholder`.
+- **Icons, units and buttons inside an input go in the same `<label>`** with `data-prefix` or `data-suffix`.
+- **On/off settings use `class="switch"`.** Short option sets use a toggle group. Don't loop buttons with a manual active class.
 
-```html
-<fieldset role="group">
-  <button class="ghost">Week</button>
-  <button class="ghost">Month</button>
-  <button class="ghost">Year</button>
-</fieldset>
+### Composition → [rules/composition.md](./rules/composition.md)
 
-<fieldset role="group">
-  <input type="text" placeholder="Search" />
-  <button>Go</button>
-</fieldset>
-```
+- **Card is `<article>`.** Put a title in `<header>` and actions in `<footer>`, as direct children.
+- **Callouts are `<article role="status">` or `<article role="alert">`.** Not a styled `div`.
+- **Use the built-in pieces.** `.badge` for status labels, `.empty` for empty states, `.skeleton` for loading, `aria-busy` for spinners, `<hr>` for separators.
+- **Button loading state is `aria-busy`** plus `disabled`. No custom spinner markup.
+- **Links that look like buttons use `<a class="button">`.** Use `<button>` for actions and `<a>` for navigation.
+- **Headings with a subtitle use `<hgroup>`.** Long text goes in `.prose`.
 
-## Text field with adornments (icons, kbd hints)
+### Overlays → [rules/overlays.md](./rules/overlays.md)
 
-```html
-<label>
-  <svg><!-- icon --></svg>
-  <input type="search" placeholder="Search" />
-  <kbd>⌘K</kbd>
-</label>
-```
+- **Dropdowns, menus and popovers use `popover` + `popovertarget`.** Put the popover element right after its trigger.
+- **Menus are `<menu>` with `<li><button class="ghost">`.** Separators are `<li><hr /></li>`, group labels are `<li><small>`.
+- **Modals are `<dialog closedby="any">` with an `<article>` inside.** Close buttons sit in `<form method="dialog">`.
+- **Side panels are `<dialog class="drawer">`.** Set the edge with `data-position`.
+- **Tooltips are `data-tooltip` + `aria-label`** on the trigger. No wrapper element.
+- **Toasts are `<div popover class="toast">`** holding an alert `<article>`.
 
-## Field (label + input + description)
+## Key patterns
 
 ```html
+<!-- Field with hint and validation -->
 <label class="field">
   <span>Email</span>
-  <input type="email" placeholder="you@example.com" />
-  <small>We'll never share your email.</small>
-</label>
-```
-
-Add `required` to the input and a `*` appears on the label automatically.
-
-## Checkbox and radio
-
-```html
-<label>
-  <input type="checkbox" />
-  Enable notifications
+  <input type="email" placeholder="you@example.com" required />
+  <small data-error="required">Email is required.</small>
+  <small data-error="invalid">Enter a valid email address.</small>
 </label>
 
-<label>
-  <input type="radio" name="size" />
-  Large
-</label>
-```
-
-## Switch
-
-```html
-<label>
-  <input type="checkbox" class="switch" />
-  Dark mode
-</label>
-```
-
-## Toggle (button-style checkbox/radio)
-
-```html
-<label class="toggle">
-  <input type="checkbox" />
-  Bold
-</label>
-```
-
-## Select
-
-```html
-<select>
-  <option>Option A</option>
-  <option>Option B</option>
-</select>
-```
-
-## Slider
-
-```html
-<input type="range" min="0" max="100" value="50" />
-```
-
-Note: erikt/ui uses a `--pct` CSS custom property for the fill. Set it via JS:
-
-```js
-el.style.setProperty("--pct", (el.value - el.min) / (el.max - el.min));
-el.addEventListener("input", () =>
-  el.style.setProperty("--pct", (el.value - el.min) / (el.max - el.min)),
-);
-```
-
-## Progress
-
-```html
-<progress value="65" max="100"></progress> <progress></progress>
-```
-
-## Badge
-
-```html
-<span class="badge">Default</span>
-<span class="badge secondary">Secondary</span>
-<span class="badge destructive">Error</span>
-<span class="badge outlined">Outline</span>
-```
-
-## Alert
-
-An `<article>` with `role="alert"` or `role="status"`, reusing the card surface. `role="alert"` interrupts a screen reader for urgent messages, `role="status"` is for calmer updates.
-
-```html
-<article role="status">Saved successfully.</article>
-<article role="alert" class="color2">Something went wrong.</article>
-```
-
-## Avatar
-
-```html
-<img class="avatar" src="/avatar.jpg" alt="" /> <span class="avatar">JR</span>
-```
-
-## Card
-
-```html
-<article>Content</article>
-
+<!-- Card with header and footer -->
 <article>
-  <header>Title</header>
-  <p>Body</p>
-  <footer>Actions</footer>
+  <header><strong>Team</strong></header>
+  <p>Invite people to collaborate.</p>
+  <footer>
+    <button class="outlined">Cancel</button>
+    <button>Invite</button>
+  </footer>
 </article>
-```
 
-## Breadcrumbs
+<!-- Button variants and icon button with tooltip -->
+<button>Save</button>
+<button class="outlined">Cancel</button>
+<button class="ghost destructive">Delete</button>
+<button class="ghost square" aria-label="Settings" data-tooltip>
+  <svg><!-- icon --></svg>
+</button>
 
-```html
-<nav aria-label="Breadcrumb">
-  <ol>
-    <li><a href="/">Home</a></li>
-    <li><a href="/products">Products</a></li>
-    <li aria-current="page">Laptop</li>
-  </ol>
-</nav>
-```
-
-## Accordion
-
-```html
-<details>
-  <summary>Question</summary>
-  <p>Answer</p>
-</details>
-```
-
-## Dialog / modal
-
-```html
-<dialog id="my-dialog">
-  <article>
-    <header>Title</header>
-    <p>Content</p>
-    <footer>
-      <button
-        class="ghost"
-        onclick="document.getElementById('my-dialog').close()"
-      >
-        Cancel
-      </button>
-      <button>Confirm</button>
-    </footer>
-  </article>
-</dialog>
-<button onclick="document.getElementById('my-dialog').showModal()">Open</button>
-```
-
-## Popover
-
-The native Popover API, declarative, no JavaScript. `popovertarget` on a trigger opens the element with matching `id`. Menu, Dropdown, Submenu, and Toast below are all built on this.
-
-```html
-<button popovertarget="my-popover">Open</button>
-<div id="my-popover" popover>Content</div>
-```
-
-## Menu
-
-A `<menu>` element is styled as a vertical list of actions. Use it standalone or inside a popover.
-
-```html
-<menu>
-  <li><button class="ghost">Edit</button></li>
-  <li><button class="ghost">Duplicate</button></li>
-  <li><hr /></li>
-  <li><button class="ghost destructive">Delete</button></li>
-</menu>
-```
-
-Section labels: a `<li>` whose only child is a text-only `<small>` renders as a muted group header:
-
-```html
-<menu>
-  <li><small>Actions</small></li>
-  <li><button class="ghost">New File</button></li>
-  <li><button class="ghost">New Folder</button></li>
-</menu>
-```
-
-Radio and checkbox inputs inside `<label>`s show a checkmark indicator:
-
-```html
-<menu>
-  <li>
-    <label><input type="radio" name="sort" checked /> Newest</label>
-  </li>
-  <li>
-    <label><input type="radio" name="sort" /> Oldest</label>
-  </li>
-</menu>
-```
-
-## Dropdown (popover menu)
-
-Place a `<menu>` inside any `[popover]` and styles and padding apply automatically:
-
-```html
-<button popovertarget="my-menu">Options</button>
-<div id="my-menu" popover>
+<!-- Dropdown menu -->
+<button popovertarget="row-menu">Actions</button>
+<div id="row-menu" popover>
   <menu>
-    <li><small>Actions</small></li>
     <li><button class="ghost">Edit</button></li>
-    <li><button class="ghost">Duplicate</button></li>
     <li><hr /></li>
     <li><button class="ghost destructive">Delete</button></li>
   </menu>
 </div>
+
+<!-- Modal -->
+<button onclick="document.getElementById('confirm').showModal()">Delete</button>
+<dialog id="confirm" closedby="any">
+  <article>
+    <header><strong>Delete project?</strong></header>
+    <p>This can't be undone.</p>
+    <footer>
+      <form method="dialog">
+        <button class="destructive">Delete</button>
+        <button class="outlined">Cancel</button>
+      </form>
+    </footer>
+  </article>
+</dialog>
+
+<!-- Status colors come from variants, not raw colors -->
+<span class="badge constructive">Active</span>
+<span class="badge destructive">Failed</span>
+
+<!-- Layout is plain CSS -->
+<div style="display: flex; gap: var(--ui-spacing-2)">...</div>
 ```
 
-## Submenu
+## Component selection
 
-A `[popover]` that is a sibling of a `<button>` inside a menu `<li>` becomes a submenu. The trigger button gets a chevron automatically:
+| Need | Use |
+| --- | --- |
+| Action | `<button>`. Variants: `outlined`, `secondary`, `ghost`, `link`, `destructive`. Shape: `square`, `round` |
+| Link styled as button | `<a class="button">` |
+| Related buttons joined | `<fieldset role="group">` (button group) |
+| Text input | `<input>` inside `label.field`. Prefix and suffix with `data-prefix` / `data-suffix` |
+| Long text | `<textarea>` (grows with content) |
+| Pick one from a list | `<select>` |
+| Pick one, searchable | `<input list>` + `<datalist>` |
+| Number, date, color | `<input type="number">`, `type="date"`, `type="color"` |
+| On/off setting | `<input type="checkbox" class="switch">` |
+| Checkbox or radio list | `<fieldset>` + `<legend>` + `<label><input></label>` |
+| 2 to 5 options as buttons | Toggle group: `<fieldset role="group">` + `<label class="toggle">` with radio inputs |
+| Pressable on/off button | `<label class="toggle"><input type="checkbox" />...</label>` |
+| Selectable tags | `<label><input type="checkbox" /><span class="badge">Tag</span></label>` |
+| Color choice | `fieldset.color-swatch` with radios and `--swatch-color` |
+| File upload | `label.file-drop` |
+| One-time code | `<span class="otp"><input maxlength="6" /></span>` |
+| Slider | `<input type="range">` |
+| Surface | `<article>`. Variants: `secondary`, `tertiary`, `transparent` |
+| Callout | `<article role="status">` or `role="alert"`. Colors: `primary`, `constructive`, `destructive`, `color1` to `color6` |
+| Status label | `<span class="badge">` with the same color classes, plus `outlined` |
+| Empty state | `<section class="empty">` |
+| Loading | `aria-busy` (spinner), `.skeleton` (placeholder), `<progress>` |
+| Data table | `<table>`. Column sizes with `--cols`. Classes: `zebra`, `align-left` |
+| Key/value list | `<dl>` |
+| User picture | `.avatar` on `<img>` or `<span>` |
+| Event list | `<ol class="timeline">` |
+| Collapsible section | `<details>` + `<summary>` + `<div>`. Same `name` for one-open-at-a-time |
+| Show more text | `div.expander` |
+| File tree | `<ul class="tree">` |
+| Tabs (same page) | `section.tabs` with radio inputs in `header[role=tablist]` |
+| Tabs (links between pages) | `<nav class="tab-links">` with `aria-current="page"` |
+| Breadcrumbs | `<nav aria-label="Breadcrumb"><ol>` |
+| Pagination | `<nav class="pagination">` |
+| Dropdown or menu | `[popover]` + `<menu>`. Nested menus with `data-placement="right top"` |
+| Floating panel | `[popover]` with an `<article>` inside |
+| Modal | `<dialog>` + `<article>` |
+| Side panel | `<dialog class="drawer" data-position="right">` |
+| Toast | `<div popover class="toast">` |
+| Tooltip | `data-tooltip` + `aria-label` |
+| Keyboard shortcut | `<kbd>` |
+| Article text | `.prose`, `<hgroup>`, `<blockquote>` |
+| Divider | `<hr>`. With a label: `<hr data-label="...">` |
+| Scrolling logos or tags | `div.marquee` |
+| Bar chart | `<table class="chart">` |
 
-```html
-<div id="parent-menu" popover>
-  <menu>
-    <li><button class="ghost">Cut</button></li>
-    <li>
-      <button class="ghost" popovertarget="find-menu">Find</button>
-      <div id="find-menu" popover data-placement="right top">
-        <menu>
-          <li><button class="ghost">Find…</button></li>
-          <li><button class="ghost">Find Next</button></li>
-        </menu>
-      </div>
-    </li>
-  </menu>
-</div>
-```
+Anything in this table that the key patterns above don't show: fetch `https://ui.erikt.me/components/<name>` before you write the markup. Don't guess class names.
 
-## Toast
+## Workflow
 
-A `[popover]` promoted to the top layer, so it always renders above everything else with no `z-index` needed. Put an Alert inside for the message, open it with `popovertarget`.
+1. **Check the setup.** Find the stylesheet `<link>` or `@import`. Note the framework (plain HTML, React, Vue, Svelte) and whether Tailwind is present.
+2. **Pick components** from the table above. Prefer one that exists over custom markup.
+3. **Read the docs page** for any component you haven't used in this session.
+4. **Write the markup.** Add layout with `flex`/`grid` only. Add no colors, borders or padding.
+5. **Review** against the critical rules. Look for inline styles that aren't layout, hex colors, wrapper `div`s around native elements, and custom JS that the platform already does.
 
-```html
-<button popovertarget="my-toast">Show toast</button>
-<div id="my-toast" popover class="toast">
-  <article role="status">Saved successfully.</article>
-</div>
-```
+## Matching a design
 
-## Tooltip
+When you match a screenshot or mockup, get close with the library's components and tokens. Don't pixel-match with overrides. A result that is 90% right with plain erikt/ui markup beats one that is 100% right but full of one-off styles.
 
-```html
-<button aria-label="Save changes" data-tooltip>Save</button>
-<button aria-label="Left side" data-tooltip="left">Info</button>
-```
-
-## Table
-
-```html
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>Active</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-## Prose (typography)
-
-```html
-<div class="prose">
-  <h1>Title</h1>
-  <p>Body text with correct spacing.</p>
-  <ul>
-    <li>List item</li>
-  </ul>
-</div>
-```
-
-## Textarea
-
-```html
-<textarea placeholder="Write something..."></textarea>
-```
-
-## Separator
-
-```html
-<hr />
-<hr data-label="or" />
-```
-
-## Expander (truncated text with show more)
-
-```html
-<div class="expander">
-  <p>Long text that gets truncated...</p>
-  <label>
-    <input type="checkbox" />
-    Show more
-  </label>
-</div>
-```
-
-Control the number of visible lines with `--lines` (default: 3):
-
-```html
-<div class="expander" style="--lines:5">...</div>
-```
-
-## File Drop
-
-```html
-<div class="file-drop">
-  Drop files here or click to browse
-  <input type="file" />
-</div>
-```
-
-## Loading indicator
-
-Add `aria-busy` to any element to show a spinner before it:
-
-```html
-<p aria-busy>Loading...</p>
-<button aria-busy>Saving</button>
-```
-
-## Radio Group (fieldset with legend)
-
-```html
-<fieldset>
-  <legend>Notification preference</legend>
-  <label><input type="radio" name="notif" /> Email</label>
-  <label><input type="radio" name="notif" /> SMS</label>
-  <small>Choose how you want to be notified.</small>
-</fieldset>
-```
-
-Add `required` to an input and a `*` appears on the legend automatically.
-
-## Toggle Group (toolbar-style buttons)
-
-Use `<label class="toggle">` inside `<fieldset role="group">`. Radio for mutually exclusive, checkbox for independent:
-
-```html
-<fieldset role="group">
-  <label class="toggle square" aria-label="Align left" data-tooltip>
-    <input type="radio" name="align" />
-    <svg>...</svg>
-  </label>
-  <label class="toggle square" aria-label="Align center" data-tooltip>
-    <input type="radio" name="align" checked />
-    <svg>...</svg>
-  </label>
-  <label class="toggle square" aria-label="Align right" data-tooltip>
-    <input type="radio" name="align" />
-    <svg>...</svg>
-  </label>
-</fieldset>
-```
-
-## Tab Links
-
-A `nav.tab-links` of plain links styled like the tabs bar, for switching between pages instead of panels. Put `aria-current="page"` on the link for the current URL. The highlight is a pseudo element with a view transition name, so adding `@view-transition { navigation: auto; }` to the page makes it glide between pages. Give each extra bar on a page its own `--ui-tab-links-name`, or `none` to opt out.
-
-```html
-<nav class="tab-links" aria-label="Views">
-  <a href="/overview" aria-current="page">Overview</a>
-  <a href="/activity">Activity</a>
-  <a aria-disabled="true">Reports</a>
-</nav>
-```
-
-## Tabs
-
-A `.tabs` section with a `[role="tablist"]` of `<label>`-wrapped radio inputs. CSS `:has()` shows the matching panel, no JavaScript. Wire each tab to its panel with matching `id`/`aria-controls`/`aria-labelledby`.
-
-```html
-<section class="tabs">
-  <header role="tablist" aria-label="Account settings">
-    <label>
-      <input
-        type="radio"
-        name="tab"
-        id="tab-account"
-        checked
-        aria-controls="panel-account"
-      />
-      Account
-    </label>
-    <label>
-      <input
-        type="radio"
-        name="tab"
-        id="tab-password"
-        aria-controls="panel-password"
-      />
-      Password
-    </label>
-  </header>
-
-  <div
-    role="tabpanel"
-    id="panel-account"
-    aria-labelledby="tab-account"
-    tabindex="0"
-  >
-    <p>Manage your account settings.</p>
-  </div>
-  <div
-    role="tabpanel"
-    id="panel-password"
-    aria-labelledby="tab-password"
-    tabindex="0"
-  >
-    <p>Change your password.</p>
-  </div>
-</section>
-```
-
-## Code and Kbd
-
-```html
-<p>Use <code>flex</code> for layout.</p>
-<kbd>⌘K</kbd>
-```
-
-Put a `<kbd>` inside a button to show a keyboard shortcut hint:
-
-```html
-<button class="ghost">Save <kbd>⌘S</kbd></button>
-```
-
-## Color Input
-
-```html
-<input type="color" value="#3b82f6" />
-```
-
-## Date Input
-
-```html
-<input type="date" />
-<input type="time" />
-<input type="datetime-local" />
-```
-
-## Empty State
-
-```html
-<div class="empty">
-  <svg><!-- icon --></svg>
-  <h3>No items yet</h3>
-  <p>There's nothing here. Add something to get started.</p>
-</div>
-```
-
-Add a button to give the user a clear next step:
-
-```html
-<div class="empty">
-  <svg><!-- icon --></svg>
-  <h3>No documents</h3>
-  <p>Create your first document to get started.</p>
-  <button>New document</button>
-</div>
-```
-
-## Datalist (autocomplete input)
-
-```html
-<input list="fruits" placeholder="Pick a fruit" />
-<datalist id="fruits">
-  <option value="Apple" />
-  <option value="Banana" />
-  <option value="Cherry" />
-</datalist>
-```
+If the design needs a real change, change it globally. Set seed variables on `:root`, or write one unlayered rule for the element. Use a per-element override only for something that appears once.
 
 ## Theming
 
-Override seed variables on `:root` after the stylesheet. All color scales are derived automatically via `color-mix()`:
+Override seed variables on `:root`. Every color scale (50 to 950) derives from its seed.
 
 ```css
 :root {
   --ui-primary: dodgerblue; /* or light-dark(blue, lightblue) */
   --ui-neutral: #8b8c93;
-  --ui-constructive: #5dbb55; /* success/positive actions */
-  --ui-destructive: #ef5655; /* danger/error actions */
-  --ui-color1: crimson; /* accent colors 1-6 */
-  --ui-color2: gold;
+  --ui-constructive: #5dbb55; /* success */
+  --ui-destructive: #ef5655; /* danger */
+  --ui-color1: crimson; /* accents, color1 to color6 */
+  --ui-rounded-scale: 1; /* 0 = square, 2 = twice as round */
+  --ui-rounded: 2px; /* seed for --ui-rounded-1 to -8 */
+  --ui-spacing: 0.25em; /* base step for --ui-spacing-1 to -8 */
 }
 ```
 
-## Dark mode
-
-erikt/ui responds to `prefers-color-scheme` automatically (via `color-scheme: light dark`). To force a theme, set `color-scheme` on the root:
+Force a theme with `color-scheme`:
 
 ```css
 :root {
-  color-scheme: dark;
-}
-:root {
-  color-scheme: light;
+  color-scheme: dark; /* or light */
 }
 ```
 
-Or inline:
+More in [rules/styling.md](./rules/styling.md).
 
-```html
-<html style="color-scheme:dark">
-  ...
-</html>
-```
+## Detailed references
 
-## Spacing tokens
-
-`--ui-spacing-1` through `--ui-spacing-8` (multiples of `--ui-spacing: 0.25em`).
-
-## Easing tokens
-
-- `--ease-glide`: smooth deceleration, the default for most transitions
-- `--ease-snap`: fast with a slight overshoot, for toggles and selections
-- `--ease-heavy`: a big elastic overshoot, use one per screen at most
-
-## Web components (optional)
-
-Two dependency-free custom elements ship alongside the stylesheet. Opt-in only, nothing else depends on them.
-
-```html
-<script type="module" src="https://esm.sh/@erikt/ui/elements"></script>
-
-<relative-time datetime="2026-07-12T09:00:00.000Z"></relative-time>
-
-<copy-to-clipboard value="npm install @erikt/ui">
-  <button type="button">Copy</button>
-</copy-to-clipboard>
-<copy-to-clipboard for="#some-id">
-  <button type="button">Copy</button>
-</copy-to-clipboard>
-```
-
-## Full component list
-
-Every component in the library: Accordion, Alert, Avatar, Badge, Breadcrumbs, Button, Button Group, Card, Carousel (WIP), Checkbox, Code, Color Input, Color Swatch, Combobox (WIP), Datalist, Date Input, Description List, Dialog, Drawer, Dropdown, Empty State, Expander, Field, File Drop, Focus Group, Kbd, Loading, Marquee, Menu, Number Field, Pagination, Popover, Progress, Prose, Radio, Radio Group, Select, Separator, Skeleton, Slider, Submenu, Switch, Table, Tab Links (New), Tabs (0.0.2), Tag Group, Text Field, Textarea, Timeline, Toast, Toggle, Toggle Group, Tooltip, Tree View. Each has a docs page with full markup, variants, and options. See https://ui.erikt.me/llms.txt for the exact URL of any one not covered by an example above.
+- [rules/forms.md](./rules/forms.md): field, validation, prefix and suffix, fieldsets, switches, toggle groups, select
+- [rules/composition.md](./rules/composition.md): card, alert, badge, empty, loading, buttons vs links, tabs, typography
+- [rules/overlays.md](./rules/overlays.md): popover, menu, dialog, drawer, tooltip, toast
+- [rules/styling.md](./rules/styling.md): tokens, radius scale, layout, overrides, icons, dark mode
+- [rules/frameworks.md](./rules/frameworks.md): React, Vue, Svelte and Tailwind

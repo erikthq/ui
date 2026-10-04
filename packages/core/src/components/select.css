@@ -26,7 +26,7 @@ select {
   &:focus-visible {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
-    border-radius: 0.57rem;
+    border-radius: var(--ui-rounded-3);
   }
 
   &:disabled {
@@ -97,7 +97,7 @@ select {
     margin: 0;
     padding: var(--ui-spacing-1);
     border: 1px solid var(--ui-neutral-200);
-    border-radius: calc(0.57rem + var(--ui-spacing-1));
+    border-radius: calc(var(--ui-rounded-3) + var(--ui-spacing-1));
     background: var(--ui-background-color);
     box-shadow: 0 4px 16px oklch(0% 0 0 / 0.08);
     min-width: anchor-size(width);
@@ -131,7 +131,7 @@ select {
     align-items: center;
     padding-block: var(--ui-spacing-2);
     padding-inline: var(--ui-spacing-3);
-    border-radius: 0.57rem;
+    border-radius: var(--ui-rounded-3);
     cursor: pointer;
 
     @media (hover: hover) {

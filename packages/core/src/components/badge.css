@@ -2,13 +2,14 @@
   display: inline-flex;
   align-items: center;
   gap: var(--ui-spacing-1);
+  padding-block: var(--ui-spacing-1);
   padding-inline: var(--ui-spacing-2);
-  border-radius: 999px;
+  border-radius: var(--ui-rounded-full);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   user-select: none;
-  line-height: 1.5;
+  line-height: 1;
   background-color: var(--ui-neutral-200);
   color: var(--ui-neutral-900);
 

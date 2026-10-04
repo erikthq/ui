@@ -8,6 +8,12 @@
 
 @scope (.tab-links) to (.tab-links .tab-links) {
   :scope {
+    --bg: var(--ui-neutral-200);
+    --bg-active: var(--ui-neutral-50);
+    --fg: var(--ui-neutral-800);
+    --fg-hover: var(--ui-neutral-950);
+    --fg-active: var(--ui-neutral-950);
+
     /* Override per instance when a page holds more than one tab bar. */
     --ui-tab-links-name: ui-tab-links;
 
@@ -16,8 +22,8 @@
     width: fit-content;
     max-width: 100%;
 
-    background-color: var(--ui-neutral-200);
-    border-radius: calc(0.57rem + 1px);
+    background-color: var(--bg);
+    border-radius: calc(var(--ui-rounded-3) + 1px);
 
     anchor-name: --ui-active-tab-link;
     anchor-scope: --ui-active-tab-link;
@@ -35,8 +41,8 @@
       bottom: calc(anchor(bottom) + 1px);
       z-index: 0;
 
-      border-radius: 0.57rem;
-      background-color: var(--ui-neutral-50);
+      border-radius: var(--ui-rounded-3);
+      background-color: var(--bg-active);
       pointer-events: none;
 
       position-anchor: --ui-active-tab-link;
@@ -67,11 +73,11 @@
       gap: var(--ui-spacing-2);
       padding-block: var(--ui-spacing-2);
       padding-inline: var(--ui-spacing-4);
-      color: var(--ui-neutral-800);
+      color: var(--fg);
       text-decoration: none;
       white-space: nowrap;
       line-height: 1.14286rem;
-      border-radius: 0.57rem;
+      border-radius: var(--ui-rounded-3);
       transition: color 100ms;
 
       z-index: 1;
@@ -82,12 +88,12 @@
 
       @media (hover: hover) {
         &:hover {
-          color: var(--ui-neutral-950);
+          color: var(--fg-hover);
         }
       }
 
       &[aria-current]:not([aria-current="false"]) {
-        color: var(--ui-neutral-950);
+        color: var(--fg-active);
       }
 
       &:focus-visible {

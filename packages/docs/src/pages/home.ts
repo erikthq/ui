@@ -78,7 +78,7 @@ export async function HomePage(path: string) {
                 id="tab-2"
                 aria-controls="panel-2"
               />
-              Themes
+              Colors
             </label>
           </header>
 

@@ -4,7 +4,6 @@ dialog.drawer {
   max-width: none;
   width: min(420px, 100vw);
   height: 100vh;
-  border-radius: 12px 0 0 12px;
 
   inset-inline-start: auto;
   translate: 100% 0;
@@ -30,10 +29,18 @@ dialog.drawer {
     }
   }
 
+  &:not([data-position]) {
+    > article,
+    > article header,
+    > article footer {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
   &[data-position="left"] {
     inset-inline-start: 0;
     inset-inline-end: auto;
-    border-radius: 0 12px 12px 0;
     translate: -100% 0;
 
     &[open] {
@@ -45,6 +52,13 @@ dialog.drawer {
         translate: -100% 0;
       }
     }
+
+    > article,
+    > article header,
+    > article footer {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 
   &[data-position="top"] {
@@ -53,7 +67,6 @@ dialog.drawer {
     inset-inline: 0;
     width: 100vw;
     height: min(420px, 100vh);
-    border-radius: 0 0 12px 12px;
     translate: 0 -100%;
 
     &[open] {
@@ -65,6 +78,13 @@ dialog.drawer {
         translate: 0 -100%;
       }
     }
+
+    > article,
+    > article header,
+    > article footer {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
 
   &[data-position="bottom"] {
@@ -73,7 +93,6 @@ dialog.drawer {
     inset-inline: 0;
     width: 100vw;
     height: min(420px, 100vh);
-    border-radius: 12px 12px 0 0;
     translate: 0 100%;
 
     &[open] {
@@ -84,6 +103,13 @@ dialog.drawer {
       &[open] {
         translate: 0 100%;
       }
+    }
+
+    > article,
+    > article header,
+    > article footer {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 }

@@ -2,7 +2,7 @@ label:has(> .badge):has(> input[type="checkbox"], > input[type="radio"]) {
   display: inline-flex;
   cursor: pointer;
   user-select: none;
-  border-radius: 999px;
+  border-radius: var(--ui-rounded-full);
   transition: box-shadow 200ms var(--ease-glide);
 
   > input[type="checkbox"],

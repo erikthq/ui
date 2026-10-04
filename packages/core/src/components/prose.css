@@ -55,7 +55,7 @@
       width: 3px;
       left: 0;
       background-color: var(--ui-neutral-200);
-      border-radius: 100px;
+      border-radius: var(--ui-rounded-full);
     }
 
     footer,

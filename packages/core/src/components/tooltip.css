@@ -1,16 +1,12 @@
+/* zero specificity so components that position the host themselves (e.g. absolute) still win */
+:where([data-tooltip][aria-label]:not(input, select, textarea)) {
+  position: relative;
+}
+
 [data-tooltip][aria-label]:not(input, select, textarea) {
-  anchor-name: --ui-tooltip-anchor;
-  anchor-scope: --ui-tooltip-anchor;
-
-  /* an active-state translate would make this element its own tooltip's containing block, breaking the anchor; button.css's :active rule outranks this selector on specificity, so !important is needed to reliably win */
-  &:active {
-    translate: none !important;
-  }
-
   &::before,
   &::after {
-    position: fixed;
-    position-anchor: --ui-tooltip-anchor;
+    position: absolute;
     z-index: 2147483647;
     pointer-events: none;
     opacity: 0;
@@ -22,7 +18,7 @@
     background: var(--ui-neutral-950);
     color: var(--ui-neutral-50);
     padding: 0.4em 0.75em;
-    border-radius: 0.42rem;
+    border-radius: var(--ui-rounded-3);
     font-size: 0.875rem;
     line-height: 1;
     white-space: nowrap;
@@ -38,13 +34,13 @@
 
   /* top (default) */
   &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::before {
-    bottom: calc(anchor(top) + 0.5rem);
-    left: anchor(center);
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
     translate: -50% 0;
   }
   &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::after {
-    bottom: calc(anchor(top) + 0.5rem);
-    left: anchor(center);
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
     translate: -50% 50%;
     mask-image: linear-gradient(-45deg, black 51%, transparent 50%);
     border-end-end-radius: 2px;
@@ -52,13 +48,13 @@
 
   /* bottom */
   &[data-tooltip="bottom"]::before {
-    top: calc(anchor(bottom) + 0.5rem);
-    left: anchor(center);
+    top: calc(100% + 0.5rem);
+    left: 50%;
     translate: -50% 0;
   }
   &[data-tooltip="bottom"]::after {
-    top: calc(anchor(bottom) + 0.5rem);
-    left: anchor(center);
+    top: calc(100% + 0.5rem);
+    left: 50%;
     translate: -50% -50%;
     mask-image: linear-gradient(-45deg, transparent 50%, black 50%);
     border-start-start-radius: 2px;
@@ -66,13 +62,13 @@
 
   /* left */
   &[data-tooltip="left"]::before {
-    right: calc(anchor(left) + 0.5rem);
-    top: anchor(center);
+    right: calc(100% + 0.5rem);
+    top: 50%;
     translate: 0 -50%;
   }
   &[data-tooltip="left"]::after {
-    right: calc(anchor(left) + 0.5rem);
-    top: anchor(center);
+    right: calc(100% + 0.5rem);
+    top: 50%;
     translate: 50% -50%;
     mask-image: linear-gradient(45deg, transparent 50%, black 50%);
     border-start-end-radius: 2px;
@@ -80,13 +76,13 @@
 
   /* right */
   &[data-tooltip="right"]::before {
-    left: calc(anchor(right) + 0.5rem);
-    top: anchor(center);
+    left: calc(100% + 0.5rem);
+    top: 50%;
     translate: 0 -50%;
   }
   &[data-tooltip="right"]::after {
-    left: calc(anchor(right) + 0.5rem);
-    top: anchor(center);
+    left: calc(100% + 0.5rem);
+    top: 50%;
     translate: -50% -50%;
     mask-image: linear-gradient(45deg, black 50%, transparent 50%);
     border-end-start-radius: 2px;

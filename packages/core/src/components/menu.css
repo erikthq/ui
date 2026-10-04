@@ -1,67 +1,71 @@
 menu {
-  & > li > button,
-  & > li > .button {
-    width: 100%;
-    justify-content: flex-start;
-    white-space: nowrap;
-  }
+  & > li {
+    list-style: none;
 
-  & > li > label {
-    width: 100%;
-    padding-block: var(--ui-spacing-2);
-    padding-inline: var(--ui-spacing-3);
-    border-radius: 0.57rem;
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-
-    > input[type="radio"],
-    > input[type="checkbox"] {
-      appearance: none;
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-      pointer-events: none;
+    > button,
+    > .button {
+      width: 100%;
+      justify-content: flex-start;
+      white-space: nowrap;
     }
 
-    @media (hover: hover) {
-      &:hover {
-        background: var(--ui-neutral-100);
+    > label {
+      width: 100%;
+      padding-block: var(--ui-spacing-2);
+      padding-inline: var(--ui-spacing-3);
+      border-radius: var(--ui-rounded-3);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+
+      > input[type="radio"],
+      > input[type="checkbox"] {
+        appearance: none;
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          background: var(--ui-neutral-100);
+        }
+      }
+
+      &:has(input[type="checkbox"], input[type="radio"]) {
+        &::after {
+          content: "";
+          display: inline-block;
+          background-color: currentColor;
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+          mask-size: 1rem;
+          mask-repeat: no-repeat;
+          mask-position: center;
+          width: 1rem;
+          height: 1rem;
+          visibility: hidden;
+          margin-left: auto;
+        }
+
+        &:has(input:checked)::after {
+          visibility: visible;
+        }
       }
     }
 
-    &:has(input[type="checkbox"], input[type="radio"]) {
-      &::after {
-        content: "";
-        display: inline-block;
-        background-color: currentColor;
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
-        mask-size: 1rem;
-        mask-repeat: no-repeat;
-        mask-position: center;
-        width: 1rem;
-        height: 1rem;
-        visibility: hidden;
-        margin-left: auto;
-      }
-
-      &:has(input:checked)::after {
-        visibility: visible;
-      }
+    > small:only-child:not(:has(*)) {
+      display: block;
+      padding: var(--ui-spacing-2) var(--ui-spacing-3) var(--ui-spacing-1);
+      color: var(--ui-neutral-500);
+      font-size: 0.8125rem;
+      margin-left: 2px;
+      user-select: none;
     }
   }
 
   & hr {
     margin-block: var(--ui-spacing-1);
-  }
-
-  & > li > small:only-child:not(:has(*)) {
-    display: block;
-    padding: var(--ui-spacing-2) var(--ui-spacing-3) var(--ui-spacing-1);
-    color: var(--ui-neutral-500);
-    font-size: 0.8125rem;
-    margin-left: 2px;
-    user-select: none;
   }
 }

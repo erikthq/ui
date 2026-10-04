@@ -6,7 +6,9 @@ const { default: app } = await import("../dist/.server/index.js");
 const routes = [
   "/",
   "/getting-started/introduction",
-  "/getting-started/themes",
+  "/getting-started/colors",
+  "/getting-started/theming",
+  "/getting-started/tokens",
   "/components/prose",
   "/components/accordion",
   "/components/alert",

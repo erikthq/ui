@@ -1,12 +1,9 @@
-:root,
-:host {
-  --card-border-radius: 12px;
-}
-
 article {
+  --border-radius: var(--ui-rounded-5);
+  
   background-color: var(--ui-neutral-0);
   box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
-  border-radius: var(--card-border-radius);
+  border-radius: var(--border-radius);
   overflow: hidden;
   padding: var(--ui-spacing-4);
 
@@ -47,12 +44,12 @@ article {
 
   & > header {
     box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
-    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
   }
 
   & > footer {
     box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
-    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
   }
 
   &:has(> header, > footer) > * {
@@ -64,12 +61,12 @@ article {
 
     &:first-child {
       margin-top: 1px;
-      border-radius: 11px 11px 0 0;
+      border-radius: calc(var(--border-radius) + 1px) calc(var(--border-radius) + 1px) 0 0;
     }
 
     &:last-child {
       margin-bottom: 1px;
-      border-radius: 0 0 11px 11px;
+      border-radius: 0 0 calc(var(--border-radius) + 1px) calc(var(--border-radius) + 1px);
     }
   }
 }

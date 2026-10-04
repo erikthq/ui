@@ -33,7 +33,7 @@
 
       width: var(--ui-timeline-dot);
       aspect-ratio: 1;
-      border-radius: 50%;
+      border-radius: var(--ui-rounded-full);
       border: var(--ui-timeline-ring) solid var(--ui-timeline-color);
       background-color: Canvas;
 

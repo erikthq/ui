@@ -6,7 +6,7 @@
   flex-shrink: 0;
   aspect-ratio: 1;
   height: calc(var(--ui-spacing-2) * 2 + 1lh);
-  border-radius: 999px;
+  border-radius: var(--ui-rounded-full);
   background-color: var(--ui-neutral-200);
   color: var(--ui-neutral-700);
   font-size: 1rem;
@@ -32,7 +32,7 @@
   }
 
   &.square {
-    border-radius: 0.57rem;
+    border-radius: var(--ui-rounded-3);
   }
 
   > .badge {

@@ -1,5 +1,11 @@
 @scope (.tabs) to (.tabs .tabs) {
   :scope {
+    --bg: var(--ui-neutral-200);
+    --bg-active: var(--ui-neutral-50);
+    --fg: var(--ui-neutral-800);
+    --fg-hover: var(--ui-neutral-950);
+    --fg-active: var(--ui-neutral-950);
+
     width: stretch;
 
     &:has(> [role="tabpanel"]) {
@@ -17,8 +23,8 @@
     display: flex;
     width: fit-content;
 
-    background-color: var(--ui-neutral-200);
-    border-radius: calc(0.57rem + 1px);
+    background-color: var(--bg);
+    border-radius: calc(var(--ui-rounded-3) + 1px);
 
     anchor-name: --hovered-link;
     anchor-scope: --hovered-link;
@@ -36,8 +42,8 @@
       bottom: calc(anchor(bottom) + 1px);
       z-index: 0;
 
-      border-radius: 0.57rem;
-      background-color: var(--ui-neutral-50);
+      border-radius: var(--ui-rounded-3);
+      background-color: var(--bg-active);
       pointer-events: none;
 
       position-anchor: --hovered-link;
@@ -51,7 +57,7 @@
       gap: var(--ui-spacing-2);
       padding-block: var(--ui-spacing-2);
       padding-inline: var(--ui-spacing-4);
-      color: var(--ui-neutral-800);
+      color: var(--fg);
       white-space: nowrap;
       transition: color 100ms;
       line-height: 1.14286rem;
@@ -66,18 +72,18 @@
 
       @media (hover: hover) {
         &:hover {
-          color: var(--ui-neutral-950);
+          color: var(--fg-hover);
         }
       }
 
       &:has(input:checked) {
-        color: var(--ui-neutral-950);
+        color: var(--fg-active);
       }
 
       &:has(input:focus-visible) {
         outline: 2px solid var(--ui-neutral-950);
         outline-offset: 2px;
-        border-radius: 0.57rem;
+        border-radius: var(--ui-rounded-3);
       }
 
       &:has(input:disabled) {
@@ -91,7 +97,7 @@
   [role="tabpanel"]:focus-visible {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 4px;
-    border-radius: 0.28rem;
+    border-radius: var(--ui-rounded-2);
   }
 
   [role="tabpanel"] {

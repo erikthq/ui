@@ -2,7 +2,7 @@ input[type="color"] {
   appearance: none;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 0.57rem;
+  border-radius: var(--ui-rounded-3);
   border: 1px solid var(--ui-neutral-200);
   padding: 0.2rem;
   background: none;
@@ -14,12 +14,12 @@ input[type="color"] {
 
   &::-webkit-color-swatch {
     border: none;
-    border-radius: 0.28rem;
+    border-radius: var(--ui-rounded-2);
   }
 
   &::-moz-color-swatch {
     border: none;
-    border-radius: 0.28rem;
+    border-radius: var(--ui-rounded-2);
   }
 
   &:focus-visible {

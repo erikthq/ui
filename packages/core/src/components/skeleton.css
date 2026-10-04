@@ -8,7 +8,7 @@
 }
 
 .skeleton {
-  border-radius: 0.28rem;
+  border-radius: var(--ui-rounded-2);
   background-color: var(--ui-neutral-100);
   background-image: linear-gradient(90deg, transparent, var(--ui-neutral-50), transparent);
   background-size: 60% 100%;
@@ -23,7 +23,7 @@
   }
 
   &.circle {
-    border-radius: 999px;
+    border-radius: var(--ui-rounded-full);
     aspect-ratio: 1;
   }
 

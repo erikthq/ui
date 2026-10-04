@@ -10,6 +10,7 @@ const toc = [
   { id: "icons", label: "With icons" },
   { id: "disabled", label: "Disabled link" },
   { id: "multiple", label: "Several bars per page" },
+  { id: "custom-properties", label: "Custom properties" },
 ];
 
 const demo = [
@@ -363,6 +364,63 @@ export async function TabLinksPage(path: string) {
   <a href="/inbox?sort=new">Newest</a>
   <a href="/inbox?sort=old" aria-current="page">Oldest</a>
 </nav>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="custom-properties">Custom properties</h2>
+        <p>
+          Set these on the bar to override its built-in styling. Each one
+          falls back to a global token, so an unset property keeps the bar in
+          line with the rest of the system.
+        </p>
+
+        <table class="align-left">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--bg</code></td>
+              <td><code>var(--ui-neutral-200)</code></td>
+              <td>Background of the bar.</td>
+            </tr>
+            <tr>
+              <td><code>--bg-active</code></td>
+              <td><code>var(--ui-neutral-50)</code></td>
+              <td>Background of the highlight behind the current link.</td>
+            </tr>
+            <tr>
+              <td><code>--fg</code></td>
+              <td><code>var(--ui-neutral-800)</code></td>
+              <td>Text color of the links.</td>
+            </tr>
+            <tr>
+              <td><code>--fg-hover</code></td>
+              <td><code>var(--ui-neutral-950)</code></td>
+              <td>Text color of a link on hover.</td>
+            </tr>
+            <tr>
+              <td><code>--fg-active</code></td>
+              <td><code>var(--ui-neutral-950)</code></td>
+              <td>Text color of the current link.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `.tab-links {\n  --bg: var(--ui-neutral-100);\n  --bg-active: var(--ui-neutral-0);\n}`,
+              80,
+              "css",
+            ),
           )}
         </div>
       </div>

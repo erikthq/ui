@@ -15,7 +15,7 @@ button,
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
-  border-radius: 0.57rem;
+  border-radius: var(--ui-rounded-3);
 
   font: inherit;
   line-height: calc((16 / 14) * 1rem);
@@ -81,7 +81,7 @@ button,
 
   &.round {
     padding-inline: var(--ui-spacing-2);
-    border-radius: 100px;
+    border-radius: var(--ui-rounded-full);
   }
 
   &.square:not(.avatar) {

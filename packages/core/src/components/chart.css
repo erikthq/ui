@@ -95,7 +95,7 @@ table.chart {
           height: calc(var(--v) * 1%);
           min-height: 3px;
           background: var(--chart-color);
-          border-radius: 999px;
+          border-radius: var(--ui-rounded-full);
           transition: height 0.3s var(--ease-glide);
         }
       }

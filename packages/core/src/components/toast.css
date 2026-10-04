@@ -41,7 +41,6 @@
   }
 
   > article {
-    border-radius: var(--card-border-radius, 12px);
     box-shadow:
       0 0 0 1px var(--ui-neutral-100) inset,
       0 12px 32px oklch(0% 0 0 / 0.14);

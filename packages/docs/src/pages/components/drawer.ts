@@ -19,18 +19,22 @@ export async function DrawerPage(path: string) {
           <h1>Drawer</h1>
           <p>
             A <code>&lt;dialog&gt;</code> variant that slides in from the edge
-            of the screen instead of appearing centered. It's built entirely
-            on top of the <a href="/components/dialog">Dialog</a> component,
-            just add the <code>drawer</code> class.
+            of the screen instead of appearing centered. It's built entirely on
+            top of the <a href="/components/dialog">Dialog</a> component, just
+            add the <code>drawer</code> class.
           </p>
         </hgroup>
 
         <h2 id="default">Default</h2>
         <p>
-          Add the <code>drawer</code> class to a <code>&lt;dialog&gt;</code>.
-          By default it slides in from the right. Everything else, including
+          Add the <code>drawer</code> class to a <code>&lt;dialog&gt;</code>. By
+          default it slides in from the right. Everything else, including
           <code>.showModal()</code>, <code>closedby</code>, and
           <code>scroll-lock</code>, works exactly like a regular dialog.
+        </p>
+        <p>
+          The Drawer doesn't have a background color, so place an
+          <a href="/components/card">Card</a> as the first child.
         </p>
       </div>
       <div class="example">
@@ -80,7 +84,12 @@ export async function DrawerPage(path: string) {
           <button onclick="document.getElementById('drawer-left').showModal()">
             Left
           </button>
-          <dialog id="drawer-left" class="drawer" data-position="left" closedby="any">
+          <dialog
+            id="drawer-left"
+            class="drawer"
+            data-position="left"
+            closedby="any"
+          >
             <article>
               <p style="margin-bottom: 1rem;">Slides in from the left.</p>
               <form method="dialog">
@@ -92,7 +101,12 @@ export async function DrawerPage(path: string) {
           <button onclick="document.getElementById('drawer-right').showModal()">
             Right
           </button>
-          <dialog id="drawer-right" class="drawer" data-position="right" closedby="any">
+          <dialog
+            id="drawer-right"
+            class="drawer"
+            data-position="right"
+            closedby="any"
+          >
             <article>
               <p style="margin-bottom: 1rem;">Slides in from the right.</p>
               <form method="dialog">
@@ -104,7 +118,12 @@ export async function DrawerPage(path: string) {
           <button onclick="document.getElementById('drawer-top').showModal()">
             Top
           </button>
-          <dialog id="drawer-top" class="drawer" data-position="top" closedby="any">
+          <dialog
+            id="drawer-top"
+            class="drawer"
+            data-position="top"
+            closedby="any"
+          >
             <article>
               <p style="margin-bottom: 1rem;">Slides in from the top.</p>
               <form method="dialog">
@@ -113,10 +132,17 @@ export async function DrawerPage(path: string) {
             </article>
           </dialog>
 
-          <button onclick="document.getElementById('drawer-bottom').showModal()">
+          <button
+            onclick="document.getElementById('drawer-bottom').showModal()"
+          >
             Bottom
           </button>
-          <dialog id="drawer-bottom" class="drawer" data-position="bottom" closedby="any">
+          <dialog
+            id="drawer-bottom"
+            class="drawer"
+            data-position="bottom"
+            closedby="any"
+          >
             <article>
               <p style="margin-bottom: 1rem;">Slides in from the bottom.</p>
               <form method="dialog">

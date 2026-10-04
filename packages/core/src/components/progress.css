@@ -7,7 +7,7 @@ progress {
   appearance: none;
   width: 100%;
   height: 0.25rem;
-  border-radius: 100px;
+  border-radius: var(--ui-rounded-full);
   border: none;
   overflow: hidden;
 
@@ -17,12 +17,12 @@ progress {
 
   &::-webkit-progress-value {
     background: var(--ui-primary);
-    border-radius: 100px;
+    border-radius: var(--ui-rounded-full);
   }
 
   &::-moz-progress-bar {
     background: var(--ui-primary);
-    border-radius: 100px;
+    border-radius: var(--ui-rounded-full);
   }
 
   &:indeterminate {

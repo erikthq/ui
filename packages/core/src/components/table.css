@@ -135,6 +135,10 @@ td:last-child {
   text-align: right;
 }
 
+table.align-left :is(th, td):last-child {
+  text-align: left;
+}
+
 thead > tr > th {
   font-weight: 600;
   color: var(--ui-neutral-600);

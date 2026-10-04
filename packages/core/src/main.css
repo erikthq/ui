@@ -64,7 +64,6 @@
   :root,
   :host {
     --ui-spacing: 0.25em;
-
     --ui-spacing-1: calc(var(--ui-spacing) * 1);
     --ui-spacing-2: calc(var(--ui-spacing) * 2);
     --ui-spacing-3: calc(var(--ui-spacing) * 3);
@@ -73,6 +72,18 @@
     --ui-spacing-6: calc(var(--ui-spacing) * 6);
     --ui-spacing-7: calc(var(--ui-spacing) * 7);
     --ui-spacing-8: calc(var(--ui-spacing) * 8);
+
+    --ui-rounded: 2px;
+    --ui-rounded-scale: 1;
+    --ui-rounded-1: calc(var(--ui-rounded) * var(--ui-rounded-scale));
+    --ui-rounded-2: calc((var(--ui-rounded) + var(--ui-spacing-1)) * var(--ui-rounded-scale));
+    --ui-rounded-3: calc((var(--ui-rounded) + var(--ui-spacing-2)) * var(--ui-rounded-scale));
+    --ui-rounded-4: calc((var(--ui-rounded) + var(--ui-spacing-3)) * var(--ui-rounded-scale));
+    --ui-rounded-5: calc((var(--ui-rounded) + var(--ui-spacing-4)) * var(--ui-rounded-scale));
+    --ui-rounded-6: calc((var(--ui-rounded) + var(--ui-spacing-5)) * var(--ui-rounded-scale));
+    --ui-rounded-7: calc((var(--ui-rounded) + var(--ui-spacing-6)) * var(--ui-rounded-scale));
+    --ui-rounded-8: calc((var(--ui-rounded) + var(--ui-spacing-7)) * var(--ui-rounded-scale));
+    --ui-rounded-full: calc((infinity * 1px) * var(--ui-rounded-scale));
 
     --ui-background-color: var(--ui-neutral-50);
     --ui-text-color: var(--ui-neutral-950);

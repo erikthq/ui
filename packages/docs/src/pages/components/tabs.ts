@@ -8,6 +8,7 @@ const toc = [
   { id: "disabled", label: "Disabled tab" },
   { id: "with-cards", label: "With content" },
   { id: "nested", label: "Nested" },
+  { id: "custom-properties", label: "Custom properties" },
 ];
 
 export async function TabsPage(path: string) {
@@ -642,6 +643,63 @@ export async function TabsPage(path: string) {
             }
 
           </style>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="custom-properties">Custom properties</h2>
+        <p>
+          Set these on the <code>.tabs</code> element to override its built-in
+          styling. Each one falls back to a global token, so an unset property
+          keeps the tabs in line with the rest of the system.
+        </p>
+
+        <table class="align-left">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--bg</code></td>
+              <td><code>var(--ui-neutral-200)</code></td>
+              <td>Background of the tab list.</td>
+            </tr>
+            <tr>
+              <td><code>--bg-active</code></td>
+              <td><code>var(--ui-neutral-50)</code></td>
+              <td>Background of the highlight behind the selected tab.</td>
+            </tr>
+            <tr>
+              <td><code>--fg</code></td>
+              <td><code>var(--ui-neutral-800)</code></td>
+              <td>Text color of the tabs.</td>
+            </tr>
+            <tr>
+              <td><code>--fg-hover</code></td>
+              <td><code>var(--ui-neutral-950)</code></td>
+              <td>Text color of a tab on hover.</td>
+            </tr>
+            <tr>
+              <td><code>--fg-active</code></td>
+              <td><code>var(--ui-neutral-950)</code></td>
+              <td>Text color of the selected tab.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `.tabs {\n  --bg: var(--ui-neutral-100);\n  --bg-active: var(--ui-neutral-0);\n}`,
+              80,
+              "css",
+            ),
           )}
         </div>
       </div>

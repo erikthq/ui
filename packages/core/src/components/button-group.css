@@ -14,11 +14,11 @@ fieldset[role="group"]:not(.color-swatch) {
     box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
 
     &:first-child {
-      border-radius: 0.57rem 0 0 0.57rem;
+      border-radius: var(--ui-rounded-3) 0 0 var(--ui-rounded-3);
     }
 
     &:last-child {
-      border-radius: 0 0.57rem 0.57rem 0;
+      border-radius: 0 var(--ui-rounded-3) var(--ui-rounded-3) 0;
       margin-right: 0;
     }
 
@@ -37,7 +37,7 @@ fieldset[role="group"]:not(.color-swatch) {
   }
 
   & > :only-child:not(.field) {
-    border-radius: 0.57rem;
+    border-radius: var(--ui-rounded-3);
   }
 
   & > input {
@@ -59,7 +59,7 @@ fieldset[role="group"]:not(.color-swatch) {
 fieldset[role="group"]:has(> label.toggle > input[type="radio"]) {
   position: relative;
   background-color: var(--ui-neutral-200);
-  border-radius: calc(0.57rem + 1px);
+  border-radius: calc(var(--ui-rounded-3) + 1px);
 
   anchor-name: --toggle-highlight;
   anchor-scope: --toggle-highlight;
@@ -92,7 +92,7 @@ fieldset[role="group"]:has(> label.toggle > input[type="radio"]) {
     bottom: calc(anchor(bottom) + 1px);
     z-index: 0;
 
-    border-radius: 0.57rem;
+    border-radius: var(--ui-rounded-3);
     background-color: var(--ui-neutral-50);
     pointer-events: none;
 
@@ -103,7 +103,7 @@ fieldset[role="group"]:has(> label.toggle > input[type="radio"]) {
 /* Same track/pill visual language for independent (checkbox) toggle groups, no shared indicator since more than one can be checked */
 fieldset[role="group"]:has(> label.toggle > input[type="checkbox"]) {
   background-color: var(--ui-neutral-200);
-  border-radius: calc(0.57rem + 1px);
+  border-radius: calc(var(--ui-rounded-3) + 1px);
   padding: 1px;
 
   display: inline-flex;
@@ -112,7 +112,6 @@ fieldset[role="group"]:has(> label.toggle > input[type="checkbox"]) {
   & > label.toggle {
     box-shadow: none;
     margin-right: 0;
-    /* border-radius: 0.57rem; */
     background-color: transparent;
 
     &:has(> input:checked) {

@@ -106,7 +106,7 @@ export async function CustomizationPage(path: string) {
           The same works for spacing, font sizes, colors, transitions, anything
           else. Tokens like <code>--ui-primary</code> go further. Change one and
           every component that reads it updates at once. See
-          <a href="/themes">Themes</a> for the full list.
+          <a href="/getting-started/colors">Colors</a> for the full list.
         </p>
       </div>
     `,

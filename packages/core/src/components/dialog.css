@@ -5,9 +5,9 @@ dialog {
   inset: 0;
   margin: auto;
   z-index: 1;
-  background: var(--ui-background-color);
+  background-color: transparent;
   border: none;
-  border-radius: 12px;
+  
   padding: 0;
   max-width: min(480px, calc(100vw - 2rem));
   max-height: none;
