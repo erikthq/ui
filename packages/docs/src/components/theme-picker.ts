@@ -117,7 +117,7 @@ export function ThemePicker() {
         }
 
         input:not([type="color"]) {
-          width: 2.5rem;
+          --size: 2.5rem;
         }
 
         small {
