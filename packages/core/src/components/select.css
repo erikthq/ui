@@ -1,7 +1,7 @@
 select {
   appearance: none;
   border: none;
-  box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+  box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
@@ -55,7 +55,7 @@ select {
     justify-content: space-between;
     background-color: transparent;
     color: var(--ui-neutral-950);
-    box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+    box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
     @media (hover: hover) {
       &:hover {

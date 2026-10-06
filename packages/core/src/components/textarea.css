@@ -2,8 +2,8 @@ textarea {
   appearance: none;
   border: none;
 
-  background-color: transparent;
-  box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+  background-color: var(--bg, transparent);
+  box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
@@ -34,7 +34,7 @@ textarea {
   }
 }
 
-article > textarea {
+/* article > textarea {
   box-shadow: none;
   border-radius: 0;
-}
+} */

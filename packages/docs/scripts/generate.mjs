@@ -43,6 +43,7 @@ const routes = [
   "/components/expander",
   "/components/file-drop",
   "/components/code",
+  "/components/heading-group",
   "/components/kbd",
   "/components/loading",
   "/components/popover",

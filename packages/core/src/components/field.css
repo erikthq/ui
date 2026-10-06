@@ -1,7 +1,7 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: var(--ui-spacing-2);
+  gap: var(--ui-spacing-3);
 
   > span:not([data-prefix]):not([data-suffix]) {
     font-weight: 600;

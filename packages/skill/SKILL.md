@@ -57,7 +57,7 @@ Each rule links to a file with incorrect and correct code.
 
 ### Overlays → [rules/overlays.md](./rules/overlays.md)
 
-- **Dropdowns, menus and popovers use `popover` + `popovertarget`.** Put the popover element right after its trigger.
+- **Dropdowns, menus and popovers use `popover` + `popovertarget`.** Put the popover element right after its trigger. If the trigger is in a button group, put the popover after the `</fieldset>` instead, or the group's corners break.
 - **Menus are `<menu>` with `<li><button class="ghost">`.** Separators are `<li><hr /></li>`, group labels are `<li><small>`.
 - **Modals are `<dialog closedby="any">` with an `<article>` inside.** Close buttons sit in `<form method="dialog">`.
 - **Side panels are `<dialog class="drawer">`.** Set the edge with `data-position`.
@@ -128,52 +128,55 @@ Each rule links to a file with incorrect and correct code.
 
 ## Component selection
 
-| Need | Use |
-| --- | --- |
-| Action | `<button>`. Variants: `outlined`, `secondary`, `ghost`, `link`, `destructive`. Shape: `square`, `round` |
-| Link styled as button | `<a class="button">` |
-| Related buttons joined | `<fieldset role="group">` (button group) |
-| Text input | `<input>` inside `label.field`. Prefix and suffix with `data-prefix` / `data-suffix` |
-| Long text | `<textarea>` (grows with content) |
-| Pick one from a list | `<select>` |
-| Pick one, searchable | `<input list>` + `<datalist>` |
-| Number, date, color | `<input type="number">`, `type="date"`, `type="color"` |
-| On/off setting | `<input type="checkbox" class="switch">` |
-| Checkbox or radio list | `<fieldset>` + `<legend>` + `<label><input></label>` |
-| 2 to 5 options as buttons | Toggle group: `<fieldset role="group">` + `<label class="toggle">` with radio inputs |
-| Pressable on/off button | `<label class="toggle"><input type="checkbox" />...</label>` |
-| Selectable tags | `<label><input type="checkbox" /><span class="badge">Tag</span></label>` |
-| Color choice | `fieldset.color-swatch` with radios and `--swatch-color` |
-| File upload | `label.file-drop` |
-| One-time code | `<span class="otp"><input maxlength="6" /></span>` |
-| Slider | `<input type="range">` |
-| Surface | `<article>`. Variants: `secondary`, `tertiary`, `transparent` |
-| Callout | `<article role="status">` or `role="alert"`. Colors: `primary`, `constructive`, `destructive`, `color1` to `color6` |
-| Status label | `<span class="badge">` with the same color classes, plus `outlined` |
-| Empty state | `<section class="empty">` |
-| Loading | `aria-busy` (spinner), `.skeleton` (placeholder), `<progress>` |
-| Data table | `<table>`. Column sizes with `--cols`. Classes: `zebra`, `align-left` |
-| Key/value list | `<dl>` |
-| User picture | `.avatar` on `<img>` or `<span>` |
-| Event list | `<ol class="timeline">` |
-| Collapsible section | `<details>` + `<summary>` + `<div>`. Same `name` for one-open-at-a-time |
-| Show more text | `div.expander` |
-| File tree | `<ul class="tree">` |
-| Tabs (same page) | `section.tabs` with radio inputs in `header[role=tablist]` |
-| Tabs (links between pages) | `<nav class="tab-links">` with `aria-current="page"` |
-| Breadcrumbs | `<nav aria-label="Breadcrumb"><ol>` |
-| Pagination | `<nav class="pagination">` |
-| Dropdown or menu | `[popover]` + `<menu>`. Nested menus with `data-placement="right top"` |
-| Floating panel | `[popover]` with an `<article>` inside |
-| Modal | `<dialog>` + `<article>` |
-| Side panel | `<dialog class="drawer" data-position="right">` |
-| Toast | `<div popover class="toast">` |
-| Tooltip | `data-tooltip` + `aria-label` |
-| Keyboard shortcut | `<kbd>` |
-| Article text | `.prose`, `<hgroup>`, `<blockquote>` |
-| Divider | `<hr>`. With a label: `<hr data-label="...">` |
-| Scrolling logos or tags | `div.marquee` |
-| Bar chart | `<table class="chart">` |
+| Need | Use | Also good for |
+| --- | --- | --- |
+| Action | `<button>`. Variants: `outlined`, `secondary`, `ghost`, `link`, `destructive`. Shape: `square`, `round` | Icon-only button: `square` + `aria-label`. Full-width pill button: `round` + `width: 100%` |
+| Link styled as button | `<a class="button">` |  |
+| Related buttons joined | `<fieldset role="group">` (button group) | Segmented controls, split buttons |
+| Text input | `<input>` inside `label.field`. Prefix and suffix with `data-prefix` / `data-suffix` | Search bars with an icon prefix and a `<kbd>` suffix |
+| Long text | `<textarea>` (grows with content) |  |
+| Pick one from a list | `<select>` |  |
+| Pick one, searchable | `<input list>` + `<datalist>` |  |
+| Number, date, color | `<input type="number">`, `type="date"`, `type="color"` |  |
+| On/off setting | `<input type="checkbox" class="switch">` | Settings rows inside a card |
+| Checkbox or radio list | `<fieldset>` + `<legend>` + `<label><input></label>` |  |
+| 2 to 5 options as buttons | Toggle group: `<fieldset role="group">` + `<label class="toggle">` with radio inputs | View switchers (list/grid), text alignment, time ranges |
+| Pressable on/off button | `<label class="toggle"><input type="checkbox" />...</label>` |  |
+| Selectable tags | `<label><input type="checkbox" /><span class="badge">Tag</span></label>` |  |
+| Color choice | `fieldset.color-swatch` with radios and `--swatch-color` |  |
+| File upload | `label.file-drop` |  |
+| One-time code | `<span class="otp"><input maxlength="6" /></span>` |  |
+| Slider | `<input type="range">` |  |
+| Surface | `<article>`. Variants: `secondary`, `tertiary`, `transparent` | Any boxed area: login card, pricing tier, stat tile, sidebar panel |
+| Callout | `<article role="status">` or `role="alert"`. Colors: `primary`, `constructive`, `destructive`, `color1` to `color6` | Inline form errors, info banners, the body of a toast |
+| Status label | `<span class="badge">` with the same color classes, plus `outlined` | Counts, "New" tags, plan names, role labels |
+| Empty state | `<section class="empty">` | Any centered block of icon + heading + text + actions: login and signup cards, success screens, onboarding steps, 404 pages |
+| Loading | `aria-busy` (spinner), `.skeleton` (placeholder), `<progress>` |  |
+| Data table | `<table>`. Column sizes with `--cols`. Classes: `zebra`, `align-left` |  |
+| Key/value list | `<dl>` | Order summaries, profile details, metadata |
+| User picture | `.avatar` on `<img>` or `<span>` | Any round icon or initials badge, like a header icon on a card |
+| Event list | `<ol class="timeline">` | Activity feeds, order tracking, step-by-step guides |
+| Collapsible section | `<details>` + `<summary>` + `<div>`. Same `name` for one-open-at-a-time | FAQs, advanced settings, filter groups |
+| Show more text | `div.expander` |  |
+| File tree | `<ul class="tree">` |  |
+| Tabs (same page) | `section.tabs` with radio inputs in `header[role=tablist]` |  |
+| Tabs (links between pages) | `<nav class="tab-links">` with `aria-current="page"` |  |
+| Breadcrumbs | `<nav aria-label="Breadcrumb"><ol>` |  |
+| Pagination | `<nav class="pagination">` |  |
+| Dropdown or menu | `[popover]` + `<menu>`. Nested menus with `data-placement="right top"` |  |
+| Floating panel | `[popover]` with an `<article>` inside | Notification lists, quick forms, share panels |
+| Modal | `<dialog>` + `<article>` | Confirmations, forms, login and signup |
+| Side panel | `<dialog class="drawer" data-position="right">` |  |
+| Toast | `<div popover class="toast">` |  |
+| Tooltip | `data-tooltip` + `aria-label` |  |
+| Heading with subtitle | `<hgroup>` with a heading and a `<p>` (heading group) | Card titles, form titles, page headers |
+| Keyboard shortcut | `<kbd>` | Shortcut hints in menus, buttons and search inputs |
+| Article text | `.prose`, `<hgroup>`, `<blockquote>` |  |
+| Divider | `<hr>`. With a label: `<hr data-label="...">` | "OR" between login options, section breaks in menus and cards |
+| Scrolling logos or tags | `div.marquee` |  |
+| Bar chart | `<table class="chart">` |  |
+
+For larger UI built from these parts (login card, settings page, table with toolbar, pricing card), see [rules/recipes.md](./rules/recipes.md).
 
 Anything in this table that the key patterns above don't show: fetch `https://ui.erikt.me/components/<name>` before you write the markup. Don't guess class names.
 
@@ -221,7 +224,8 @@ More in [rules/styling.md](./rules/styling.md).
 ## Detailed references
 
 - [rules/forms.md](./rules/forms.md): field, validation, prefix and suffix, fieldsets, switches, toggle groups, select
-- [rules/composition.md](./rules/composition.md): card, alert, badge, empty, loading, buttons vs links, tabs, typography
+- [rules/composition.md](./rules/composition.md): card, alert, badge, empty, loading, buttons vs links, tabs, typography, heading group
 - [rules/overlays.md](./rules/overlays.md): popover, menu, dialog, drawer, tooltip, toast
 - [rules/styling.md](./rules/styling.md): tokens, radius scale, layout, overrides, icons, dark mode
+- [rules/recipes.md](./rules/recipes.md): login card, settings page, confirmation modal, table with toolbar, stat tiles, pricing card
 - [rules/frameworks.md](./rules/frameworks.md): React, Vue, Svelte and Tailwind

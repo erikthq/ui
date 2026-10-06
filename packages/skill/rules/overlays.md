@@ -6,6 +6,7 @@ Every overlay uses a browser feature. Dialogs use `<dialog>`. Menus, popovers an
 
 - Choosing an overlay
 - Popover and dropdown
+- Popovers go outside a button group
 - Menu structure
 - Nested menus
 - Dialog
@@ -60,6 +61,38 @@ Popover options:
 - Put an `<article>` inside for a panel with a header and footer.
 
 Every popover `id` on the page must be unique. In a list or table, add the row id: `popovertarget="actions-42"`.
+
+### Popovers go outside a button group
+
+When the trigger is inside a button group (`<fieldset role="group">`), put the popover after the closing `</fieldset>`, not inside it. The group rounds the corners of its first and last child. A popover inside the group counts as a child, so the last button loses its rounded corners. The `popovertarget` link still works when the popover is outside.
+
+**Incorrect:**
+
+```html
+<fieldset role="group">
+  <button class="ghost">Snooze</button>
+  <button class="ghost square" aria-label="More" popovertarget="more">
+    <svg><!-- dots --></svg>
+  </button>
+  <div id="more" popover>
+    <menu>...</menu>
+  </div>
+</fieldset>
+```
+
+**Correct:**
+
+```html
+<fieldset role="group">
+  <button class="ghost">Snooze</button>
+  <button class="ghost square" aria-label="More" popovertarget="more">
+    <svg><!-- dots --></svg>
+  </button>
+</fieldset>
+<div id="more" popover>
+  <menu>...</menu>
+</div>
+```
 
 ---
 

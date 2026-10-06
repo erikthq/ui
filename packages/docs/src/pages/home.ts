@@ -7,12 +7,24 @@ import { readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { resolve } from "node:path";
 import homeShowcase from "../components/home-showcase";
+import { LoginForm } from "../components/showcase/login-form";
+import { MilestoneForm } from "../components/showcase/milestone-form";
+import { ReferralSurvey } from "../components/showcase/referral-survey";
+import { ButtonGroups } from "../components/showcase/button-groups";
+import { SavingsTargets } from "../components/showcase/savings-targets";
+import { ComponentSampler } from "../components/showcase/component-sampler";
+import { Menus } from "../components/showcase/menus";
+import { Tabs } from "../components/showcase/tabs";
+import { PayoutThreshold } from "../components/showcase/payout-threshold";
 
 const cdnUrl = `https://esm.sh/@erikt/ui`;
 
 function getMainCssSize() {
+  const path = "core/dist/ui.css";
+
   try {
-    const cssPath = resolve(import.meta.dirname, "../../../../ui.css");
+    const cssPath = resolve(import.meta.dirname, "../../..", path);
+    console.log(cssPath);
     const css = readFileSync(cssPath);
     const compressed = gzipSync(css);
     return (compressed.byteLength / 1024).toFixed(1);
@@ -32,13 +44,17 @@ export async function HomePage(path: string) {
 
       <section class="home-hero prose">
         <hgroup>
-          <h1>One stylesheet.<br />That's it.</h1>
+          <h1>
+            A UI library for building your next design system in a single CSS
+            file
+          </h1>
           <p>
-            Modern CSS has closed most of the gap that large UI libraries were
-            built to fill. erikt/ui covers the rest.
+            Write semantic HTML and it just looks good. No JavaScript, no build
+            step, and your own CSS always wins.
             ${cssSize ? html`<code>${cssSize} kB</code> gzipped.` : ""}
           </p>
         </hgroup>
+
         <div>
           <a href="${url("/getting-started/introduction")}" class="button">
             Get started
@@ -56,9 +72,15 @@ export async function HomePage(path: string) {
         </div>
       </section>
 
-      <hr style="margin: 0 0 -1px 0" />
+      <div class="home-swatches">${ColorSwatches()}</div>
 
-      <section class="home-theme-section tabs">
+      <div class="home-components-showcase">
+        ${LoginForm()} ${MilestoneForm()} ${ReferralSurvey()} ${Tabs()}
+        ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
+        ${PayoutThreshold()} ${ButtonGroups()}
+      </div>
+
+      <!-- <section class="home-theme-section tabs">
         <div class="header">
           <header role="tablist" aria-label="Components">
             <label>
@@ -81,8 +103,6 @@ export async function HomePage(path: string) {
               Colors
             </label>
           </header>
-
-          ${ColorSwatches()}
         </div>
 
         <div class="tabpanels">
@@ -103,35 +123,33 @@ export async function HomePage(path: string) {
             <div class="home-themes-showcase">
               <ul>
                 ${[
-                  "primary",
-                  "neutral",
-                  "constructive",
-                  "destructive",
-                  "color1",
-                  "color2",
-                  "color3",
-                  "color4",
-                  "color5",
-                  "color6",
-                ].map(
-                  (name) => html`
-                    <li>
-                      <ul>
-                        ${[
-                          50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950,
-                        ].map(
-                          (step) => html`
-                            <li
-                              class="home-themes-swatch"
-                              style="background:var(--ui-${name}-${step})"
-                              title="${name}-${step}"
-                            ></li>
-                          `,
-                        )}
-                      </ul>
-                    </li>
-                  `,
-                )}
+        "primary",
+        "neutral",
+        "constructive",
+        "destructive",
+        "color1",
+        "color2",
+        "color3",
+        "color4",
+        "color5",
+        "color6",
+      ].map(
+        (name) => html`
+          <li>
+            <ul>
+              ${[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map(
+                (step) => html`
+                  <li
+                    class="home-themes-swatch"
+                    style="background:var(--ui-${name}-${step})"
+                    title="${name}-${step}"
+                  ></li>
+                `,
+              )}
+            </ul>
+          </li>
+        `,
+      )}
               </ul>
 
               <div class="home-themes-modes">
@@ -169,51 +187,19 @@ export async function HomePage(path: string) {
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <hr style="margin: -1px 0 0 0" />
+      <!-- <hr style="margin: -1px 0 0 0" /> -->
 
-      <section class="home-code">
-        <div class="code-block">
-          ${raw(
-            await highlight(
-              `<button>Save changes</button>\n` +
-                `<button class="outlined">Cancel</button>\n` +
-                `<button class="ghost">Reset</button>\n` +
-                `\n` +
-                `<label>\n` +
-                `  <svg data-prefix><!-- icon --></svg>\n` +
-                `  <input type="search" placeholder="Search..." />\n` +
-                `</label>\n` +
-                `\n` +
-                `<fieldset role="group">\n` +
-                `  <button class="ghost">Week</button>\n` +
-                `  <button class="ghost">Month</button>\n` +
-                `  <button class="ghost">Year</button>\n` +
-                `</fieldset>\n` +
-                `\n` +
-                `<article>\n` +
-                `  <header>Card title</header>\n` +
-                `  <p>Some content inside a card.</p>\n` +
-                `  <footer>\n` +
-                `    <button class="ghost">Cancel</button>\n` +
-                `    <button>Save</button>\n` +
-                `  </footer>\n` +
-                `</article>`,
-            ),
-          )}
-        </div>
-      </section>
-
-      <hr style="margin: -1px 0 0 0" />
+      <!-- <hr style="margin: -1px 0 0 0" /> -->
 
       <section class="home-features">
         <div class="home-feature-card prose">
           <p><small>Reset + UI in one import</small></p>
           <h2>Batteries included</h2>
           <p>
-            @erikt/ui normalizes browser defaults and builds on top of them.
-            One stylesheet, one import, and you have both the reset and the
+            @erikt/ui normalizes browser defaults and builds on top of them. One
+            stylesheet, one import, and you have both the reset and the
             components.
           </p>
         </div>
@@ -241,16 +227,17 @@ export async function HomePage(path: string) {
         </div>
       </section>
 
-      <hr style="margin: -1px 0 0 0" />
-
-      <footer class="home-footer">
-        <div class="home-footer-inner">
-          <span>@erikt/ui</span>
-          <span>MIT License</span>
-          <a href="https://github.com/erikthq/ui" target="_blank" rel="noopener"
-            >GitHub</a
+      <footer class="home-footer prose">
+        <p>
+          Built by erikt. Code available on
+          <a
+            href="https://github.com/erikthq/ui"
+            target="_blank"
+            rel="noopener"
           >
-        </div>
+            GitHub
+          </a>
+        </p>
       </footer>
     `,
   });

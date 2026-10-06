@@ -53,7 +53,7 @@ article[role="status"] {
     grid-row: 1 / 2;
   }
 
-  &:not(:has(:nth-child(4))) {
+  &:not(:has(> :nth-child(4))) {
     > button,
     > .button {
       margin: calc(var(--ui-spacing-2) * -1);

@@ -18,12 +18,13 @@ input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
 input[type="month"],
-input[type="week"] {
+input[type="week"],
+input:not([type]) {
   appearance: none;
   border: none;
 
-  background-color: transparent;
-  box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+  background-color: var(--bg, transparent);
+  box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);

@@ -48,7 +48,7 @@ export async function TextareaPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article style="width:100%">
+          <article style="width:100%" data-focus-within>
             <header
               style="display:flex;align-items:center;gap:var(--ui-spacing-2)"
             >
@@ -63,8 +63,9 @@ export async function TextareaPage(path: string) {
               </button>
             </header>
             <textarea
-              style="border-radius:0;resize:none;font-family:monospace"
+              style="border-radius:0;resize:none;font-family:monospace;box-shadow:none"
               rows="6"
+              data-focus
             >
 console.log('Hello, world!');</textarea
             >
@@ -82,7 +83,7 @@ console.log('Hello, world!');</textarea
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article>
+            await highlight(`<article data-focus-within>
   <header style="display:flex;align-items:center;gap:8px">
     <svg><!-- brand-javascript --></svg>
     <span>script.js</span>
@@ -90,7 +91,7 @@ console.log('Hello, world!');</textarea
     <button class="ghost square" aria-label="Reload" data-tooltip><svg>...</svg></button>
     <button class="ghost square" aria-label="Copy" data-tooltip><svg>...</svg></button>
   </header>
-  <textarea style="border-radius:0;resize:none">
+  <textarea data-focus style="border-radius:0;resize:none;box-shadow:none">
     console.log('Hello, world!');
   </textarea>
   <footer style="display:flex;align-items:center;justify-content:space-between">

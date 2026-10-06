@@ -5,48 +5,6 @@
   z-index: -1;
   margin-top: -1px;
 
-  /* background-color: var(--ui-background-color);
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      transparent 0,
-      transparent 1.6666666666666667px,
-      var(--ui-background-color) 1.6666666666666667px,
-      var(--ui-background-color) 5px,
-      transparent 5px,
-      transparent 6.666666666666667px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 1.6666666666666667px,
-      var(--ui-background-color) 1.6666666666666667px,
-      var(--ui-background-color) 5px,
-      transparent 5px,
-      transparent 6.666666666666667px
-    ),
-    linear-gradient(
-      to bottom,
-      var(--ui-neutral-200) 0.6px,
-      transparent 0.6px
-    ),
-    linear-gradient(to right, var(--ui-neutral-200) 0.6px, transparent 0.6px);
-  background-size:
-    100% 100%,
-    100% 100%,
-    20px 20px,
-    20px 20px;
-  background-position:
-    0 0,
-    0 0,
-    0 -0.2px,
-    -0.2px 0; */
-
-  /* background-image:
-    linear-gradient(var(--ui-neutral-500) 2px, transparent 2px),
-    linear-gradient(to right, var(--ui-neutral-500) 2px, transparent 2px);
-  background-size: 45px 45px; */
-
   background-image: radial-gradient(var(--ui-neutral-200) 1px, transparent 1px);
   background-size: 25px 25px;
 
@@ -61,24 +19,30 @@
   max-width: 960px;
   margin: 0 auto;
 
+  display: grid;
+  justify-items: center;
+
   @media (min-width: 769px) {
     padding-inline: 2rem;
     padding-top: 8rem;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
   }
 
   hgroup {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    margin-bottom: 1rem;
+
     h1 {
       font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.1;
-      letter-spacing: -0.02em;
     }
 
     p {
       font-size: 1.125rem;
-      max-width: 480px;
+      max-width: 45ch;
+      margin-top: 1.5rem;
 
       code {
         background-color: var(--ui-constructive-200);
@@ -187,7 +151,7 @@
 .home-showcase {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 960px;
+  max-width: 1680px;
   margin: 0 auto;
   border-block: 1px solid var(--border);
   gap: 1px;
@@ -226,6 +190,43 @@
   }
 }
 
+/* Masonry with CSS columns, upgraded to native masonry where supported */
+/* Same width and side padding as the showcase, so the swatches line up with its right edge */
+.home-swatches {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+.home-components-showcase {
+  /* Up to 4 columns, each at least 16rem wide */
+  columns: 4 16rem;
+  column-gap: 1.5rem;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+
+  > * {
+    break-inside: avoid;
+    margin-block-end: 1.5rem;
+  }
+
+  @supports (display: grid-lanes) {
+    display: grid-lanes;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(max(min(100%, 16rem), (100% - 3 * 1.5rem) / 4), 1fr)
+    );
+    gap: 1.5rem;
+
+    > * {
+      margin-block-end: 0;
+    }
+  }
+}
+
 .home-code {
   max-width: 960px;
   margin: 0 auto;
@@ -240,8 +241,6 @@
 }
 
 .home-features {
-  border: 1px solid var(--border);
-  border-top: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   max-width: 960px;
@@ -251,14 +250,6 @@
 .home-feature-card {
   padding: 2.5rem 2rem;
   border-right: none;
-
-  @media (min-width: 769px) {
-    border-right: 1px solid var(--border);
-  }
-
-  &:last-child {
-    border-right: none;
-  }
 
   small {
     font-family: monospace;
@@ -271,24 +262,14 @@
 }
 
 .home-footer {
+  width: stretch;
   max-width: 960px;
+  text-align: center;
   margin: 0 auto;
-  border: 1px solid var(--border);
-  border-top: none;
-  padding: 3rem 2rem;
+  padding: 1rem 2rem;
+
   display: flex;
-  gap: 2rem;
-  align-items: center;
-  font-size: 0.875rem;
+  justify-content: center;
+
   color: var(--ui-neutral-600);
-
-  a {
-    color: inherit;
-    text-decoration: none;
-    margin-left: auto;
-
-    &:hover {
-      color: var(--ui-text-color);
-    }
-  }
 }

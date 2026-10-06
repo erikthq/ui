@@ -3,7 +3,13 @@ input[type="time"],
 input[type="datetime-local"],
 input[type="month"],
 input[type="week"] {
+  /* Chrome makes these parts 2px taller than the line height, which makes the input 2px taller than a text input */
+  &::-webkit-datetime-edit-fields-wrapper {
+    padding-block: 0;
+  }
+
   &::-webkit-calendar-picker-indicator {
+    margin-block: -1px;
     opacity: 0.5;
     cursor: pointer;
 

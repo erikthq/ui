@@ -1,11 +1,12 @@
 input[type="range"] {
   appearance: none;
   width: 100%;
-  height: 0.25rem;
+  height: var(--ui-spacing-2);
   border-radius: var(--ui-rounded-full);
   background: linear-gradient(to right, var(--ui-primary) calc(var(--pct, 0) * 100%), var(--ui-neutral-200) calc(var(--pct, 0) * 100%));
   cursor: pointer;
   outline: none;
+  margin-block: calc(var(--ui-spacing-2) + 2px);
 
   &::-webkit-slider-thumb {
     appearance: none;
@@ -13,7 +14,7 @@ input[type="range"] {
     aspect-ratio: 1;
     border-radius: var(--ui-rounded-full);
     background: var(--ui-background-color);
-    box-shadow: 0 0 0 1.5px var(--ui-neutral-300) inset;
+    box-shadow: 0 0 0 2px var(--ui-primary) inset;
     transition: outline-color 100ms;
   }
 
@@ -23,7 +24,7 @@ input[type="range"] {
     border-radius: var(--ui-rounded-full);
     border: none;
     background: var(--ui-background-color);
-    box-shadow: 0 0 0 1.5px var(--ui-neutral-300) inset;
+    box-shadow: 0 0 0 2px var(--ui-primary) inset;
     cursor: pointer;
   }
 
@@ -35,13 +36,13 @@ input[type="range"] {
   &:focus-visible::-webkit-slider-thumb {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
-    /* box-shadow: 0 0 0 1.5px var(--ui-neutral-950) inset; */
+    /* box-shadow: 0 0 0 2px var(--ui-neutral-950) inset; */
   }
 
   &:focus-visible::-moz-range-thumb {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
-    /* box-shadow: 0 0 0 1.5px var(--ui-neutral-950) inset; */
+    /* box-shadow: 0 0 0 2px var(--ui-neutral-950) inset; */
   }
 
   &:disabled {

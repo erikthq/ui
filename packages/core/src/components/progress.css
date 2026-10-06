@@ -6,13 +6,13 @@
 progress {
   appearance: none;
   width: 100%;
-  height: 0.25rem;
+  height: var(--ui-spacing-2);
   border-radius: var(--ui-rounded-full);
   border: none;
   overflow: hidden;
 
   &::-webkit-progress-bar {
-    background: var(--ui-neutral-200);
+    background: var(--border-color, var(--ui-neutral-200));
   }
 
   &::-webkit-progress-value {

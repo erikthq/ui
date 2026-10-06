@@ -47,6 +47,7 @@
 @import "./components/tabs.css" layer(ui);
 @import "./components/tab-links.css" layer(ui);
 @import "./components/timeline.css" layer(ui);
+@import "./components/heading-group.css" layer(ui);
 @import "./components/prose.css" layer(ui);
 @import "./components/empty.css" layer(ui);
 @import "./components/skeleton.css" layer(ui);

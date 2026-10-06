@@ -1,0 +1,6 @@
+hgroup {
+  > p {
+    margin-block-start: 0.61em;
+    color: var(--ui-neutral-600);
+  }
+}

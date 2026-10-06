@@ -273,6 +273,11 @@ export const components: {
     path: "/components/focus-group",
     description: "Arrow-key navigation for custom widget groups.",
   },
+  {
+    label: "Heading Group",
+    path: "/components/heading-group",
+    description: "Heading with a subtitle or tagline.",
+  },
   // {
   //   label: "Input OTP",
   //   path: "/components/input-otp",

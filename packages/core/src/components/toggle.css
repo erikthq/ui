@@ -3,7 +3,7 @@ label:not(.field).toggle {
   text-align: center;
   grid-auto-flow: column;
   align-items: center;
-  gap: var(--ui-spacing);
+  gap: 0.5em;
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
   border-radius: var(--ui-rounded-3);

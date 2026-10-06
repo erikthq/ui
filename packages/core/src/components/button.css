@@ -12,6 +12,7 @@ button,
   align-items: center;
   justify-content: center;
   gap: 0.5em;
+  min-width: calc(1lh + var(--ui-spacing-2) * 2);
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
@@ -93,7 +94,7 @@ button,
   &.outlined {
     color: var(--ui-neutral-950);
     background-color: transparent;
-    box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+    box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
     &:not(:disabled):not([aria-disabled="true"]) {
       @media (hover: hover) {
@@ -113,7 +114,7 @@ button,
   }
 
   &.secondary {
-    background-color: var(--ui-neutral-200);
+    background-color: var(--bg, var(--ui-neutral-200));
     color: var(--ui-neutral-950);
 
     &:not(:disabled):not([aria-disabled="true"]) {

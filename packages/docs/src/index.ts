@@ -21,6 +21,7 @@ import { CarouselPage } from './pages/components/carousel'
 import { DialogPage } from './pages/components/dialog'
 import { DrawerPage } from './pages/components/drawer'
 import { CodePage } from './pages/components/code'
+import { HeadingGroupPage } from './pages/components/heading-group'
 import { KbdPage } from './pages/components/kbd'
 import { CardPage } from './pages/components/card'
 import { ButtonGroupPage } from './pages/components/button-group'
@@ -94,6 +95,7 @@ app.get('/components/carousel', (c) => c.html(CarouselPage(c.req.path)))
 app.get('/components/dialog', (c) => c.html(DialogPage(c.req.path)))
 app.get('/components/drawer', (c) => c.html(DrawerPage(c.req.path)))
 app.get('/components/code', (c) => c.html(CodePage(c.req.path)))
+app.get('/components/heading-group', (c) => c.html(HeadingGroupPage(c.req.path)))
 app.get('/components/kbd', (c) => c.html(KbdPage(c.req.path)))
 app.get('/components/card', (c) => c.html(CardPage(c.req.path)))
 app.get('/components/button-group', (c) => c.html(ButtonGroupPage(c.req.path)))
