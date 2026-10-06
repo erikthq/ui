@@ -11,12 +11,15 @@ fieldset.color-swatch {
 
   input[type="radio"],
   input[type="checkbox"] {
+    --size: calc(20 / 14 * 1rem);
+
     appearance: none;
 
     position: relative;
     isolation: isolate;
 
-    width: calc(20 / 14 * 1rem);
+    width: var(--size);
+    height: var(--size);
     aspect-ratio: 1;
     border-radius: var(--ui-rounded-full);
     background: var(--swatch-color, var(--ui-neutral-300));
