@@ -194,7 +194,9 @@
 /* Same width and side padding as the showcase, so the swatches line up with its right edge */
 .home-swatches {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
   max-width: 1680px;
   margin: 0 auto;
   padding-inline: 1rem;

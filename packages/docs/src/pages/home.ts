@@ -1,6 +1,8 @@
 import { html, raw } from "hono/html";
 import { HomeLayout, url } from "../layout";
 import { ColorSwatches } from "../components/color-swatches";
+import { FontPicker } from "../components/font-picker";
+import { RadiusPicker } from "../components/radius-picker";
 import { highlight } from "../highlight";
 import { icon } from "../icon";
 import { readFileSync } from "node:fs";
@@ -79,50 +81,26 @@ export async function HomePage(path: string) {
         </div>
       </section>
 
-      <div class="home-swatches">${ColorSwatches()}</div>
+      <div class="home-swatches">
+        <div class="flex-center gap-6">
+          <span class="flex-center gap-3">
+            <strong>Font Family:</strong> ${FontPicker()}
+          </span>
+
+          <span class="flex-center gap-3">
+            <strong>Radius:</strong> ${RadiusPicker()}
+          </span>
+        </div>
+        ${ColorSwatches()}
+      </div>
 
       <div class="home-components-showcase">
         ${LoginForm()} ${ReferralSurvey()} ${Tabs()} ${MilestoneForm()}
         ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
         ${PayoutThreshold()} ${ButtonGroups()} ${ConnectBank()}
-        ${AccountAccess()} ${CoverArt()}
-        ${Payments()} ${KitchenIsland()} ${Faq()}
-        ${ClaimableBalance()} ${SyncingAccounts()}
+        ${AccountAccess()} ${CoverArt()} ${Payments()} ${KitchenIsland()}
+        ${Faq()} ${ClaimableBalance()} ${SyncingAccounts()}
       </div>
-
-      <section class="home-features">
-        <div class="home-feature-card prose">
-          <p><small>Reset + UI in one import</small></p>
-          <h2>Batteries included</h2>
-          <p>
-            @erikt/ui normalizes browser defaults and builds on top of them. One
-            stylesheet, one import, and you have both the reset and the
-            components.
-          </p>
-        </div>
-
-        <div class="home-feature-card prose">
-          <p><small>No class soup</small></p>
-          <h2>Just write HTML</h2>
-          <p>
-            Components map to native elements. A
-            <code>&lt;button&gt;</code> is a button, a
-            <code>&lt;dialog&gt;</code> is a dialog. No wrappers, no utility
-            classes.
-          </p>
-        </div>
-
-        <div class="home-feature-card prose">
-          <p><small>Works out of the box</small></p>
-          <h2>Dark mode included</h2>
-          <p>
-            Responds to <code>prefers-color-scheme</code> automatically. Force a
-            mode on any element with<br />
-            <code>style="color-scheme: light"</code> or
-            <code>style="color-scheme: dark"</code>.
-          </p>
-        </div>
-      </section>
 
       <footer class="home-footer prose">
         <p>

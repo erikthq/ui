@@ -271,7 +271,7 @@ export const components: {
   {
     label: "Flow",
     path: "/components/flow",
-    description: "Helper classes for flex, column, grid and gaps.",
+    description: "Helper classes for flex, column, centering, grid and gaps.",
   },
   {
     label: "Focus Group",
@@ -528,6 +528,21 @@ function head(
 
       if (colorScheme !== "system") {
         document.documentElement.style.colorScheme = colorScheme;
+      }
+
+      const storedFont = localStorage.getItem("ui-font");
+
+      if (storedFont) {
+        document.documentElement.style.fontFamily = storedFont;
+      }
+
+      const storedRadius = localStorage.getItem("ui-rounded-scale");
+
+      if (storedRadius) {
+        document.documentElement.style.setProperty(
+          "--ui-rounded-scale",
+          storedRadius,
+        );
       }
     </script>
     <meta charset="UTF-8" />
