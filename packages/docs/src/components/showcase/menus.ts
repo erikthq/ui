@@ -1,11 +1,29 @@
 import { html, raw } from "hono/html";
 import { icon } from "../../icon";
 
-// Each menu is its own card, so each one is a separate item in the masonry grid
 export function Menus() {
   return html`
-    <article class="secondary" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;align-items:start">
-      <menu style="background: var(--ui-background-color);border: 1px solid var(--ui-neutral-200);border-radius: var(--ui-rounded-4);padding: var(--ui-spacing-1);">
+    <style>
+      .showcase-menus {
+        /* Half the width each, one column when half is under 10rem */
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(max(10rem, calc(50% - 0.25rem)), 1fr)
+        );
+        gap: 0.5rem;
+        align-items: start;
+
+        menu {
+          background: var(--ui-background-color);
+          border: 1px solid var(--ui-neutral-200);
+          border-radius: var(--ui-rounded-4);
+          padding: var(--ui-spacing-1);
+        }
+      }
+    </style>
+
+    <section class="secondary showcase-menus grid">
+      <menu>
         <li><small>Planning</small></li>
         <li>
           <button class="ghost">${raw(icon("file-text"))} Documents</button>
@@ -20,7 +38,7 @@ export function Menus() {
         </li>
       </menu>
 
-      <menu style="background: var(--ui-background-color);border: 1px solid var(--ui-neutral-200);border-radius: var(--ui-rounded-4);padding: var(--ui-spacing-1);">
+      <menu>
         <li><small>Account</small></li>
         <li><button class="ghost">${raw(icon("user"))} Profile</button></li>
         <li>
@@ -42,7 +60,7 @@ export function Menus() {
         </li>
       </menu>
 
-      <menu style="background: var(--ui-background-color);border: 1px solid var(--ui-neutral-200);border-radius: var(--ui-rounded-4);padding: var(--ui-spacing-1);">
+      <menu>
         <li>
           <button class="ghost">
             ${raw(icon("pencil"))} Edit <kbd>⌘E</kbd>
@@ -67,7 +85,7 @@ export function Menus() {
         </li>
       </menu>
 
-      <menu style="background: var(--ui-background-color);border: 1px solid var(--ui-neutral-200);border-radius: var(--ui-rounded-4);padding: var(--ui-spacing-1);">
+      <menu>
         <li><small>Sort by</small></li>
         <li>
           <label><input type="radio" name="menu-sort" checked /> Newest</label>
@@ -90,6 +108,6 @@ export function Menus() {
           <label><input type="checkbox" /> Modified</label>
         </li>
       </menu>
-    </article>
+    </section>
   `;
 }

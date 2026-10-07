@@ -16,6 +16,14 @@ import { ComponentSampler } from "../components/showcase/component-sampler";
 import { Menus } from "../components/showcase/menus";
 import { Tabs } from "../components/showcase/tabs";
 import { PayoutThreshold } from "../components/showcase/payout-threshold";
+import { ConnectBank } from "../components/showcase/connect-bank";
+import { AccountAccess } from "../components/showcase/account-access";
+import { CoverArt } from "../components/showcase/cover-art";
+import { Payments } from "../components/showcase/payments";
+import { KitchenIsland } from "../components/showcase/kitchen-island";
+import { Faq } from "../components/showcase/faq";
+import { ClaimableBalance } from "../components/showcase/claimable-balance";
+import { SyncingAccounts } from "../components/showcase/syncing-accounts";
 
 const cdnUrl = `https://esm.sh/@erikt/ui`;
 
@@ -24,7 +32,6 @@ function getMainCssSize() {
 
   try {
     const cssPath = resolve(import.meta.dirname, "../../..", path);
-    console.log(cssPath);
     const css = readFileSync(cssPath);
     const compressed = gzipSync(css);
     return (compressed.byteLength / 1024).toFixed(1);
@@ -75,123 +82,13 @@ export async function HomePage(path: string) {
       <div class="home-swatches">${ColorSwatches()}</div>
 
       <div class="home-components-showcase">
-        ${LoginForm()} ${MilestoneForm()} ${ReferralSurvey()} ${Tabs()}
+        ${LoginForm()} ${ReferralSurvey()} ${Tabs()} ${MilestoneForm()}
         ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
-        ${PayoutThreshold()} ${ButtonGroups()}
+        ${PayoutThreshold()} ${ButtonGroups()} ${ConnectBank()}
+        ${AccountAccess()} ${CoverArt()}
+        ${Payments()} ${KitchenIsland()} ${Faq()}
+        ${ClaimableBalance()} ${SyncingAccounts()}
       </div>
-
-      <!-- <section class="home-theme-section tabs">
-        <div class="header">
-          <header role="tablist" aria-label="Components">
-            <label>
-              <input
-                type="radio"
-                name="tabs"
-                id="tab-1"
-                checked
-                aria-controls="panel-1"
-              />
-              Components
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="tabs"
-                id="tab-2"
-                aria-controls="panel-2"
-              />
-              Colors
-            </label>
-          </header>
-        </div>
-
-        <div class="tabpanels">
-          <div
-            role="tabpanel"
-            id="panel-1"
-            aria-labelledby="tab-1"
-            tabindex="0"
-          >
-            ${homeShowcase()}
-          </div>
-          <div
-            role="tabpanel"
-            id="panel-2"
-            aria-labelledby="tab-2"
-            tabindex="0"
-          >
-            <div class="home-themes-showcase">
-              <ul>
-                ${[
-        "primary",
-        "neutral",
-        "constructive",
-        "destructive",
-        "color1",
-        "color2",
-        "color3",
-        "color4",
-        "color5",
-        "color6",
-      ].map(
-        (name) => html`
-          <li>
-            <ul>
-              ${[50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map(
-                (step) => html`
-                  <li
-                    class="home-themes-swatch"
-                    style="background:var(--ui-${name}-${step})"
-                    title="${name}-${step}"
-                  ></li>
-                `,
-              )}
-            </ul>
-          </li>
-        `,
-      )}
-              </ul>
-
-              <div class="home-themes-modes">
-                <div class="home-themes-mode" style="color-scheme:light">
-                  <article>
-                    <header>Light mode</header>
-                    <div>
-                      <p>
-                        erikt/ui responds to
-                        <code>prefers-color-scheme</code> automatically.
-                      </p>
-                    </div>
-                    <footer>
-                      <button class="ghost">Cancel</button>
-                      <button>Save</button>
-                    </footer>
-                  </article>
-                </div>
-                <div class="home-themes-mode" style="color-scheme:dark">
-                  <article>
-                    <header>Dark mode</header>
-                    <div>
-                      <p>
-                        Force a mode with
-                        <code>style="color-scheme: dark"</code>.
-                      </p>
-                    </div>
-                    <footer>
-                      <button class="ghost">Cancel</button>
-                      <button>Save</button>
-                    </footer>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
-
-      <!-- <hr style="margin: -1px 0 0 0" /> -->
-
-      <!-- <hr style="margin: -1px 0 0 0" /> -->
 
       <section class="home-features">
         <div class="home-feature-card prose">

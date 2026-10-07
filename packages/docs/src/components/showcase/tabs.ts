@@ -5,24 +5,45 @@ const ranges = ["1D", "7D", "1M", "1Y", "All"];
 
 export function Tabs() {
   return html`
-    <div style="display:grid;gap:var(--ui-spacing-6)">
-      <div style="display:flex">
-        <section class="tabs">
-          <header role="tablist" aria-label="Time range">
-            ${ranges.map(
-              (range) => html`
-                <label>
-                  <input
-                    type="radio"
-                    name="showcase-range"
-                    ${range === "1M" ? "checked" : ""}
-                  />
-                  ${range}
-                </label>
-              `,
-            )}
-          </header>
-        </section>
+    <style>
+      .showcase-tabs {
+        > div {
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+
+        /* Full width tabs, split evenly */
+        > section [role="tablist"] {
+          width: 100%;
+
+          label {
+            flex: 1;
+            justify-content: center;
+          }
+        }
+      }
+    </style>
+
+    <div class="showcase-tabs grid gap-6">
+      <div class="flex gap-6">
+        <div>
+          <section class="tabs">
+            <header role="tablist" aria-label="Time range">
+              ${ranges.map(
+                (range) => html`
+                  <label>
+                    <input
+                      type="radio"
+                      name="showcase-range"
+                      ${range === "1M" ? "checked" : ""}
+                    />
+                    ${range}
+                  </label>
+                `,
+              )}
+            </header>
+          </section>
+        </div>
 
         <fieldset role="group">
           <label class="toggle square" aria-label="Align left" data-tooltip>
@@ -41,12 +62,12 @@ export function Tabs() {
       </div>
 
       <section class="tabs">
-        <header role="tablist" aria-label="Inbox" style="width:100%">
-          <label style="flex:1;justify-content:center">
+        <header role="tablist" aria-label="Inbox">
+          <label>
             <input type="radio" name="showcase-inbox" checked />
             ${raw(icon("message-circle"))} Chats
           </label>
-          <label style="flex:1;justify-content:center">
+          <label>
             <input type="radio" name="showcase-inbox" />
             ${raw(icon("mail"))} Emails
           </label>

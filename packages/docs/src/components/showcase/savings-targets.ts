@@ -7,7 +7,18 @@ const targets = [
 
 export function SavingsTargets() {
   return html`
-    <article class="secondary" style="display:grid;gap:var(--ui-spacing-4)">
+    <style>
+      .showcase-savings-targets {
+        article {
+          div {
+            justify-content: space-between;
+            align-items: flex-end;
+          }
+        }
+      }
+    </style>
+
+    <article class="secondary showcase-savings-targets grid gap-4">
       <hgroup>
         <h3>Savings targets</h3>
         <p>
@@ -18,13 +29,10 @@ export function SavingsTargets() {
 
       ${targets.map(
         (target) => html`
-          <article
-            class="tertiary"
-            style="display:grid;gap:var(--ui-spacing-3)"
-          >
+          <article class="tertiary grid gap-3">
             <small>${target.label}</small>
 
-            <strong style="font-size:2em">${target.goal}</strong>
+            <strong class="text-3xl">${target.goal}</strong>
 
             <progress
               value="${target.percent}"
@@ -32,9 +40,7 @@ export function SavingsTargets() {
               aria-label="${target.label} progress"
             ></progress>
 
-            <div
-              style="display:flex;justify-content:space-between;align-items:flex-end"
-            >
+            <div class="flex">
               <small>${target.percent}% achieved</small>
               <p>${target.saved}</p>
             </div>

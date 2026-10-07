@@ -3,11 +3,25 @@ import { icon } from "../../icon";
 
 export function ComponentSampler() {
   return html`
-    <article
-      class="secondary"
-      style="display:grid;gap:var(--ui-spacing-5)"
-    >
-      <div style="display:flex;flex-wrap:wrap;gap:var(--ui-spacing-2)">
+    <style>
+      .showcase-component-sampler {
+        > div {
+          flex-wrap: wrap;
+
+          &:not(:first-child) {
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          > div:has(input) {
+            align-items: center;
+          }
+        }
+      }
+    </style>
+
+    <article class="secondary showcase-component-sampler grid gap-5">
+      <div class="flex gap-2">
         <button>Button ${raw(icon("arrow-right"))}</button>
         <button class="secondary">Secondary</button>
         <button class="outlined">Outline</button>
@@ -20,16 +34,12 @@ export function ComponentSampler() {
 
       <textarea placeholder="Message" aria-label="Message" rows="4"></textarea>
 
-      <div
-        style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--ui-spacing-2)"
-      >
-        <div style="display:flex;gap:var(--ui-spacing-2)">
+      <div class="flex gap-2">
+        <div class="flex gap-2">
           <span class="badge">Badge</span>
           <span class="badge secondary">Secondary</span>
         </div>
-        <div
-          style="display:flex;align-items:center;gap:var(--ui-spacing-3)"
-        >
+        <div class="flex gap-3">
           <input type="radio" name="sampler" checked aria-label="Option 1" />
           <input type="radio" name="sampler" aria-label="Option 2" />
           <input type="checkbox" checked aria-label="Checkbox" />
@@ -37,9 +47,7 @@ export function ComponentSampler() {
         </div>
       </div>
 
-      <div
-        style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--ui-spacing-2)"
-      >
+      <div class="flex gap-2">
         <button
           class="outlined"
           onclick="document.getElementById('sampler-dialog').showModal()"

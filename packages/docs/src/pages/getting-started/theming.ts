@@ -144,6 +144,31 @@ export async function ThemingPage(path: string) {
           </tbody>
         </table>
 
+        <h3>Font size</h3>
+        <table class="align-left">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>--ui-text-xs</code> through <code>--ui-text-9xl</code>
+              </td>
+              <td><code>0.75rem</code> to <code>8rem</code></td>
+              <td>
+                The sizes behind the <a href="/components/text">Text</a>
+                classes. Change one value to change that class everywhere.
+                <a href="/getting-started/tokens#font-size">Tokens</a> lists
+                every step.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
         <h3>Surface</h3>
         <table class="align-left">
           <thead>

@@ -100,6 +100,10 @@ export async function IntroPage(path: string) {
           are already short to write and easy to read. Wrapping them in classes
           doesn't make them better.
         </p>
+        <p>
+          There are a <a href="/components/flow">few exceptions</a>. Some
+          patterns show up so often that a short class saves real typing.
+        </p>
       </div>
 
       <div class="example">

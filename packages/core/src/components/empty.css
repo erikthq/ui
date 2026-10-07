@@ -16,7 +16,7 @@
   > svg {
     width: 2.5rem;
     height: 2.5rem;
-    background: var(--ui-neutral-100);
+    background: var(--bg, var(--ui-neutral-100));
     color: var(--ui-neutral-800);
     padding: 0.5rem;
     border-radius: var(--ui-rounded-2);

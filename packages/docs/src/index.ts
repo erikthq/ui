@@ -23,6 +23,7 @@ import { DrawerPage } from './pages/components/drawer'
 import { CodePage } from './pages/components/code'
 import { HeadingGroupPage } from './pages/components/heading-group'
 import { KbdPage } from './pages/components/kbd'
+import { TextPage } from './pages/components/text'
 import { CardPage } from './pages/components/card'
 import { ButtonGroupPage } from './pages/components/button-group'
 import { CheckboxPage } from './pages/components/checkbox'
@@ -60,6 +61,7 @@ import { InputOtpPage } from './pages/components/input-otp'
 import { MenuPage } from './pages/components/menu'
 import { NumberFieldPage } from './pages/components/number-field'
 import { FieldPage } from './pages/components/field'
+import { FlowPage } from './pages/components/flow'
 import { FocusGroupPage } from './pages/components/focus-group'
 import { BlocksPage } from './pages/blocks'
 import { RichtextEditorPage } from './pages/blocks/richtext-editor'
@@ -115,6 +117,7 @@ app.get('/components/chart', (c) => c.html(ChartPage(c.req.path)))
 app.get('/components/toggle', (c) => c.html(TogglePage(c.req.path)))
 app.get('/components/toggle-group', (c) => c.html(ToggleGroupPage(c.req.path)))
 app.get('/components/button', (c) => c.html(ButtonPage(c.req.path)))
+app.get('/components/text', (c) => c.html(TextPage(c.req.path)))
 app.get('/components/text-field', (c) => c.html(TextFieldPage(c.req.path)))
 app.get('/components/textarea', (c) => c.html(TextareaPage(c.req.path)))
 app.get('/components/file-drop', (c) => c.html(FileDropPage(c.req.path)))
@@ -143,6 +146,7 @@ app.get('/components/input-otp', (c) => c.html(InputOtpPage(c.req.path)))
 app.get('/components/menu', (c) => c.html(MenuPage(c.req.path)))
 app.get('/components/number-field', (c) => c.html(NumberFieldPage(c.req.path)))
 app.get('/components/field', (c) => c.html(FieldPage(c.req.path)))
+app.get('/components/flow', (c) => c.html(FlowPage(c.req.path)))
 app.get('/components/focus-group', (c) => c.html(FocusGroupPage(c.req.path)))
 app.get('/components/radio-group', (c) => c.html(RadioGroupPage(c.req.path)))
 app.get('/components/tabs', (c) => c.html(TabsPage(c.req.path)))

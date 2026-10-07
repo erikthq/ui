@@ -269,6 +269,11 @@ export const components: {
     description: "Drag-and-drop file upload zone.",
   },
   {
+    label: "Flow",
+    path: "/components/flow",
+    description: "Helper classes for flex, column, grid and gaps.",
+  },
+  {
     label: "Focus Group",
     path: "/components/focus-group",
     description: "Arrow-key navigation for custom widget groups.",
@@ -392,6 +397,11 @@ export const components: {
     label: "Tag Group",
     path: "/components/tag-group",
     description: "Selectable tags built from badges and checkboxes or radios.",
+  },
+  {
+    label: "Text",
+    path: "/components/text",
+    description: "Helper classes for text sizes, from xs to 9xl.",
   },
   {
     label: "Text Field",

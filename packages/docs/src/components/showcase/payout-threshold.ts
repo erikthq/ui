@@ -3,20 +3,43 @@ import { icon } from "../../icon";
 
 export function PayoutThreshold() {
   return html`
-    <article class="secondary" style="position:relative">
-      <button
-        class="secondary round"
-        aria-label="Close"
-        style="position:absolute;top:var(--ui-spacing-3);right:var(--ui-spacing-3)"
-      >
+    <style>
+      .showcase-payout-threshold {
+        position: relative;
+
+        > button {
+          position: absolute;
+          top: var(--ui-spacing-3);
+          right: var(--ui-spacing-3);
+        }
+
+        /* Room for the close button */
+        hgroup {
+          padding-inline-end: var(--ui-spacing-8);
+        }
+
+        .field:has([type="range"]) > span {
+          justify-content: space-between;
+          align-items: baseline;
+
+          &:has(small) {
+            color: var(--ui-neutral-500);
+          }
+        }
+
+        output {
+          font-weight: 600;
+        }
+      }
+    </style>
+
+    <article class="secondary showcase-payout-threshold">
+      <button class="secondary round" aria-label="Close">
         ${raw(icon("x"))}
       </button>
 
-      <form
-        style="display:grid;gap:var(--ui-spacing-5)"
-        onsubmit="event.preventDefault()"
-      >
-        <hgroup style="padding-inline-end:var(--ui-spacing-8)">
+      <form onsubmit="event.preventDefault()" class="grid gap-5">
+        <hgroup>
           <h3>Payout threshold</h3>
           <p>Set the minimum balance required before a payout is triggered.</p>
         </hgroup>
@@ -36,11 +59,9 @@ export function PayoutThreshold() {
         </label>
 
         <label class="field">
-          <span
-            style="display:flex;justify-content:space-between;align-items:baseline"
-          >
+          <span class="flex">
             Minimum payout amount
-            <output style="font-size:1.5em;font-weight:600">$2500</output>
+            <output class="text-2xl">$2500</output>
           </span>
           <input
             type="range"
@@ -51,9 +72,7 @@ export function PayoutThreshold() {
             style="--pct:${(2500 - 50) / (10000 - 50)}"
             oninput="this.style.setProperty('--pct', (this.value - this.min) / (this.max - this.min)); this.previousElementSibling.querySelector('output').value = '$' + this.value"
           />
-          <span
-            style="display:flex;justify-content:space-between;color:var(--ui-neutral-500)"
-          >
+          <span class="flex">
             <small>$50 (min)</small>
             <small>$10,000 (max)</small>
           </span>

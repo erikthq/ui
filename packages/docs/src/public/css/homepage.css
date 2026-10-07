@@ -201,8 +201,8 @@
 }
 
 .home-components-showcase {
-  /* Up to 4 columns, each at least 16rem wide */
-  columns: 4 16rem;
+  /* Up to 4 columns, each at least 20rem wide */
+  columns: 4 20rem;
   column-gap: 1.5rem;
   max-width: 1680px;
   margin: 0 auto;

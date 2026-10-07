@@ -3,8 +3,23 @@ import { icon } from "../../icon";
 
 export function ButtonGroups() {
   return html`
-    <div style="display:grid;gap:var(--ui-spacing-4)">
-      <div style="display:flex;flex-wrap:wrap;gap:var(--ui-spacing-2)">
+    <style>
+      .showcase-button-group {
+        section {
+          &:first-of-type {
+            flex-wrap: wrap;
+          }
+
+          &:last-of-type {
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
+        }
+      }
+    </style>
+
+    <div class="showcase-button-group grid gap-4">
+      <section class="flex gap-2">
         <fieldset role="group">
           <button class="ghost square" aria-label="Go back" data-tooltip>
             ${raw(icon("arrow-left"))}
@@ -33,7 +48,7 @@ export function ButtonGroups() {
             <li><button class="ghost destructive">Delete</button></li>
           </menu>
         </div>
-      </div>
+      </section>
 
       <article role="status" class="constructive">
         ${raw(icon("info-circle"))}
@@ -43,10 +58,8 @@ export function ButtonGroups() {
         </button>
       </article>
 
-      <div
-        style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--ui-spacing-2)"
-      >
-        <div style="display:flex;gap:var(--ui-spacing-2)">
+      <section class="flex gap-2">
+        <div class="toolbar flex gap-2">
           <fieldset role="group" aria-label="Pages">
             <button class="ghost square">1</button>
             <button class="ghost square">2</button>
@@ -80,7 +93,7 @@ export function ButtonGroups() {
             <li><button class="ghost">Fix bug</button></li>
           </menu>
         </div>
-      </div>
+      </section>
     </div>
   `;
 }

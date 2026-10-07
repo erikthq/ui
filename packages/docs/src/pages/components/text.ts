@@ -1,0 +1,104 @@
+import { html, raw } from "hono/html";
+import { Layout } from "../../layout";
+import { highlight } from "../../highlight";
+
+const toc = [
+  { id: "default", label: "Default" },
+  { id: "scale", label: "Scale" },
+  { id: "customization", label: "Customization" },
+];
+
+const sizes = [
+  ["xs", "0.75rem"],
+  ["sm", "0.875rem"],
+  ["base", "1rem"],
+  ["lg", "1.125rem"],
+  ["xl", "1.25rem"],
+  ["2xl", "1.5rem"],
+  ["3xl", "1.875rem"],
+  ["4xl", "2.25rem"],
+  ["5xl", "3rem"],
+  ["6xl", "3.75rem"],
+  ["7xl", "4.5rem"],
+  ["8xl", "6rem"],
+  ["9xl", "8rem"],
+];
+
+export async function TextPage(path: string) {
+  return Layout({
+    title: "Text",
+    path,
+    toc,
+    content: html`
+      <div class="prose">
+        <hgroup>
+          <h1>Text</h1>
+          <p>
+            Helper classes that set the font size and line height of any
+            element. Pick a size from <code>.text-xs</code> to
+            <code>.text-9xl</code>.
+          </p>
+        </hgroup>
+
+        <h2 id="default">Default</h2>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <p class="text-2xl">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `<p class="text-2xl">The quick brown fox jumps over the lazy dog.</p>`,
+            ),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="scale">Scale</h2>
+        <p>
+          Line height gets tighter as the text gets bigger, so large headings
+          stay compact.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          ${sizes.map(
+            ([size]) => html`<p class="text-${size}">text-${size}</p>`,
+          )}
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              sizes
+                .map(([size]) => `<p class="text-${size}">text-${size}</p>`)
+                .join("\n"),
+            ),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="customization">Customization</h2>
+        <p>
+          Each size reads from a custom property. Override it to change the
+          scale.
+        </p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `:root {
+${sizes.map(([size, value]) => `  --ui-text-${size}: ${value};`).join("\n")}
+}`,
+              80,
+              "css",
+            ),
+          )}
+        </div>
+      </div>
+    `,
+  });
+}
