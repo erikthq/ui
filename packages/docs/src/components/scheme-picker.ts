@@ -6,7 +6,7 @@ export function SchemePicker() {
     <fieldset
       role="group"
       x-data="{ scheme: $persist('system') }"
-      x-init="if (scheme !== 'system') document.documentElement.style.colorScheme = scheme; $watch('scheme', () => { if (scheme !== 'system') { document.documentElement.style.colorScheme = scheme } else document.documentElement.style.removeProperty('color-scheme') })"
+      x-init="$watch('scheme', () => { if (scheme !== 'system') { document.documentElement.style.colorScheme = scheme } else document.documentElement.style.removeProperty('color-scheme') })"
     >
       <label class="toggle square" aria-label="Light" data-tooltip="bottom">
         <input

@@ -185,7 +185,7 @@ export const components: {
     label: "Carousel",
     path: "/components/carousel",
     description: "Scroll-snap gallery with CSS-generated buttons and dots.",
-    badge: 'WIP'
+    badge: "WIP",
   },
   // {
   //   label: "Chart",
@@ -511,6 +511,15 @@ function head(
       };
 
   return html`
+    <script>
+      const colorScheme = (
+        localStorage.getItem("_x_scheme") ?? "system"
+      ).replaceAll('"', "");
+
+      if (colorScheme !== "system") {
+        document.documentElement.style.colorScheme = colorScheme;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${pageTitle}</title>
@@ -546,20 +555,20 @@ function head(
     <link rel="stylesheet" href="${url("/main.css")}" />
     ${viewTransition
       ? html`<style>
-            /*
+          /*
               The browser captures the new state right before the incoming
               document's first rendering opportunity, so it has to know about
               the opt-in by then. A style element in the body is a race the
               opt-in usually loses once the stylesheets are warm in the cache.
             */
-            @view-transition {
-              navigation: auto;
-            }
+          @view-transition {
+            navigation: auto;
+          }
 
-            ::view-transition-group(root) {
-              animation-duration: 200ms;
-            }
-          </style>`
+          ::view-transition-group(root) {
+            animation-duration: 200ms;
+          }
+        </style>`
       : ""}
     ${viewTransition && expect
       ? html`<link rel="expect" blocking="render" href="#${expect}" />`
