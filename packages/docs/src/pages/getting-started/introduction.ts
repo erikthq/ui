@@ -115,9 +115,29 @@ export async function IntroPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(
-              `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem">\n  <input type="text" placeholder="First name" />\n  <input type="text" placeholder="Last name" />\n  <input type="email" placeholder="Email" style="grid-column:1/-1" />\n  <button style="grid-column:1/-1;justify-self:end">Submit</button>\n</div>`,
-            ),
+            await highlight(`<style>
+              form {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+                gap: 1rem;
+
+                input[type="email"] {
+                  grid-column: 1 / -1;
+                }
+
+                button {
+                  grid-column: 1 / -1;
+                  justify-self: end;
+                }
+              }
+              </style>
+
+              <form>
+              <input type="text" placeholder="First name" />
+              <input type="text" placeholder="Last name" />
+              <input type="email" placeholder="Email" />
+              <button type="submit">Submit</button>
+            </form>`),
           )}
         </div>
       </div>
