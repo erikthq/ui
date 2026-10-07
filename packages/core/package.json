@@ -8,7 +8,10 @@
     "./elements": "./dist/elements.js"
   },
   "style": "./dist/ui.css",
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "node build.mjs --watch",
     "build": "node build.mjs"

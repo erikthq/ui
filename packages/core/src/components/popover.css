@@ -6,6 +6,10 @@
   border: none;
   padding: 0;
 
+  /* anchor to the invoker (popovertarget). The initial value is now `none`,
+     which ignores the implicit anchor */
+  position-anchor: auto;
+
   /* position below trigger by default */
   top: calc(anchor(bottom) + var(--ui-spacing-1));
   left: anchor(left);
