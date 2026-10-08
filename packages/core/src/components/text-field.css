@@ -27,7 +27,8 @@ input:not([type]) {
   box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
   padding-block: var(--ui-spacing-2);
-  padding-inline: var(--ui-spacing-3);
+  /* padding-inline: var(--ui-spacing-3); */
+  padding-inline: calc(var(--ui-spacing-3) * max(1, var(--ui-rounded-scale) * 0.75));
   border-radius: var(--ui-rounded-3);
 
   font: inherit;
