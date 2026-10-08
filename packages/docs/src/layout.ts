@@ -6,6 +6,7 @@ import { icon } from "./icon";
 import { SchemePicker } from "./components/scheme-picker";
 import { ThemePicker } from "./components/theme-picker";
 import { SidebarNav } from "./components/sidebar-nav";
+import { MobileMenu } from "./components/mobile-menu";
 import { TableOfContents } from "./components/table-of-contents";
 import copyCode from "./components/copy-code";
 
@@ -578,26 +579,7 @@ function head(
     />
     <link rel="stylesheet" href="${url("/ui.css")}" />
     <link rel="stylesheet" href="${url("/main.css")}" />
-    ${viewTransition
-      ? html`<style>
-          /*
-              The browser captures the new state right before the incoming
-              document's first rendering opportunity, so it has to know about
-              the opt-in by then. A style element in the body is a race the
-              opt-in usually loses once the stylesheets are warm in the cache.
-            */
-          @view-transition {
-            navigation: auto;
-          }
 
-          ::view-transition-group(root) {
-            animation-duration: 200ms;
-          }
-        </style>`
-      : ""}
-    ${viewTransition && expect
-      ? html`<link rel="expect" blocking="render" href="#${expect}" />`
-      : ""}
     ${import.meta.env.DEV
       ? raw('<script type="module" src="/@vite/client"></script>')
       : ""}
@@ -671,32 +653,9 @@ async function header(path: string) {
       </a>
 
       <nav>
-        <label
-          class="toggle square docs-burger"
-          aria-label="Toggle navigation"
-          data-tooltip="right"
-        >
-          <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle" />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-          </svg>
-        </label>
-
         <a
           href="${url("/getting-started/introduction")}"
-          class="button ghost"
+          class="button ghost docs-nav-link"
           ${sections.some((s) => slug(s.path) === slug(path))
             ? html`aria-current="page"`
             : ""}
@@ -705,14 +664,14 @@ async function header(path: string) {
         </a>
         <a
           href="${url("/components/button")}"
-          class="button ghost"
+          class="button ghost docs-nav-link"
           ${path.startsWith("/components/") ? html`aria-current="page"` : ""}
         >
           ${raw(icon("components"))} Components
         </a>
         <a
           href="${url("/blocks")}"
-          class="button ghost"
+          class="button ghost docs-nav-link"
           ${path === "/blocks" || path.startsWith("/blocks/")
             ? 'aria-current="page"'
             : ""}
@@ -720,11 +679,13 @@ async function header(path: string) {
           ${raw(icon("layout"))} Blocks
         </a>
         <button
-          class="ghost"
+          class="ghost docs-nav-link"
           onclick="document.getElementById('icons-dialog').showModal()"
         >
           ${raw(icon("icons"))} Icons
         </button>
+
+        ${MobileMenu(path)}
       </nav>
 
       <div style="display: flex; gap: 1rem; margin-left: auto;">
@@ -753,14 +714,16 @@ async function header(path: string) {
           <kbd>⌘F</kbd>
         </button>
 
-        ${SchemePicker()} ${ThemePicker()}
+        ${SchemePicker()}
+
+        <!-- {ThemePicker()} -->
 
         <a
           id="github-link"
           href="https://github.com/erikthq/ui"
           target="_blank"
           rel="noopener"
-          class="button ghost ${stars === null ? "square" : ""}"
+          class="button secondary ${stars === null ? "square" : ""}"
           aria-label="GitHub"
           data-tooltip="bottom"
         >
@@ -769,21 +732,15 @@ async function header(path: string) {
             ${stars ?? ""}
           </small>
         </a>
-      </div>
 
-      <!-- <script>
-        fetch("https://api.github.com/repos/erikthq/ui")
-          .then(r => r.json())
-          .then(({ stargazers_count: n }) => {
-            if (!n) return;
-            const link = document.getElementById("github-link");
-            const small = document.getElementById("github-stars");
-            small.textContent = n;
-            small.removeAttribute("hidden");
-            link.classList.remove("square");
-          })
-          .catch(() => {});
-      </script> -->
+        <copy-to-clipboard
+          value='<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />'
+        >
+          <button class="square" aria-label="Copy <link> tag" data-tooltip="left">
+            ${raw(icon('link'))}
+          </button>
+        </copy-to-clipboard>
+      </div>
     </header>
   `;
 }

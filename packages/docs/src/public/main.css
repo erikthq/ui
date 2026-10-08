@@ -63,32 +63,25 @@ body {
 
 /* Sidebar */
 .docs-sidebar {
-  position: fixed;
-  top: 0rem;
+  position: sticky;
+  top: 5.5rem;
+  width: auto;
+  bottom: auto;
+  
+  max-height: calc(100vh - var(--header-h));
+
   left: 0;
   height: 100svh;
-  width: 260px;
-  z-index: 99;
-  translate: -100% 0;
-  transition: translate 300ms var(--ease-glide);
+
   overflow-y: auto;
   overflow-x: clip;
   overscroll-behavior: contain;
   border-right: 1px solid var(--border);
   padding-block: 1rem 3rem;
-  padding-inline: 0.5rem;
   background: var(--ui-background-color);
-
+  
   @media (min-width: 769px) {
-    position: sticky;
-    top: 5.5rem;
-    width: auto;
-    bottom: auto;
-    z-index: auto;
-    translate: none;
-    transition: none;
     padding-inline: 0.5rem;
-    max-height: calc(100vh - var(--header-h));
   }
 
   @media (min-width: 1024px) {

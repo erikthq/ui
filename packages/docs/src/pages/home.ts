@@ -81,26 +81,28 @@ export async function HomePage(path: string) {
         </div>
       </section>
 
-      <div class="home-swatches">
-        <div class="flex-center gap-6">
-          <span class="flex-center gap-3">
-            <strong>Font Family:</strong> ${FontPicker()}
-          </span>
+      <section>
+        <div class="home-swatches">
+          <div class="flex-center gap-6">
+            <span class="flex-center gap-3">
+              <strong>Font Family:</strong> ${FontPicker()}
+            </span>
 
-          <span class="flex-center gap-3">
-            <strong>Radius:</strong> ${RadiusPicker()}
-          </span>
+            <span class="flex-center gap-3">
+              <strong>Radius:</strong> ${RadiusPicker()}
+            </span>
+          </div>
+          ${ColorSwatches()}
         </div>
-        ${ColorSwatches()}
-      </div>
 
-      <div class="home-components-showcase">
-        ${LoginForm()} ${ReferralSurvey()} ${Tabs()} ${MilestoneForm()}
-        ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
-        ${PayoutThreshold()} ${ButtonGroups()} ${ConnectBank()}
-        ${AccountAccess()} ${CoverArt()} ${Payments()} ${KitchenIsland()}
-        ${Faq()} ${ClaimableBalance()} ${SyncingAccounts()}
-      </div>
+        <div class="home-components-showcase">
+          ${LoginForm()} ${ReferralSurvey()} ${Tabs()} ${MilestoneForm()}
+          ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
+          ${PayoutThreshold()} ${ButtonGroups()} ${ConnectBank()}
+          ${AccountAccess()} ${CoverArt()} ${Payments()} ${KitchenIsland()}
+          ${Faq()} ${ClaimableBalance()} ${SyncingAccounts()}
+        </div>
+      </section>
 
       <footer class="home-footer prose">
         <p>

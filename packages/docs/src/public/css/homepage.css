@@ -201,6 +201,12 @@
   max-width: 1680px;
   margin: 0 auto;
   padding-inline: 1rem;
+
+  position: sticky;
+  top: 4rem;
+  z-index: 1;
+  background-color: var(--ui-background-color);
+  padding-block: 1rem;
 }
 
 .home-components-showcase {

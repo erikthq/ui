@@ -3,11 +3,19 @@ import { sections, components, utilities, blocks, url } from "../layout";
 
 const slug = (p: string) => "/" + p.split("/").pop();
 
-export function SidebarNav(path: string) {
-  const isGettingStarted = sections.some((s) => slug(s.path) === slug(path));
-  const isComponents =
-    path.startsWith("/components/") || path.startsWith("/utilities/");
-  const isBlocks = path === "/blocks" || path.startsWith("/blocks/");
+type Section = "getting-started" | "components" | "blocks";
+
+// Pass `section` to render that section's links, regardless of the current path
+export function SidebarNav(path: string, section?: Section) {
+  const isGettingStarted = section
+    ? section === "getting-started"
+    : sections.some((s) => slug(s.path) === slug(path));
+  const isComponents = section
+    ? section === "components"
+    : path.startsWith("/components/") || path.startsWith("/utilities/");
+  const isBlocks = section
+    ? section === "blocks"
+    : path === "/blocks" || path.startsWith("/blocks/");
 
   if (isGettingStarted) {
     return html`
