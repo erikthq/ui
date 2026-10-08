@@ -2,12 +2,15 @@
 :host {
   color-scheme: light dark;
 
+  /* SEEDS */
   --ui-primary-light: dodgerblue;
   --ui-primary-dark: color-mix(in oklab, dodgerblue, white 20%);
-
   --ui-primary: light-dark(var(--ui-primary-light), var(--ui-primary-dark));
-
-  --ui-neutral: #8b8c93;
+  
+  --ui-neutral-light: #93949d;
+  --ui-neutral-dark: #8b8c93;
+  --ui-neutral: light-dark(var(--ui-neutral-light), var(--ui-neutral-dark));
+  
   --ui-constructive: #5dbb55;
   --ui-destructive: #ef5655;
 
@@ -18,227 +21,455 @@
   --ui-color5: slateblue;
   --ui-color6: plum;
 
-  --ui-primary-50: light-dark(color-mix(in oklab, var(--ui-primary), white 95%), color-mix(in oklab, var(--ui-primary), black 73.75%));
+  /* SCALES */
+  --ui-color-50-light-value: white 95%;
+  --ui-color-100-light-value: white 87%;
+  --ui-color-200-light-value: white 80%;
+  --ui-color-300-light-value: white 70%;
+  --ui-color-400-light-value: white 40%;
+  --ui-color-600-light-value: black 13%;
+  --ui-color-700-light-value: black 25%;
+  --ui-color-800-light-value: black 43.5%;
+  --ui-color-900-light-value: black 58.5%;
+  --ui-color-950-light-value: black 73.75%;
 
-  --ui-primary-100: light-dark(color-mix(in oklab, var(--ui-primary), white 87%), color-mix(in oklab, var(--ui-primary), black 58.5%));
+  --ui-color-50-dark-value: black 75%;
+  --ui-color-100-dark-value: black 70%;
+  --ui-color-200-dark-value: black 65%;
+  --ui-color-300-dark-value: black 50%;
+  --ui-color-400-dark-value: black 35%;
+  --ui-color-600-dark-value: white 15%;
+  --ui-color-700-dark-value: white 47%;
+  --ui-color-800-dark-value: white 70%;
+  --ui-color-900-dark-value: white 87%;
+  --ui-color-950-dark-value: white 95%;
 
-  --ui-primary-200: light-dark(color-mix(in oklab, var(--ui-primary), white 70%), color-mix(in oklab, var(--ui-primary), black 43.5%));
+  /* DEFINITIONS */
+  --ui-primary-50-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-50-light-value));
+  --ui-primary-50-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-50-dark-value));
+  --ui-primary-50: light-dark(var(--ui-primary-50-light), var(--ui-primary-50-dark));
 
-  --ui-primary-300: light-dark(color-mix(in oklab, var(--ui-primary), white 47%), color-mix(in oklab, var(--ui-primary), black 28.25%));
+  --ui-primary-100-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-100-light-value));
+  --ui-primary-100-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-100-dark-value));
+  --ui-primary-100: light-dark(var(--ui-primary-100-light), var(--ui-primary-100-dark));
 
-  --ui-primary-400: light-dark(color-mix(in oklab, var(--ui-primary), white 23%), color-mix(in oklab, var(--ui-primary), black 15.5%));
+  --ui-primary-200-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-200-light-value));
+  --ui-primary-200-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-200-dark-value));
+  --ui-primary-200: light-dark(var(--ui-primary-200-light), var(--ui-primary-200-dark));
+
+  --ui-primary-300-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-300-light-value));
+  --ui-primary-300-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-300-dark-value));
+  --ui-primary-300: light-dark(var(--ui-primary-300-light), var(--ui-primary-300-dark));
+
+  --ui-primary-400-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-400-light-value));
+  --ui-primary-400-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-400-dark-value));
+  --ui-primary-400: light-dark(var(--ui-primary-400-light), var(--ui-primary-400-dark));
 
   --ui-primary-500: var(--ui-primary);
 
-  --ui-primary-600: light-dark(color-mix(in oklab, var(--ui-primary), black 13%), color-mix(in oklab, var(--ui-primary), white 23%));
+  --ui-primary-600-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-600-light-value));
+  --ui-primary-600-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-600-dark-value));
+  --ui-primary-600: light-dark(var(--ui-primary-600-light), var(--ui-primary-600-dark));
 
-  --ui-primary-700: light-dark(color-mix(in oklab, var(--ui-primary), black 25%), color-mix(in oklab, var(--ui-primary), white 47%));
+  --ui-primary-700-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-700-light-value));
+  --ui-primary-700-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-700-dark-value));
+  --ui-primary-700: light-dark(var(--ui-primary-700-light), var(--ui-primary-700-dark));
 
-  --ui-primary-800: light-dark(color-mix(in oklab, var(--ui-primary), black 43.5%), color-mix(in oklab, var(--ui-primary), white 70%));
+  --ui-primary-800-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-800-light-value));
+  --ui-primary-800-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-800-dark-value));
+  --ui-primary-800: light-dark(var(--ui-primary-800-light), var(--ui-primary-800-dark));
 
-  --ui-primary-900: light-dark(color-mix(in oklab, var(--ui-primary), black 58.5%), color-mix(in oklab, var(--ui-primary), white 87%));
+  --ui-primary-900-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-900-light-value));
+  --ui-primary-900-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-900-dark-value));
+  --ui-primary-900: light-dark(var(--ui-primary-900-light), var(--ui-primary-900-dark));
 
-  --ui-primary-950: light-dark(color-mix(in oklab, var(--ui-primary), black 73.75%), color-mix(in oklab, var(--ui-primary), white 95%));
+  --ui-primary-950-light: color-mix(in oklab, var(--ui-primary), var(--ui-color-950-light-value));
+  --ui-primary-950-dark: color-mix(in oklab, var(--ui-primary), var(--ui-color-950-dark-value));
+  --ui-primary-950: light-dark(var(--ui-primary-950-light), var(--ui-primary-950-dark));
 
-  --ui-neutral-0: light-dark(color-mix(in oklab, var(--ui-neutral), white 100%), color-mix(in oklab, var(--ui-neutral), black 100%));
+  --ui-neutral-0-light: color-mix(in oklab, var(--ui-neutral), white 100%);
+  --ui-neutral-0-dark: color-mix(in oklab, var(--ui-neutral), black 100%);
+  --ui-neutral-0: light-dark(var(--ui-neutral-0-light), var(--ui-neutral-0-dark));
 
-  --ui-neutral-50: light-dark(color-mix(in oklab, var(--ui-neutral), white 95%), color-mix(in oklab, var(--ui-neutral), black 73.75%));
+  --ui-neutral-50-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-50-light-value));
+  --ui-neutral-50-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-50-dark-value));
+  --ui-neutral-50: light-dark(var(--ui-neutral-50-light), var(--ui-neutral-50-dark));
 
-  --ui-neutral-100: light-dark(color-mix(in oklab, var(--ui-neutral), white 90%), color-mix(in oklab, var(--ui-neutral), black 68%));
+  --ui-neutral-100-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-100-light-value));
+  --ui-neutral-100-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-100-dark-value));
+  --ui-neutral-100: light-dark(var(--ui-neutral-100-light), var(--ui-neutral-100-dark));
 
-  --ui-neutral-200: light-dark(color-mix(in oklab, var(--ui-neutral), white 83%), color-mix(in oklab, var(--ui-neutral), black 60%));
+  --ui-neutral-200-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-200-light-value));
+  --ui-neutral-200-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-200-dark-value));
+  --ui-neutral-200: light-dark(var(--ui-neutral-200-light), var(--ui-neutral-200-dark));
 
-  --ui-neutral-300: light-dark(color-mix(in oklab, var(--ui-neutral), white 70%), color-mix(in oklab, var(--ui-neutral), black 45%));
+  --ui-neutral-300-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-300-light-value));
+  --ui-neutral-300-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-300-dark-value));
+  --ui-neutral-300: light-dark(var(--ui-neutral-300-light), var(--ui-neutral-300-dark));
 
-  --ui-neutral-400: light-dark(color-mix(in oklab, var(--ui-neutral), white 50%), color-mix(in oklab, var(--ui-neutral), black 25%));
+  --ui-neutral-400-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-400-light-value));
+  --ui-neutral-400-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-400-dark-value));
+  --ui-neutral-400: light-dark(var(--ui-neutral-400-light), var(--ui-neutral-400-dark));
 
   --ui-neutral-500: var(--ui-neutral);
 
-  --ui-neutral-600: light-dark(color-mix(in oklab, var(--ui-neutral), black 13%), color-mix(in oklab, var(--ui-neutral), white 23%));
+  --ui-neutral-600-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-600-light-value));
+  --ui-neutral-600-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-600-dark-value));
+  --ui-neutral-600: light-dark(var(--ui-neutral-600-light), var(--ui-neutral-600-dark));
 
-  --ui-neutral-700: light-dark(color-mix(in oklab, var(--ui-neutral), black 25%), color-mix(in oklab, var(--ui-neutral), white 47%));
+  --ui-neutral-700-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-700-light-value));
+  --ui-neutral-700-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-700-dark-value));
+  --ui-neutral-700: light-dark(var(--ui-neutral-700-light), var(--ui-neutral-700-dark));
 
-  --ui-neutral-800: light-dark(color-mix(in oklab, var(--ui-neutral), black 43.5%), color-mix(in oklab, var(--ui-neutral), white 70%));
+  --ui-neutral-800-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-800-light-value));
+  --ui-neutral-800-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-800-dark-value));
+  --ui-neutral-800: light-dark(var(--ui-neutral-800-light), var(--ui-neutral-800-dark));
 
-  --ui-neutral-900: light-dark(color-mix(in oklab, var(--ui-neutral), black 58.5%), color-mix(in oklab, var(--ui-neutral), white 87%));
+  --ui-neutral-900-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-900-light-value));
+  --ui-neutral-900-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-900-dark-value));
+  --ui-neutral-900: light-dark(var(--ui-neutral-900-light), var(--ui-neutral-900-dark));
 
-  --ui-neutral-950: light-dark(color-mix(in oklab, var(--ui-neutral), black 73.75%), color-mix(in oklab, var(--ui-neutral), white 95%));
+  --ui-neutral-950-light: color-mix(in oklab, var(--ui-neutral), var(--ui-color-950-light-value));
+  --ui-neutral-950-dark: color-mix(in oklab, var(--ui-neutral), var(--ui-color-950-dark-value));
+  --ui-neutral-950: light-dark(var(--ui-neutral-950-light), var(--ui-neutral-950-dark));
 
-  --ui-neutral-1000: light-dark(color-mix(in oklab, var(--ui-neutral), black 100%), color-mix(in oklab, var(--ui-neutral), white 100%));
+  --ui-neutral-1000-light: color-mix(in oklab, var(--ui-neutral), black 100%);
+  --ui-neutral-1000-dark: color-mix(in oklab, var(--ui-neutral), white 100%);
+  --ui-neutral-1000: light-dark(var(--ui-neutral-1000-light), var(--ui-neutral-1000-dark));
 
-  --ui-constructive-50: light-dark(color-mix(in oklab, var(--ui-constructive), white 95%), color-mix(in oklab, var(--ui-constructive), black 73.75%));
+  --ui-constructive-50-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-50-light-value));
+  --ui-constructive-50-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-50-dark-value));
+  --ui-constructive-50: light-dark(var(--ui-constructive-50-light), var(--ui-constructive-50-dark));
 
-  --ui-constructive-100: light-dark(color-mix(in oklab, var(--ui-constructive), white 87%), color-mix(in oklab, var(--ui-constructive), black 58.5%));
+  --ui-constructive-100-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-100-light-value));
+  --ui-constructive-100-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-100-dark-value));
+  --ui-constructive-100: light-dark(var(--ui-constructive-100-light), var(--ui-constructive-100-dark));
 
-  --ui-constructive-200: light-dark(color-mix(in oklab, var(--ui-constructive), white 70%), color-mix(in oklab, var(--ui-constructive), black 43.5%));
+  --ui-constructive-200-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-200-light-value));
+  --ui-constructive-200-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-200-dark-value));
+  --ui-constructive-200: light-dark(var(--ui-constructive-200-light), var(--ui-constructive-200-dark));
 
-  --ui-constructive-300: light-dark(color-mix(in oklab, var(--ui-constructive), white 47%), color-mix(in oklab, var(--ui-constructive), black 28.25%));
+  --ui-constructive-300-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-300-light-value));
+  --ui-constructive-300-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-300-dark-value));
+  --ui-constructive-300: light-dark(var(--ui-constructive-300-light), var(--ui-constructive-300-dark));
 
-  --ui-constructive-400: light-dark(color-mix(in oklab, var(--ui-constructive), white 23%), color-mix(in oklab, var(--ui-constructive), black 15.5%));
+  --ui-constructive-400-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-400-light-value));
+  --ui-constructive-400-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-400-dark-value));
+  --ui-constructive-400: light-dark(var(--ui-constructive-400-light), var(--ui-constructive-400-dark));
 
   --ui-constructive-500: var(--ui-constructive);
 
-  --ui-constructive-600: light-dark(color-mix(in oklab, var(--ui-constructive), black 13%), color-mix(in oklab, var(--ui-constructive), white 23%));
+  --ui-constructive-600-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-600-light-value));
+  --ui-constructive-600-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-600-dark-value));
+  --ui-constructive-600: light-dark(var(--ui-constructive-600-light), var(--ui-constructive-600-dark));
 
-  --ui-constructive-700: light-dark(color-mix(in oklab, var(--ui-constructive), black 25%), color-mix(in oklab, var(--ui-constructive), white 47%));
+  --ui-constructive-700-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-700-light-value));
+  --ui-constructive-700-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-700-dark-value));
+  --ui-constructive-700: light-dark(var(--ui-constructive-700-light), var(--ui-constructive-700-dark));
 
-  --ui-constructive-800: light-dark(color-mix(in oklab, var(--ui-constructive), black 43.5%), color-mix(in oklab, var(--ui-constructive), white 70%));
+  --ui-constructive-800-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-800-light-value));
+  --ui-constructive-800-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-800-dark-value));
+  --ui-constructive-800: light-dark(var(--ui-constructive-800-light), var(--ui-constructive-800-dark));
 
-  --ui-constructive-900: light-dark(color-mix(in oklab, var(--ui-constructive), black 58.5%), color-mix(in oklab, var(--ui-constructive), white 87%));
+  --ui-constructive-900-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-900-light-value));
+  --ui-constructive-900-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-900-dark-value));
+  --ui-constructive-900: light-dark(var(--ui-constructive-900-light), var(--ui-constructive-900-dark));
 
-  --ui-constructive-950: light-dark(color-mix(in oklab, var(--ui-constructive), black 73.75%), color-mix(in oklab, var(--ui-constructive), white 95%));
+  --ui-constructive-950-light: color-mix(in oklab, var(--ui-constructive), var(--ui-color-950-light-value));
+  --ui-constructive-950-dark: color-mix(in oklab, var(--ui-constructive), var(--ui-color-950-dark-value));
+  --ui-constructive-950: light-dark(var(--ui-constructive-950-light), var(--ui-constructive-950-dark));
 
-  --ui-destructive-50: light-dark(color-mix(in oklab, var(--ui-destructive), white 95%), color-mix(in oklab, var(--ui-destructive), black 73.75%));
+  --ui-destructive-50-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-50-light-value));
+  --ui-destructive-50-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-50-dark-value));
+  --ui-destructive-50: light-dark(var(--ui-destructive-50-light), var(--ui-destructive-50-dark));
 
-  --ui-destructive-100: light-dark(color-mix(in oklab, var(--ui-destructive), white 87%), color-mix(in oklab, var(--ui-destructive), black 58.5%));
+  --ui-destructive-100-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-100-light-value));
+  --ui-destructive-100-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-100-dark-value));
+  --ui-destructive-100: light-dark(var(--ui-destructive-100-light), var(--ui-destructive-100-dark));
 
-  --ui-destructive-200: light-dark(color-mix(in oklab, var(--ui-destructive), white 70%), color-mix(in oklab, var(--ui-destructive), black 43.5%));
+  --ui-destructive-200-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-200-light-value));
+  --ui-destructive-200-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-200-dark-value));
+  --ui-destructive-200: light-dark(var(--ui-destructive-200-light), var(--ui-destructive-200-dark));
 
-  --ui-destructive-300: light-dark(color-mix(in oklab, var(--ui-destructive), white 47%), color-mix(in oklab, var(--ui-destructive), black 28.25%));
+  --ui-destructive-300-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-300-light-value));
+  --ui-destructive-300-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-300-dark-value));
+  --ui-destructive-300: light-dark(var(--ui-destructive-300-light), var(--ui-destructive-300-dark));
 
-  --ui-destructive-400: light-dark(color-mix(in oklab, var(--ui-destructive), white 23%), color-mix(in oklab, var(--ui-destructive), black 15.5%));
+  --ui-destructive-400-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-400-light-value));
+  --ui-destructive-400-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-400-dark-value));
+  --ui-destructive-400: light-dark(var(--ui-destructive-400-light), var(--ui-destructive-400-dark));
 
   --ui-destructive-500: var(--ui-destructive);
 
-  --ui-destructive-600: light-dark(color-mix(in oklab, var(--ui-destructive), black 13%), color-mix(in oklab, var(--ui-destructive), white 23%));
+  --ui-destructive-600-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-600-light-value));
+  --ui-destructive-600-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-600-dark-value));
+  --ui-destructive-600: light-dark(var(--ui-destructive-600-light), var(--ui-destructive-600-dark));
 
-  --ui-destructive-700: light-dark(color-mix(in oklab, var(--ui-destructive), black 25%), color-mix(in oklab, var(--ui-destructive), white 47%));
+  --ui-destructive-700-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-700-light-value));
+  --ui-destructive-700-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-700-dark-value));
+  --ui-destructive-700: light-dark(var(--ui-destructive-700-light), var(--ui-destructive-700-dark));
 
-  --ui-destructive-800: light-dark(color-mix(in oklab, var(--ui-destructive), black 43.5%), color-mix(in oklab, var(--ui-destructive), white 70%));
+  --ui-destructive-800-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-800-light-value));
+  --ui-destructive-800-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-800-dark-value));
+  --ui-destructive-800: light-dark(var(--ui-destructive-800-light), var(--ui-destructive-800-dark));
 
-  --ui-destructive-900: light-dark(color-mix(in oklab, var(--ui-destructive), black 58.5%), color-mix(in oklab, var(--ui-destructive), white 87%));
+  --ui-destructive-900-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-900-light-value));
+  --ui-destructive-900-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-900-dark-value));
+  --ui-destructive-900: light-dark(var(--ui-destructive-900-light), var(--ui-destructive-900-dark));
 
-  --ui-destructive-950: light-dark(color-mix(in oklab, var(--ui-destructive), black 73.75%), color-mix(in oklab, var(--ui-destructive), white 95%));
+  --ui-destructive-950-light: color-mix(in oklab, var(--ui-destructive), var(--ui-color-950-light-value));
+  --ui-destructive-950-dark: color-mix(in oklab, var(--ui-destructive), var(--ui-color-950-dark-value));
+  --ui-destructive-950: light-dark(var(--ui-destructive-950-light), var(--ui-destructive-950-dark));
 
-  --ui-color1-50: light-dark(color-mix(in oklab, var(--ui-color1), white 95%), color-mix(in oklab, var(--ui-color1), black 73.75%));
+  --ui-color1-50-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-50-light-value));
+  --ui-color1-50-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-50-dark-value));
+  --ui-color1-50: light-dark(var(--ui-color1-50-light), var(--ui-color1-50-dark));
 
-  --ui-color1-100: light-dark(color-mix(in oklab, var(--ui-color1), white 87%), color-mix(in oklab, var(--ui-color1), black 58.5%));
+  --ui-color1-100-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-100-light-value));
+  --ui-color1-100-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-100-dark-value));
+  --ui-color1-100: light-dark(var(--ui-color1-100-light), var(--ui-color1-100-dark));
 
-  --ui-color1-200: light-dark(color-mix(in oklab, var(--ui-color1), white 70%), color-mix(in oklab, var(--ui-color1), black 43.5%));
+  --ui-color1-200-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-200-light-value));
+  --ui-color1-200-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-200-dark-value));
+  --ui-color1-200: light-dark(var(--ui-color1-200-light), var(--ui-color1-200-dark));
 
-  --ui-color1-300: light-dark(color-mix(in oklab, var(--ui-color1), white 47%), color-mix(in oklab, var(--ui-color1), black 28.25%));
+  --ui-color1-300-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-300-light-value));
+  --ui-color1-300-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-300-dark-value));
+  --ui-color1-300: light-dark(var(--ui-color1-300-light), var(--ui-color1-300-dark));
 
-  --ui-color1-400: light-dark(color-mix(in oklab, var(--ui-color1), white 23%), color-mix(in oklab, var(--ui-color1), black 15.5%));
+  --ui-color1-400-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-400-light-value));
+  --ui-color1-400-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-400-dark-value));
+  --ui-color1-400: light-dark(var(--ui-color1-400-light), var(--ui-color1-400-dark));
 
   --ui-color1-500: var(--ui-color1);
 
-  --ui-color1-600: light-dark(color-mix(in oklab, var(--ui-color1), black 13%), color-mix(in oklab, var(--ui-color1), white 15%));
+  --ui-color1-600-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-600-light-value));
+  --ui-color1-600-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-600-dark-value));
+  --ui-color1-600: light-dark(var(--ui-color1-600-light), var(--ui-color1-600-dark));
 
-  --ui-color1-700: light-dark(color-mix(in oklab, var(--ui-color1), black 25%), color-mix(in oklab, var(--ui-color1), white 47%));
+  --ui-color1-700-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-700-light-value));
+  --ui-color1-700-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-700-dark-value));
+  --ui-color1-700: light-dark(var(--ui-color1-700-light), var(--ui-color1-700-dark));
 
-  --ui-color1-800: light-dark(color-mix(in oklab, var(--ui-color1), black 43.5%), color-mix(in oklab, var(--ui-color1), white 70%));
+  --ui-color1-800-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-800-light-value));
+  --ui-color1-800-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-800-dark-value));
+  --ui-color1-800: light-dark(var(--ui-color1-800-light), var(--ui-color1-800-dark));
 
-  --ui-color1-900: light-dark(color-mix(in oklab, var(--ui-color1), black 58.5%), color-mix(in oklab, var(--ui-color1), white 87%));
+  --ui-color1-900-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-900-light-value));
+  --ui-color1-900-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-900-dark-value));
+  --ui-color1-900: light-dark(var(--ui-color1-900-light), var(--ui-color1-900-dark));
 
-  --ui-color1-950: light-dark(color-mix(in oklab, var(--ui-color1), black 73.75%), color-mix(in oklab, var(--ui-color1), white 95%));
+  --ui-color1-950-light: color-mix(in oklab, var(--ui-color1), var(--ui-color-950-light-value));
+  --ui-color1-950-dark: color-mix(in oklab, var(--ui-color1), var(--ui-color-950-dark-value));
+  --ui-color1-950: light-dark(var(--ui-color1-950-light), var(--ui-color1-950-dark));
 
-  --ui-color2-50: light-dark(color-mix(in oklab, var(--ui-color2), white 95%), color-mix(in oklab, var(--ui-color2), black 73.75%));
+  --ui-color2-50-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-50-light-value));
+  --ui-color2-50-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-50-dark-value));
+  --ui-color2-50: light-dark(var(--ui-color2-50-light), var(--ui-color2-50-dark));
 
-  --ui-color2-100: light-dark(color-mix(in oklab, var(--ui-color2), white 87%), color-mix(in oklab, var(--ui-color2), black 58.5%));
+  --ui-color2-100-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-100-light-value));
+  --ui-color2-100-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-100-dark-value));
+  --ui-color2-100: light-dark(var(--ui-color2-100-light), var(--ui-color2-100-dark));
 
-  --ui-color2-200: light-dark(color-mix(in oklab, var(--ui-color2), white 70%), color-mix(in oklab, var(--ui-color2), black 43.5%));
+  --ui-color2-200-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-200-light-value));
+  --ui-color2-200-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-200-dark-value));
+  --ui-color2-200: light-dark(var(--ui-color2-200-light), var(--ui-color2-200-dark));
 
-  --ui-color2-300: light-dark(color-mix(in oklab, var(--ui-color2), white 47%), color-mix(in oklab, var(--ui-color2), black 28.25%));
+  --ui-color2-300-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-300-light-value));
+  --ui-color2-300-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-300-dark-value));
+  --ui-color2-300: light-dark(var(--ui-color2-300-light), var(--ui-color2-300-dark));
 
-  --ui-color2-400: light-dark(color-mix(in oklab, var(--ui-color2), white 23%), color-mix(in oklab, var(--ui-color2), black 15.5%));
+  --ui-color2-400-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-400-light-value));
+  --ui-color2-400-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-400-dark-value));
+  --ui-color2-400: light-dark(var(--ui-color2-400-light), var(--ui-color2-400-dark));
 
   --ui-color2-500: var(--ui-color2);
 
-  --ui-color2-600: light-dark(color-mix(in oklab, var(--ui-color2), black 13%), color-mix(in oklab, var(--ui-color2), white 15%));
+  --ui-color2-600-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-600-light-value));
+  --ui-color2-600-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-600-dark-value));
+  --ui-color2-600: light-dark(var(--ui-color2-600-light), var(--ui-color2-600-dark));
 
-  --ui-color2-700: light-dark(color-mix(in oklab, var(--ui-color2), black 25%), color-mix(in oklab, var(--ui-color2), white 47%));
+  --ui-color2-700-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-700-light-value));
+  --ui-color2-700-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-700-dark-value));
+  --ui-color2-700: light-dark(var(--ui-color2-700-light), var(--ui-color2-700-dark));
 
-  --ui-color2-800: light-dark(color-mix(in oklab, var(--ui-color2), black 43.5%), color-mix(in oklab, var(--ui-color2), white 70%));
+  --ui-color2-800-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-800-light-value));
+  --ui-color2-800-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-800-dark-value));
+  --ui-color2-800: light-dark(var(--ui-color2-800-light), var(--ui-color2-800-dark));
 
-  --ui-color2-900: light-dark(color-mix(in oklab, var(--ui-color2), black 58.5%), color-mix(in oklab, var(--ui-color2), white 87%));
+  --ui-color2-900-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-900-light-value));
+  --ui-color2-900-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-900-dark-value));
+  --ui-color2-900: light-dark(var(--ui-color2-900-light), var(--ui-color2-900-dark));
 
-  --ui-color2-950: light-dark(color-mix(in oklab, var(--ui-color2), black 73.75%), color-mix(in oklab, var(--ui-color2), white 95%));
+  --ui-color2-950-light: color-mix(in oklab, var(--ui-color2), var(--ui-color-950-light-value));
+  --ui-color2-950-dark: color-mix(in oklab, var(--ui-color2), var(--ui-color-950-dark-value));
+  --ui-color2-950: light-dark(var(--ui-color2-950-light), var(--ui-color2-950-dark));
 
-  --ui-color3-50: light-dark(color-mix(in oklab, var(--ui-color3), white 95%), color-mix(in oklab, var(--ui-color3), black 73.75%));
+  --ui-color3-50-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-50-light-value));
+  --ui-color3-50-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-50-dark-value));
+  --ui-color3-50: light-dark(var(--ui-color3-50-light), var(--ui-color3-50-dark));
 
-  --ui-color3-100: light-dark(color-mix(in oklab, var(--ui-color3), white 87%), color-mix(in oklab, var(--ui-color3), black 58.5%));
+  --ui-color3-100-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-100-light-value));
+  --ui-color3-100-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-100-dark-value));
+  --ui-color3-100: light-dark(var(--ui-color3-100-light), var(--ui-color3-100-dark));
 
-  --ui-color3-200: light-dark(color-mix(in oklab, var(--ui-color3), white 70%), color-mix(in oklab, var(--ui-color3), black 43.5%));
+  --ui-color3-200-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-200-light-value));
+  --ui-color3-200-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-200-dark-value));
+  --ui-color3-200: light-dark(var(--ui-color3-200-light), var(--ui-color3-200-dark));
 
-  --ui-color3-300: light-dark(color-mix(in oklab, var(--ui-color3), white 47%), color-mix(in oklab, var(--ui-color3), black 28.25%));
+  --ui-color3-300-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-300-light-value));
+  --ui-color3-300-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-300-dark-value));
+  --ui-color3-300: light-dark(var(--ui-color3-300-light), var(--ui-color3-300-dark));
 
-  --ui-color3-400: light-dark(color-mix(in oklab, var(--ui-color3), white 23%), color-mix(in oklab, var(--ui-color3), black 15.5%));
+  --ui-color3-400-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-400-light-value));
+  --ui-color3-400-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-400-dark-value));
+  --ui-color3-400: light-dark(var(--ui-color3-400-light), var(--ui-color3-400-dark));
 
   --ui-color3-500: var(--ui-color3);
 
-  --ui-color3-600: light-dark(color-mix(in oklab, var(--ui-color3), black 13%), color-mix(in oklab, var(--ui-color3), white 15%));
+  --ui-color3-600-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-600-light-value));
+  --ui-color3-600-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-600-dark-value));
+  --ui-color3-600: light-dark(var(--ui-color3-600-light), var(--ui-color3-600-dark));
 
-  --ui-color3-700: light-dark(color-mix(in oklab, var(--ui-color3), black 25%), color-mix(in oklab, var(--ui-color3), white 47%));
+  --ui-color3-700-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-700-light-value));
+  --ui-color3-700-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-700-dark-value));
+  --ui-color3-700: light-dark(var(--ui-color3-700-light), var(--ui-color3-700-dark));
 
-  --ui-color3-800: light-dark(color-mix(in oklab, var(--ui-color3), black 43.5%), color-mix(in oklab, var(--ui-color3), white 70%));
+  --ui-color3-800-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-800-light-value));
+  --ui-color3-800-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-800-dark-value));
+  --ui-color3-800: light-dark(var(--ui-color3-800-light), var(--ui-color3-800-dark));
 
-  --ui-color3-900: light-dark(color-mix(in oklab, var(--ui-color3), black 58.5%), color-mix(in oklab, var(--ui-color3), white 87%));
+  --ui-color3-900-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-900-light-value));
+  --ui-color3-900-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-900-dark-value));
+  --ui-color3-900: light-dark(var(--ui-color3-900-light), var(--ui-color3-900-dark));
 
-  --ui-color3-950: light-dark(color-mix(in oklab, var(--ui-color3), black 73.75%), color-mix(in oklab, var(--ui-color3), white 95%));
+  --ui-color3-950-light: color-mix(in oklab, var(--ui-color3), var(--ui-color-950-light-value));
+  --ui-color3-950-dark: color-mix(in oklab, var(--ui-color3), var(--ui-color-950-dark-value));
+  --ui-color3-950: light-dark(var(--ui-color3-950-light), var(--ui-color3-950-dark));
 
-  --ui-color4-50: light-dark(color-mix(in oklab, var(--ui-color4), white 95%), color-mix(in oklab, var(--ui-color4), black 73.75%));
+  --ui-color4-50-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-50-light-value));
+  --ui-color4-50-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-50-dark-value));
+  --ui-color4-50: light-dark(var(--ui-color4-50-light), var(--ui-color4-50-dark));
 
-  --ui-color4-100: light-dark(color-mix(in oklab, var(--ui-color4), white 87%), color-mix(in oklab, var(--ui-color4), black 58.5%));
+  --ui-color4-100-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-100-light-value));
+  --ui-color4-100-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-100-dark-value));
+  --ui-color4-100: light-dark(var(--ui-color4-100-light), var(--ui-color4-100-dark));
 
-  --ui-color4-200: light-dark(color-mix(in oklab, var(--ui-color4), white 70%), color-mix(in oklab, var(--ui-color4), black 43.5%));
+  --ui-color4-200-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-200-light-value));
+  --ui-color4-200-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-200-dark-value));
+  --ui-color4-200: light-dark(var(--ui-color4-200-light), var(--ui-color4-200-dark));
 
-  --ui-color4-300: light-dark(color-mix(in oklab, var(--ui-color4), white 47%), color-mix(in oklab, var(--ui-color4), black 28.25%));
+  --ui-color4-300-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-300-light-value));
+  --ui-color4-300-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-300-dark-value));
+  --ui-color4-300: light-dark(var(--ui-color4-300-light), var(--ui-color4-300-dark));
 
-  --ui-color4-400: light-dark(color-mix(in oklab, var(--ui-color4), white 23%), color-mix(in oklab, var(--ui-color4), black 15.5%));
+  --ui-color4-400-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-400-light-value));
+  --ui-color4-400-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-400-dark-value));
+  --ui-color4-400: light-dark(var(--ui-color4-400-light), var(--ui-color4-400-dark));
 
   --ui-color4-500: var(--ui-color4);
 
-  --ui-color4-600: light-dark(color-mix(in oklab, var(--ui-color4), black 13%), color-mix(in oklab, var(--ui-color4), white 15%));
+  --ui-color4-600-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-600-light-value));
+  --ui-color4-600-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-600-dark-value));
+  --ui-color4-600: light-dark(var(--ui-color4-600-light), var(--ui-color4-600-dark));
 
-  --ui-color4-700: light-dark(color-mix(in oklab, var(--ui-color4), black 25%), color-mix(in oklab, var(--ui-color4), white 47%));
+  --ui-color4-700-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-700-light-value));
+  --ui-color4-700-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-700-dark-value));
+  --ui-color4-700: light-dark(var(--ui-color4-700-light), var(--ui-color4-700-dark));
 
-  --ui-color4-800: light-dark(color-mix(in oklab, var(--ui-color4), black 43.5%), color-mix(in oklab, var(--ui-color4), white 70%));
+  --ui-color4-800-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-800-light-value));
+  --ui-color4-800-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-800-dark-value));
+  --ui-color4-800: light-dark(var(--ui-color4-800-light), var(--ui-color4-800-dark));
 
-  --ui-color4-900: light-dark(color-mix(in oklab, var(--ui-color4), black 58.5%), color-mix(in oklab, var(--ui-color4), white 87%));
+  --ui-color4-900-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-900-light-value));
+  --ui-color4-900-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-900-dark-value));
+  --ui-color4-900: light-dark(var(--ui-color4-900-light), var(--ui-color4-900-dark));
 
-  --ui-color4-950: light-dark(color-mix(in oklab, var(--ui-color4), black 73.75%), color-mix(in oklab, var(--ui-color4), white 95%));
+  --ui-color4-950-light: color-mix(in oklab, var(--ui-color4), var(--ui-color-950-light-value));
+  --ui-color4-950-dark: color-mix(in oklab, var(--ui-color4), var(--ui-color-950-dark-value));
+  --ui-color4-950: light-dark(var(--ui-color4-950-light), var(--ui-color4-950-dark));
 
-  --ui-color5-50: light-dark(color-mix(in oklab, var(--ui-color5), white 95%), color-mix(in oklab, var(--ui-color5), black 73.75%));
+  --ui-color5-50-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-50-light-value));
+  --ui-color5-50-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-50-dark-value));
+  --ui-color5-50: light-dark(var(--ui-color5-50-light), var(--ui-color5-50-dark));
 
-  --ui-color5-100: light-dark(color-mix(in oklab, var(--ui-color5), white 87%), color-mix(in oklab, var(--ui-color5), black 58.5%));
+  --ui-color5-100-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-100-light-value));
+  --ui-color5-100-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-100-dark-value));
+  --ui-color5-100: light-dark(var(--ui-color5-100-light), var(--ui-color5-100-dark));
 
-  --ui-color5-200: light-dark(color-mix(in oklab, var(--ui-color5), white 70%), color-mix(in oklab, var(--ui-color5), black 43.5%));
+  --ui-color5-200-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-200-light-value));
+  --ui-color5-200-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-200-dark-value));
+  --ui-color5-200: light-dark(var(--ui-color5-200-light), var(--ui-color5-200-dark));
 
-  --ui-color5-300: light-dark(color-mix(in oklab, var(--ui-color5), white 47%), color-mix(in oklab, var(--ui-color5), black 28.25%));
+  --ui-color5-300-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-300-light-value));
+  --ui-color5-300-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-300-dark-value));
+  --ui-color5-300: light-dark(var(--ui-color5-300-light), var(--ui-color5-300-dark));
 
-  --ui-color5-400: light-dark(color-mix(in oklab, var(--ui-color5), white 23%), color-mix(in oklab, var(--ui-color5), black 15.5%));
+  --ui-color5-400-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-400-light-value));
+  --ui-color5-400-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-400-dark-value));
+  --ui-color5-400: light-dark(var(--ui-color5-400-light), var(--ui-color5-400-dark));
 
   --ui-color5-500: var(--ui-color5);
 
-  --ui-color5-600: light-dark(color-mix(in oklab, var(--ui-color5), black 13%), color-mix(in oklab, var(--ui-color5), white 15%));
+  --ui-color5-600-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-600-light-value));
+  --ui-color5-600-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-600-dark-value));
+  --ui-color5-600: light-dark(var(--ui-color5-600-light), var(--ui-color5-600-dark));
 
-  --ui-color5-700: light-dark(color-mix(in oklab, var(--ui-color5), black 25%), color-mix(in oklab, var(--ui-color5), white 47%));
+  --ui-color5-700-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-700-light-value));
+  --ui-color5-700-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-700-dark-value));
+  --ui-color5-700: light-dark(var(--ui-color5-700-light), var(--ui-color5-700-dark));
 
-  --ui-color5-800: light-dark(color-mix(in oklab, var(--ui-color5), black 43.5%), color-mix(in oklab, var(--ui-color5), white 70%));
+  --ui-color5-800-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-800-light-value));
+  --ui-color5-800-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-800-dark-value));
+  --ui-color5-800: light-dark(var(--ui-color5-800-light), var(--ui-color5-800-dark));
 
-  --ui-color5-900: light-dark(color-mix(in oklab, var(--ui-color5), black 58.5%), color-mix(in oklab, var(--ui-color5), white 87%));
+  --ui-color5-900-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-900-light-value));
+  --ui-color5-900-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-900-dark-value));
+  --ui-color5-900: light-dark(var(--ui-color5-900-light), var(--ui-color5-900-dark));
 
-  --ui-color5-950: light-dark(color-mix(in oklab, var(--ui-color5), black 73.75%), color-mix(in oklab, var(--ui-color5), white 95%));
+  --ui-color5-950-light: color-mix(in oklab, var(--ui-color5), var(--ui-color-950-light-value));
+  --ui-color5-950-dark: color-mix(in oklab, var(--ui-color5), var(--ui-color-950-dark-value));
+  --ui-color5-950: light-dark(var(--ui-color5-950-light), var(--ui-color5-950-dark));
 
-  --ui-color6-50: light-dark(color-mix(in oklab, var(--ui-color6), white 95%), color-mix(in oklab, var(--ui-color6), black 73.75%));
+  --ui-color6-50-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-50-light-value));
+  --ui-color6-50-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-50-dark-value));
+  --ui-color6-50: light-dark(var(--ui-color6-50-light), var(--ui-color6-50-dark));
 
-  --ui-color6-100: light-dark(color-mix(in oklab, var(--ui-color6), white 87%), color-mix(in oklab, var(--ui-color6), black 58.5%));
+  --ui-color6-100-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-100-light-value));
+  --ui-color6-100-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-100-dark-value));
+  --ui-color6-100: light-dark(var(--ui-color6-100-light), var(--ui-color6-100-dark));
 
-  --ui-color6-200: light-dark(color-mix(in oklab, var(--ui-color6), white 70%), color-mix(in oklab, var(--ui-color6), black 43.5%));
+  --ui-color6-200-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-200-light-value));
+  --ui-color6-200-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-200-dark-value));
+  --ui-color6-200: light-dark(var(--ui-color6-200-light), var(--ui-color6-200-dark));
 
-  --ui-color6-300: light-dark(color-mix(in oklab, var(--ui-color6), white 47%), color-mix(in oklab, var(--ui-color6), black 28.25%));
+  --ui-color6-300-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-300-light-value));
+  --ui-color6-300-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-300-dark-value));
+  --ui-color6-300: light-dark(var(--ui-color6-300-light), var(--ui-color6-300-dark));
 
-  --ui-color6-400: light-dark(color-mix(in oklab, var(--ui-color6), white 23%), color-mix(in oklab, var(--ui-color6), black 15.5%));
+  --ui-color6-400-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-400-light-value));
+  --ui-color6-400-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-400-dark-value));
+  --ui-color6-400: light-dark(var(--ui-color6-400-light), var(--ui-color6-400-dark));
 
   --ui-color6-500: var(--ui-color6);
 
-  --ui-color6-600: light-dark(color-mix(in oklab, var(--ui-color6), black 13%), color-mix(in oklab, var(--ui-color6), white 15%));
+  --ui-color6-600-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-600-light-value));
+  --ui-color6-600-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-600-dark-value));
+  --ui-color6-600: light-dark(var(--ui-color6-600-light), var(--ui-color6-600-dark));
 
-  --ui-color6-700: light-dark(color-mix(in oklab, var(--ui-color6), black 25%), color-mix(in oklab, var(--ui-color6), white 47%));
+  --ui-color6-700-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-700-light-value));
+  --ui-color6-700-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-700-dark-value));
+  --ui-color6-700: light-dark(var(--ui-color6-700-light), var(--ui-color6-700-dark));
 
-  --ui-color6-800: light-dark(color-mix(in oklab, var(--ui-color6), black 43.5%), color-mix(in oklab, var(--ui-color6), white 70%));
+  --ui-color6-800-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-800-light-value));
+  --ui-color6-800-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-800-dark-value));
+  --ui-color6-800: light-dark(var(--ui-color6-800-light), var(--ui-color6-800-dark));
 
-  --ui-color6-900: light-dark(color-mix(in oklab, var(--ui-color6), black 58.5%), color-mix(in oklab, var(--ui-color6), white 87%));
+  --ui-color6-900-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-900-light-value));
+  --ui-color6-900-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-900-dark-value));
+  --ui-color6-900: light-dark(var(--ui-color6-900-light), var(--ui-color6-900-dark));
 
-  --ui-color6-950: light-dark(color-mix(in oklab, var(--ui-color6), black 73.75%), color-mix(in oklab, var(--ui-color6), white 95%));
+  --ui-color6-950-light: color-mix(in oklab, var(--ui-color6), var(--ui-color-950-light-value));
+  --ui-color6-950-dark: color-mix(in oklab, var(--ui-color6), var(--ui-color-950-dark-value));
+  --ui-color6-950: light-dark(var(--ui-color6-950-light), var(--ui-color6-950-dark));
 }

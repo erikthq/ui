@@ -15,7 +15,6 @@ button,
   min-width: calc(1lh + var(--ui-spacing-2) * 2);
 
   padding-block: var(--ui-spacing-2);
-  /* padding-inline: var(--ui-spacing-3); */
   padding-inline: calc(var(--ui-spacing-3) * max(1, var(--ui-rounded-scale) * 0.75));
   border-radius: var(--ui-rounded-3);
 
@@ -95,7 +94,7 @@ button,
   &.outlined {
     color: var(--ui-neutral-950);
     background-color: transparent;
-    box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
+    box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-300)) inset;
 
     &:not(:disabled):not([aria-disabled="true"]) {
       @media (hover: hover) {

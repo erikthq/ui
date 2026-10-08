@@ -178,6 +178,10 @@ body:has(.sidebar-toggle:checked) {
   display: flex;
   gap: 0.25rem;
   margin-bottom: 2rem;
+
+  padding: 1rem;
+  background-color: var(--ui-neutral-0);
+  border-radius: var(--ui-rounded-2);
 }
 
 .preview-color-swatch {
