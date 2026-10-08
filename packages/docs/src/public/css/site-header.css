@@ -52,6 +52,7 @@ body > header {
 
     a {
       white-space: nowrap;
+      flex-shrink: 0;
 
       &[aria-current] {
         background: var(--ui-neutral-100);

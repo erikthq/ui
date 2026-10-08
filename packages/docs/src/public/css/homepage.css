@@ -196,6 +196,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 2rem;
   max-width: 1680px;
   margin: 0 auto;
@@ -209,6 +210,8 @@
   max-width: 1680px;
   margin: 0 auto;
   padding: 1.5rem 1rem;
+
+  overflow-x: hidden;
 
   > * {
     break-inside: avoid;
