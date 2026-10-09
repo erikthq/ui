@@ -1,6 +1,11 @@
 :root,
 :host {
   color-scheme: light dark;
+}
+
+:root,
+:host,
+[data-ui-theme] {
 
   /* SEEDS */
   --ui-primary-light: dodgerblue;
@@ -24,8 +29,8 @@
   /* SCALES */
   --ui-color-50-light-value: white 95%;
   --ui-color-100-light-value: white 87%;
-  --ui-color-200-light-value: white 80%;
-  --ui-color-300-light-value: white 70%;
+  --ui-color-200-light-value: white 75%;
+  --ui-color-300-light-value: white 60%;
   --ui-color-400-light-value: white 40%;
   --ui-color-600-light-value: black 13%;
   --ui-color-700-light-value: black 25%;
@@ -36,7 +41,7 @@
   --ui-color-50-dark-value: black 75%;
   --ui-color-100-dark-value: black 70%;
   --ui-color-200-dark-value: black 65%;
-  --ui-color-300-dark-value: black 50%;
+  --ui-color-300-dark-value: black 55%;
   --ui-color-400-dark-value: black 35%;
   --ui-color-600-dark-value: white 15%;
   --ui-color-700-dark-value: white 47%;

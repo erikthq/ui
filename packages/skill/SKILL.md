@@ -140,6 +140,7 @@ Each rule links to a file with incorrect and correct code.
 | Number, date, color | `<input type="number">`, `type="date"`, `type="color"` |  |
 | On/off setting | `<input type="checkbox" class="switch">` | Settings rows inside a card |
 | Checkbox or radio list | `<fieldset>` + `<legend>` + `<label><input></label>` |  |
+| Group of related fields | `<fieldset>` + `<legend>` + `label.field` items (fieldset). Fields stack. Set `flex-direction: row` on the fieldset to put them side by side | Address blocks, light and dark color pairs, password + repeat |
 | 2 to 5 options as buttons | Toggle group: `<fieldset role="group">` + `<label class="toggle">` with radio inputs | View switchers (list/grid), text alignment, time ranges |
 | Pressable on/off button | `<label class="toggle"><input type="checkbox" />...</label>` |  |
 | Selectable tags | `<label><input type="checkbox" /><span class="badge">Tag</span></label>` |  |
@@ -217,6 +218,12 @@ Force a theme with `color-scheme`:
 :root {
   color-scheme: dark; /* or light */
 }
+```
+
+To theme one part of the page, add `data-ui-theme` to it and set seeds there. Without the attribute, a seed on a smaller element does not update the scales built from it.
+
+```html
+<section data-ui-theme style="--ui-primary: crimson; --ui-rounded-scale: 2">...</section>
 ```
 
 More in [rules/styling.md](./rules/styling.md).

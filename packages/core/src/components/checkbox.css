@@ -15,7 +15,8 @@ input[type="checkbox"]:not(.color-swatch *) {
   appearance: none;
   width: 16px;
   aspect-ratio: 1;
-  border-radius: var(--ui-rounded-2);
+  /* border-radius: var(--ui-rounded-2); */
+  border-radius: 4px;
   box-shadow: 0 0 0 1.5px var(--ui-neutral-300) inset;
   background-color: transparent;
   cursor: pointer;

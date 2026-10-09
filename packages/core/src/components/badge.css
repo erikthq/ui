@@ -10,7 +10,7 @@
   letter-spacing: 0.02em;
   user-select: none;
   line-height: 1;
-  background-color: var(--ui-neutral-200);
+  background-color: var(--bg, var(--ui-neutral-200));
   color: var(--ui-neutral-900);
 
   &.secondary {

@@ -64,10 +64,10 @@ body {
 /* Sidebar */
 .docs-sidebar {
   position: sticky;
-  top: 5.5rem;
+  top: var(--site-header-height);
   width: auto;
   bottom: auto;
-  
+
   max-height: calc(100vh - var(--header-h));
 
   left: 0;
@@ -79,13 +79,9 @@ body {
   border-right: 1px solid var(--border);
   padding-block: 1rem 3rem;
   background: var(--ui-background-color);
-  
+
   @media (min-width: 769px) {
     padding-inline: 0.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    top: 4.2rem;
   }
 
   li {
@@ -97,17 +93,6 @@ body {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-  }
-}
-
-body:has(.sidebar-toggle:checked) {
-  > header,
-  main.docs-content {
-    translate: 260px 0;
-  }
-
-  .docs-sidebar {
-    translate: 0 0;
   }
 }
 

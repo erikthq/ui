@@ -7,6 +7,7 @@ const toc = [
   { id: "global-properties", label: "Global properties" },
   { id: "component-properties", label: "Component properties" },
   { id: "scoping", label: "Scoping overrides" },
+  { id: "scoped-themes", label: "Scoped themes" },
 ];
 
 export async function ThemingPage(path: string) {
@@ -359,6 +360,57 @@ dialog.drawer {
         <p>
           None of this needs a build step or a config file. It is plain CSS,
           loaded after the stylesheet.
+        </p>
+
+        <h2 id="scoped-themes">Scoped themes</h2>
+        <p>
+          The color scales and the rounding steps are computed where the
+          library defines them, on <code>:root</code>. A seed you set on a
+          smaller element changes only that one variable. The scales built
+          from it stay as they are.
+        </p>
+        <p>
+          Add <code>data-ui-theme</code> to an element to give it its own copy
+          of the tokens. Seeds set on that element then reach every scale
+          inside it.
+        </p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `<section data-ui-theme class="promo">
+  <button>Get started</button>
+  <span class="badge">New</span>
+</section>`,
+            ),
+          )}
+        </div>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `.promo {
+  --ui-primary: crimson;
+  --ui-rounded-scale: 2;
+  --ui-spacing: 0.3em;
+}`,
+              80,
+              "css",
+            ),
+          )}
+        </div>
+      </div>
+      <div class="prose">
+        <p>
+          A scoped theme follows the page's light or dark mode. Set
+          <code>color-scheme</code> on the element to force one.
+        </p>
+        <p>
+          The element also resets any tokens it inherits. A seed set on
+          <code>:root</code> does not reach inside it, so set seeds on the
+          element itself.
         </p>
       </div>
     `,

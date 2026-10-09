@@ -7,7 +7,7 @@ textarea {
 
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
-  border-radius: var(--ui-spacing-2);
+  border-radius: var(--ui-rounded-2);
 
   font: inherit;
 

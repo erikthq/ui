@@ -17,7 +17,10 @@ export async function FlowPage(path: string) {
           <h1>Flow</h1>
           <p>
             A few helper classes to put elements in a row, a column or a grid,
-            with or without centering. Add <code>.gap-1</code> to
+            with or without centering. The <code>-center</code> classes center
+            on both axes, and the <code>-x</code> and <code>-y</code> versions
+            center on one axis only. Add
+            <code>.gap-1</code> to
             <code>.gap-8</code> to space them out.
           </p>
         </hgroup>
@@ -40,9 +43,33 @@ export async function FlowPage(path: string) {
 .flex-center {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.flex-center-x {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-center-y {
+  display: flex;
+  align-items: center;
 }
 
 .flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col-center-x {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-col-center-y {
   display: flex;
   flex-direction: column;
   justify-content: center;

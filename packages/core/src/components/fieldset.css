@@ -1,0 +1,28 @@
+/* A plain fieldset groups related fields under one legend.
+   Button groups and color swatches have their own styles, and radio-group.css builds on this one */
+fieldset:not([role="group"], .color-swatch) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-4);
+  min-inline-size: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  > legend {
+    font-weight: 600;
+    padding: 0;
+    margin-bottom: var(--ui-spacing-3);
+  }
+
+  > small {
+    color: var(--ui-neutral-500);
+    font-size: 0.875em;
+  }
+
+  /* Nested fields read as part of the group, so their labels step down a level */
+  > .field > span:not([data-prefix], [data-suffix]) {
+    font-weight: 400;
+    color: var(--ui-neutral-600);
+  }
+}

@@ -7,7 +7,7 @@ label:not(.field).toggle {
   padding-block: var(--ui-spacing-2);
   padding-inline: var(--ui-spacing-3);
   border-radius: var(--ui-rounded-3);
-  box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+  box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
   cursor: pointer;
   user-select: none;
   interpolate-size: allow-keywords;

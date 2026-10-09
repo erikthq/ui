@@ -29,7 +29,7 @@ export function KitchenIsland() {
           align-items: center;
           padding: var(--ui-spacing-3) var(--ui-spacing-4);
           border-radius: var(--ui-rounded-4);
-          box-shadow: 0 0 0 1px var(--ui-neutral-200) inset;
+          box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
 
           > svg {
             color: var(--ui-neutral-600);

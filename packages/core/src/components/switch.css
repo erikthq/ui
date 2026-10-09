@@ -2,7 +2,8 @@ input[type="checkbox"].switch {
   appearance: none;
   width: 2.25rem;
   height: 1.2lh;
-  border-radius: var(--ui-rounded-full);
+  /* border-radius: var(--ui-rounded-full); */
+  border-radius: var(--ui-rounded-full-fixed);
   box-shadow: none;
   background-color: var(--ui-neutral-300);
   cursor: pointer;
@@ -20,7 +21,7 @@ input[type="checkbox"].switch {
     width: calc(1.2lh - 2px);
     aspect-ratio: 1;
     margin-inline: 1px;
-    border-radius: var(--ui-rounded-full);
+    border-radius: var(--ui-rounded-full-fixed);
     background-color: var(--ui-background-color);
     transition: left 300ms var(--ease-glide);
   }

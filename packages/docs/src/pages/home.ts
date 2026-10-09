@@ -1,33 +1,14 @@
-import { html, raw } from "hono/html";
+import { html } from "hono/html";
 import { HomeLayout, url } from "../layout";
 import { ColorSwatches } from "../components/color-swatches";
 import { FontPicker } from "../components/font-picker";
 import { RadiusPicker } from "../components/radius-picker";
-import { highlight } from "../highlight";
-import { icon } from "../icon";
+import { Showcase } from "../components/showcase";
 import { readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { resolve } from "node:path";
-import homeShowcase from "../components/home-showcase";
-import { LoginForm } from "../components/showcase/login-form";
-import { MilestoneForm } from "../components/showcase/milestone-form";
-import { ReferralSurvey } from "../components/showcase/referral-survey";
-import { ButtonGroups } from "../components/showcase/button-groups";
-import { SavingsTargets } from "../components/showcase/savings-targets";
-import { ComponentSampler } from "../components/showcase/component-sampler";
-import { Menus } from "../components/showcase/menus";
-import { Tabs } from "../components/showcase/tabs";
-import { PayoutThreshold } from "../components/showcase/payout-threshold";
-import { ConnectBank } from "../components/showcase/connect-bank";
-import { AccountAccess } from "../components/showcase/account-access";
-import { CoverArt } from "../components/showcase/cover-art";
-import { Payments } from "../components/showcase/payments";
-import { KitchenIsland } from "../components/showcase/kitchen-island";
-import { Faq } from "../components/showcase/faq";
-import { ClaimableBalance } from "../components/showcase/claimable-balance";
-import { SyncingAccounts } from "../components/showcase/syncing-accounts";
 
-const cdnUrl = `https://esm.sh/@erikt/ui`;
+const link = '<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />';
 
 function getMainCssSize() {
   const path = "core/dist/ui.css";
@@ -52,32 +33,56 @@ export async function HomePage(path: string) {
       <div class="home-background"></div>
 
       <section class="home-hero prose">
-        <hgroup>
-          <h1>
+        <hgroup class="flex-col-center gap-4">
+          <h1 class="text-6xl">
             A UI library for building your next design system in a single CSS
             file
           </h1>
-          <p>
+          <p class="text-lg">
             Write semantic HTML and it just looks good. No JavaScript, no build
             step, and your own CSS always wins.
             ${cssSize ? html`<code>${cssSize} kB</code> gzipped.` : ""}
           </p>
         </hgroup>
 
-        <div>
+        <div class="flex gap-4">
           <a href="${url("/getting-started/introduction")}" class="button">
             Get started
           </a>
-          <a
-            href="${url("/components/button")}"
-            class="button outlined"
-            style="background-color: var(--ui-background-color)"
-          >
-            Components
-          </a>
-        </div>
-        <div class="code-block">
-          ${raw(await highlight(`<link rel="stylesheet" href="${cdnUrl}" />`))}
+          <copy-to-clipboard value="${link}">
+            <button
+              class="outlined home-copy-link"
+              style="background-color: var(--ui-background-color)"
+              data-tooltip="bottom"
+            >
+              Copy &lt;link&gt; tag
+            </button>
+          </copy-to-clipboard>
+
+          <style>
+            .home-copy-link[data-copied]::before,
+            .home-copy-link[data-copied]::after {
+              opacity: 1;
+            }
+          </style>
+
+          <script>
+            document.addEventListener("clipboard-copy", (e) => {
+              const btn = e.target.querySelector(".home-copy-link");
+              if (!btn) return;
+
+              // The tooltip reads its text from aria-label, so it only exists after a copy
+              btn.setAttribute("aria-label", "Copied");
+              btn.setAttribute("data-copied", "");
+
+              clearTimeout(btn.copiedTimer);
+              btn.copiedTimer = setTimeout(() => {
+                btn.removeAttribute("data-copied");
+                // Wait for the fade out before the tooltip text goes away
+                setTimeout(() => btn.removeAttribute("aria-label"), 100);
+              }, 1500);
+            });
+          </script>
         </div>
       </section>
 
@@ -95,13 +100,7 @@ export async function HomePage(path: string) {
           ${ColorSwatches()}
         </div>
 
-        <div class="home-components-showcase">
-          ${LoginForm()} ${ReferralSurvey()} ${Tabs()} ${MilestoneForm()}
-          ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
-          ${PayoutThreshold()} ${ButtonGroups()} ${ConnectBank()}
-          ${AccountAccess()} ${CoverArt()} ${Payments()} ${KitchenIsland()}
-          ${Faq()} ${ClaimableBalance()} ${SyncingAccounts()}
-        </div>
+        ${Showcase()}
       </section>
 
       <footer class="home-footer prose">

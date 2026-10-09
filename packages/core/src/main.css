@@ -27,6 +27,7 @@
 @import "./components/focus-group.css" layer(ui);
 @import "./components/textarea.css" layer(ui);
 @import "./components/field.css" layer(ui);
+@import "./components/fieldset.css" layer(ui);
 @import "./components/radio-group.css" layer(ui);
 @import "./components/select.css" layer(ui);
 @import "./components/datalist.css" layer(ui);
@@ -65,7 +66,8 @@
 
 @layer ui {
   :root,
-  :host {
+  :host,
+  [data-ui-theme] {
     --ui-spacing: 0.25em;
     --ui-spacing-1: calc(var(--ui-spacing) * 1);
     --ui-spacing-2: calc(var(--ui-spacing) * 2);
@@ -87,6 +89,8 @@
     --ui-rounded-7: calc((var(--ui-rounded) + var(--ui-spacing-6)) * var(--ui-rounded-scale));
     --ui-rounded-8: calc((var(--ui-rounded) + var(--ui-spacing-7)) * var(--ui-rounded-scale));
     --ui-rounded-full: calc((infinity * 1px) * var(--ui-rounded-scale));
+
+    --ui-rounded-full-fixed: calc(infinity * 1px);
 
     --ui-background-color: var(--ui-neutral-50);
     --ui-text-color: var(--ui-neutral-950);

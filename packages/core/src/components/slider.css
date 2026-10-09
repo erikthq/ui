@@ -12,7 +12,7 @@ input[type="range"] {
     appearance: none;
     width: 1.125rem;
     aspect-ratio: 1;
-    border-radius: var(--ui-rounded-full);
+    border-radius: var(--ui-rounded-full-fixed);
     background: var(--ui-background-color);
     box-shadow: 0 0 0 2px var(--ui-primary) inset;
     transition: outline-color 100ms;
@@ -21,7 +21,7 @@ input[type="range"] {
   &::-moz-range-thumb {
     width: 1.125rem;
     height: 1.125rem;
-    border-radius: var(--ui-rounded-full);
+    border-radius: var(--ui-rounded-full-fixed);
     border: none;
     background: var(--ui-background-color);
     box-shadow: 0 0 0 2px var(--ui-primary) inset;
@@ -36,13 +36,11 @@ input[type="range"] {
   &:focus-visible::-webkit-slider-thumb {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
-    /* box-shadow: 0 0 0 2px var(--ui-neutral-950) inset; */
   }
 
   &:focus-visible::-moz-range-thumb {
     outline: 2px solid var(--ui-neutral-950);
     outline-offset: 2px;
-    /* box-shadow: 0 0 0 2px var(--ui-neutral-950) inset; */
   }
 
   &:disabled {

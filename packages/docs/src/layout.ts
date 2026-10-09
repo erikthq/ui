@@ -36,6 +36,8 @@ type LayoutProps = ViewTransitionProps & {
   description?: string;
   toc?: TocItem[];
   wide?: boolean;
+  // Replaces the sidebar nav
+  sidebar?: HtmlEscapedString | Promise<HtmlEscapedString>;
   content: HtmlEscapedString | Promise<HtmlEscapedString>;
 };
 
@@ -263,6 +265,11 @@ export const components: {
     label: "Field",
     path: "/components/field",
     description: "Labeled input with hint text and validation states.",
+  },
+  {
+    label: "Fieldset",
+    path: "/components/fieldset",
+    description: "Group related fields under one legend.",
   },
   {
     label: "File Drop",
@@ -678,6 +685,13 @@ async function header(path: string) {
         >
           ${raw(icon("layout"))} Blocks
         </a>
+        <a
+          href="${url("/create")}"
+          class="button ghost docs-nav-link"
+          ${path === "/create" ? html`aria-current="page"` : ""}
+        >
+          ${raw(icon("wand"))} Create
+        </a>
         <button
           class="ghost docs-nav-link"
           onclick="document.getElementById('icons-dialog').showModal()"
@@ -778,6 +792,7 @@ export function Layout({
   wide,
   viewTransition,
   expect,
+  sidebar,
   content,
 }: LayoutProps) {
   return html`<!doctype html>
@@ -790,7 +805,7 @@ export function Layout({
         ${header(path)}
 
         <div class="docs-layout${wide ? " docs-layout-wide" : ""}">
-          <aside class="docs-sidebar">${SidebarNav(path)}</aside>
+          <aside class="docs-sidebar">${sidebar ?? SidebarNav(path)}</aside>
 
           <main class="docs-content">${content}</main>
 

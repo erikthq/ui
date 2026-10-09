@@ -105,7 +105,7 @@ To make the whole UI rounder or sharper, set `--ui-rounded-scale` on `:root`. Do
 | `--ui-rounded-scale` | `1` | Multiplies every step and `--ui-rounded-full`. `0` is square, `2` is twice as round |
 | `--ui-rounded` | `2px` | The seed that every step starts from |
 
-The library computes the steps on `:root`. Setting `--ui-rounded-scale` or `--ui-rounded` on a smaller element does nothing. To change one area, set the steps there:
+The library computes the steps on `:root`. Setting `--ui-rounded-scale` or `--ui-rounded` on a smaller element does nothing, unless that element has `data-ui-theme` (see [Scoped themes](#scoped-themes)). Without it, set the steps there:
 
 ```css
 .sidebar {
@@ -168,13 +168,26 @@ summary:hover {
 }
 ```
 
-To change one area, scope the variables:
+To change one area, give it `data-ui-theme` and set the seeds there:
+
+```html
+<aside data-ui-theme class="sidebar">...</aside>
+```
 
 ```css
 .sidebar {
   --ui-primary: var(--ui-color5);
 }
 ```
+
+### Scoped themes
+
+The color scales (`--ui-primary-50` to `-950`), the rounding steps and the spacing steps are computed on `:root`. A seed set on a smaller element changes only the seed. The scales keep the `:root` values.
+
+`data-ui-theme` makes the element compute its own copy of every token. Seeds set on it then reach every scale inside.
+
+- It follows the page's light or dark mode. Set `color-scheme` on it to force one.
+- It resets inherited tokens. Seeds set on `:root` do not reach inside, so set them on the element itself.
 
 ---
 

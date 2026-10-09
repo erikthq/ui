@@ -1,7 +1,12 @@
 /* Header */
+:root {
+  --site-header-height: 4rem;
+}
+
 body > header {
   position: sticky;
   top: 0;
+  height: var(--site-header-height);
 
   border-bottom: 1px solid var(--border);
 
@@ -9,7 +14,7 @@ body > header {
   grid-template-columns: auto 1fr auto;
 
   align-items: center;
-  padding: var(--ui-spacing-2) var(--ui-spacing-6);
+  padding-inline: var(--ui-spacing-6);
   column-gap: var(--ui-spacing-4);
   background: var(--ui-background-color);
   z-index: 100;
@@ -69,6 +74,35 @@ body > header {
 
   @media (min-width: 769px) {
     display: none;
+  }
+}
+
+body:has(.home-content) > header {
+  background: none;
+  border-bottom: none;
+
+  /* Fade in the background as the page scrolls.
+     Animate opacity, not the color: light-dark() inside @keyframes ignores the color scheme */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--ui-neutral-50);
+
+    animation: header-background linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--site-header-height);
+  }
+}
+
+@keyframes header-background {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

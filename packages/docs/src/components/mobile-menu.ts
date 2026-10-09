@@ -21,6 +21,10 @@ export function MobileMenu(path: string) {
         margin: 0;
         max-width: none;
 
+        article {
+          --border-radius: 0;
+        }
+
         .docs-mobile-menu-close {
           position: absolute;
           top: var(--ui-spacing-3);
@@ -33,6 +37,7 @@ export function MobileMenu(path: string) {
 
           menu {
             padding: var(--ui-spacing-4);
+            padding-bottom: var(--ui-spacing-8);
 
             + menu {
               padding-top: 0;
@@ -94,6 +99,15 @@ export function MobileMenu(path: string) {
               ${raw(icon("layout"))} Blocks
             </a>
             ${SidebarNav(path, "blocks")}
+          </li>
+          <li>
+            <a
+              href="${url("/create")}"
+              class="button secondary text-xl"
+              ${path === "/create" ? html`aria-current="page"` : ""}
+            >
+              ${raw(icon("wand"))} Create
+            </a>
           </li>
           <li>
             <button
