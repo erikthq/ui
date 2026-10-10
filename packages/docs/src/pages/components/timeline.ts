@@ -33,6 +33,12 @@ export async function TimelinePage(path: string) {
           </p>
         </hgroup>
 
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/loading")}"><code>Loading</code></a></dt>
+          <dd>Spinner in place of a dot</dd>
+        </dl>
+
         <h2 id="default">Default</h2>
         <p>
           Add <code>.timeline</code> to an <code>&lt;ol&gt;</code>. The item

@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -26,6 +26,12 @@ export async function SelectPage(path: string) {
             picker in supporting browsers.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>The trigger, in the outlined style</dd>
+        </dl>
 
         <p>
           In browsers that support <code>appearance: base-select</code> (Chrome

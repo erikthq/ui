@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -27,6 +27,20 @@ export async function MenuPage(path: string) {
             use it standalone anywhere.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>The items you pick from</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/separator")}"><code>Separator</code></a></dt>
+          <dd>Dividers between groups of items</dd>
+          <dt><a href="${url("/components/popover")}"><code>Popover</code></a></dt>
+          <dd>Floating panel for a dropdown</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

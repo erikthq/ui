@@ -387,3 +387,8 @@ body {
   color: var(--ui-neutral-700);
   margin-bottom: 1rem;
 }
+
+/* "Composed of" / "Works with" lists on component pages */
+.composition a {
+  text-decoration: none;
+}

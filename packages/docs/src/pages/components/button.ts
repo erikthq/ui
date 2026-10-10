@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -30,6 +30,16 @@ export async function ButtonPage(path: string) {
             Trigger an action using a native <code>&lt;button&gt;</code> element.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/kbd")}"><code>Kbd</code></a></dt>
+          <dd>Keyboard shortcut hint</dd>
+          <dt><a href="${url("/components/badge")}"><code>Badge</code></a></dt>
+          <dd>Count or status label</dd>
+          <dt><a href="${url("/components/loading")}"><code>Loading</code></a></dt>
+          <dd>Spinner while an action is running</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

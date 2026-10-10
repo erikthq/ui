@@ -28,6 +28,12 @@ export async function TagGroupPage(path: string) {
           </p>
         </hgroup>
 
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/badge")}"><code>Badge</code></a></dt>
+          <dd>The look of each tag</dd>
+        </dl>
+
         <h2 id="checkbox">Checkbox (multi-select)</h2>
         <p>
           Use <code>&lt;input type="checkbox"&gt;</code> to let more than one

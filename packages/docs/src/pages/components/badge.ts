@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -25,6 +25,12 @@ export async function BadgePage(path: string) {
             Small status labels using <code>&lt;span class="badge"&gt;</code>.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/loading")}"><code>Loading</code></a></dt>
+          <dd>Spinner for pending states</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

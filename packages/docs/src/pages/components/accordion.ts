@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -7,6 +7,7 @@ const toc = [
   { id: "multiple", label: "Multiple items" },
   { id: "exclusive", label: "Exclusive" },
   { id: "open", label: "Open by default" },
+  { id: "in-a-card", label: "In a card" },
 ];
 
 export async function AccordionPage(path: string) {
@@ -24,6 +25,12 @@ export async function AccordionPage(path: string) {
             <code>&lt;summary&gt;</code> elements.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/card")}"><code>Card</code></a></dt>
+          <dd>Surface to group the items on</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>
@@ -158,6 +165,53 @@ export async function AccordionPage(path: string) {
     Use the open attribute to expand by default.
   </div>
 </details>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="in-a-card">In a card</h2>
+        <p>
+          Put the items inside a <a href="${url("/components/card")}"><code>Card</code></a> to group
+          them on their own surface.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <article style="width:100%" class="secondary">
+            <details name="card-faq">
+              <summary>Getting started</summary>
+              <div>Import <code>@erikt/ui</code> and start writing HTML.</div>
+            </details>
+            <details name="card-faq">
+              <summary>Customization</summary>
+              <div>Override CSS custom properties to match your brand.</div>
+            </details>
+            <details name="card-faq">
+              <summary>Dark mode</summary>
+              <div>
+                @erikt/ui responds to
+                <code>prefers-color-scheme</code> automatically.
+              </div>
+            </details>
+          </article>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<article class="secondary">
+  <details name="faq">
+    <summary>Getting started</summary>
+    <div>...</div>
+  </details>
+  <details name="faq">
+    <summary>Customization</summary>
+    <div>...</div>
+  </details>
+  <details name="faq">
+    <summary>Dark mode</summary>
+    <div>...</div>
+  </details>
+</article>`),
           )}
         </div>
       </div>

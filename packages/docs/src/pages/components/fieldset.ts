@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -24,6 +24,12 @@ export async function FieldsetPage(path: string) {
             the heading.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/field")}"><code>Field</code></a></dt>
+          <dd>The labelled fields it groups</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

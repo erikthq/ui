@@ -4,6 +4,10 @@ details {
   width: 100%;
   border-bottom: 1px solid var(--ui-neutral-200);
 
+  &:not(:has(+ details)) {
+    border-bottom: none;
+  }
+
   &::details-content {
     transition:
       block-size 300ms var(--ease-glide),

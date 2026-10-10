@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -22,23 +22,41 @@ export async function AlertPage(path: string) {
         <hgroup>
           <h1>Alert</h1>
           <p>
-            An <code>&lt;article&gt;</code> with <code>role="alert"</code> or
-            <code>role="status"</code>, reusing the same card surface as
-            <a href="/components/card">Card</a>. Use
-            <code>role="alert"</code> for urgent messages that should
-            interrupt a screen reader, and <code>role="status"</code> for
-            calmer ones like success or progress updates.
+            A short message that catches the user's eye. Use it to confirm
+            that something worked, warn about a problem, share news, or show
+            that a task is still running.
           </p>
         </hgroup>
 
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/card")}"><code>Card</code></a></dt>
+          <dd>The surface the alert sits on</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>Actions, like retry or dismiss</dd>
+          <dt><a href="${url("/components/loading")}"><code>Loading</code></a></dt>
+          <dd>Spinner for tasks that are still running</dd>
+        </dl>
+
         <h2 id="default">Default</h2>
+        <p>
+          An alert is an <code>&lt;article&gt;</code>, so it shares its
+          surface with <a href="${url("/components/card")}">Card</a>. Add
+          <code>role="alert"</code> for urgent messages that should interrupt
+          a screen reader, and <code>role="status"</code> for calmer ones like
+          success or progress updates.
+        </p>
         <p>
           Icon, <code>&lt;strong&gt;</code> title, and <code>&lt;p&gt;</code>
           description as direct children. Color variants
           (<code>primary</code>, <code>constructive</code>,
           <code>destructive</code>, <code>color1</code> through
           <code>color6</code>) tint the icon and title, same as
-          <a href="/components/badge">Badge</a>.
+          <a href="${url("/components/badge")}">Badge</a>.
         </p>
       </div>
       <div class="example">
@@ -67,7 +85,7 @@ export async function AlertPage(path: string) {
       <div class="prose">
         <h2 id="colors">Colors</h2>
         <p>
-          Same color modifiers as <a href="/components/badge">Badge</a>:
+          Same color modifiers as <a href="${url("/components/badge")}">Badge</a>:
           <code>primary</code>, <code>constructive</code>,
           <code>destructive</code>, and <code>color1</code> through
           <code>color6</code>. They tint the icon and title, the description
@@ -241,7 +259,7 @@ export async function AlertPage(path: string) {
         <h2 id="loading">Loading</h2>
         <p>
           Swap the icon for an element with <code>aria-busy</code> to
-          get the built-in <a href="/components/loading">spinner</a>.
+          get the built-in <a href="${url("/components/loading")}">spinner</a>.
         </p>
       </div>
       <div class="example">

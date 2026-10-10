@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -20,10 +20,24 @@ export async function DrawerPage(path: string) {
           <p>
             A <code>&lt;dialog&gt;</code> variant that slides in from the edge
             of the screen instead of appearing centered. It's built entirely on
-            top of the <a href="/components/dialog">Dialog</a> component, just
+            top of the <a href="${url("/components/dialog")}">Dialog</a> component, just
             add the <code>drawer</code> class.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/dialog")}"><code>Dialog</code></a></dt>
+          <dd>The modal it is built on</dd>
+          <dt><a href="${url("/components/card")}"><code>Card</code></a></dt>
+          <dd>The surface inside the drawer</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>Actions, like apply or close</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
         <p>
@@ -34,7 +48,7 @@ export async function DrawerPage(path: string) {
         </p>
         <p>
           The Drawer doesn't have a background color, so place an
-          <a href="/components/card">Card</a> as the first child.
+          <a href="${url("/components/card")}">Card</a> as the first child.
         </p>
       </div>
       <div class="example">

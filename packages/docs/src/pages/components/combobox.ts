@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -22,6 +22,23 @@ export async function ComboboxPage(path: string) {
             filters the list and handles the pick.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/text-field")}"><code>Text Field</code></a></dt>
+          <dd>The search input you type in</dd>
+          <dt><a href="${url("/components/popover")}"><code>Popover</code></a></dt>
+          <dd>The surface the options open in</dd>
+          <dt><a href="${url("/components/menu")}"><code>Menu</code></a></dt>
+          <dd>The list of options</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/field")}"><code>Field</code></a></dt>
+          <dd>Label and hint text</dd>
+        </dl>
+
         <p>
           Each <code>anchor-name</code> must be unique per combobox on the page.
           Set it via an inline style and reference the same value as

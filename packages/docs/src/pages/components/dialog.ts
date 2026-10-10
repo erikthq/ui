@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -25,6 +25,18 @@ export async function DialogPage(path: string) {
             styling.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/card")}"><code>Card</code></a></dt>
+          <dd>The surface the dialog content sits on</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>Triggers and actions, like close or confirm</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
         <p>

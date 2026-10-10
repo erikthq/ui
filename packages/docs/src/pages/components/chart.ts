@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [{ id: "default", label: "Default" }];
@@ -18,6 +18,12 @@ export async function ChartPage(path: string) {
             elements, no SVG, no JavaScript.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/table")}"><code>Table</code></a></dt>
+          <dd>The native table the chart is built on</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
         <p>

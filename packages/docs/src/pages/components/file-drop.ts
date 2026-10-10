@@ -1,5 +1,5 @@
 import { html, raw } from 'hono/html'
-import { Layout } from '../../layout'
+import { Layout, url } from '../../layout'
 import { highlight } from '../../highlight'
 import { icon } from '../../icon'
 
@@ -23,6 +23,12 @@ export async function FileDropPage(path: string) {
             A styled file input drop zone using <code>label.file-drop</code>.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/field")}"><code>Field</code></a></dt>
+          <dd>Wrapper for a label</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

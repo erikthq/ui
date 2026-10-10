@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -24,6 +24,12 @@ export async function EmptyPage(path: string) {
             <code>.empty</code> class.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>Actions, like create or upload</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

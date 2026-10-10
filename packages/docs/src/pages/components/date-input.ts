@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -23,6 +23,12 @@ export async function DateInputPage(path: string) {
             <code>month</code>, and <code>week</code> types.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/text-field")}"><code>Text Field</code></a></dt>
+          <dd>The input styling it builds on</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

@@ -28,6 +28,12 @@ export async function AvatarPage(path: string) {
           </p>
         </hgroup>
 
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/badge")}"><code>Badge</code></a></dt>
+          <dd>Status indicator in the corner</dd>
+        </dl>
+
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -24,6 +24,18 @@ export async function ButtonGroupPage(path: string) {
             <code>&lt;fieldset role="group"&gt;</code>.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>The actions in the group</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/text-field")}"><code>Text Field</code></a></dt>
+          <dd>Input that fills the remaining space</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

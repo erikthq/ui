@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -20,6 +20,16 @@ export async function TextFieldPage(path: string) {
           <h1>Text Field</h1>
           <p class="lead">Styled native form inputs. No classes needed.</p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/kbd")}"><code>Kbd</code></a></dt>
+          <dd>Shortcut hint as a suffix</dd>
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>Action as a suffix</dd>
+          <dt><a href="${url("/components/loading")}"><code>Loading</code></a></dt>
+          <dd>Spinner while the input is busy</dd>
+        </dl>
 
         <h2 id="text">Text</h2>
       </div>

@@ -233,16 +233,13 @@ export function Configurator() {
           form.elements.preset.value = match?.name ?? "";
         };
 
-        window.updateConfig = (form) => {
-          form.querySelectorAll("input[data-lightness]").forEach(clampColor);
-          syncPreset(form);
-
+        // Sets the changed tokens on the showcase and returns them as CSS lines
+        const applyTheme = (values) => {
           const target = document.querySelector(".components-showcase");
-          const data = new FormData(form);
           const lines = [];
 
           for (const [name, toProps] of Object.entries(tokens)) {
-            const value = data.get(name);
+            const value = values[name];
             const changed = value !== defaults[name];
 
             for (const [prop, v] of Object.entries(toProps(value))) {
@@ -255,6 +252,34 @@ export function Configurator() {
             }
           }
 
+          return lines;
+        };
+
+        // Hovering a preset option previews it on the showcase. Leaving it restores the form's values
+        const setupPresetPreview = (form) => {
+          const select = form.elements.preset;
+          const restore = () => applyTheme(Object.fromEntries(new FormData(form)));
+
+          select.addEventListener("mouseover", (event) => {
+            const option = event.target.closest("option");
+            const preset = presets.find((p) => p.name === option?.value);
+            if (preset) applyTheme(preset);
+          });
+
+          select.addEventListener("mouseout", (event) => {
+            if (event.target.closest("option")) restore();
+          });
+
+          // The picker can close without a mouseout, for example with Escape
+          select.addEventListener("keydown", (event) => event.key === "Escape" && restore());
+          select.addEventListener("blur", restore);
+        };
+
+        window.updateConfig = (form) => {
+          form.querySelectorAll("input[data-lightness]").forEach(clampColor);
+          syncPreset(form);
+
+          const lines = applyTheme(Object.fromEntries(new FormData(form)));
           const css = lines.length ? ":root {\\n" + lines.join("\\n") + "\\n}" : "";
           document.getElementById("configurator-copy").setAttribute("value", css);
           renderOutput(css || "/* No changes yet */");
@@ -277,9 +302,11 @@ export function Configurator() {
         // The reset event fires before the inputs change back
         window.resetConfig = (form) => setTimeout(() => updateConfig(form));
 
-        document.addEventListener("DOMContentLoaded", () =>
-          updateConfig(document.querySelector(".configurator")),
-        );
+        document.addEventListener("DOMContentLoaded", () => {
+          const form = document.querySelector(".configurator");
+          setupPresetPreview(form);
+          updateConfig(form);
+        });
       })();
     </script>
 

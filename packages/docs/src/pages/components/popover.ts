@@ -25,6 +25,12 @@ export async function PopoverPage(path: string) {
           </p>
         </hgroup>
 
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>The trigger that opens the popover</dd>
+        </dl>
+
         <h2 id="default">Default</h2>
         <p>
           Connect a <code>popovertarget</code> button to a

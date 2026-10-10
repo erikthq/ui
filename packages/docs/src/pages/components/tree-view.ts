@@ -25,6 +25,12 @@ export async function TreeViewPage(path: string) {
           </p>
         </hgroup>
 
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>File rows, as ghost buttons or links</dd>
+        </dl>
+
         <h2 id="default">Default</h2>
         <p>
           Wrap each folder in a <code>&lt;details&gt;</code> holding a

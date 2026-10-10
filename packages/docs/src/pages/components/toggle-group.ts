@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -24,6 +24,14 @@ export async function ToggleGroupPage(path: string) {
             <code>&lt;fieldset role="group"&gt;</code>.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button-group")}"><code>Button Group</code></a></dt>
+          <dd>The fieldset that joins the toggles</dd>
+          <dt><a href="${url("/components/toggle")}"><code>Toggle</code></a></dt>
+          <dd>Each option in the group</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
         <p>Use radio inputs for mutually exclusive options.</p>

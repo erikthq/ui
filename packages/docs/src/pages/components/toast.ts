@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -23,10 +23,24 @@ export async function ToastPage(path: string) {
             A <code>[popover]</code> in the top layer, so it paints above
             everything else without a <code>z-index</code>.
             <code>popovertarget</code> opens and closes it, so no JavaScript.
-            Put an <a href="/components/alert">Alert</a> inside for the
+            Put an <a href="${url("/components/alert")}">Alert</a> inside for the
             message.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/popover")}"><code>Popover</code></a></dt>
+          <dd>The top layer element it is built on</dd>
+          <dt><a href="${url("/components/alert")}"><code>Alert</code></a></dt>
+          <dd>The message inside the toast</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>Dismiss button</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
         <p>
@@ -67,7 +81,7 @@ export async function ToastPage(path: string) {
         <h2 id="placement">Placement</h2>
         <p>
           Use <code>data-placement</code> the same way as
-          <a href="/components/popover">Popover</a>: a
+          <a href="${url("/components/popover")}">Popover</a>: a
           <code>"&lt;side&gt; &lt;side&gt;"</code> tuple like
           <code>"bottom right"</code>. Bare <code>"top"</code>,
           <code>"bottom"</code>, <code>"left"</code>, or

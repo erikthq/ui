@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -26,6 +26,13 @@ export async function InputOtpPage(path: string) {
             look like separate boxes.
           </p>
         </hgroup>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/field")}"><code>Field</code></a></dt>
+          <dd>Label and hint text</dd>
+        </dl>
+
         <p>
           One real <code>&lt;input&gt;</code> underneath, not six inputs
           stitched together with JavaScript. Paste, backspace, and mobile SMS

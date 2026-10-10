@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -23,6 +23,20 @@ export async function RadioGroupPage(path: string) {
             a shared <code>legend</code>. No class name needed.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/fieldset")}"><code>Fieldset</code></a></dt>
+          <dd>The group and its legend</dd>
+          <dt><a href="${url("/components/radio")}"><code>Radio</code></a></dt>
+          <dd>The options to choose between</dd>
+        </dl>
+
+        <h3>Works with</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/checkbox")}"><code>Checkbox</code></a></dt>
+          <dd>Checkboxes for picking several options</dd>
+        </dl>
 
         <h2 id="radio">Radio</h2>
       </div>

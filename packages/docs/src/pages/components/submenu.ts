@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 
 const toc = [
@@ -21,6 +21,16 @@ export async function SubmenuPage(path: string) {
             with the native Popover API. No JavaScript.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/menu")}"><code>Menu</code></a></dt>
+          <dd>The parent and nested lists of items</dd>
+          <dt><a href="${url("/components/popover")}"><code>Popover</code></a></dt>
+          <dd>The panel the nested menu opens in</dd>
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>The item that opens the submenu</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>

@@ -1,5 +1,5 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { icon } from "../../icon";
 
@@ -27,6 +27,16 @@ export async function DropdownPage(path: string) {
             <code>popover</code> API and a <code>&lt;menu&gt;</code>.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/popover")}"><code>Popover</code></a></dt>
+          <dd>The surface the menu opens in</dd>
+          <dt><a href="${url("/components/menu")}"><code>Menu</code></a></dt>
+          <dd>The list of actions</dd>
+          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dd>The trigger that opens it</dd>
+        </dl>
 
         <h2 id="default">Default</h2>
       </div>
