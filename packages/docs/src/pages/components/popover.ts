@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "with-card", label: "With card" },
   { id: "with-menu", label: "With menu" },
@@ -18,7 +20,10 @@ export async function PopoverPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Popover</h1>
+          <div class="docs-title">
+            <h1>Popover</h1>
+            ${raw(titleActions(path, "popover"))}
+          </div>
           <p>
             A floating panel anchored to a trigger using the native
             <code>popover</code> API and CSS anchor positioning.
@@ -31,6 +36,16 @@ export async function PopoverPage(path: string) {
           <dd>The trigger that opens the popover</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("popover"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Connect a <code>popovertarget</code> button to a

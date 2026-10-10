@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "colors", label: "Colors" },
   { id: "with-action", label: "With action" },
@@ -20,7 +22,10 @@ export async function AlertPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Alert</h1>
+          <div class="docs-title">
+            <h1>Alert</h1>
+            ${raw(titleActions(path, "alert"))}
+          </div>
           <p>
             A short message that catches the user's eye. Use it to confirm
             that something worked, warn about a problem, share news, or show
@@ -42,6 +47,16 @@ export async function AlertPage(path: string) {
           <dd>Spinner for tasks that are still running</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("alert"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           An alert is an <code>&lt;article&gt;</code>, so it shares its

@@ -1,0 +1,73 @@
+@layer ui-reset;
+
+@layer ui {
+  :is(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl, .text-7xl, .text-8xl, .text-9xl) {
+    font-size: var(--ui-text-size);
+    line-height: var(--ui-text-leading);
+  }
+
+  .text-xs {
+    --ui-text-size: var(--ui-text-xs);
+    --ui-text-leading: calc(1 / .75);
+  }
+
+  .text-sm {
+    --ui-text-size: var(--ui-text-sm);
+    --ui-text-leading: calc(1.25 / .875);
+  }
+
+  .text-base {
+    --ui-text-size: var(--ui-text-base);
+    --ui-text-leading: 1.5;
+  }
+
+  .text-lg {
+    --ui-text-size: var(--ui-text-lg);
+    --ui-text-leading: calc(1.75 / 1.125);
+  }
+
+  .text-xl {
+    --ui-text-size: var(--ui-text-xl);
+    --ui-text-leading: calc(1.75 / 1.25);
+  }
+
+  .text-2xl {
+    --ui-text-size: var(--ui-text-2xl);
+    --ui-text-leading: calc(2 / 1.5);
+  }
+
+  .text-3xl {
+    --ui-text-size: var(--ui-text-3xl);
+    --ui-text-leading: 1.2;
+  }
+
+  .text-4xl {
+    --ui-text-size: var(--ui-text-4xl);
+    --ui-text-leading: calc(2.5 / 2.25);
+  }
+
+  .text-5xl {
+    --ui-text-size: var(--ui-text-5xl);
+    --ui-text-leading: 1;
+  }
+
+  .text-6xl {
+    --ui-text-size: var(--ui-text-6xl);
+    --ui-text-leading: 1;
+  }
+
+  .text-7xl {
+    --ui-text-size: var(--ui-text-7xl);
+    --ui-text-leading: 1;
+  }
+
+  .text-8xl {
+    --ui-text-size: var(--ui-text-8xl);
+    --ui-text-leading: 1;
+  }
+
+  .text-9xl {
+    --ui-text-size: var(--ui-text-9xl);
+    --ui-text-leading: 1;
+  }
+}

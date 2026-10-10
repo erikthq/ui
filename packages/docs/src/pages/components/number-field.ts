@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
@@ -18,7 +19,10 @@ export async function NumberFieldPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Number Field</h1>
+          <div class="docs-title">
+            <h1>Number Field</h1>
+            ${raw(titleActions(path))}
+          </div>
           <p class="lead">
             Styled native number input. No classes needed.
           </p>

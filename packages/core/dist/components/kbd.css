@@ -1,0 +1,36 @@
+@layer ui-reset;
+
+@layer ui {
+  kbd {
+    border-radius: var(--ui-rounded-2);
+    min-width: 1.5em;
+    padding-block: calc(var(--ui-spacing) / 2);
+    padding-inline: var(--ui-spacing-2);
+    background: var(--ui-neutral-200);
+    color: var(--ui-neutral-800);
+    -webkit-user-select: none;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    font-size: .85em;
+    display: inline-flex;
+
+    & + kbd {
+      margin-left: .5em;
+    }
+
+    &:has( > kbd) {
+      min-width: unset;
+      color: var(--ui-neutral-400);
+      background: none;
+      gap: .35em;
+      padding: 0;
+      font-size: 1em;
+
+      & > kbd {
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@layer ui-reset;
+
+@layer ui {
+  hr {
+    border: none;
+    border-top: 1px solid var(--ui-neutral-200);
+    width: 100%;
+    margin-block: var(--ui-spacing-1) 0;
+  }
+
+  hr[data-label] {
+    border: none;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    display: grid;
+
+    &:before {
+      content: "";
+      background: var(--ui-neutral-200);
+      grid-area: 1 / 1 / auto / -1;
+      height: 1px;
+    }
+
+    &:after {
+      content: attr(data-label);
+      background: var(--bg-color, canvas);
+      padding-inline: var(--ui-spacing-3);
+      color: var(--ui-neutral-500);
+      white-space: nowrap;
+      grid-area: 1 / 2;
+      font-size: .875rem;
+    }
+  }
+
+  @container (width >= 480px) {
+    hr {
+      margin-block: var(--ui-spacing-4);
+    }
+  }
+}

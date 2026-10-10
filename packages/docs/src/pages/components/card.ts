@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "secondary", label: "Secondary" },
   { id: "tertiary", label: "Tertiary" },
@@ -18,13 +20,26 @@ export async function CardPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Card</h1>
+          <div class="docs-title">
+            <h1>Card</h1>
+            ${raw(titleActions(path, "card"))}
+          </div>
           <p>
             A surface for grouping related content using the native
             <code>&lt;article&gt;</code> element.
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("card"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "radio", label: "Radio" },
   { id: "checkbox", label: "Checkbox" },
   { id: "description", label: "With description" },
@@ -17,7 +19,10 @@ export async function RadioGroupPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Radio Group</h1>
+          <div class="docs-title">
+            <h1>Radio Group</h1>
+            ${raw(titleActions(path, "radio-group"))}
+          </div>
           <p>
             A <code>fieldset</code> that groups radio buttons or checkboxes under
             a shared <code>legend</code>. No class name needed.
@@ -38,6 +43,16 @@ export async function RadioGroupPage(path: string) {
           <dd>Checkboxes for picking several options</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("radio-group"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="radio">Radio</h2>
       </div>
       <div class="example">

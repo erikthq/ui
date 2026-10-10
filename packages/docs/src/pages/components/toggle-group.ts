@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
@@ -16,7 +17,10 @@ export async function ToggleGroupPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Toggle Group</h1>
+          <div class="docs-title">
+            <h1>Toggle Group</h1>
+            ${raw(titleActions(path))}
+          </div>
           <p>
             A group of mutually exclusive or independent toggle buttons, built
             with

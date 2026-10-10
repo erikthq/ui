@@ -1,0 +1,195 @@
+@layer ui-reset;
+
+@layer ui {
+  table {
+    grid-template-columns: var(--cols, repeat(auto-fill, minmax(max-content, 1fr)));
+    white-space: nowrap;
+    width: 100%;
+    display: grid;
+    overflow-x: auto;
+  }
+
+  table:has( > thead > tr > th:last-child:first-child) {
+    --cols: repeat(1, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(2)) {
+    --cols: repeat(2, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(3)) {
+    --cols: repeat(3, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(4)) {
+    --cols: repeat(4, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(5)) {
+    --cols: repeat(5, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(6)) {
+    --cols: repeat(6, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(7)) {
+    --cols: repeat(7, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(8)) {
+    --cols: repeat(8, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(9)) {
+    --cols: repeat(9, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(10)) {
+    --cols: repeat(10, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(11)) {
+    --cols: repeat(11, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(12)) {
+    --cols: repeat(12, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(13)) {
+    --cols: repeat(13, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(14)) {
+    --cols: repeat(14, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(15)) {
+    --cols: repeat(15, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(16)) {
+    --cols: repeat(16, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(17)) {
+    --cols: repeat(17, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(18)) {
+    --cols: repeat(18, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(19)) {
+    --cols: repeat(19, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(20)) {
+    --cols: repeat(20, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(21)) {
+    --cols: repeat(21, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(22)) {
+    --cols: repeat(22, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(23)) {
+    --cols: repeat(23, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(24)) {
+    --cols: repeat(24, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(25)) {
+    --cols: repeat(25, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(26)) {
+    --cols: repeat(26, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(27)) {
+    --cols: repeat(27, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(28)) {
+    --cols: repeat(28, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(29)) {
+    --cols: repeat(29, 1fr);
+  }
+
+  table:has( > thead > tr > th:last-child:nth-child(30)) {
+    --cols: repeat(30, 1fr);
+  }
+
+  caption {
+    padding: var(--ui-spacing-3) var(--ui-spacing-3);
+    color: var(--ui-neutral-400);
+    grid-column: 1 / -1;
+  }
+
+  thead, tbody, tfoot {
+    display: contents;
+  }
+
+  tr {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    display: grid;
+
+    @media (hover: hover) {
+      &:hover > td {
+        background: var(--ui-neutral-50);
+      }
+    }
+  }
+
+  th, td {
+    padding: var(--ui-spacing-3) var(--ui-spacing-3);
+    text-align: left;
+    border-bottom: 1px solid var(--ui-neutral-200);
+  }
+
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+
+  table.align-left :is(th, td):last-child {
+    text-align: left;
+  }
+
+  thead > tr > th {
+    color: var(--ui-neutral-600);
+    font-weight: 600;
+  }
+
+  tbody > tr:last-child > td, tfoot > tr:last-child > :is(th, td) {
+    border-bottom: none;
+  }
+
+  tfoot > tr > :is(th, td) {
+    background: var(--ui-neutral-50);
+    font-weight: 600;
+  }
+
+  tfoot > tr:first-child > :is(th, td) {
+    border-top: 1px solid var(--ui-neutral-200);
+  }
+
+  table.zebra > tbody > tr:nth-child(2n) > td {
+    background: var(--ui-neutral-50);
+  }
+
+  @media (hover: hover) {
+    table.zebra > tbody > tr:nth-child(2n):hover > td {
+      background: var(--ui-neutral-100);
+    }
+  }
+}

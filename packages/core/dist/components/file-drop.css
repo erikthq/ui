@@ -1,0 +1,41 @@
+@layer ui-reset;
+
+@layer ui {
+  .file-drop {
+    justify-content: center;
+    align-items: center;
+    gap: var(--ui-spacing-2);
+    padding: var(--ui-spacing-8);
+    border: 1px dashed var(--ui-neutral-400);
+    border-radius: var(--ui-spacing-3);
+    cursor: pointer;
+    color: var(--ui-neutral-500);
+    text-align: center;
+    transition: color .15s var(--ease-glide),
+    border-color .15s var(--ease-glide);
+    flex-direction: column;
+    display: flex;
+    position: relative;
+
+    & > svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    & > small {
+      color: var(--ui-neutral-400);
+    }
+
+    & > input[type="file"] {
+      opacity: 0;
+      cursor: pointer;
+      position: absolute;
+      inset: 0;
+    }
+
+    &:hover {
+      color: var(--ui-neutral-700);
+      border-color: var(--ui-neutral-600);
+    }
+  }
+}

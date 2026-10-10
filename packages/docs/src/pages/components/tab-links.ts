@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "live", label: "Live demo" },
   { id: "markup", label: "Markup" },
   { id: "view-transitions", label: "View transitions" },
@@ -48,7 +50,10 @@ export async function TabLinksPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Tab Links <sup class="badge constructive">New</sup></h1>
+          <div class="docs-title">
+            <h1>Tab Links <sup class="badge constructive">New</sup></h1>
+            ${raw(titleActions(path, "tab-links"))}
+          </div>
           <p>
             A <code>.tab-links</code> bar that looks like
             <a href="${url("/components/tabs")}">Tabs</a> but navigates. The
@@ -58,6 +63,16 @@ export async function TabLinksPage(path: string) {
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("tab-links"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="live">Live demo</h2>
         <p>
           Every bar on this page switches in place. A click handler cancels the

@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "images", label: "Images" },
   { id: "visible", label: "Multiple visible slides" },
@@ -39,7 +41,10 @@ export async function CarouselPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Carousel</h1>
+          <div class="docs-title">
+            <h1>Carousel</h1>
+            ${raw(titleActions(path, "carousel"))}
+          </div>
           <p>
             A scroll-snap carousel where the browser draws the arrows and the
             dots itself. No <code>&lt;button&gt;</code> markup, no JavaScript.
@@ -54,6 +59,16 @@ export async function CarouselPage(path: string) {
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("carousel"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           A plain <code>&lt;ul class="carousel"&gt;</code> of

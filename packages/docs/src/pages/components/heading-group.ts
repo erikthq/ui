@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "in-a-card", label: "In a card" },
   { id: "in-prose", label: "In prose" },
@@ -16,13 +18,26 @@ export async function HeadingGroupPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Heading Group</h1>
+          <div class="docs-title">
+            <h1>Heading Group</h1>
+            ${raw(titleActions(path, "heading-group"))}
+          </div>
           <p>
             A heading with a subtitle, using the native
             <code>&lt;hgroup&gt;</code> element.
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("heading-group"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Put a heading and a <code>&lt;p&gt;</code> inside

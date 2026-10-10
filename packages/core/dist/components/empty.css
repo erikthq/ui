@@ -1,0 +1,44 @@
+@layer ui-reset;
+
+@layer ui {
+  .empty {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: var(--ui-spacing-3);
+    padding: var(--ui-spacing-8);
+    color: var(--ui-neutral-500);
+    flex-direction: column;
+    margin: auto;
+
+    &:not([hidden]) {
+      display: flex;
+    }
+
+    & > svg {
+      background: var(--bg, var(--ui-neutral-100));
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--ui-neutral-800);
+      border-radius: var(--ui-rounded-2);
+      padding: .5rem;
+    }
+
+    & > :is(h1, h2, h3, h4, h5, h6) {
+      color: var(--ui-neutral-950);
+    }
+
+    & p {
+      max-width: 35ch;
+    }
+
+    & > button, & > a, & > .button, & > footer {
+      margin-top: var(--ui-spacing-2);
+    }
+
+    & > footer {
+      gap: var(--ui-spacing-2);
+      display: flex;
+    }
+  }
+}

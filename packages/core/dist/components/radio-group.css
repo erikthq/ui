@@ -1,0 +1,102 @@
+@layer ui-reset;
+
+@layer ui {
+  fieldset:not([role="group"], .color-swatch) {
+    gap: var(--ui-spacing-4);
+    border: none;
+    flex-direction: column;
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+    & > legend {
+      margin-bottom: var(--ui-spacing-3);
+      padding: 0;
+      font-weight: 600;
+    }
+
+    & > small {
+      color: var(--ui-neutral-500);
+      font-size: .875em;
+    }
+
+    & > .field > span:not([data-prefix], [data-suffix]) {
+      color: var(--ui-neutral-600);
+      font-weight: 400;
+    }
+  }
+
+  label:has( > input:where([type="radio"])) {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    align-items: center;
+    gap: .5em;
+    display: flex;
+
+    &:has( > input:disabled) {
+      opacity: .4;
+      cursor: default;
+    }
+  }
+
+  input[type="radio"] {
+    appearance: none;
+    aspect-ratio: 1;
+    border-radius: var(--ui-rounded-full-fixed);
+    width: 16px;
+    box-shadow: 0 0 0 1.5px var(--ui-neutral-300) inset;
+    cursor: pointer;
+    background-color: #0000;
+    flex-shrink: 0;
+    transition: background-color .1s, box-shadow .1s;
+
+    &:checked:not(.color-swatch &) {
+      background-color: var(--ui-primary);
+      box-shadow: 0 0 0 1.5px var(--ui-primary) inset;
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-8 -8 40 40' overflow='visible'%3E%3Crect x='-100' y='-100' width='200' height='200' fill='white'/%3E%3Ccircle cx='12' cy='12' r='6' fill='black'/%3E%3C/svg%3E");
+      mask-position: 50%;
+      mask-size: 24px;
+      mask-repeat: no-repeat;
+      mask-clip: no-clip;
+      mask-mode: luminance;
+    }
+
+    &:disabled {
+      opacity: .4;
+      cursor: default;
+    }
+
+    &:focus-visible {
+      border-radius: var(--ui-rounded-3);
+      outline: 2px solid var(--ui-neutral-950);
+      outline-offset: 2px;
+    }
+  }
+
+  fieldset:not([role="group"]):has(input[type="radio"], input[type="checkbox"]) {
+    gap: var(--ui-spacing-2);
+    border: none;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+    & > legend {
+      margin-bottom: var(--ui-spacing-2);
+      padding: 0;
+      font-weight: 600;
+    }
+
+    & > small {
+      color: var(--ui-neutral-500);
+      font-size: .875em;
+    }
+
+    &:has(input:required) > legend:after {
+      content: " *";
+      color: var(--ui-destructive);
+    }
+  }
+}

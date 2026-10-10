@@ -1,3 +1,7 @@
+@import "./menu.css";
+@import "./popover.css";
+@import "./button.css";
+
 /* Trigger: button inside a menu item that has a sibling popover */
 [popover] > menu > li:has(> [popover]) > button {
   &::after {

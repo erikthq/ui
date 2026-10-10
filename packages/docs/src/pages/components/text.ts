@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "scale", label: "Scale" },
   { id: "customization", label: "Customization" },
@@ -32,7 +34,10 @@ export async function TextPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Text</h1>
+          <div class="docs-title">
+            <h1>Text</h1>
+            ${raw(titleActions(path, "text"))}
+          </div>
           <p>
             Helper classes that set the font size and line height of any
             element. Pick a size from <code>.text-xs</code> to
@@ -40,6 +45,16 @@ export async function TextPage(path: string) {
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("text"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

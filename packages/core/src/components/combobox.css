@@ -1,3 +1,7 @@
+@import "./text-field.css";
+@import "./popover.css";
+@import "./menu.css";
+
 .combobox {
   display: inline-block;
 

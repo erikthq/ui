@@ -1,0 +1,80 @@
+@layer ui-reset;
+
+@layer ui {
+  .badge {
+    align-items: center;
+    gap: var(--ui-spacing-1);
+    padding-block: var(--ui-spacing-1);
+    padding-inline: var(--ui-spacing-3);
+    border-radius: var(--ui-rounded-full);
+    letter-spacing: .02em;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: var(--bg, var(--ui-neutral-200));
+    color: var(--ui-neutral-900);
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1;
+    display: inline-flex;
+
+    &.secondary {
+      background-color: var(--ui-neutral-700);
+      color: var(--ui-neutral-100);
+    }
+
+    &.primary {
+      background-color: var(--ui-primary-200);
+      color: var(--ui-primary-700);
+    }
+
+    &.constructive {
+      background-color: var(--ui-constructive-200);
+      color: var(--ui-constructive-700);
+    }
+
+    &.destructive {
+      background-color: var(--ui-destructive-200);
+      color: var(--ui-destructive-700);
+    }
+
+    &.color1 {
+      background-color: var(--ui-color1-200);
+      color: var(--ui-color1-700);
+    }
+
+    &.color2 {
+      background-color: var(--ui-color2-200);
+      color: var(--ui-color2-700);
+    }
+
+    &.color3 {
+      background-color: var(--ui-color3-200);
+      color: var(--ui-color3-700);
+    }
+
+    &.color4 {
+      background-color: var(--ui-color4-200);
+      color: var(--ui-color4-700);
+    }
+
+    &.color5 {
+      background-color: var(--ui-color5-200);
+      color: var(--ui-color5-700);
+    }
+
+    &.color6 {
+      background-color: var(--ui-color6-200);
+      color: var(--ui-color6-700);
+    }
+
+    &.outlined {
+      background-color: #0000;
+      box-shadow: inset 0 0 0 1px;
+    }
+
+    & svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

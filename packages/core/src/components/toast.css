@@ -1,3 +1,6 @@
+@import "./popover.css";
+@import "./alert.css";
+
 [popover].toast {
   inset: auto;
   position-try-fallbacks: none;

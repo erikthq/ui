@@ -1,0 +1,16 @@
+@layer ui-reset;
+
+@layer ui {
+  [data-focus-within] {
+    & [data-focus]:focus-visible {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:has([data-focus]:focus-visible) {
+      border-radius: var(--ui-rounded-3);
+      outline: 2px solid var(--ui-neutral-950);
+      outline-offset: 2px;
+    }
+  }
+}

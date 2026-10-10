@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "circle", label: "Circle" },
   { id: "preserve-content", label: "Preserve content size" },
@@ -17,13 +19,26 @@ export async function SkeletonPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Skeleton</h1>
+          <div class="docs-title">
+            <h1>Skeleton</h1>
+            ${raw(titleActions(path, "skeleton"))}
+          </div>
           <p>
             A shimmering placeholder shown while content is loading, using
             <code>class="skeleton"</code>.
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("skeleton"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Defaults to a height of <code>1lh</code>, matching a line of text.

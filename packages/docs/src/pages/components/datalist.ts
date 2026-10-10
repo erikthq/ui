@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "in-a-field", label: "In a field" },
 ];
@@ -15,7 +17,10 @@ export async function DatalistPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Datalist</h1>
+          <div class="docs-title">
+            <h1>Datalist</h1>
+            ${raw(titleActions(path, "datalist"))}
+          </div>
           <p>
             A native browser combobox. Pair any text input with a
             <code>&lt;datalist&gt;</code> to get autocomplete suggestions for
@@ -35,6 +40,16 @@ export async function DatalistPage(path: string) {
           browser-controlled and cannot be styled.
         </p>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("datalist"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

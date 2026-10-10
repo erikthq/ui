@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "with-label", label: "With label" },
   { id: "variants", label: "Variants" },
@@ -16,7 +18,10 @@ export async function DateInputPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Date Input</h1>
+          <div class="docs-title">
+            <h1>Date Input</h1>
+            ${raw(titleActions(path, "date-input"))}
+          </div>
           <p>
             Styled native date and time inputs. Supports
             <code>date</code>, <code>time</code>, <code>datetime-local</code>,
@@ -30,6 +35,16 @@ export async function DateInputPage(path: string) {
           <dd>The input styling it builds on</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("date-input"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

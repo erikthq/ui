@@ -1,0 +1,51 @@
+@layer ui-reset;
+
+@layer ui {
+  nav[aria-label="Breadcrumb"] {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6l-6 6' /%3E%3C/svg%3E");
+
+    & ol {
+      align-items: center;
+      gap: var(--ui-spacing-2);
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+
+      & > li {
+        align-items: center;
+        gap: var(--ui-spacing-2);
+        color: var(--ui-neutral-500);
+        display: flex;
+
+        &:not(:last-child):after {
+          content: "";
+          background-color: var(--ui-neutral-300);
+          width: 1em;
+          height: 1em;
+          mask-image: var(--icon);
+          display: inline-block;
+          mask-position: center;
+          mask-size: contain;
+          mask-repeat: no-repeat;
+        }
+      }
+    }
+
+    & a {
+      color: inherit;
+      transition: color .15s var(--ease-glide);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--ui-neutral-950);
+      }
+    }
+
+    & [aria-current="page"] {
+      color: var(--ui-neutral-950);
+      font-weight: 600;
+    }
+  }
+}

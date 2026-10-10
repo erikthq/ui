@@ -1,0 +1,10 @@
+@layer ui-reset;
+
+@layer ui {
+  hgroup {
+    & > p {
+      color: var(--ui-neutral-600);
+      margin-block-start: .61em;
+    }
+  }
+}

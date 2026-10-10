@@ -1,0 +1,322 @@
+@layer ui-reset;
+
+@layer ui {
+  button, .button {
+    background-color: var(--ui-primary);
+    color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
+    min-width: calc(1lh + var(--ui-spacing-2) * 2);
+    padding-block: var(--ui-spacing-2);
+    padding-inline: calc(var(--ui-spacing-3) * clamp(1, var(--ui-rounded-scale) * .75, 1.5));
+    border-radius: var(--ui-rounded-3);
+    font: inherit;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+    line-height: 1.14286rem;
+    text-decoration: none;
+    transition-property: translate, background-color;
+    transition-duration: .1s;
+    transition-timing-function: ease-out;
+    display: inline-flex;
+
+    &:not(:disabled):not([aria-disabled="true"]) {
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--ui-primary-600);
+        }
+      }
+
+      &:active {
+        background-color: var(--ui-primary-700);
+        translate: 0 1px;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-neutral-950);
+        outline-offset: 2px;
+      }
+    }
+
+    &:disabled, &[aria-disabled="true"] {
+      cursor: default;
+      opacity: .4;
+    }
+
+    & svg {
+      flex-shrink: 0;
+    }
+
+    & kbd {
+      padding-block: 0;
+      padding-inline: var(--ui-spacing);
+      margin-left: auto;
+    }
+
+    & .badge {
+      margin-left: auto;
+    }
+
+    &[aria-busy]:before {
+      content: "";
+      mask-image: var(--ui-loading);
+      background-color: currentColor;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      mask-size: 1rem;
+      mask-repeat: no-repeat;
+    }
+
+    &[popovertarget]:has( + [popover]:popover-open) {
+      background-color: var(--ui-primary-600);
+      translate: 0 1px;
+    }
+
+    &.round {
+      padding-inline: var(--ui-spacing-2);
+      border-radius: var(--ui-rounded-full);
+    }
+
+    &.square:not(.avatar) {
+      padding-inline: var(--ui-spacing-2);
+    }
+
+    &.outlined {
+      color: var(--ui-neutral-950);
+      box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-300)) inset;
+      background-color: #0000;
+
+      &:not(:disabled):not([aria-disabled="true"]) {
+        @media (hover: hover) {
+          &:hover {
+            background-color: var(--ui-neutral-100);
+          }
+        }
+
+        &:active {
+          background-color: var(--ui-neutral-200);
+        }
+      }
+
+      &[popovertarget]:has( + [popover]:popover-open) {
+        background-color: var(--ui-neutral-100);
+      }
+    }
+
+    &.secondary {
+      background-color: var(--bg, var(--ui-neutral-200));
+      color: var(--ui-neutral-950);
+
+      &:not(:disabled):not([aria-disabled="true"]) {
+        @media (hover: hover) {
+          &:hover {
+            background-color: var(--ui-neutral-300);
+          }
+        }
+
+        &:active {
+          background-color: var(--ui-neutral-400);
+        }
+      }
+
+      &[popovertarget]:has( + [popover]:popover-open) {
+        background-color: var(--ui-neutral-400);
+      }
+    }
+
+    &.ghost {
+      color: var(--ui-neutral-950);
+      background-color: #0000;
+
+      &:not(:disabled):not([aria-disabled]) {
+        @media (hover: hover) {
+          &:hover {
+            background-color: var(--ui-neutral-100);
+          }
+        }
+
+        &:active {
+          background-color: var(--ui-neutral-200);
+        }
+      }
+
+      &[popovertarget]:has( + [popover]:popover-open) {
+        background-color: var(--ui-neutral-200);
+      }
+    }
+
+    &.link {
+      color: var(--ui-neutral-950);
+      background-color: #0000;
+      text-decoration: underline;
+
+      &:not(:disabled):not([aria-disabled="true"]) {
+        @media (hover: hover) {
+          &:hover {
+            background-color: #0000;
+          }
+        }
+
+        &:active {
+          background-color: #0000;
+        }
+      }
+    }
+
+    &.destructive {
+      background-color: var(--ui-destructive);
+      color: var(--ui-destructive-100);
+
+      &:not(:disabled):not([aria-disabled="true"]) {
+        @media (hover: hover) {
+          &:hover {
+            background-color: var(--ui-destructive-600);
+          }
+        }
+
+        &:active {
+          background-color: var(--ui-destructive-700);
+        }
+      }
+
+      &[popovertarget]:has( + [popover]:popover-open) {
+        background-color: var(--ui-destructive-600);
+      }
+    }
+
+    &.ghost.destructive {
+      color: var(--ui-destructive);
+      background-color: #0000;
+
+      &:not(:disabled):not([aria-disabled="true"]) {
+        @media (hover: hover) {
+          &:hover {
+            background-color: var(--ui-destructive-100);
+          }
+        }
+
+        &:active {
+          background-color: var(--ui-destructive-200);
+        }
+      }
+
+      &[popovertarget]:has( + [popover]:popover-open) {
+        background-color: var(--ui-destructive-100);
+      }
+    }
+  }
+
+  fieldset[role="group"]:not(.color-swatch) {
+    vertical-align: bottom;
+    border: none;
+    align-items: stretch;
+    padding: 0;
+    display: inline-flex;
+
+    & > :not(.field) {
+      box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
+      border-radius: 0;
+      margin-right: -1px;
+      position: relative;
+
+      &:first-child {
+        border-radius: var(--ui-rounded-3) 0 0 var(--ui-rounded-3);
+      }
+
+      &:last-child {
+        border-radius: 0 var(--ui-rounded-3) var(--ui-rounded-3) 0;
+        margin-right: 0;
+      }
+
+      &:hover, &:focus-within, &:active {
+        z-index: 1;
+      }
+    }
+
+    & > button:not(.ghost), & > .button:not(.ghost) {
+      box-shadow: none;
+      margin-left: 1px;
+      margin-right: 0;
+    }
+
+    & > :only-child:not(.field) {
+      border-radius: var(--ui-rounded-3);
+    }
+
+    & > input {
+      flex: 1;
+      min-width: 0;
+
+      &:focus {
+        border-color: var(--ui-neutral-500);
+      }
+    }
+
+    & label:not(.field) {
+      border-radius: 0;
+      line-height: 1em;
+    }
+  }
+
+  fieldset[role="group"]:has( > label.toggle > input[type="radio"]) {
+    background-color: var(--ui-neutral-200);
+    border-radius: calc(var(--ui-rounded-3) + 1px);
+    anchor-name: --toggle-highlight;
+    anchor-scope: --toggle-highlight;
+    position: relative;
+
+    & > label.toggle {
+      z-index: 1;
+      box-shadow: none;
+      background-color: #0000;
+      margin-right: 0;
+      line-height: 1.14286rem;
+
+      &:has( > input:checked) {
+        anchor-name: --toggle-highlight;
+        background-color: #0000;
+
+        &[data-tooltip] {
+          anchor-name: --toggle-highlight, --ui-tooltip-anchor;
+        }
+      }
+    }
+
+    &:before {
+      content: "";
+      position-anchor: --toggle-highlight;
+      top: calc(anchor(top) + 1px);
+      left: calc(anchor(left) + 1px);
+      right: calc(anchor(right) + 1px);
+      bottom: calc(anchor(bottom) + 1px);
+      z-index: 0;
+      border-radius: var(--ui-rounded-3);
+      background-color: var(--ui-neutral-50);
+      pointer-events: none;
+      transition: var(--ease-glide) .2s;
+      position: absolute;
+    }
+  }
+
+  fieldset[role="group"]:has( > label.toggle > input[type="checkbox"]) {
+    background-color: var(--ui-neutral-200);
+    border-radius: calc(var(--ui-rounded-3) + 1px);
+    gap: 1px;
+    padding: 1px;
+    display: inline-flex;
+
+    & > label.toggle {
+      box-shadow: none;
+      background-color: #0000;
+      margin-right: 0;
+
+      &:has( > input:checked) {
+        background-color: var(--ui-neutral-50);
+      }
+    }
+  }
+}

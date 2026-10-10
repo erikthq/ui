@@ -1,3 +1,5 @@
+@import "./card.css";
+
 article[role="alert"],
 article[role="status"] {
   display: grid;

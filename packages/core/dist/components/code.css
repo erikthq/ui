@@ -1,0 +1,12 @@
+@layer ui-reset;
+
+@layer ui {
+  :not(pre) > code {
+    background: var(--ui-neutral-100);
+    border: 1px solid var(--ui-neutral-200);
+    border-radius: var(--ui-rounded-2);
+    padding: .15em .4em;
+    font-family: ui-monospace, Cascadia Code, Fira Code, monospace;
+    font-size: .9em;
+  }
+}

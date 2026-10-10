@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "text", label: "Text" },
   { id: "with-icon", label: "With icon" },
   { id: "loading", label: "Loading" },
@@ -17,7 +19,10 @@ export async function TextFieldPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Text Field</h1>
+          <div class="docs-title">
+            <h1>Text Field</h1>
+            ${raw(titleActions(path, "text-field"))}
+          </div>
           <p class="lead">Styled native form inputs. No classes needed.</p>
         </hgroup>
 
@@ -31,6 +36,16 @@ export async function TextFieldPage(path: string) {
           <dd>Spinner while the input is busy</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("text-field"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="text">Text</h2>
       </div>
       <div class="example">

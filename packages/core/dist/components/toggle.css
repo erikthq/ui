@@ -1,0 +1,118 @@
+@layer ui-reset;
+
+@layer ui {
+  label:not(.field).toggle {
+    text-align: center;
+    padding-block: var(--ui-spacing-2);
+    padding-inline: var(--ui-spacing-3);
+    border-radius: var(--ui-rounded-3);
+    box-shadow: 0 0 0 1px var(--border-color, var(--ui-neutral-200)) inset;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    interpolate-size: allow-keywords;
+    transition: background-color .1s,
+    box-shadow .1s,
+    color .1s,
+    grid-template-columns var(--toggle-duration) var(--ease-glide);
+    --toggle-duration: .15s;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: .5em;
+    font-weight: 500;
+    line-height: 1.14286rem;
+    display: inline-grid;
+
+    & > input[type="checkbox"], & > input[type="radio"] {
+      appearance: none;
+      opacity: 0;
+      pointer-events: none;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    & svg {
+      transition: background-color .1s;
+    }
+
+    & [data-checked], & [data-unchecked] {
+      white-space: nowrap;
+      transition: opacity var(--toggle-duration) ease,
+      scale var(--toggle-duration) ease,
+      display var(--toggle-duration) allow-discrete;
+      overflow: hidden;
+    }
+
+    & [data-unchecked] {
+      display: revert;
+      opacity: 1;
+      grid-area: 1 / 1;
+      scale: 1;
+
+      @starting-style {
+        opacity: 0;
+        scale: .75;
+      }
+    }
+
+    & [data-checked] {
+      opacity: 0;
+      grid-area: 1 / 1;
+      display: none;
+      scale: .75;
+    }
+
+    &:has( > input:checked) {
+      background-color: var(--ui-neutral-200);
+
+      & [data-checked] {
+        display: revert;
+        opacity: 1;
+        scale: 1;
+
+        @starting-style {
+          opacity: 0;
+          scale: .75;
+        }
+      }
+
+      & [data-unchecked] {
+        opacity: 0;
+        display: none;
+        scale: .75;
+      }
+    }
+
+    &.ghost {
+      background-color: #0000;
+      box-shadow: inset 0 0 0 1px #0000;
+    }
+
+    &.ghost:has( > input:checked) {
+      background-color: var(--ui-neutral-100);
+      box-shadow: inset 0 0 0 1px #0000;
+    }
+
+    &.fill:has( > input:checked) {
+      & svg {
+        fill: currentColor;
+        color: var(--ui-primary);
+      }
+    }
+
+    &:has(:focus-visible) {
+      outline: 2px solid var(--ui-neutral-950);
+      outline-offset: 2px;
+    }
+
+    &:has( > input:disabled) {
+      opacity: .4;
+      cursor: default;
+    }
+
+    &.square {
+      padding-inline: var(--ui-spacing-2);
+    }
+  }
+}

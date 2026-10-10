@@ -1,3 +1,5 @@
+@import "./button.css";
+
 menu {
   & > li {
     list-style: none;

@@ -1,24 +1,39 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 export async function SeparatorPage(path: string) {
   return Layout({
     title: "Separator",
     path,
     toc: [
+      { id: "standalone", label: "Standalone" },
       { id: "default", label: "Default" },
       { id: "with-label", label: "With label" },
     ],
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Separator</h1>
+          <div class="docs-title">
+            <h1>Separator</h1>
+            ${raw(titleActions(path, "separator"))}
+          </div>
           <p>
             A horizontal divider using the native <code>&lt;hr&gt;</code> element.
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("separator"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

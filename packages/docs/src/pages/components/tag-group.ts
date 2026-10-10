@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "checkbox", label: "Checkbox (multi-select)" },
   { id: "radio", label: "Radio (single-select)" },
   { id: "colors", label: "Colors" },
@@ -19,7 +21,10 @@ export async function TagGroupPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Tag Group</h1>
+          <div class="docs-title">
+            <h1>Tag Group</h1>
+            ${raw(titleActions(path, "tag-group"))}
+          </div>
           <p>
             Selectable tags built from
             <a href="${url("/components/badge")}">Badge</a>s wrapping a hidden
@@ -34,6 +39,16 @@ export async function TagGroupPage(path: string) {
           <dd>The look of each tag</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("tag-group"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="checkbox">Checkbox (multi-select)</h2>
         <p>
           Use <code>&lt;input type="checkbox"&gt;</code> to let more than one

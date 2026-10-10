@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "position", label: "Position" },
   { id: "with-header-footer", label: "With header & footer" },
@@ -16,7 +18,10 @@ export async function DrawerPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Drawer</h1>
+          <div class="docs-title">
+            <h1>Drawer</h1>
+            ${raw(titleActions(path, "drawer"))}
+          </div>
           <p>
             A <code>&lt;dialog&gt;</code> variant that slides in from the edge
             of the screen instead of appearing centered. It's built entirely on
@@ -39,6 +44,16 @@ export async function DrawerPage(path: string) {
           <dd>Actions, like apply or close</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("drawer"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Add the <code>drawer</code> class to a <code>&lt;dialog&gt;</code>. By

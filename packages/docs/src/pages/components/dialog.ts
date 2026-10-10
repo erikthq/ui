@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "modal", label: "Modal" },
   { id: "with-header-footer", label: "With header & footer" },
@@ -18,7 +20,10 @@ export async function DialogPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Dialog</h1>
+          <div class="docs-title">
+            <h1>Dialog</h1>
+            ${raw(titleActions(path, "dialog"))}
+          </div>
           <p>
             A native <code>&lt;dialog&gt;</code> element for popovers and modal
             overlays. Use an <code>&lt;article&gt;</code> inside for the card
@@ -38,6 +43,16 @@ export async function DialogPage(path: string) {
           <dd>Triggers and actions, like close or confirm</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("dialog"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Use <code>.show()</code> for non-modal dialogs that don't block

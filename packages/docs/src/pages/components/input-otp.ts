@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "length", label: "Length" },
   { id: "placeholder", label: "Placeholder" },
@@ -18,7 +20,10 @@ export async function InputOtpPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Input OTP</h1>
+          <div class="docs-title">
+            <h1>Input OTP</h1>
+            ${raw(titleActions(path, "input-otp"))}
+          </div>
           <p>
             A one-time passcode input using a single native
             <code>&lt;input&gt;</code>, wrapped in
@@ -47,6 +52,16 @@ export async function InputOtpPage(path: string) {
           filled.
         </p>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("input-otp"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Set <code>inputmode="numeric"</code>,

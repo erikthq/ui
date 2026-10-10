@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "with-icon", label: "With icon" },
   { id: "with-kbd", label: "With kbd" },
@@ -25,7 +27,10 @@ export async function ButtonPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Button</h1>
+          <div class="docs-title">
+            <h1>Button</h1>
+            ${raw(titleActions(path, "button"))}
+          </div>
           <p>
             Trigger an action using a native <code>&lt;button&gt;</code> element.
           </p>
@@ -41,6 +46,16 @@ export async function ButtonPage(path: string) {
           <dd>Spinner while an action is running</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("button"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

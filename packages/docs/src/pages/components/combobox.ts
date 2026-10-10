@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "in-a-field", label: "In a field" },
 ];
@@ -15,7 +17,10 @@ export async function ComboboxPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Combobox <sup class="badge">WIP</sup></h1>
+          <div class="docs-title">
+            <h1>Combobox <sup class="badge">WIP</sup></h1>
+            ${raw(titleActions(path, "combobox"))}
+          </div>
           <p>
             A searchable dropdown built from a text input and the native
             Popover API. CSS does the presentation. A short inline script
@@ -45,6 +50,16 @@ export async function ComboboxPage(path: string) {
           <code>position-anchor</code> on the popover.
         </p>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("combobox"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "checkbox", label: "Checkbox (multi-select)" },
   { id: "non-selectable", label: "Non-selectable" },
@@ -17,7 +19,10 @@ export async function ColorSwatchPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Color Swatch</h1>
+          <div class="docs-title">
+            <h1>Color Swatch</h1>
+            ${raw(titleActions(path, "color-swatch"))}
+          </div>
           <p>
             A circular color picker built on a native
             <code>&lt;input type="radio"&gt;</code> or
@@ -27,6 +32,16 @@ export async function ColorSwatchPage(path: string) {
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("color-swatch"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Set the color with the <code>--swatch-color</code> custom property

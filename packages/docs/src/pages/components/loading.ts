@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "button", label: "Button" },
   { id: "custom", label: "Custom element" },
   { id: "card", label: "Loading card" },
@@ -16,13 +18,26 @@ export async function LoadingPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Loading</h1>
+          <div class="docs-title">
+            <h1>Loading</h1>
+            ${raw(titleActions(path, "loading"))}
+          </div>
           <p>
             An animated SVG spinner injected via CSS whenever
             <code>aria-busy</code> is set.
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("loading"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="button">Button</h2>
       </div>
       <div class="example">

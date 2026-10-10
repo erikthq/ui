@@ -1,0 +1,84 @@
+@layer ui-reset;
+
+@layer ui {
+  .otp {
+    --otp-length: 6;
+    --otp-cell-size: 2.75rem;
+    vertical-align: middle;
+    width: calc((var(--otp-length) + 0) * var(--otp-cell-size));
+    height: var(--otp-cell-size);
+    display: inline-block;
+    overflow: hidden;
+
+    &:has( > input[maxlength="1"]) {
+      --otp-length: 1;
+    }
+
+    &:has( > input[maxlength="2"]) {
+      --otp-length: 2;
+    }
+
+    &:has( > input[maxlength="3"]) {
+      --otp-length: 3;
+    }
+
+    &:has( > input[maxlength="4"]) {
+      --otp-length: 4;
+    }
+
+    &:has( > input[maxlength="5"]) {
+      --otp-length: 5;
+    }
+
+    &:has( > input[maxlength="6"]) {
+      --otp-length: 6;
+    }
+
+    &:has( > input[maxlength="7"]) {
+      --otp-length: 7;
+    }
+
+    &:has( > input[maxlength="8"]) {
+      --otp-length: 8;
+    }
+
+    &:has( > input[maxlength="9"]) {
+      --otp-length: 9;
+    }
+
+    &:has( > input[maxlength="10"]) {
+      --otp-length: 10;
+    }
+
+    text-overflow: clip;
+
+    & > input {
+      width: calc((var(--otp-length) + 2) * var(--otp-cell-size));
+      height: var(--otp-cell-size);
+      background-color: var(--ui-neutral-100);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: calc(var(--otp-cell-size) - 1ch);
+      font-size: 1.25rem;
+      font-weight: 600;
+      transition: outline-color .1s;
+
+      &:focus-visible {
+        outline: 2px solid var(--ui-primary);
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        opacity: .4;
+      }
+
+      &::placeholder {
+        color: var(--ui-neutral-300);
+        letter-spacing: inherit;
+      }
+
+      &::selection {
+        background-color: var(--ui-primary-200);
+      }
+    }
+  }
+}

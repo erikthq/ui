@@ -1,0 +1,51 @@
+@layer ui-reset;
+
+@layer ui {
+  input[type="checkbox"].switch {
+    appearance: none;
+    border-radius: var(--ui-rounded-full-fixed);
+    width: 2.25rem;
+    height: 1.2lh;
+    box-shadow: none;
+    background-color: var(--ui-neutral-300);
+    cursor: pointer;
+    flex-shrink: 0;
+    align-items: center;
+    transition: background-color .1s;
+    display: inline-flex;
+    position: relative;
+    mask-image: none;
+
+    &:after {
+      content: "";
+      aspect-ratio: 1;
+      border-radius: var(--ui-rounded-full-fixed);
+      background-color: var(--ui-background-color);
+      width: calc(1.2lh - 2px);
+      transition: left .3s var(--ease-glide);
+      margin-inline: 1px;
+      position: absolute;
+      left: 0;
+    }
+
+    &:checked {
+      background-color: var(--ui-primary);
+      background-image: none;
+      mask-image: none;
+
+      &:after {
+        left: calc(100% - 1lh - 3px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-neutral-950);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: .4;
+      cursor: default;
+    }
+  }
+}

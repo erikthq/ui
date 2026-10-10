@@ -1,0 +1,78 @@
+@layer ui-reset;
+
+@layer ui {
+  @keyframes --ui-timeline-ring {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .timeline {
+    --ui-timeline-dot: .75rem;
+    --ui-timeline-ring: 2px;
+    --ui-timeline-line: 1px;
+    --ui-timeline-gap: var(--ui-spacing-6);
+    --ui-timeline-color: var(--ui-primary);
+    gap: var(--ui-timeline-gap);
+    flex-direction: column;
+    display: flex;
+
+    & > li {
+      color: var(--ui-text-color);
+      animation: --ui-timeline-ring .3s var(--ease-glide);
+      padding-inline-start: calc(var(--ui-timeline-dot) + var(--ui-spacing-4));
+      list-style: none;
+      position: relative;
+
+      &:before {
+        content: "";
+        z-index: 1;
+        width: var(--ui-timeline-dot);
+        aspect-ratio: 1;
+        border-radius: var(--ui-rounded-full);
+        border: var(--ui-timeline-ring) solid var(--ui-timeline-color);
+        transition: background-color .3s var(--ease-glide);
+        background-color: canvas;
+        position: absolute;
+        inset-block-start: calc((1lh - var(--ui-timeline-dot)) / 2);
+        inset-inline-start: 0;
+      }
+
+      &[aria-busy]:before {
+        background-color: var(--ui-timeline-color);
+        mask-image: var(--ui-loading);
+        border: none;
+        border-radius: 0;
+        mask-size: 100%;
+        mask-repeat: no-repeat;
+      }
+
+      &:after {
+        content: "";
+        width: var(--ui-timeline-line);
+        height: calc(100% + var(--ui-timeline-gap));
+        background-color: var(--ui-neutral-200);
+        transition: height .4s var(--ease-glide);
+        position: absolute;
+        inset-block-start: .5lh;
+        inset-inline-start: calc((var(--ui-timeline-dot) - var(--ui-timeline-line)) / 2);
+      }
+
+      &:last-child:after {
+        height: 0;
+      }
+    }
+
+    &[data-filled] > li:before, & > li[data-filled]:before {
+      background-color: var(--ui-timeline-color);
+    }
+
+    & time {
+      color: var(--ui-neutral-600);
+    }
+
+    & p {
+      margin-block-start: var(--ui-spacing-1);
+    }
+  }
+}

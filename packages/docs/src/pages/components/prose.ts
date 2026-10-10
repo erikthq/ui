@@ -1,8 +1,10 @@
 import { html, raw } from 'hono/html'
 import { Layout } from '../../layout'
 import { highlight } from '../../highlight'
+import { standaloneLink, titleActions } from '../../components/standalone'
 
 const toc = [
+  { id: 'standalone', label: 'Standalone' },
   { id: 'headings', label: 'Headings' },
   { id: 'lead', label: 'Lead' },
   { id: 'paragraphs', label: 'Paragraphs' },
@@ -20,13 +22,26 @@ export async function ProsePage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Prose</h1>
+          <div class="docs-title">
+            <h1>Prose</h1>
+            ${raw(titleActions(path, "prose"))}
+          </div>
           <p>
             Add <code>.prose</code> to any container to give headings and paragraphs
             consistent vertical spacing.
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("prose"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="headings">Headings</h2>
       </div>
       <div class="example">

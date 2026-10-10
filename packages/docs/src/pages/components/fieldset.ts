@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "side-by-side", label: "Side by side" },
   { id: "description", label: "With description" },
@@ -16,7 +18,10 @@ export async function FieldsetPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Fieldset</h1>
+          <div class="docs-title">
+            <h1>Fieldset</h1>
+            ${raw(titleActions(path, "fieldset"))}
+          </div>
           <p>
             A <code>fieldset</code> groups related fields under one
             <code>legend</code>. No class name needed. The fields inside
@@ -31,6 +36,16 @@ export async function FieldsetPage(path: string) {
           <dd>The labelled fields it groups</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("fieldset"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

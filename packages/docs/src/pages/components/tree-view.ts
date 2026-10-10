@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "open", label: "Open by default" },
 ];
@@ -16,7 +18,10 @@ export async function TreeViewPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Tree View</h1>
+          <div class="docs-title">
+            <h1>Tree View</h1>
+            ${raw(titleActions(path, "tree-view"))}
+          </div>
           <p>
             A nested file or folder hierarchy built from
             <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>, and native
@@ -31,6 +36,16 @@ export async function TreeViewPage(path: string) {
           <dd>File rows, as ghost buttons or links</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("tree-view"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Wrap each folder in a <code>&lt;details&gt;</code> holding a

@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "lines", label: "Lines" },
 ];
@@ -24,7 +26,10 @@ export async function ExpanderPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Expander</h1>
+          <div class="docs-title">
+            <h1>Expander</h1>
+            ${raw(titleActions(path, "expander"))}
+          </div>
           <p>
             Reveal hidden content by transitioning from a user-defined height to
             <code>height: auto</code>. Set the closed height via
@@ -32,6 +37,16 @@ export async function ExpanderPage(path: string) {
           </p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("expander"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

@@ -1,0 +1,102 @@
+@layer ui-reset;
+
+@layer ui {
+  :where([data-tooltip][aria-label]:not(input, select, textarea)) {
+    position: relative;
+  }
+
+  [data-tooltip][aria-label]:not(input, select, textarea) {
+    &:before, &:after {
+      z-index: 2147483647;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .1s;
+      position: absolute;
+    }
+
+    &:before {
+      content: attr(aria-label);
+      background: var(--ui-neutral-950);
+      color: var(--ui-neutral-50);
+      border-radius: var(--ui-rounded-3);
+      white-space: nowrap;
+      padding: .4em .75em;
+      font-size: .875rem;
+      line-height: 1;
+    }
+
+    &:after {
+      content: "";
+      background: var(--ui-neutral-950);
+      width: 8px;
+      height: 8px;
+      rotate: 45deg;
+    }
+
+    &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"]):before {
+      bottom: calc(100% + .5rem);
+      left: 50%;
+      translate: -50%;
+    }
+
+    &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"]):after {
+      border-end-end-radius: 2px;
+      bottom: calc(100% + .5rem);
+      left: 50%;
+      translate: -50% 50%;
+      mask-image: linear-gradient(-45deg, #000 51%, #0000 50%);
+    }
+
+    &[data-tooltip="bottom"]:before {
+      top: calc(100% + .5rem);
+      left: 50%;
+      translate: -50%;
+    }
+
+    &[data-tooltip="bottom"]:after {
+      border-start-start-radius: 2px;
+      top: calc(100% + .5rem);
+      left: 50%;
+      translate: -50% -50%;
+      mask-image: linear-gradient(-45deg, #0000 50%, #000 50%);
+    }
+
+    &[data-tooltip="left"]:before {
+      top: 50%;
+      right: calc(100% + .5rem);
+      translate: 0 -50%;
+    }
+
+    &[data-tooltip="left"]:after {
+      border-start-end-radius: 2px;
+      top: 50%;
+      right: calc(100% + .5rem);
+      translate: 50% -50%;
+      mask-image: linear-gradient(45deg, #0000 50%, #000 50%);
+    }
+
+    &[data-tooltip="right"]:before {
+      top: 50%;
+      left: calc(100% + .5rem);
+      translate: 0 -50%;
+    }
+
+    &[data-tooltip="right"]:after {
+      border-end-start-radius: 2px;
+      top: 50%;
+      left: calc(100% + .5rem);
+      translate: -50% -50%;
+      mask-image: linear-gradient(45deg, #000 50%, #0000 50%);
+    }
+
+    @media (hover: hover) {
+      &:hover:before, &:hover:after {
+        opacity: 1;
+      }
+    }
+
+    &:focus-visible:before, &:focus-visible:after {
+      opacity: 1;
+    }
+  }
+}

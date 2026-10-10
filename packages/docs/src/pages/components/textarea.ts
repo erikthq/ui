@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "composition", label: "Composition" },
 ];
@@ -16,10 +18,23 @@ export async function TextareaPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Textarea</h1>
+          <div class="docs-title">
+            <h1>Textarea</h1>
+            ${raw(titleActions(path, "textarea"))}
+          </div>
           <p>Auto-growing textarea using <code>field-sizing: content</code>.</p>
         </hgroup>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("textarea"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

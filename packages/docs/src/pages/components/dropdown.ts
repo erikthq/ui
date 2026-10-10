@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "with-separator", label: "With separator" },
   { id: "with-labels", label: "With section labels" },
@@ -21,7 +23,10 @@ export async function DropdownPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Dropdown</h1>
+          <div class="docs-title">
+            <h1>Dropdown</h1>
+            ${raw(titleActions(path, "dropdown"))}
+          </div>
           <p>
             A menu of actions anchored to a trigger, built with the native
             <code>popover</code> API and a <code>&lt;menu&gt;</code>.
@@ -38,6 +43,16 @@ export async function DropdownPage(path: string) {
           <dd>The trigger that opens it</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("dropdown"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

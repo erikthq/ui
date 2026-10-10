@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "with-action", label: "With action" },
   { id: "with-link", label: "With link" },
@@ -18,7 +20,10 @@ export async function EmptyPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Empty State</h1>
+          <div class="docs-title">
+            <h1>Empty State</h1>
+            ${raw(titleActions(path, "empty"))}
+          </div>
           <p class="lead">
             A placeholder for when there is nothing to show, using the
             <code>.empty</code> class.
@@ -31,6 +36,16 @@ export async function EmptyPage(path: string) {
           <dd>Actions, like create or upload</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("empty"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

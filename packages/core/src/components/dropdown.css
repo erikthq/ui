@@ -1,3 +1,7 @@
+@import "./popover.css";
+@import "./menu.css";
+@import "./button.css";
+
 [popover] menu {
   /* padding: var(--ui-spacing-1); */
   padding: calc(var(--ui-spacing-1) * max(1, var(--ui-rounded-scale)));

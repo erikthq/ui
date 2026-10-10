@@ -1,9 +1,11 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "with-icons", label: "With icons" },
   { id: "with-section-labels", label: "With section labels" },
@@ -19,7 +21,10 @@ export async function MenuPage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Menu</h1>
+          <div class="docs-title">
+            <h1>Menu</h1>
+            ${raw(titleActions(path, "menu"))}
+          </div>
           <p>
             A styled list of actions or options. The
             <code>&lt;menu&gt;</code> element is styled directly, no class
@@ -42,6 +47,16 @@ export async function MenuPage(path: string) {
           <dd>Floating panel for a dropdown</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("menu"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">

@@ -1,0 +1,47 @@
+:root,
+:host,
+[data-ui-theme] {
+  --ui-spacing: 0.25em;
+  --ui-spacing-1: calc(var(--ui-spacing) * 1);
+  --ui-spacing-2: calc(var(--ui-spacing) * 2);
+  --ui-spacing-3: calc(var(--ui-spacing) * 3);
+  --ui-spacing-4: calc(var(--ui-spacing) * 4);
+  --ui-spacing-5: calc(var(--ui-spacing) * 5);
+  --ui-spacing-6: calc(var(--ui-spacing) * 6);
+  --ui-spacing-7: calc(var(--ui-spacing) * 7);
+  --ui-spacing-8: calc(var(--ui-spacing) * 8);
+
+  --ui-rounded: 2px;
+  --ui-rounded-scale: 1;
+  --ui-rounded-1: calc(var(--ui-rounded) * var(--ui-rounded-scale));
+  --ui-rounded-2: calc((var(--ui-rounded) + var(--ui-spacing-1)) * var(--ui-rounded-scale));
+  --ui-rounded-3: calc((var(--ui-rounded) + var(--ui-spacing-2)) * var(--ui-rounded-scale));
+  --ui-rounded-4: calc((var(--ui-rounded) + var(--ui-spacing-3)) * var(--ui-rounded-scale));
+  --ui-rounded-5: calc((var(--ui-rounded) + var(--ui-spacing-4)) * var(--ui-rounded-scale));
+  --ui-rounded-6: calc((var(--ui-rounded) + var(--ui-spacing-5)) * var(--ui-rounded-scale));
+  --ui-rounded-7: calc((var(--ui-rounded) + var(--ui-spacing-6)) * var(--ui-rounded-scale));
+  --ui-rounded-8: calc((var(--ui-rounded) + var(--ui-spacing-7)) * var(--ui-rounded-scale));
+  --ui-rounded-full: calc((infinity * 1px) * var(--ui-rounded-scale));
+
+  --ui-rounded-full-fixed: calc(infinity * 1px);
+
+  --ui-background-color: var(--ui-neutral-50);
+  --ui-text-color: var(--ui-neutral-950);
+}
+
+:root,
+:host {
+  --ui-text-xs: 0.75rem;
+  --ui-text-sm: 0.875rem;
+  --ui-text-base: 1rem;
+  --ui-text-lg: 1.125rem;
+  --ui-text-xl: 1.25rem;
+  --ui-text-2xl: 1.5rem;
+  --ui-text-3xl: 1.875rem;
+  --ui-text-4xl: 2.25rem;
+  --ui-text-5xl: 3rem;
+  --ui-text-6xl: 3.75rem;
+  --ui-text-7xl: 4.5rem;
+  --ui-text-8xl: 6rem;
+  --ui-text-9xl: 8rem;
+}

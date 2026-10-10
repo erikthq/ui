@@ -1,8 +1,10 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
+  { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "filled", label: "Filled dots" },
   { id: "progress", label: "Marking progress" },
@@ -25,7 +27,10 @@ export async function TimelinePage(path: string) {
     content: html`
       <div class="prose">
         <hgroup>
-          <h1>Timeline</h1>
+          <div class="docs-title">
+            <h1>Timeline</h1>
+            ${raw(titleActions(path, "timeline"))}
+          </div>
           <p>
             An ordered list turned into a vertical track of events. Each item
             gets a dot and a connector down to the next one, so the line stops
@@ -39,6 +44,16 @@ export async function TimelinePage(path: string) {
           <dd>Spinner in place of a dot</dd>
         </dl>
 
+        <h2 id="standalone">Standalone</h2>
+        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(await standaloneLink("timeline"))}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="default">Default</h2>
         <p>
           Add <code>.timeline</code> to an <code>&lt;ol&gt;</code>. The item

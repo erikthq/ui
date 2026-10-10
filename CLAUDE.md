@@ -11,7 +11,7 @@ packages/
   skill/     — Downloadable AI agent skill (SKILL.md), edited by hand
 ```
 
-`packages/core/dist/ui.css` (+ `.map`) is the built stylesheet. It's committed to the repo (unlike the rest of `dist/`) so the readme's size badge can read it, and it's what npm publishes.
+`packages/core/dist/ui.css` (+ `.map`) is the built stylesheet. It's committed to the repo (unlike the rest of `dist/`) so the readme's size badge can read it. The build also writes one standalone file per component to `dist/components/`, the tokens to `dist/tokens.css`, the reset to `dist/reset.css`, and writes an exact `exports` entry per component to `package.json` (esm.sh does not resolve wildcard exports). npm publishes all of `dist/`.
 
 ## Dev commands
 
@@ -42,15 +42,16 @@ Key files:
 - `src/main.css` — entry point, imports everything
 - `src/colors.css` — color scales derived from seed variables
 - `src/easings.css` — `--ease-glide`, `--ease-snap`, `--ease-heavy`
-- `src/spacing.css` — `--ui-spacing`, `--ui-spacing-1` through `--ui-spacing-8`
+- `src/tokens.css` — spacing, radius and text size tokens
 - `src/components/*.css` — one file per component
 
 ### Adding a component
 
-1. Create `src/components/my-component.css` inside `@layer ui { }`
-2. Import it in `src/main.css`
-3. Prefer styling native HTML elements or minimal class names (e.g. `.field`, `.switch`, `.badge`)
-4. Avoid JavaScript — use CSS-only where possible (`:has()`, `@starting-style`, Popover API, anchor positioning)
+1. Create `src/components/my-component.css` (no `@layer` wrapper; `main.css` and the build put it in `@layer ui`)
+2. At the top of the file, `@import` the components it is built on (e.g. `./card.css`). Do not import the token files (`tokens.css`, `colors.css`, `easings.css`); `main.css` imports those, and the build ships them as `dist/tokens.css`. The bundler includes each file once
+3. Import it in `src/main.css`
+4. Prefer styling native HTML elements or minimal class names (e.g. `.field`, `.switch`, `.badge`)
+5. Avoid JavaScript — use CSS-only where possible (`:has()`, `@starting-style`, Popover API, anchor positioning)
 
 ### CSS conventions
 

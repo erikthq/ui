@@ -1,0 +1,95 @@
+@layer ui-reset;
+
+@layer ui {
+  article {
+    --border-radius: var(--ui-rounded-5);
+    background-color: var(--ui-neutral-0);
+    box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
+    border-radius: var(--border-radius);
+    padding: var(--ui-spacing-6);
+    overflow: hidden;
+
+    & article {
+      border-radius: calc(var(--border-radius) - var(--ui-spacing-2));
+    }
+
+    &.secondary {
+      --border-color: var(--ui-neutral-300);
+      --bg: var(--ui-neutral-200);
+      box-shadow: none;
+      background-color: var(--ui-neutral-100);
+
+      & > header, & > footer {
+        box-shadow: none;
+      }
+    }
+
+    &.tertiary {
+      --border-color: var(--ui-neutral-400);
+      --bg: var(--ui-neutral-300);
+      box-shadow: none;
+      background-color: var(--ui-neutral-200);
+
+      & > header, & > footer {
+        box-shadow: none;
+      }
+    }
+
+    &.transparent {
+      background-color: #0000;
+    }
+
+    &:has( > header,  > footer) {
+      padding: 0;
+    }
+
+    & > header, & > footer {
+      align-items: center;
+      gap: var(--ui-spacing-2);
+      display: flex;
+    }
+
+    & > header {
+      box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    & > footer {
+      box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+
+    &:has( > header,  > footer) > * {
+      padding: var(--ui-spacing-6);
+    }
+
+    &:has( > header,  > footer) > :not(header):not(footer) {
+      margin-inline: 1px;
+
+      &:first-child {
+        border-radius: calc(var(--border-radius) + 1px) calc(var(--border-radius) + 1px) 0 0;
+        margin-top: 1px;
+      }
+
+      &:last-child {
+        border-radius: 0 0 calc(var(--border-radius) + 1px) calc(var(--border-radius) + 1px);
+        margin-bottom: 1px;
+      }
+    }
+  }
+
+  @container (width <= 320px) {
+    article {
+      padding: var(--ui-spacing-3);
+
+      & > header, & > footer {
+        padding: var(--ui-spacing-3);
+        gap: var(--ui-spacing);
+      }
+
+      &:has( > header,  > footer) > :not(header):not(footer) {
+        padding: var(--ui-spacing-3);
+      }
+    }
+  }
+}

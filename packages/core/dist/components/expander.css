@@ -1,0 +1,64 @@
+@layer ui-reset;
+
+@layer ui {
+  .expander {
+    position: relative;
+
+    & > :not(label) {
+      interpolate-size: allow-keywords;
+      transition: max-height .4s var(--ease-glide);
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+    }
+
+    & > label {
+      align-items: center;
+      gap: var(--ui-spacing-2);
+      padding-top: var(--ui-spacing-4);
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+      display: flex;
+
+      & > input[type="checkbox"] {
+        display: none;
+      }
+
+      &:after {
+        content: "";
+        aspect-ratio: 1;
+        width: 1rem;
+        transition: transform .4s var(--ease-glide);
+        background-color: currentColor;
+        display: inline-block;
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+        mask-position: center;
+        mask-size: 1rem;
+        mask-repeat: no-repeat;
+      }
+    }
+  }
+
+  .expander:has( > label > input[type="checkbox"]) > :not(label) {
+    -webkit-line-clamp: var(--lines, 3);
+    line-clamp: var(--lines, 3);
+    max-height: calc(var(--lines, 3) * 1lh);
+    transition: max-height .4s var(--ease-glide),
+    -webkit-line-clamp 0s .4s allow-discrete,
+    line-clamp 0s .4s allow-discrete;
+  }
+
+  .expander:has( > label > input[type="checkbox"]:checked) > :not(label) {
+    -webkit-line-clamp: none;
+    line-clamp: none;
+    max-height: max-content;
+    transition: max-height .4s var(--ease-glide),
+    -webkit-line-clamp 0s allow-discrete,
+    line-clamp 0s allow-discrete;
+  }
+
+  .expander:has( > label > input[type="checkbox"]:checked) > label:after {
+    transform: perspective(1rem) rotateX(180deg);
+  }
+}
