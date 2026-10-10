@@ -34,11 +34,11 @@ export async function HomePage(path: string) {
 
       <section class="home-hero prose">
         <hgroup class="flex-col-center gap-4">
-          <h1 class="text-6xl">
+          <h1 class="text-3xl md:text-5xl lg:text-6xl">
             A UI library for building your next design system in a single CSS
             file
           </h1>
-          <p class="text-lg">
+          <p class="md:text-lg">
             Write semantic HTML and it just looks good. No JavaScript, no build
             step, and your own CSS always wins.
             ${cssSize ? html`<code>${cssSize} kB</code> gzipped.` : ""}

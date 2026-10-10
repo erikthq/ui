@@ -590,18 +590,6 @@ function head(
     ${import.meta.env.DEV
       ? raw('<script type="module" src="/@vite/client"></script>')
       : ""}
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var sidebar = document.querySelector(".docs-sidebar");
-        if (!sidebar) return;
-        var saved = sessionStorage.getItem("sidebar-scroll");
-        if (saved) sidebar.scrollTop = parseInt(saved, 10);
-        window.addEventListener("pagehide", function () {
-          sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
-        });
-      });
-    </script>
-
     <script type="importmap">
       {
         "imports": {
@@ -806,6 +794,16 @@ export function Layout({
 
         <div class="docs-layout${wide ? " docs-layout-wide" : ""}">
           <aside class="docs-sidebar">${sidebar ?? SidebarNav(path)}</aside>
+          <script>
+            (function () {
+              var sidebar = document.querySelector(".docs-sidebar");
+              var saved = sessionStorage.getItem("sidebar-scroll");
+              if (saved) sidebar.scrollTop = parseInt(saved, 10);
+              window.addEventListener("pagehide", function () {
+                sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+              });
+            })();
+          </script>
 
           <main class="docs-content">${content}</main>
 

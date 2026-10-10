@@ -8,6 +8,7 @@ const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "scale", label: "Scale" },
+  { id: "responsive", label: "Responsive" },
   { id: "customization", label: "Customization" },
   { id: "api-reference", label: "API reference" },
 ];
@@ -97,6 +98,27 @@ export async function TextPage(path: string) {
       </div>
 
       <div class="prose">
+        <h2 id="responsive">Responsive</h2>
+        <p>
+          Sizes are mobile first. A plain <code>.text-*</code> class always
+          applies. Add <code>md:text-*</code> to change the size from 600px
+          and up, and <code>lg:text-*</code> from 1200px and up.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview preview-padded">
+          <p class="text-xl md:text-3xl lg:text-5xl">Resize the window.</p>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `<p class="text-xl md:text-3xl lg:text-5xl">Resize the window.</p>`,
+            ),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="customization">Customization</h2>
         <p>
           Each size reads from a custom property. Override it to change the
@@ -119,6 +141,8 @@ ${sizes.map(([size, value]) => `  --ui-text-${size}: ${value};`).join("\n")}
 
       ${apiReference([
         { type: "Size", values: [".text-xs", ".text-sm", ".text-base", ".text-lg", ".text-xl", ".text-2xl", ".text-3xl", ".text-4xl", ".text-5xl", ".text-6xl", ".text-7xl", ".text-8xl", ".text-9xl"], description: "Sets font size and line height" },
+        { type: "Size from 600px", values: sizes.map(([size]) => `.md:text-${size}`), description: "Sets font size and line height when the viewport is 600px or wider" },
+        { type: "Size from 1200px", values: sizes.map(([size]) => `.lg:text-${size}`), description: "Sets font size and line height when the viewport is 1200px or wider" },
       ])}
     `,
   });
