@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "exclusive", label: "Exclusive" },
   { id: "open", label: "Open by default" },
   { id: "in-a-card", label: "In a card" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function AccordionPage(path: string) {
@@ -230,6 +232,10 @@ export async function AccordionPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "State", values: ["[open]"], description: "Starts expanded" },
+      ])}
     `,
   });
 }

@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "checkbox", label: "Checkbox (multi-select)" },
   { id: "non-selectable", label: "Non-selectable" },
   { id: "disabled", label: "Disabled" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function ColorSwatchPage(path: string) {
@@ -241,6 +243,11 @@ export async function ColorSwatchPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Color", values: ["--swatch-color: var(--ui-color4-500)"], description: "Fill color of the swatch" },
+        { type: "Disabled", values: ["[disabled]"], description: "Blocks the swatch and fades it" },
+      ])}
     `,
   });
 }

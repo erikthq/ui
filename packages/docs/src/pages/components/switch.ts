@@ -1,7 +1,8 @@
 import { html, raw } from "hono/html";
-import { Layout } from "../../layout";
+import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "checked", label: "Checked" },
   { id: "with-label", label: "With label" },
   { id: "disabled", label: "Disabled" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function SwitchPage(path: string) {
@@ -28,6 +30,12 @@ export async function SwitchPage(path: string) {
             <code>&lt;input type="checkbox" class="switch"&gt;</code>.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/checkbox")}"><code>Checkbox</code></a></dt>
+          <dd>The native checkbox it restyles</dd>
+        </dl>
 
         <h2 id="standalone">Standalone</h2>
         <p>Load the shared tokens once, then only this component and the components it is built on:</p>
@@ -114,6 +122,10 @@ export async function SwitchPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Disabled", values: ["[disabled]"], description: "Fades the switch and blocks input" },
+      ])}
     `,
   });
 }

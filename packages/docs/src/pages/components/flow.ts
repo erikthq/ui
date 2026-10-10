@@ -1,11 +1,13 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const gaps = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -103,6 +105,11 @@ ${gaps.map((n) => `.gap-${n} {\n  gap: var(--ui-spacing-${n});\n}`).join("\n\n")
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Layout", values: [".flex", ".flex-col", ".flex-center", ".flex-center-x", ".flex-center-y", ".flex-col-center", ".flex-col-center-x", ".flex-col-center-y", ".grid"], description: "Row, column or grid, with optional centering" },
+        { type: "Gap", values: [".gap-1", ".gap-2", ".gap-3", ".gap-4", ".gap-5", ".gap-6", ".gap-7", ".gap-8"], description: "Space between children, from the spacing scale" },
+      ])}
     `,
   });
 }

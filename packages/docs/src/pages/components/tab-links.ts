@@ -3,6 +3,7 @@ import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -13,6 +14,7 @@ const toc = [
   { id: "disabled", label: "Disabled link" },
   { id: "multiple", label: "Several bars per page" },
   { id: "custom-properties", label: "Custom properties" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const demo = [
@@ -439,6 +441,17 @@ export async function TabLinksPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "State", values: ['[aria-current="page"]'], description: "Marks the active link and moves the highlight to it" },
+        { type: "Disabled", values: ['[aria-disabled="true"]'], description: "Fades the link and blocks clicks" },
+        { type: "Transition name", values: ["--ui-tab-links-name: ui-sort"], description: "View transition name, unique per tab bar on a page" },
+        { type: "Track", values: ["--bg: var(--ui-neutral-200)"], description: "Background of the bar" },
+        { type: "Highlight", values: ["--bg-active: var(--ui-neutral-50)"], description: "Background of the active link" },
+        { type: "Text", values: ["--fg: var(--ui-neutral-800)"], description: "Text color of links" },
+        { type: "Hover text", values: ["--fg-hover: var(--ui-neutral-950)"], description: "Text color of a hovered link" },
+        { type: "Active text", values: ["--fg-active: var(--ui-neutral-950)"], description: "Text color of the active link" },
+      ])}
 
       <script type="module">
         // One handler for every bar on the page. The live demo also swaps its

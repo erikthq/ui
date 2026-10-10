@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "images", label: "Images" },
   { id: "visible", label: "Multiple visible slides" },
   { id: "multiple", label: "Multiple carousels" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const slideColors = [
@@ -216,6 +218,10 @@ export async function CarouselPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Visible", values: ["--visible: 3"], description: "Number of slides shown at a time" },
+      ])}
     `,
   });
 }

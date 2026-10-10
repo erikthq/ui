@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "with-label", label: "With label" },
   { id: "disabled", label: "Disabled" },
   { id: "choice-card", label: "Choice card" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function RadioPage(path: string) {
@@ -231,6 +233,10 @@ export async function RadioPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Disabled", values: ["[disabled]"], description: "Fades the radio and its label and blocks input" },
+      ])}
     `,
   });
 }

@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "grouped", label: "Grouped pairs" },
   { id: "label-width", label: "Label width" },
   { id: "multiple", label: "Several values" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function DescriptionListPage(path: string) {
@@ -176,6 +178,10 @@ export async function DescriptionListPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Label width", values: ["--ui-description-list-label: 8rem"], description: "Fixed width for the label column instead of sizing to content" },
+      ])}
     `,
   });
 }

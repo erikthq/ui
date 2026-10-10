@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 import { icon } from "../../icon";
 
 const toc = [
@@ -12,6 +13,7 @@ const toc = [
   { id: "with-icon", label: "With icon" },
   { id: "sup", label: "Sup" },
   { id: "loading", label: "Loading" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function BadgePage(path: string) {
@@ -171,6 +173,13 @@ export async function BadgePage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Variant", values: [".secondary"], description: "Dark background with light text" },
+        { type: "Color", values: [".primary", ".constructive", ".destructive", ".color1", ".color2", ".color3", ".color4", ".color5", ".color6"], description: "Tinted background and text" },
+        { type: "Outline", values: [".outlined"], description: "Transparent background with a border in the text color" },
+        { type: "Loading", values: ["[aria-busy]"], description: "Shows a spinner" },
+      ])}
     `,
   });
 }

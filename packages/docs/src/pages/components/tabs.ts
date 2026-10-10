@@ -3,6 +3,7 @@ import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -11,6 +12,7 @@ const toc = [
   { id: "with-cards", label: "With content" },
   { id: "nested", label: "Nested" },
   { id: "custom-properties", label: "Custom properties" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TabsPage(path: string) {
@@ -718,6 +720,16 @@ export async function TabsPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "State", values: ["[checked]"], description: "On a tab's radio, selects the tab and shows its panel" },
+        { type: "Disabled", values: ["[disabled]"], description: "On a tab's radio, fades the tab and blocks clicks" },
+        { type: "Track", values: ["--bg: var(--ui-neutral-200)"], description: "Background of the tab list" },
+        { type: "Highlight", values: ["--bg-active: var(--ui-neutral-50)"], description: "Background of the selected tab" },
+        { type: "Text", values: ["--fg: var(--ui-neutral-800)"], description: "Text color of tabs" },
+        { type: "Hover text", values: ["--fg-hover: var(--ui-neutral-950)"], description: "Text color of a hovered tab" },
+        { type: "Active text", values: ["--fg-active: var(--ui-neutral-950)"], description: "Text color of the selected tab" },
+      ])}
     `,
   });
 }

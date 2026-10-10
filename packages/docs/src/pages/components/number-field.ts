@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
@@ -9,6 +10,7 @@ const toc = [
   { id: "suffix", label: "With suffix" },
   { id: "constraints", label: "Constraints" },
   { id: "in-field", label: "In a Field" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function NumberFieldPage(path: string) {
@@ -169,6 +171,12 @@ export async function NumberFieldPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Prefix", values: ["[data-prefix]"], description: "Places an adornment before the input" },
+        { type: "Suffix", values: ["[data-suffix]"], description: "Places an adornment after the input" },
+        { type: "Loading", values: ["[aria-busy]"], description: "Shows a spinner in the input" },
+      ])}
     `,
   });
 }

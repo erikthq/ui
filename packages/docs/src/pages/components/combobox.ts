@@ -2,11 +2,13 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "in-a-field", label: "In a field" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function ComboboxPage(path: string) {
@@ -179,6 +181,10 @@ export async function ComboboxPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Filter", values: ["[hidden]"], description: "Hides an option. With none left the list shows No results" },
+      ])}
     `,
   });
 }

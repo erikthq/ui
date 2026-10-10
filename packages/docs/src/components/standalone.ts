@@ -28,7 +28,7 @@ export function titleActions(path: string, source?: string) {
     return c
       ? html`<a
           href="${url(c.path)}"
-          class="button outlined square"
+          class="button secondary square"
           aria-label="${c.label}"
           data-tooltip="bottom"
           >${raw(icon(chevron))}</a

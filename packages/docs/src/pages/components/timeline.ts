@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "progress", label: "Marking progress" },
   { id: "rich", label: "Richer items" },
   { id: "state", label: "Driven by a control" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const events = [
@@ -256,6 +258,16 @@ export async function TimelinePage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Filled", values: ["[data-filled]"], description: "On the list or an item, fills the dot to mark it done" },
+        { type: "Loading", values: ["[aria-busy]"], description: "On an item, swaps the dot for a spinner" },
+        { type: "Color", values: ["--ui-timeline-color: var(--ui-primary)"], description: "Color of the dots" },
+        { type: "Dot size", values: ["--ui-timeline-dot: 0.75rem"], description: "Size of each dot" },
+        { type: "Ring", values: ["--ui-timeline-ring: 2px"], description: "Border width of each dot" },
+        { type: "Line", values: ["--ui-timeline-line: 1px"], description: "Width of the connecting line" },
+        { type: "Gap", values: ["--ui-timeline-gap: var(--ui-spacing-6)"], description: "Space between items" },
+      ])}
 
       <script type="module">
         const demo = document.querySelector("#timeline-state");

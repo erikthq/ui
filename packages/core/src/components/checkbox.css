@@ -11,7 +11,8 @@ label:not(.field):has(> input:where([type="checkbox"])) {
   }
 }
 
-input[type="checkbox"]:not(.color-swatch *) {
+/* :where() keeps this weaker than variants like .switch, in any load order */
+input[type="checkbox"]:not(:where(.color-swatch *)) {
   appearance: none;
   width: 16px;
   aspect-ratio: 1;

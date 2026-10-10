@@ -1,12 +1,14 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "lines", label: "Lines" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const loremIpsum = `@erikt/ui is a minimal CSS design system that styles native HTML elements
@@ -31,9 +33,9 @@ export async function ExpanderPage(path: string) {
             ${raw(titleActions(path, "expander"))}
           </div>
           <p>
-            Reveal hidden content by transitioning from a user-defined height to
-            <code>height: auto</code>. Set the closed height via
-            <code>--height</code>.
+            Reveal hidden content by transitioning from a set number of lines
+            to <code>height: auto</code>. Set the number of lines shown when
+            closed via <code>--lines</code>.
           </p>
         </hgroup>
 
@@ -100,6 +102,10 @@ export async function ExpanderPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Lines", values: ["--lines: 3"], description: "Number of lines shown while collapsed" },
+      ])}
     `,
   });
 }

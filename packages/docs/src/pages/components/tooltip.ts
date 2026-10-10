@@ -2,11 +2,13 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "placement", label: "Placement" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TooltipPage(path: string) {
@@ -91,6 +93,10 @@ export async function TooltipPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Placement", values: ['[data-tooltip="top"]', '[data-tooltip="bottom"]', '[data-tooltip="left"]', '[data-tooltip="right"]'], description: "Side the tooltip shows on. Defaults to top" },
+      ])}
     `,
   });
 }

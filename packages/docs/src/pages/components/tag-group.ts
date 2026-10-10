@@ -3,6 +3,7 @@ import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -11,6 +12,7 @@ const toc = [
   { id: "colors", label: "Colors" },
   { id: "in-field", label: "In a field" },
   { id: "disabled", label: "Disabled" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TagGroupPage(path: string) {
@@ -261,6 +263,10 @@ export async function TagGroupPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Disabled", values: ["[disabled]"], description: "Fades the tag and blocks input" },
+      ])}
     `,
   });
 }

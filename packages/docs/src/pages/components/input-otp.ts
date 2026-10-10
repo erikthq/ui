@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
@@ -10,6 +11,7 @@ const toc = [
   { id: "placeholder", label: "Placeholder" },
   { id: "in-field", label: "In a field" },
   { id: "disabled", label: "Disabled" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function InputOtpPage(path: string) {
@@ -31,6 +33,12 @@ export async function InputOtpPage(path: string) {
             look like separate boxes.
           </p>
         </hgroup>
+
+        <h3>Composed of</h3>
+        <dl class="composition">
+          <dt><a href="${url("/components/text-field")}"><code>Text Field</code></a></dt>
+          <dd>The input styling it builds on</dd>
+        </dl>
 
         <h3>Works with</h3>
         <dl class="composition">
@@ -247,6 +255,13 @@ export async function InputOtpPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Length", values: ["[maxlength]"], description: "Sets the number of boxes, from 1 to 10" },
+        { type: "Box count", values: ["--otp-length: 6"], description: "Overrides the number of boxes" },
+        { type: "Box size", values: ["--otp-cell-size: 2.75rem"], description: "Width and height of each box" },
+        { type: "Disabled", values: ["[disabled]"], description: "Fades the input" },
+      ])}
     `,
   });
 }

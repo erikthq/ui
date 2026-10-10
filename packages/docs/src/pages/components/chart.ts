@@ -2,10 +2,12 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function ChartPage(path: string) {
@@ -161,6 +163,13 @@ export async function ChartPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Value", values: ["--v: 52"], description: "Bar height as a percentage, set on each td" },
+        { type: "Height", values: ["--chart-height: 16rem"], description: "Height of the plot area" },
+        { type: "Color", values: ["--chart-color: var(--ui-color2-500)"], description: "Bar color" },
+        { type: "Axis", values: [".chart-y-axis"], description: "A ul inside caption that renders the y-axis labels" },
+      ])}
     `,
   });
 }

@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
@@ -9,6 +10,7 @@ const toc = [
   { id: "default", label: "Default" },
   { id: "ellipsis", label: "With ellipsis" },
   { id: "disabled", label: "Disabled edges" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function PaginationPage(path: string) {
@@ -204,6 +206,10 @@ export async function PaginationPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Current", values: ['[aria-current="page"]'], description: "Underlines the current page" },
+      ])}
     `,
   });
 }

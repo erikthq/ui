@@ -2,12 +2,14 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "scale", label: "Scale" },
   { id: "customization", label: "Customization" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const sizes = [
@@ -114,6 +116,10 @@ ${sizes.map(([size, value]) => `  --ui-text-${size}: ${value};`).join("\n")}
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Size", values: [".text-xs", ".text-sm", ".text-base", ".text-lg", ".text-xl", ".text-2xl", ".text-3xl", ".text-4xl", ".text-5xl", ".text-6xl", ".text-7xl", ".text-8xl", ".text-9xl"], description: "Sets font size and line height" },
+      ])}
     `,
   });
 }

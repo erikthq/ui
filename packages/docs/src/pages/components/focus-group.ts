@@ -1,12 +1,14 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function FocusGroupPage(path: string) {
@@ -111,6 +113,10 @@ export async function FocusGroupPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Focus target", values: ["[data-focus]"], description: "Moves this element's focus ring to the container" },
+      ])}
     `,
   });
 }

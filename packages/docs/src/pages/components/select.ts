@@ -3,6 +3,7 @@ import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "disabled", label: "Disabled" },
   { id: "with-separator", label: "With separator" },
   { id: "with-groups", label: "With groups" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const chevron = icon("chevron-down", { size: 14 });
@@ -196,6 +198,10 @@ export async function SelectPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Disabled", values: ["[disabled]"], description: "Fades the select and blocks input" },
+      ])}
     `,
   });
 }

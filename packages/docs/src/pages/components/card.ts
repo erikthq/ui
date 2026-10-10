@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "tertiary", label: "Tertiary" },
   { id: "transparent", label: "Transparent" },
   { id: "with-header-footer", label: "With header & footer" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function CardPage(path: string) {
@@ -145,6 +147,10 @@ export async function CardPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Variant", values: [".secondary", ".tertiary", ".transparent"], description: "Changes the surface" },
+      ])}
     `,
   });
 }

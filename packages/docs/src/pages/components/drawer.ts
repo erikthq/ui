@@ -2,12 +2,14 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "position", label: "Position" },
   { id: "with-header-footer", label: "With header & footer" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function DrawerPage(path: string) {
@@ -239,6 +241,11 @@ export async function DrawerPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Placement", values: ['[data-position="left"]', '[data-position="right"]', '[data-position="top"]', '[data-position="bottom"]'], description: "The edge the drawer slides in from. Right by default" },
+        { type: "Scroll lock", values: ["[scroll-lock]"], description: "Stops the page from scrolling while the drawer is open" },
+      ])}
     `,
   });
 }

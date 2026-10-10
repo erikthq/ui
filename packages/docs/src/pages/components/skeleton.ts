@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "circle", label: "Circle" },
   { id: "preserve-content", label: "Preserve content size" },
   { id: "composite", label: "Composite" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function SkeletonPage(path: string) {
@@ -125,6 +127,10 @@ export async function SkeletonPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Shape", values: [".circle"], description: "Round placeholder with equal width and height" },
+      ])}
     `,
   });
 }

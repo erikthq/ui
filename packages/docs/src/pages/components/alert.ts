@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 import { icon } from "../../icon";
 
 const toc = [
@@ -12,6 +13,7 @@ const toc = [
   { id: "with-list", label: "With list" },
   { id: "dismissible", label: "Dismissible" },
   { id: "loading", label: "Loading" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function AlertPage(path: string) {
@@ -295,6 +297,10 @@ export async function AlertPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Color", values: [".primary", ".constructive", ".destructive", ".color1", ".color2", ".color3", ".color4", ".color5", ".color6"], description: "Tints the icon and title" },
+      ])}
     `,
   });
 }

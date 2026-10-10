@@ -1,3 +1,5 @@
+@import "./text-field.css";
+
 .otp {
   --otp-length: 6;
   --otp-cell-size: 2.75rem;
@@ -50,7 +52,8 @@
 
   text-overflow: clip;
 
-  > input {
+  /* The doubled class beats text-field's input[type="text"] in any load order */
+  &.otp > input {
     width: calc((var(--otp-length) + 2) * var(--otp-cell-size));
     height: var(--otp-cell-size);
 

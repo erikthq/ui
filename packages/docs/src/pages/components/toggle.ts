@@ -3,6 +3,7 @@ import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -13,6 +14,7 @@ const toc = [
   { id: "ghost", label: "Ghost" },
   { id: "conditional-content", label: "Conditional content" },
   { id: "disabled", label: "Disabled" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TogglePage(path: string) {
@@ -264,6 +266,15 @@ export async function TogglePage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Variant", values: [".ghost"], description: "No border until checked" },
+        { type: "Fill", values: [".fill"], description: "Fills the icon with the primary color when checked" },
+        { type: "Shape", values: [".square"], description: "Equal padding on all sides, for icon toggles" },
+        { type: "Checked content", values: ["[data-checked]"], description: "Shown only while checked" },
+        { type: "Unchecked content", values: ["[data-unchecked]"], description: "Shown only while unchecked" },
+        { type: "Disabled", values: ["[disabled]"], description: "On the input, fades the toggle and blocks input" },
+      ])}
     `,
   });
 }

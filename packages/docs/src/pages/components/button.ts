@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 import { icon } from "../../icon";
 
 const toc = [
@@ -17,6 +18,7 @@ const toc = [
   { id: "round", label: "Round" },
   { id: "square", label: "Square" },
   { id: "loading", label: "Loading" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function ButtonPage(path: string) {
@@ -228,6 +230,16 @@ export async function ButtonPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Variant", values: [".secondary", ".outlined", ".ghost", ".link"], description: "Changes the surface. Pick one" },
+        { type: "Color", values: [".destructive"], description: "Red, for dangerous actions" },
+        { type: "Shape", values: [".square"], description: "Same width and height, for icon buttons" },
+        { type: "Corners", values: [".round"], description: "Fully round corners" },
+        { type: "Disabled", values: ["[disabled]", '[aria-disabled="true"]'], description: "Blocks the button and fades it" },
+        { type: "Loading", values: ["[aria-busy]"], description: "Shows a spinner" },
+        { type: "Popover", values: ["[popovertarget]"], description: "Looks pressed while its popover is open" },
+      ])}
     `,
   });
 }

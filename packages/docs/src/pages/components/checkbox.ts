@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "with-label", label: "With label" },
   { id: "disabled", label: "Disabled" },
   { id: "indeterminate", label: "Indeterminate" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function CheckboxPage(path: string) {
@@ -146,6 +148,11 @@ export async function CheckboxPage(path: string) {
 </script>`))}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "State", values: ["el.indeterminate = true"], description: "Shows a dash. Set the property in JavaScript" },
+        { type: "Disabled", values: ["[disabled]"], description: "Blocks the checkbox and fades it with its label" },
+      ])}
     `,
   });
 }

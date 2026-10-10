@@ -3,11 +3,13 @@ import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "open", label: "Open by default" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TreeViewPage(path: string) {
@@ -220,6 +222,10 @@ export async function TreeViewPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "State", values: ["[open]"], description: "On a details element, expands the branch and swaps to its second icon" },
+      ])}
     `,
   });
 }

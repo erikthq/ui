@@ -15,7 +15,7 @@
     }
   }
 
-  input[type="checkbox"]:not(.color-swatch *) {
+  input[type="checkbox"]:not(:where(.color-swatch *)) {
     appearance: none;
     aspect-ratio: 1;
     width: 16px;

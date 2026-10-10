@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "with-header-footer", label: "With header & footer" },
   { id: "closedby", label: "closedby" },
   { id: "scroll-lock", label: "scroll-lock" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function DialogPage(path: string) {
@@ -261,6 +263,10 @@ export async function DialogPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Scroll lock", values: ["[scroll-lock]"], description: "Stops the page from scrolling while the dialog is open" },
+      ])}
     `,
   });
 }

@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
@@ -9,6 +10,7 @@ const toc = [
   { id: "checkbox", label: "Checkbox" },
   { id: "description", label: "With description" },
   { id: "required", label: "Required" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function RadioGroupPage(path: string) {
@@ -209,6 +211,10 @@ export async function RadioGroupPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Required", values: ["[required]"], description: "Adds a red asterisk to the legend" },
+      ])}
     `,
   });
 }

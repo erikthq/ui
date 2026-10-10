@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 import { icon } from "../../icon";
 
 const toc = [
@@ -13,6 +14,7 @@ const toc = [
   { id: "group", label: "Group" },
   { id: "with-tooltip", label: "With tooltip" },
   { id: "with-popover", label: "With popover" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function AvatarPage(path: string) {
@@ -283,6 +285,10 @@ export async function AvatarPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Shape", values: [".square"], description: "Rounded square instead of a circle" },
+      ])}
     `,
   });
 }

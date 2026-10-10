@@ -184,7 +184,7 @@
       }
     }
 
-    &:not([data-position]) {
+    &:not([data-position]), &[data-position="right"] {
       & > article, & > article header, & > article footer {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;

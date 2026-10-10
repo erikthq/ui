@@ -3,6 +3,7 @@ import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -12,6 +13,7 @@ const toc = [
   { id: "with-actions", label: "With actions" },
   { id: "zebra", label: "Zebra" },
   { id: "align-left", label: "Align left" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TablePage(path: string) {
@@ -182,12 +184,13 @@ export async function TablePage(path: string) {
         <h2 id="overflow">Overflow</h2>
         <p>
           Tables scroll horizontally when their content exceeds the container
-          width. No wrapper needed.
+          width. No wrapper needed. Add <code>nowrap</code> to keep each cell
+          on one line, so the table scrolls instead of wrapping text.
         </p>
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <table>
+          <table class="nowrap">
             <thead>
               <tr>
                 <th>Name</th>
@@ -228,7 +231,7 @@ export async function TablePage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<table>
+            await highlight(`<table class="nowrap">
   <thead>
     <tr>
       <th>Name</th>
@@ -451,6 +454,13 @@ export async function TablePage(path: string) {
           ${raw(await highlight(`<table class="align-left">...</table>`))}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Alignment", values: [".align-left"], description: "Left aligns the last column too" },
+        { type: "Stripes", values: [".zebra"], description: "Shades every other body row" },
+        { type: "Wrapping", values: [".nowrap"], description: "Keeps each cell on one line, so wide tables scroll" },
+        { type: "Columns", values: ["--cols: 2fr 1fr 1fr"], description: "Column widths, instead of equal columns" },
+      ])}
     `,
   });
 }

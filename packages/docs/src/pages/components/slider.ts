@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -9,6 +10,7 @@ const toc = [
   { id: "filled", label: "Filled" },
   { id: "step", label: "Step" },
   { id: "disabled", label: "Disabled" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function SliderPage(path: string) {
@@ -108,6 +110,11 @@ export async function SliderPage(path: string) {
           ${raw(await highlight(`<input type="range" disabled />`))}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Fill", values: ["--pct: 0.5"], description: "Fills the track up to this fraction, from 0 to 1" },
+        { type: "Disabled", values: ["[disabled]"], description: "Fades the slider and blocks input" },
+      ])}
     `,
   });
 }

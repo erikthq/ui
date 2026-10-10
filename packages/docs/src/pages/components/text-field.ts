@@ -3,12 +3,14 @@ import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "text", label: "Text" },
   { id: "with-icon", label: "With icon" },
   { id: "loading", label: "Loading" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TextFieldPage(path: string) {
@@ -193,6 +195,12 @@ export async function TextFieldPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Prefix", values: ["[data-prefix]"], description: "Places the element at the start, inside the field" },
+        { type: "Suffix", values: ["[data-suffix]"], description: "Places the element at the end, inside the field" },
+        { type: "Loading", values: ["[aria-busy]"], description: "Shows a spinner in the field" },
+      ])}
     `,
   });
 }

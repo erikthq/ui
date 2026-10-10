@@ -111,7 +111,7 @@ body {
   transition: translate 300ms var(--ease-glide);
 
   @media (min-width: 769px) {
-    width: min(680px, 100%);
+    width: min(800px, 100%);
     padding-inline: 3rem;
   }
 }
@@ -400,4 +400,9 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: var(--ui-spacing-3);
+}
+
+#api-reference + table code:not(:last-of-type) {
+  display: inline-block;
+  margin-bottom: 4px;
 }

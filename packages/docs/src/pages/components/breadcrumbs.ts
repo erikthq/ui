@@ -2,11 +2,13 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "custom-properties", label: "Custom properties" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function BreadcrumbsPage(path: string) {
@@ -106,6 +108,11 @@ export async function BreadcrumbsPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Current", values: ['[aria-current="page"]'], description: "Marks the current page with stronger text" },
+        { type: "Separator", values: ['--icon: url("/icons/slash.svg")'], description: "Replaces the separator icon, used as a mask" },
+      ])}
     `,
   });
 }

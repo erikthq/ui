@@ -3,7 +3,11 @@ table {
   grid-template-columns: var(--cols, repeat(auto-fill, minmax(max-content, 1fr)));
   width: 100%;
   overflow-x: auto;
-  white-space: nowrap;
+
+  /* Keeps every cell on one line, so wide tables scroll instead of wrapping */
+  &.nowrap {
+    white-space: nowrap;
+  }
 }
 
 /* Auto-detect column count from header row (up to 30 columns) */

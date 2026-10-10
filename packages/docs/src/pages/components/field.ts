@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
@@ -15,6 +16,7 @@ const toc = [
   { id: "with-checkbox", label: "With checkbox" },
   { id: "with-radio", label: "With radio" },
   { id: "form", label: "Form" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function FieldPage(path: string) {
@@ -410,6 +412,11 @@ export async function FieldPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Required", values: ["[required]"], description: "Adds a red asterisk to the label" },
+        { type: "Error message", values: ['[data-error="required"]', '[data-error="range"]', '[data-error="invalid"]'], description: "Shows the message when the input fails that check" },
+      ])}
     `,
   });
 }

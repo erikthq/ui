@@ -3,11 +3,13 @@ import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "composition", label: "Composition" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function TextareaPage(path: string) {
@@ -117,6 +119,10 @@ console.log('Hello, world!');</textarea
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Rows", values: ['[rows="4"]'], description: "Fixed height instead of growing with the content" },
+      ])}
     `,
   });
 }

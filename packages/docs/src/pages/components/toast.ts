@@ -3,6 +3,7 @@ import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
+import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
@@ -10,6 +11,7 @@ const toc = [
   { id: "placement", label: "Placement" },
   { id: "multiple", label: "Multiple" },
   { id: "dismissible", label: "Dismissible" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function ToastPage(path: string) {
@@ -283,6 +285,10 @@ export async function ToastPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Placement", values: ['[data-placement="top left"]', '[data-placement="top"]', '[data-placement="top right"]', '[data-placement="left"]', '[data-placement="center"]', '[data-placement="right"]', '[data-placement="bottom left"]', '[data-placement="bottom"]', '[data-placement="bottom right"]'], description: "Screen edge or corner the toast appears at. Defaults to bottom right" },
+      ])}
     `,
   });
 }

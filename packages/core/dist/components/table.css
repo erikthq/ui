@@ -3,10 +3,13 @@
 @layer ui {
   table {
     grid-template-columns: var(--cols, repeat(auto-fill, minmax(max-content, 1fr)));
-    white-space: nowrap;
     width: 100%;
     display: grid;
     overflow-x: auto;
+
+    &.nowrap {
+      white-space: nowrap;
+    }
   }
 
   table:has( > thead > tr > th:last-child:first-child) {

@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 
 const toc = [
@@ -9,6 +10,7 @@ const toc = [
   { id: "reverse", label: "Reverse" },
   { id: "speed", label: "Speed" },
   { id: "logos", label: "Logos" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 const teams = ["Design", "Engineering", "Product", "Marketing", "Support"];
@@ -234,6 +236,12 @@ export async function MarqueePage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Direction", values: [".reverse"], description: "Scrolls the other way" },
+        { type: "Duration", values: ["--marquee-duration: 20s"], description: "Time for one full loop" },
+        { type: "Gap", values: ["--marquee-gap: 1.5rem"], description: "Space between items" },
+      ])}
     `,
   });
 }

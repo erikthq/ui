@@ -1,6 +1,7 @@
 import { html, raw } from "hono/html";
 import { Layout, url } from "../../layout";
 import { highlight } from "../../highlight";
+import { apiReference } from "../../components/api-reference";
 import { standaloneLink, titleActions } from "../../components/standalone";
 import { icon } from "../../icon";
 
@@ -13,6 +14,7 @@ const toc = [
   { id: "with-checkboxes", label: "With checkboxes" },
   { id: "custom-select", label: "Custom select" },
   { id: "in-form", label: "In a form" },
+  { id: "api-reference", label: "API reference" },
 ];
 
 export async function DropdownPage(path: string) {
@@ -433,6 +435,10 @@ export async function DropdownPage(path: string) {
           )}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Placement", values: ['[data-placement="bottom left"]', '[data-placement="bottom right"]', '[data-placement="top left"]', '[data-placement="top right"]', '[data-placement="left top"]', '[data-placement="left bottom"]', '[data-placement="right top"]', '[data-placement="right bottom"]'], description: "Sets which side of the trigger the menu opens on" },
+      ])}
     `,
   });
 }

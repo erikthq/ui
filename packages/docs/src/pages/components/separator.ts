@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { Layout } from "../../layout";
 import { highlight } from "../../highlight";
 import { standaloneLink, titleActions } from "../../components/standalone";
+import { apiReference } from "../../components/api-reference";
 
 export async function SeparatorPage(path: string) {
   return Layout({
@@ -11,6 +12,7 @@ export async function SeparatorPage(path: string) {
       { id: "standalone", label: "Standalone" },
       { id: "default", label: "Default" },
       { id: "with-label", label: "With label" },
+      { id: "api-reference", label: "API reference" },
     ],
     content: html`
       <div class="prose">
@@ -72,6 +74,11 @@ export async function SeparatorPage(path: string) {
           ${raw(await highlight(`<hr data-label="Appearance Settings" style="--bg-color: var(--ui-neutral-0)" />`))}
         </div>
       </div>
+
+      ${apiReference([
+        { type: "Label", values: ['[data-label="Text"]'], description: "Shows the text centered on the line" },
+        { type: "Label background", values: ["--bg-color: var(--ui-neutral-0)"], description: "Background behind the label, to match the surface" },
+      ])}
     `,
   });
 }
