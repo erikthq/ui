@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* table */
 @layer ui {
   table {
     grid-template-columns: var(--cols, repeat(auto-fill, minmax(max-content, 1fr)));
@@ -195,7 +196,10 @@
       background: var(--ui-neutral-100);
     }
   }
+}
 
+/* chart */
+@layer ui {
   table.chart {
     --chart-height: 12rem;
     --chart-color: var(--ui-primary);

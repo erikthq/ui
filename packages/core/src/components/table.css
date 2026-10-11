@@ -1,3 +1,4 @@
+/* table */
 table {
   display: grid;
   grid-template-columns: var(--cols, repeat(auto-fill, minmax(max-content, 1fr)));

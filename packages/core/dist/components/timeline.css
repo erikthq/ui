@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* timeline */
 @layer ui {
   @keyframes --ui-timeline-ring {
     from {

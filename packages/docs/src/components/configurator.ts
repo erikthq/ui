@@ -12,7 +12,7 @@ const presets = [
   { name: "Ember", primaryLight: "#f09700", primaryDark: "#ffb85c", neutralLight: "#989188", neutralDark: "#918b84", radius: "0.5", font: '"Clarity City", system-ui' },
   { name: "Reef", primaryLight: "#ff7f50", primaryDark: "#ff9b76", neutralLight: "#9b8f8b", neutralDark: "#938a87", radius: "1.75", font: '"DM Sans", system-ui' },
   { name: "Blossom", primaryLight: "#de97a2", primaryDark: "#ffc5cd", neutralLight: "#9b8f90", neutralDark: "#93898a", radius: "2", font: "Rubik, system-ui" },
-  { name: "Ink", primaryLight: "#111111", primaryDark: "#ffffff", neutralLight: "#919191", neutralDark: "#8b8b8b", radius: "0", font: '"Martian Mono", ui-monospace' },
+  { name: "Ink", primaryLight: "#111111", primaryDark: "#ffffff", neutralLight: "#919191", neutralDark: "#8b8b8b", radius: "0", font: '"Sono", ui-monospace' },
 ];
 
 // Edits the theme tokens on .components-showcase (it has data-ui-theme, so the scales follow)

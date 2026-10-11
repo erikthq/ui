@@ -17,7 +17,7 @@ export function Menus() {
           background: var(--ui-background-color);
           border: 1px solid var(--ui-neutral-200);
           border-radius: calc(var(--ui-rounded-3) + var(--ui-spacing-1));
-          /* padding: calc(var(--ui-spacing-1) * clamp(1, var(--ui-rounded-scale) * 0.75, 1.5)); */
+          /* padding: calc(var(--ui-spacing-1) * clamp(1, var(--ui-rounded-scale) * 0.75, 1.3)); */
           padding: calc(var(--ui-spacing-1) * max(1, var(--ui-rounded-scale)));
         }
       }

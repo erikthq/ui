@@ -32,32 +32,45 @@ export async function SkeletonPage(path: string) {
         </hgroup>
 
         <h2 id="standalone">Standalone</h2>
-        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
+        <p>
+          Load the shared tokens once, then only this component and the
+          components it is built on:
+        </p>
       </div>
       <div class="example">
-        <div class="code-block">
-          ${raw(await standaloneLink("skeleton"))}
-        </div>
+        <div class="code-block">${raw(await standaloneLink("skeleton"))}</div>
       </div>
 
       <div class="prose">
         <h2 id="default">Default</h2>
         <p>
-          Defaults to a height of <code>1lh</code>, matching a line of text.
-          Set a <code>width</code> to control how long the placeholder is, and
+          Defaults to a height of <code>1em</code>, matching a line of text. Set
+          a <code>width</code> to control how long the placeholder is, and
           override <code>height</code> to shape it differently.
         </p>
       </div>
       <div class="example">
         <div class="preview" style="flex-direction:column;gap:0.5rem">
-          <div class="skeleton" style="width:12rem"></div>
-          <div class="skeleton" style="width:8rem"></div>
+          <div class="flex gap-4">
+            <span class="skeleton circle" style="width:3rem"></span>
+
+            <div class="flex-col-center-y gap-2">
+              <span class="skeleton" style="width:12rem"></span>
+              <span class="skeleton" style="width:8rem"></span>
+            </div>
+          </div>
         </div>
         <div class="code-block">
           ${raw(
             await highlight(
-              `<div class="skeleton" style="width: 12rem"></div>
-<div class="skeleton" style="width: 8rem"></div>`,
+              `<div class="flex gap-4">
+            <span class="skeleton circle" style="width:3rem"></span>
+
+            <div class="flex-col-center-y gap-2">
+              <span class="skeleton" style="width:12rem"></span>
+              <span class="skeleton" style="width:8rem"></span>
+            </div>
+          </div>`,
             ),
           )}
         </div>
@@ -129,7 +142,11 @@ export async function SkeletonPage(path: string) {
       </div>
 
       ${apiReference([
-        { type: "Shape", values: [".circle"], description: "Round placeholder with equal width and height" },
+        {
+          type: "Shape",
+          values: [".circle"],
+          description: "Round placeholder with equal width and height",
+        },
       ])}
     `,
   });

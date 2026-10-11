@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* popover */
 @layer ui {
   [popover] {
     inset: unset;
@@ -143,7 +144,10 @@
     right: unset;
     min-width: unset;
   }
+}
 
+/* menu */
+@layer ui {
   menu {
     & > li {
       list-style: none;
@@ -215,13 +219,16 @@
       margin-block: var(--ui-spacing-1);
     }
   }
+}
 
+/* button */
+@layer ui {
   button, .button {
     background-color: var(--ui-primary);
     color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
     min-width: calc(1lh + var(--ui-spacing-2) * 2);
     padding-block: var(--ui-spacing-2);
-    padding-inline: calc(var(--ui-spacing-3) * clamp(1, var(--ui-rounded-scale) * .75, 1.5));
+    padding-inline: calc(var(--ui-spacing-3) * clamp(1, var(--ui-rounded-scale) * .75, 1.3));
     border-radius: var(--ui-rounded-3);
     font: inherit;
     cursor: pointer;
@@ -424,7 +431,10 @@
       }
     }
   }
+}
 
+/* dropdown */
+@layer ui {
   [popover] menu {
     padding: calc(var(--ui-spacing-1) * max(1, var(--ui-rounded-scale)));
   }

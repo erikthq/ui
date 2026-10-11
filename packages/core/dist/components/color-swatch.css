@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* color-swatch */
 @layer ui {
   @property --mask-position {
     syntax: "<percentage>";

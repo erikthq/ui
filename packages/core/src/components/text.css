@@ -1,3 +1,4 @@
+/* text */
 /* Mobile first: .text-* always applies, md:text-* from 600px, lg:text-* from 1200px */
 :is(
   .text-xs,

@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* focus-group */
 @layer ui {
   [data-focus-within] {
     & [data-focus]:focus-visible {

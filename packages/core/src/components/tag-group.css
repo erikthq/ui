@@ -1,3 +1,4 @@
+/* tag-group */
 @import "./badge.css";
 
 label:has(> .badge):has(> input[type="checkbox"], > input[type="radio"]) {

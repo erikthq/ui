@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* card */
 @layer ui {
   article {
     --border-radius: var(--ui-rounded-5);

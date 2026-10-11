@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* tooltip */
 @layer ui {
   :where([data-tooltip][aria-label]:not(input, select, textarea)) {
     position: relative;

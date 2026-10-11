@@ -1,3 +1,4 @@
+/* color-swatch */
 @property --mask-position {
   syntax: "<percentage>";
   inherits: true;

@@ -1,3 +1,4 @@
+/* checkbox */
 label:not(.field):has(> input:where([type="checkbox"])) {
   display: flex;
   align-items: center;

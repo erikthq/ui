@@ -1,3 +1,4 @@
+/* tabs */
 @scope (.tabs) to (.tabs .tabs) {
   :scope {
     --bg: var(--ui-neutral-200);

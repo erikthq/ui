@@ -6,8 +6,8 @@ export const fonts = [
   { name: "Clarity City", family: '"Clarity City", system-ui' },
   { name: "DM Sans", family: '"DM Sans", system-ui' },
   { name: "Manrope", family: "Manrope, system-ui" },
-  { name: "Martian Mono", family: '"Martian Mono", ui-monospace' },
   { name: "Rubik", family: "Rubik, system-ui" },
+  { name: "Sono", family: '"Sono", ui-monospace' },
 ] as const;
 
 export function FontPicker() {

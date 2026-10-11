@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* fieldset */
 @layer ui {
   fieldset:not([role="group"], .color-swatch) {
     gap: var(--ui-spacing-4);
@@ -26,7 +27,10 @@
       font-weight: 400;
     }
   }
+}
 
+/* radio */
+@layer ui {
   label:has( > input:where([type="radio"])) {
     cursor: pointer;
     -webkit-user-select: none;
@@ -74,7 +78,10 @@
       outline-offset: 2px;
     }
   }
+}
 
+/* radio-group */
+@layer ui {
   fieldset:not([role="group"]):has(input[type="radio"], input[type="checkbox"]) {
     gap: var(--ui-spacing-2);
     border: none;

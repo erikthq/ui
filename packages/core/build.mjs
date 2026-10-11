@@ -16,7 +16,7 @@ const watchMode = process.argv.includes("--watch");
 
 // Load lightningcss from Vite's own dependencies — no extra install needed
 const req = createRequire(import.meta.resolve("vite"));
-const { bundle: lcBundle, bundleAsync, browserslistToTargets } = req("lightningcss");
+const { bundle: lcBundle, bundleAsync, transform: lcTransform, browserslistToTargets } = req("lightningcss");
 
 const targets = browserslistToTargets(browserslist("chrome >= 123, firefox >= 120, safari >= 17.5"));
 
@@ -51,9 +51,30 @@ async function buildStandalone(name, source, dest) {
   await writeFile(dest, code);
 }
 
-// Each component on its own, with the components it imports
-const buildComponent = (file) =>
-  buildStandalone(basename(file), `@import "./components/${basename(file)}" layer(ui);`, resolve(componentsDist, basename(file)));
+// A component and the components it imports, imports first.
+// Like the bundler, a file imported twice is kept at its last place only
+async function withImports(file) {
+  const css = await readFile(resolve(componentsSrc, file), "utf8");
+  const files = [];
+  for (const [, dep] of css.matchAll(/^@import "\.\/(.+?)";/gm)) files.push(...(await withImports(dep)));
+  files.push(file);
+  return files.filter((f, i) => files.lastIndexOf(f) === i);
+}
+
+// Each component on its own, with the components it imports.
+// Every file is transformed apart and keeps its first line comment, so the output shows what came from where
+async function buildComponent(file) {
+  const parts = [];
+  for (const f of await withImports(file)) {
+    const css = await readFile(resolve(componentsSrc, f), "utf8");
+    const comment = css.match(/^\/\*.*?\*\//)?.[0] ?? `/* ${basename(f, ".css")} */`;
+    const body = css.replace(/^@import .+;\n?/gm, "");
+    const { code } = lcTransform({ filename: f, code: Buffer.from(`@layer ui {\n${body}\n}`), minify: false, targets });
+    parts.push(`${comment}\n${code}`);
+  }
+
+  await writeFile(resolve(componentsDist, file), `@layer ui-reset, ui;\n\n${parts.join("\n")}`);
+}
 
 // The tokens every standalone component needs
 const buildTokens = () =>
@@ -81,7 +102,7 @@ async function writeExports(files) {
   const pkgPath = resolve(__dirname, "package.json");
   const before = await readFile(pkgPath, "utf8");
   const pkg = JSON.parse(before);
-  const components = Object.fromEntries(files.sort().map((f) => [`./components/${f}`, `./dist/components/${f}`]));
+  const components = Object.fromEntries(files.sort().map((f) => [`./${f}`, `./dist/components/${f}`]));
 
   pkg.exports = {
     ".": "./dist/ui.css",

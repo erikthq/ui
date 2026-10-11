@@ -4,7 +4,7 @@ import { icon } from "../icon";
 import { components, url } from "../layout";
 
 const cdn = "https://esm.sh/@erikt/ui";
-const sourceUrl = (name: string) => `${cdn}/components/${name}.css`;
+const sourceUrl = (name: string) => `${cdn}/${name}.css`;
 
 // The <link> tags for one component's standalone build in core/dist/components.
 // The tokens file is shared, so it is loaded once next to any number of components

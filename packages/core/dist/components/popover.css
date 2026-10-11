@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* popover */
 @layer ui {
   [popover] {
     inset: unset;

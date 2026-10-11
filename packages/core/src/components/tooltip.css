@@ -1,3 +1,4 @@
+/* tooltip */
 /* zero specificity so components that position the host themselves (e.g. absolute) still win */
 :where([data-tooltip][aria-label]:not(input, select, textarea)) {
   position: relative;

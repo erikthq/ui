@@ -1,3 +1,4 @@
+/* focus-group */
 [data-focus-within] {
   [data-focus]:focus-visible {
     outline: none;

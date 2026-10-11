@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* accordion */
 @layer ui {
   details {
     interpolate-size: allow-keywords;

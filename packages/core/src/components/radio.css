@@ -1,3 +1,4 @@
+/* radio */
 label:has(> input:where([type="radio"])) {
   display: flex;
   align-items: center;

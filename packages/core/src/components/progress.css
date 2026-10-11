@@ -1,3 +1,4 @@
+/* progress */
 @keyframes ui-progress-indeterminate {
   from { background-position: 100% center; }
   to { background-position: -100% center; }

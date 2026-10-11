@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* description-list */
 @layer ui {
   @scope (dl) to (dl dl) {
     :scope {

@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* popover */
 @layer ui {
   [popover] {
     inset: unset;
@@ -143,7 +144,10 @@
     right: unset;
     min-width: unset;
   }
+}
 
+/* card */
+@layer ui {
   article {
     --border-radius: var(--ui-rounded-5);
     background-color: var(--ui-neutral-0);
@@ -235,7 +239,10 @@
       }
     }
   }
+}
 
+/* alert */
+@layer ui {
   article[role="alert"], article[role="status"] {
     align-items: start;
     column-gap: var(--ui-spacing-3);
@@ -316,7 +323,10 @@
       color: var(--ui-color6-600);
     }
   }
+}
 
+/* toast */
+@layer ui {
   [popover].toast {
     position-try-fallbacks: none;
     width: max-content;

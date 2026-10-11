@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* card */
 @layer ui {
   article {
     --border-radius: var(--ui-rounded-5);
@@ -92,7 +93,10 @@
       }
     }
   }
+}
 
+/* dialog */
+@layer ui {
   dialog {
     z-index: 1;
     pointer-events: none;

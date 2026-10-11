@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* avatar */
 @layer ui {
   .avatar {
     aspect-ratio: 1;

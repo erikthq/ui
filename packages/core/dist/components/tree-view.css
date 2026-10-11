@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* tree-view */
 @layer ui {
   .tree {
     isolation: isolate;

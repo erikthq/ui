@@ -1,3 +1,4 @@
+/* fieldset */
 /* A plain fieldset groups related fields under one legend.
    Button groups and color swatches have their own styles, and radio-group.css builds on this one */
 fieldset:not([role="group"], .color-swatch) {

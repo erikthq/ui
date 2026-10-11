@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* progress */
 @layer ui {
   @keyframes ui-progress-indeterminate {
     from {

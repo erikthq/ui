@@ -1,27 +1,21 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* skeleton */
 @layer ui {
-  @keyframes ui-skeleton-shimmer {
-    from {
-      background-position: 250% 0;
-    }
-
-    to {
-      background-position: -150% 0;
+  @keyframes ui-skeleton-pulse {
+    50% {
+      opacity: .5;
     }
   }
 
   .skeleton {
     border-radius: var(--ui-rounded-2);
-    background-color: var(--ui-neutral-100);
-    background-image: linear-gradient(90deg, transparent, var(--ui-neutral-50), transparent);
-    animation: ui-skeleton-shimmer 1.6s var(--ease-glide) infinite;
+    background-color: var(--ui-neutral-300);
+    animation: ui-skeleton-pulse 2s var(--ease-in-out-sine) infinite;
     color: #0000;
     -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 60% 100%;
 
     & * {
       visibility: hidden;
@@ -33,7 +27,7 @@
     }
 
     &:not(.circle) {
-      height: 1lh;
+      height: 1em;
     }
   }
 }

@@ -47,7 +47,7 @@ Key files:
 
 ### Adding a component
 
-1. Create `src/components/my-component.css` (no `@layer` wrapper; `main.css` and the build put it in `@layer ui`)
+1. Create `src/components/my-component.css` (no `@layer` wrapper; `main.css` and the build put it in `@layer ui`). Its first line is a comment with the file name, like `/* my-component */`. The build copies it above that file's rules in each standalone file
 2. At the top of the file, `@import` the components it is built on (e.g. `./card.css`). Do not import the token files (`tokens.css`, `colors.css`, `easings.css`); `main.css` imports those, and the build ships them as `dist/tokens.css`. The bundler includes each file once
 3. Import it in `src/main.css`
 4. Prefer styling native HTML elements or minimal class names (e.g. `.field`, `.switch`, `.badge`)

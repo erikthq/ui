@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* dialog */
 @layer ui {
   dialog {
     z-index: 1;
@@ -59,7 +60,10 @@
     touch-action: none;
     overflow: hidden;
   }
+}
 
+/* card */
+@layer ui {
   article {
     --border-radius: var(--ui-rounded-5);
     background-color: var(--ui-neutral-0);
@@ -151,7 +155,10 @@
       }
     }
   }
+}
 
+/* drawer */
+@layer ui {
   dialog.drawer {
     inset: 0;
     opacity: 1;

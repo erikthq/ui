@@ -1,3 +1,4 @@
+/* marquee */
 @keyframes ui-marquee-scroll {
   to {
     transform: translateX(calc(-100% - var(--marquee-gap)));

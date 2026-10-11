@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* field */
 @layer ui {
   .field {
     gap: var(--ui-spacing-3);

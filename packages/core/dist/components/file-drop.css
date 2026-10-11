@@ -1,5 +1,6 @@
-@layer ui-reset;
+@layer ui-reset, ui;
 
+/* file-drop */
 @layer ui {
   .file-drop {
     justify-content: center;
