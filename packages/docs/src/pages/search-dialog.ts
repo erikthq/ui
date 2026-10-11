@@ -3,7 +3,6 @@ import { components, sections, blocks } from "../layout";
 import { icon } from "../icon";
 
 const b = (process.env.BASE_URL ?? "/").replace(/\/$/, "");
-const minisearchUrl = `${b}/minisearch.js`;
 
 type SearchItem = {
   id: number;
@@ -14,25 +13,13 @@ type SearchItem = {
   badgeClass: string;
 };
 
-function renderItem(base: string, item: SearchItem) {
-  return html` <li>
-    <a href="${base}${item.path}" class="search-result">
-      <span class="search-result-body">
-        <span class="search-result-title">${item.title}</span>
-        <span class="search-result-desc">${item.description}</span>
-      </span>
-      <span class="badge ${item.badgeClass}">${item.type}</span>
-    </a>
-  </li>`;
-}
-
 export function SearchDialog() {
   const items: SearchItem[] = [
     ...sections.map((s, i) => ({
       id: i,
       title: s.label,
       description: s.description,
-      path: s.path,
+      path: b + s.path,
       type: "guide",
       badgeClass: "color2",
     })),
@@ -40,7 +27,7 @@ export function SearchDialog() {
       id: sections.length + i,
       title: c.label,
       description: c.description,
-      path: c.path,
+      path: b + c.path,
       type: "component",
       badgeClass: "color4",
     })),
@@ -48,11 +35,19 @@ export function SearchDialog() {
       id: sections.length + components.length + i,
       title: bl.label,
       description: bl.description,
-      path: bl.path,
+      path: b + bl.path,
       type: "block",
       badgeClass: "color5",
     })),
   ];
+
+  // One icon per type, the same ones the header nav uses
+  const icons = {
+    guide: icon("book"),
+    component: icon("components"),
+    block: icon("layout"),
+    arrow: icon("arrow-right", { attrs: 'class="search-result-arrow"' }),
+  };
 
   return html`<dialog id="search-dialog" class="search-dialog" scroll-lock>
     <article>
@@ -62,6 +57,10 @@ export function SearchDialog() {
           <input
             type="search"
             id="search-input"
+            role="combobox"
+            aria-controls="search-list"
+            aria-expanded="true"
+            aria-autocomplete="list"
             placeholder="Search components, guides..."
             autocomplete="off"
             autofocus
@@ -70,96 +69,30 @@ export function SearchDialog() {
         </label>
       </header>
       <div id="search-results" class="search-results">
-        <ul class="search-list" id="search-list">
-          ${raw(items.map((item) => renderItem(b, item)).join(""))}
-        </ul>
+        <ul class="search-list" id="search-list" role="listbox" aria-label="Search results"></ul>
         <section class="empty" id="search-empty" hidden>
           ${raw(icon("search-off"))}
           <h3>No results</h3>
           <p>Try a different search term.</p>
         </section>
       </div>
+
+      <footer class="search-hints">
+        <span>
+          <kbd aria-label="Up arrow">${raw(icon("arrow-up"))}</kbd>
+          <kbd aria-label="Down arrow">${raw(icon("arrow-down"))}</kbd>
+          Move
+        </span>
+        <span>
+          <kbd aria-label="Enter">${raw(icon("corner-down-left"))}</kbd>
+          Open
+        </span>
+        <span><kbd>Esc</kbd> Close</span>
+      </footer>
     </article>
-    <script type="module">
-      import MiniSearch from "${minisearchUrl}";
-
-      const BASE = ${raw(JSON.stringify(b))};
-      const items = ${raw(JSON.stringify(items))};
-
-      const ms = new MiniSearch({
-        fields: ["title"],
-        storeFields: ["title", "description", "path", "type"],
-      });
-      ms.addAll(items);
-
-      const dialog = document.getElementById("search-dialog");
-      const input = document.getElementById("search-input");
-      const list = document.getElementById("search-list");
-      const empty = document.getElementById("search-empty");
-
-      dialog.addEventListener("click", (e) => {
-        if (e.target === dialog) dialog.close();
-      });
-
-      dialog.addEventListener("close", () => {
-        input.value = "";
-        renderAll();
-      });
-
-      list.addEventListener("click", (e) => {
-        if (e.target.closest("a")) dialog.close();
-      });
-
-      function show(results) {
-        const hasResults = results.length > 0;
-        list.hidden = !hasResults;
-        empty.hidden = hasResults;
-        if (hasResults) {
-          list.innerHTML = results
-            .map(
-              (r) =>
-                '<li><a href="' +
-                BASE +
-                r.path +
-                '" class="search-result">' +
-                '<span class="search-result-body">' +
-                '<span class="search-result-title">' +
-                r.title +
-                "</span>" +
-                '<span class="search-result-desc">' +
-                r.description +
-                "</span>" +
-                "</span>" +
-                '<span class="badge">' +
-                r.type +
-                "</span>" +
-                "</a></li>",
-            )
-            .join("");
-        }
-      }
-
-      function renderAll() {
-        show(items);
-      }
-
-      function renderResults(q) {
-        show(ms.search(q, { prefix: true, fuzzy: 0.2 }));
-      }
-
-      input.addEventListener("input", function () {
-        const q = this.value.trim();
-        if (q) renderResults(q);
-        else renderAll();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key === "f") {
-          e.preventDefault();
-          dialog.showModal();
-          input.select();
-        }
-      });
+    <script type="application/json" id="search-data">
+      ${raw(JSON.stringify({ items, icons }).replace(/</g, "\\u003c"))}
     </script>
+    <script type="module" src="${b}/js/search-dialog.js"></script>
   </dialog>`;
 }

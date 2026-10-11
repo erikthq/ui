@@ -44,8 +44,16 @@ body {
 /* Layout */
 .docs-layout {
   display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr var(--toc-w);
+  grid-template-columns: 1fr;
   align-items: start;
+
+  @media (width > 769px) {
+    grid-template-columns: var(--sidebar-w) 1fr;
+  }
+
+  @media (width > 1100px) {
+    grid-template-columns: var(--sidebar-w) 1fr var(--toc-w);
+  }
 }
 
 .docs-layout-wide {
@@ -63,6 +71,8 @@ body {
 
 /* Sidebar */
 .docs-sidebar {
+  display: none;
+
   position: sticky;
   top: var(--site-header-height);
   width: auto;
@@ -77,11 +87,12 @@ body {
   overflow-x: clip;
   overscroll-behavior: contain;
   border-right: 1px solid var(--border);
+  padding-inline: 0.5rem;
   padding-block: 1rem 3rem;
   background: var(--ui-background-color);
 
   @media (min-width: 769px) {
-    padding-inline: 0.5rem;
+    display: block;
   }
 
   li {
@@ -243,41 +254,68 @@ body {
   }
 }
 
+.search-hints {
+  gap: var(--ui-spacing-4);
+  color: var(--ui-neutral-500);
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-1);
+  }
+}
+
 .search-results {
+  overflow-x: clip;
   overflow-y: auto;
   max-height: 60vh;
   padding: 0.5rem;
 }
 
+.search-group {
+  padding: var(--ui-spacing-3) var(--ui-spacing-3) var(--ui-spacing-1);
+  font-size: var(--ui-text-xs);
+  font-weight: 500;
+  color: var(--ui-neutral-500);
+}
+
 .search-result {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0 var(--ui-spacing-3);
-  padding: var(--ui-spacing-2) var(--ui-spacing-3);
-  border-radius: 6px;
+  padding: var(--ui-spacing-3) var(--ui-spacing-3);
+  border-radius: var(--ui-rounded-3);
   text-decoration: none;
   color: var(--ui-text-color);
 
-  &:hover {
+  & > svg {
+    color: var(--ui-neutral-500);
+  }
+
+  &[aria-selected="true"] {
     background: var(--ui-neutral-100);
   }
-}
 
-.search-result-body {
-  display: grid;
-}
+  .search-result-arrow {
+    opacity: 0;
+    translate: calc(-1 * var(--ui-spacing-1)) 0;
+    transition:
+      opacity 0.2s var(--ease-glide),
+      translate 0.2s var(--ease-glide);
+  }
 
-.search-result-title {
-  font-size: 0.9375rem;
-}
+  &[aria-selected="true"] .search-result-arrow {
+    opacity: 1;
+    translate: 0;
+  }
 
-.search-result-desc {
-  font-size: 0.8125rem;
-  color: var(--ui-neutral-500);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  small {
+    color: var(--ui-neutral-500);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .search-empty {

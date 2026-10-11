@@ -363,6 +363,11 @@ export const components: {
     description: "Horizontal rule to divide content sections.",
   },
   {
+    label: "Shimmer",
+    path: "/components/shimmer",
+    description: "Animated light that sweeps across text.",
+  },
+  {
     label: "Skeleton",
     path: "/components/skeleton",
     description: "Shimmering placeholder for loading content.",
@@ -690,7 +695,7 @@ async function header(path: string) {
         ${MobileMenu(path)}
       </nav>
 
-      <div style="display: flex; gap: 1rem; margin-left: auto;">
+      <div class="flex gap-4" style="margin-left: auto;">
         <button
           class="search-field outlined"
           style="min-width: 150px"
@@ -738,8 +743,12 @@ async function header(path: string) {
         <copy-to-clipboard
           value='<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />'
         >
-          <button class="square" aria-label="Copy <link> tag" data-tooltip="left">
-            ${raw(icon('link'))}
+          <button
+            class="square"
+            aria-label="Copy <link> tag"
+            data-tooltip="left"
+          >
+            ${raw(icon("link"))}
           </button>
         </copy-to-clipboard>
       </div>

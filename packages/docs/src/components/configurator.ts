@@ -19,6 +19,55 @@ const presets = [
 export function Configurator() {
   return html`
     <style>
+      /* Desktop: the drawer and its card step aside, so the form sits in the sidebar */
+      @media (min-width: 769px) {
+        .configurator-open {
+          display: none;
+        }
+
+        .configurator-drawer,
+        .configurator-drawer > article {
+          display: contents;
+          pointer-events: auto;
+        }
+
+        .configurator-drawer > article > header {
+          display: none;
+        }
+      }
+
+      /* Mobile: the sidebar is hidden, so the drawer moves out of it */
+      @media (width < 769px) {
+        .docs-sidebar:has(.configurator-drawer) {
+          display: contents;
+        }
+
+        .configurator-open {
+          position: fixed;
+          inset-inline-start: var(--ui-spacing-4);
+          inset-block-end: var(--ui-spacing-4);
+          z-index: 1;
+        }
+
+        .configurator-drawer[data-position="bottom"] {
+          height: 85svh;
+
+          > article {
+            padding: 0;
+
+            > header h2 {
+              margin-inline-end: auto;
+              font-size: var(--ui-text-base);
+            }
+
+            > .configurator {
+              overflow-y: auto;
+              padding: var(--ui-spacing-4);
+            }
+          }
+        }
+      }
+
       .configurator {
         display: flex;
         flex-direction: column;

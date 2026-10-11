@@ -43,7 +43,6 @@ export async function ButtonGroupPage(path: string) {
         </dl>
 
         <h2 id="standalone">Standalone</h2>
-        <p>Load the shared tokens once, then only this component and the components it is built on:</p>
       </div>
       <div class="example">
         <div class="code-block">

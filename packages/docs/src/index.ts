@@ -53,6 +53,7 @@ import { ComboboxPage } from './pages/components/combobox'
 import { SubmenuPage } from './pages/components/submenu'
 import { EmptyPage } from './pages/components/empty'
 import { SkeletonPage } from './pages/components/skeleton'
+import { ShimmerPage } from './pages/components/shimmer'
 import { MarqueePage } from './pages/components/marquee'
 import { TreeViewPage } from './pages/components/tree-view'
 import { PaginationPage } from './pages/components/pagination'
@@ -140,6 +141,7 @@ app.get('/components/combobox', (c) => c.html(ComboboxPage(c.req.path)))
 app.get('/components/submenu', (c) => c.html(SubmenuPage(c.req.path)))
 app.get('/components/empty', (c) => c.html(EmptyPage(c.req.path)))
 app.get('/components/skeleton', (c) => c.html(SkeletonPage(c.req.path)))
+app.get('/components/shimmer', (c) => c.html(ShimmerPage(c.req.path)))
 app.get('/components/marquee', (c) => c.html(MarqueePage(c.req.path)))
 app.get('/components/tree-view', (c) => c.html(TreeViewPage(c.req.path)))
 app.get('/components/pagination', (c) => c.html(PaginationPage(c.req.path)))

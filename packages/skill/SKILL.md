@@ -152,7 +152,7 @@ Each rule links to a file with incorrect and correct code.
 | Callout | `<article role="status">` or `role="alert"`. Colors: `primary`, `constructive`, `destructive`, `color1` to `color6` | Inline form errors, info banners, the body of a toast |
 | Status label | `<span class="badge">` with the same color classes, plus `outlined` | Counts, "New" tags, plan names, role labels |
 | Empty state | `<section class="empty">` | Any centered block of icon + heading + text + actions: login and signup cards, success screens, onboarding steps, 404 pages |
-| Loading | `aria-busy` (spinner), `.skeleton` (placeholder), `<progress>` |  |
+| Loading | `aria-busy` (spinner), `.skeleton` (placeholder), `.shimmer` (text that is working), `<progress>` |  |
 | Data table | `<table>`. Column sizes with `--cols`. Classes: `zebra`, `align-left`, `nowrap` |  |
 | Key/value list | `<dl>` | Order summaries, profile details, metadata |
 | User picture | `.avatar` on `<img>` or `<span>` | Any round icon or initials badge, like a header icon on a card |

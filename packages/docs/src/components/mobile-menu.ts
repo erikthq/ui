@@ -21,6 +21,10 @@ export function MobileMenu(path: string) {
         margin: 0;
         max-width: none;
 
+        &::backdrop {
+          display: none;
+        }
+
         article {
           --border-radius: 0;
         }

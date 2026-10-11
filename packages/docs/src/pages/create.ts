@@ -1,4 +1,5 @@
-import { html } from "hono/html";
+import { html, raw } from "hono/html";
+import { icon } from "../icon";
 import { Layout } from "../layout";
 import { Showcase } from "../components/showcase";
 import { Configurator } from "../components/configurator";
@@ -8,7 +9,26 @@ export async function CreatePage(path: string) {
     title: "Create",
     path,
     wide: true,
-    sidebar: Configurator(),
+    // One form for both sizes: in the sidebar on desktop, in a drawer on mobile
+    sidebar: html`
+      <dialog
+        id="configurator-drawer"
+        class="drawer configurator-drawer"
+        data-position="bottom"
+        closedby="any"
+        scroll-lock
+      >
+        <article>
+          <header>
+            <h2>Theme</h2>
+            <form method="dialog">
+              <button class="ghost square" aria-label="Close">${raw(icon("x"))}</button>
+            </form>
+          </header>
+          ${Configurator()}
+        </article>
+      </dialog>
+    `,
     content: html`
       <div class="prose">
         <hgroup>
@@ -32,6 +52,13 @@ export async function CreatePage(path: string) {
       </div>
 
       ${Showcase({ scopedTheme: true })}
+
+      <button
+        class="configurator-open"
+        onclick="document.getElementById('configurator-drawer').showModal()"
+      >
+        ${raw(icon("palette"))} Edit theme
+      </button>
     `,
   });
 }

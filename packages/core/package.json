@@ -1,6 +1,6 @@
 {
   "name": "@erikt/ui",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "type": "module",
   "homepage": "https://ui.erikt.me",
   "exports": {
@@ -49,6 +49,7 @@
     "./radio.css": "./dist/components/radio.css",
     "./select.css": "./dist/components/select.css",
     "./separator.css": "./dist/components/separator.css",
+    "./shimmer.css": "./dist/components/shimmer.css",
     "./skeleton.css": "./dist/components/skeleton.css",
     "./slider.css": "./dist/components/slider.css",
     "./submenu.css": "./dist/components/submenu.css",

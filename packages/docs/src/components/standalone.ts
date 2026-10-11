@@ -9,8 +9,7 @@ const sourceUrl = (name: string) => `${cdn}/${name}.css`;
 // The <link> tags for one component's standalone build in core/dist/components.
 // The tokens file is shared, so it is loaded once next to any number of components
 export function standaloneLink(name: string) {
-  return highlight(`<link rel="stylesheet" href="${cdn}/tokens.css" />
-<link rel="stylesheet" href="${sourceUrl(name)}" />`);
+  return highlight(`<link rel="stylesheet" href="${sourceUrl(name)}" />`);
 }
 
 // Previous component, view source and next component, in the sidebar's order.
