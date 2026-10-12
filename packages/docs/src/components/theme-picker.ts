@@ -4,36 +4,6 @@ import { colors } from "./color-swatches";
 
 export function ThemePicker() {
   return html`
-    <script>
-      localStorage.removeItem("ui-primary-dark");
-
-      const storedColor = localStorage.getItem("ui-primary");
-
-      if (storedColor) {
-        document.documentElement.style.setProperty("--ui-primary", storedColor);
-      }
-
-      function syncSwatch() {
-        var stored = localStorage.getItem("ui-primary");
-
-        document.querySelectorAll('input[name="color"]').forEach(function (b) {
-          b.checked = b.value === stored;
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        syncSwatch();
-      });
-
-      window.updateColor = (form) => {
-        const color = new FormData(form).get("color");
-
-        document.documentElement.style.setProperty("--ui-primary", color);
-        localStorage.setItem("ui-primary", color);
-        syncSwatch();
-      };
-    </script>
-
     <button
       class="ghost"
       popovertarget="color-picker"
