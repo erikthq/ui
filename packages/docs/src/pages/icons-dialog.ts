@@ -42,6 +42,16 @@ export function IconsSearchDialog() {
           <input type="checkbox" class="switch" id="icon-style-switch" />
           Filled
         </label>
+        <fieldset role="group" aria-label="Copy as">
+          <label class="toggle">
+            <input type="radio" name="icon-copy-as" value="svg" checked />
+            SVG
+          </label>
+          <label class="toggle">
+            <input type="radio" name="icon-copy-as" value="name" />
+            Name
+          </label>
+        </fieldset>
       </header>
       <div class="icons-dialog-content">
         <div id="icons-hint" class="empty" style="margin: 25% 0;">
@@ -192,6 +202,7 @@ export function IconsSearchDialog() {
         const style = btn.dataset.style;
         const paths = cache[style]?.[name];
         if (!paths) return;
+        const copyAs = dialog.querySelector('[name="icon-copy-as"]:checked').value;
         const attrs = SVG_ATTRS[style];
         const svg =
           '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ' +
@@ -199,7 +210,7 @@ export function IconsSearchDialog() {
           ">" +
           paths +
           "</svg>";
-        navigator.clipboard.writeText(svg).then(() => {
+        navigator.clipboard.writeText(copyAs === "name" ? name : svg).then(() => {
           btn.setAttribute("data-copied", "");
           setTimeout(() => btn.removeAttribute("data-copied"), 1500);
         });

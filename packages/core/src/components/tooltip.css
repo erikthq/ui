@@ -100,4 +100,12 @@
   &:focus-visible::after {
     opacity: 1;
   }
+
+  /* no hover on touch screens, so the tooltip is not drawn at all */
+  @media (hover: none) {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
 }

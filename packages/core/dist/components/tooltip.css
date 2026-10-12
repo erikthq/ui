@@ -99,5 +99,11 @@
     &:focus-visible:before, &:focus-visible:after {
       opacity: 1;
     }
+
+    @media (hover: none) {
+      &:before, &:after {
+        display: none;
+      }
+    }
   }
 }

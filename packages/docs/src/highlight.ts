@@ -1,5 +1,6 @@
 import { createHighlighter } from "shiki";
 import { format } from "prettier";
+import { HtmlEscapedString } from "hono/utils/html";
 
 const highlighterPromise = createHighlighter({
   themes: ["github-light", "github-dark"],
@@ -7,7 +8,7 @@ const highlighterPromise = createHighlighter({
 });
 
 export async function highlight(
-  code: string,
+  code: string | HtmlEscapedString | Promise<HtmlEscapedString>,
   printWidth = 80,
   lang = "html",
 ): Promise<string> {
@@ -15,13 +16,13 @@ export async function highlight(
   const parser =
     lang === "html" ? "html" : lang === "css" ? "css" : lang === "bash" ? null : "babel";
   const formatted = parser
-    ? await format(code, {
+    ? await format(await code, {
         parser,
         printWidth: printWidth,
         tabWidth: 2,
         // singleAttributePerLine: true
       })
-    : code;
+    : await code;
 
   const highlighter = await highlighterPromise;
   return highlighter.codeToHtml(formatted.trimEnd(), {

@@ -34,6 +34,7 @@ const routes = [
   "/components/textarea",
   "/components/empty",
   "/components/skeleton",
+  "/components/chat",
   "/components/shimmer",
   "/components/marquee",
   "/components/tree-view",

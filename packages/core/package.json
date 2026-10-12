@@ -17,6 +17,7 @@
     "./card.css": "./dist/components/card.css",
     "./carousel.css": "./dist/components/carousel.css",
     "./chart.css": "./dist/components/chart.css",
+    "./chat.css": "./dist/components/chat.css",
     "./checkbox.css": "./dist/components/checkbox.css",
     "./code.css": "./dist/components/code.css",
     "./color-input.css": "./dist/components/color-input.css",

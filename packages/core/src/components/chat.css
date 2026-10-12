@@ -1,0 +1,150 @@
+/* chat */
+/*
+  Chat: a list of messages in bubbles.
+  Each li is one turn from one sender, and each p in it is one bubble.
+  Bubbles in the same turn get tighter corners where they meet, like a stack.
+  Add .sent to the li for the current user's messages, which sit on the other side
+*/
+@keyframes ui-chat-typing {
+  0%,
+  100% {
+    background-color: var(--ui-chat-on);
+    box-shadow:
+      0.7em 0 var(--ui-chat-off),
+      1.4em 0 var(--ui-chat-off);
+  }
+
+  33% {
+    background-color: var(--ui-chat-off);
+    box-shadow:
+      0.7em 0 var(--ui-chat-on),
+      1.4em 0 var(--ui-chat-off);
+  }
+
+  66% {
+    background-color: var(--ui-chat-off);
+    box-shadow:
+      0.7em 0 var(--ui-chat-off),
+      1.4em 0 var(--ui-chat-on);
+  }
+}
+
+@keyframes ui-chat-message {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}
+
+.chat {
+  --ui-chat-radius: var(--ui-rounded-5);
+  --ui-chat-tail: var(--ui-rounded-1);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-4);
+  inline-size: stretch;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ui-spacing-1);
+
+    /* The avatar sits at the bottom, next to the last bubble */
+    &:has(> .avatar) {
+      padding-inline-start: calc(var(--ui-spacing-2) * 2 + 1lh + var(--ui-spacing-2));
+    }
+
+    > .avatar {
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-end: 0;
+    }
+
+    &:has(> small) > .avatar {
+      inset-block-end: calc(1lh + var(--ui-spacing-1));
+    }
+
+    > p {
+      max-inline-size: min(80%, 60ch);
+      margin: 0;
+      padding: var(--ui-spacing-2) var(--ui-spacing-3);
+      border-radius: var(--ui-chat-radius);
+      background-color: var(--ui-neutral-200);
+      color: var(--ui-text-color);
+      overflow-wrap: anywhere;
+
+      animation: ui-chat-message 600ms var(--ease-snap);
+
+      &:not(:first-of-type) {
+        border-start-start-radius: var(--ui-chat-tail);
+      }
+
+      &:not(:last-of-type) {
+        border-end-start-radius: var(--ui-chat-tail);
+      }
+    }
+
+    > small {
+      padding-inline: var(--ui-spacing-3);
+      color: var(--ui-neutral-500);
+      font-size: var(--ui-text-xs);
+    }
+
+    &.sent {
+      align-items: flex-end;
+
+      &:has(> .avatar) {
+        padding-inline-start: 0;
+        padding-inline-end: calc(var(--ui-spacing-2) * 2 + 1lh + var(--ui-spacing-2));
+      }
+
+      > .avatar {
+        inset-inline-start: auto;
+        inset-inline-end: 0;
+      }
+
+      > p {
+        background-color: var(--ui-primary);
+        color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
+        border-radius: var(--ui-chat-radius);
+
+        &:not(:first-of-type) {
+          border-start-end-radius: var(--ui-chat-tail);
+        }
+
+        &:not(:last-of-type) {
+          border-end-end-radius: var(--ui-chat-tail);
+        }
+      }
+    }
+
+    /* Three dots that light up in turn while the other person writes */
+    > p.typing {
+      --ui-chat-on: color-mix(in oklch, currentColor 70%, transparent);
+      --ui-chat-off: color-mix(in oklch, currentColor 20%, transparent);
+
+      &::before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        inline-size: 0.4em;
+        block-size: 0.4em;
+        margin-inline-end: 1.4em;
+        border-radius: var(--ui-rounded-full-fixed);
+        background-color: var(--ui-chat-on);
+        animation: ui-chat-typing 1.2s steps(1) infinite;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        &::before {
+          animation: none;
+        }
+      }
+    }
+  }
+}

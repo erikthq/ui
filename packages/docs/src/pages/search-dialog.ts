@@ -69,7 +69,12 @@ export function SearchDialog() {
         </label>
       </header>
       <div id="search-results" class="search-results">
-        <ul class="search-list" id="search-list" role="listbox" aria-label="Search results"></ul>
+        <ul
+          class="search-list"
+          id="search-list"
+          role="listbox"
+          aria-label="Search results"
+        ></ul>
         <section class="empty" id="search-empty" hidden>
           ${raw(icon("search-off"))}
           <h3>No results</h3>

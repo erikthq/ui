@@ -173,6 +173,7 @@ Each rule links to a file with incorrect and correct code.
 | Heading with subtitle | `<hgroup>` with a heading and a `<p>` (heading group) | Card titles, form titles, page headers |
 | Keyboard shortcut | `<kbd>` | Shortcut hints in menus, buttons and search inputs |
 | Article text | `.prose`, `<hgroup>`, `<blockquote>` |  |
+| Chat messages | `ol.chat`: one `<li>` per turn, one `<p>` per bubble, `li.sent` for the current user, `p.typing` for the typing dots | Support chats, AI assistants, comment threads |
 | Divider | `<hr>`. With a label: `<hr data-label="...">` | "OR" between login options, section breaks in menus and cards |
 | Scrolling logos or tags | `div.marquee` |  |
 | Bar chart | `<table class="chart">` |  |

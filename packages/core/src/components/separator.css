@@ -2,7 +2,7 @@
 hr {
   width: 100%;
   border: none;
-  border-top: 1px solid var(--ui-neutral-200);
+  border-top: 1px solid var(--border-color, var(--ui-neutral-200));
   margin-block: var(--ui-spacing-1) 0;
 }
 

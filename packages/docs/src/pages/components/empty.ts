@@ -32,16 +32,16 @@ export async function EmptyPage(path: string) {
 
         <h3>Works with</h3>
         <dl class="composition">
-          <dt><a href="${url("/components/button")}"><code>Button</code></a></dt>
+          <dt>
+            <a href="${url("/components/button")}"><code>Button</code></a>
+          </dt>
           <dd>Actions, like create or upload</dd>
         </dl>
 
         <h2 id="standalone">Standalone</h2>
       </div>
       <div class="example">
-        <div class="code-block">
-          ${raw(await standaloneLink("empty"))}
-        </div>
+        <div class="code-block">${raw(await standaloneLink("empty"))}</div>
       </div>
 
       <div class="prose">
@@ -50,7 +50,7 @@ export async function EmptyPage(path: string) {
       <div class="example">
         <div class="preview preview-padded">
           <section class="empty">
-            ${raw(icon("shield", { size: 24 }))}
+            ${raw(icon("shield"))}
             <h3>No items yet</h3>
             <p>There's nothing here. Add something to get started.</p>
           </section>
@@ -93,7 +93,9 @@ export async function EmptyPage(path: string) {
 
       <div class="prose">
         <h2 id="with-link">With link</h2>
-        <p>Use an <code>&lt;a&gt;</code> when the action navigates somewhere.</p>
+        <p>
+          Use an <code>&lt;a&gt;</code> when the action navigates somewhere.
+        </p>
       </div>
       <div class="example">
         <div class="preview preview-padded">
@@ -118,16 +120,17 @@ export async function EmptyPage(path: string) {
 
       <div class="prose">
         <h2 id="with-footer">With footer</h2>
-        <p>
-          Use a <code>&lt;footer&gt;</code> when you need multiple actions.
-        </p>
+        <p>Use a <code>&lt;footer&gt;</code> when you need multiple actions.</p>
       </div>
       <div class="example">
         <div class="preview preview-padded">
           <section class="empty">
             ${raw(icon("search-off", { size: 24 }))}
             <h3>No results found</h3>
-            <p>Try adjusting your search or filters to find what you're looking for.</p>
+            <p>
+              Try adjusting your search or filters to find what you're looking
+              for.
+            </p>
             <footer>
               <button class="outlined">Clear filters</button>
               <button>New item</button>

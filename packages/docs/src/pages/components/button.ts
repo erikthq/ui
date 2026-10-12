@@ -171,14 +171,16 @@ export async function ButtonPage(path: string) {
       </div>
       <div class="example">
         <div class="preview">
-          <button class="round">
+          <button class="round" aria-label="Profile">
             ${raw(icon("user"))}
           </button>
         </div>
         <div class="code-block">
           ${raw(
             await highlight(
-              '<button class="round"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg></button>',
+              `<button class="round" aria-label="Profile">
+              <svg>...</svg>
+              </button>`,
             ),
           )}
         </div>
@@ -192,17 +194,23 @@ export async function ButtonPage(path: string) {
       </div>
       <div class="example">
         <div class="preview">
-          <button class="square">
+          <button class="square" aria-label="Upload">
             ${raw(icon("upload"))}
           </button>
-          <button class="square" style="margin-left: 0.5rem;">
+          <button class="square" aria-label="Settings" style="margin-left: 0.5rem;">
             ${raw(icon("settings"))}
           </button>
         </div>
         <div class="code-block">
           ${raw(
             await highlight(
-              '<button class="square"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 9l5 -5l5 5" /><path d="M12 4l0 12" /></svg></button>',
+              `<button class="square" aria-label="Upload">
+              <svg>...</svg>
+              </button>
+
+              <button class="square" aria-label="Settings">
+<svg>...</svg>
+</button>`,
             ),
           )}
         </div>

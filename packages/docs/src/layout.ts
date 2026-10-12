@@ -4,7 +4,7 @@ import { IconsSearchDialog } from "./pages/icons-dialog";
 import { SearchDialog } from "./pages/search-dialog";
 import { icon } from "./icon";
 import { SchemePicker } from "./components/scheme-picker";
-import { ThemePicker } from "./components/theme-picker";
+// import { ThemePicker } from "./components/theme-picker";
 import { SidebarNav } from "./components/sidebar-nav";
 import { MobileMenu } from "./components/mobile-menu";
 import { TableOfContents } from "./components/table-of-contents";
@@ -188,6 +188,12 @@ export const components: {
     label: "Carousel",
     path: "/components/carousel",
     description: "Scroll-snap gallery with CSS-generated buttons and dots.",
+    badge: "WIP",
+  },
+  {
+    label: "Chat",
+    path: "/components/chat",
+    description: "Messages in bubbles, grouped by sender.",
     badge: "WIP",
   },
   // {
@@ -404,7 +410,6 @@ export const components: {
     label: "Tabs",
     path: "/components/tabs",
     description: "Panel navigation using accessible tab controls.",
-    badge: "0.0.2",
   },
   {
     label: "Tag Group",
@@ -599,7 +604,8 @@ function head(
       {
         "imports": {
           "alpinejs": "https://esm.sh/alpinejs@3.15.12",
-          "@alpinejs/persist": "https://esm.sh/@alpinejs/persist@3.15.12"
+          "@alpinejs/persist": "https://esm.sh/@alpinejs/persist@3.15.12",
+          "marked": "https://esm.sh/marked"
         }
       }
     </script>
@@ -804,14 +810,14 @@ export function Layout({
         <div class="docs-layout${wide ? " docs-layout-wide" : ""}">
           <aside class="docs-sidebar">${sidebar ?? SidebarNav(path)}</aside>
           <script>
-            (function () {
-              var sidebar = document.querySelector(".docs-sidebar");
-              var saved = sessionStorage.getItem("sidebar-scroll");
-              if (saved) sidebar.scrollTop = parseInt(saved, 10);
-              window.addEventListener("pagehide", function () {
-                sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
-              });
-            })();
+            const sidebar = document.querySelector(".docs-sidebar");
+            const saved = sessionStorage.getItem("sidebar-scroll");
+
+            sidebar.scrollTop = parseInt(saved ?? 0, 10);
+
+            window.addEventListener("pagehide", function () {
+              sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+            });
           </script>
 
           <main class="docs-content">${content}</main>
@@ -823,6 +829,9 @@ export function Layout({
 
       <script type="module">
         import Alpine from "alpinejs";
+        import { chat } from "${b}/js/chat-example.js";
+
+        Alpine.data("chat", chat);
 
         Alpine.start();
       </script>

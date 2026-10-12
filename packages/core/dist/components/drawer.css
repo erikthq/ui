@@ -67,7 +67,7 @@
   article {
     --border-radius: var(--ui-rounded-5);
     background-color: var(--ui-neutral-0);
-    box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
+    box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100));
     border-radius: var(--border-radius);
     padding: var(--ui-spacing-6);
     overflow: hidden;
@@ -109,21 +109,20 @@
     & > header, & > footer {
       align-items: center;
       gap: var(--ui-spacing-2);
+      box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100));
       display: flex;
     }
 
     & > header {
-      box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
       border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 
     & > footer {
-      box-shadow: 0 0 0 1px inset var(--ui-neutral-100);
       border-radius: 0 0 var(--border-radius) var(--border-radius);
     }
 
     &:has( > header,  > footer) > * {
-      padding: var(--ui-spacing-6);
+      padding: var(--ui-spacing-4) var(--ui-spacing-6);
     }
 
     &:has( > header,  > footer) > :not(header):not(footer) {
