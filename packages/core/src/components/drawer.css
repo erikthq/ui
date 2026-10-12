@@ -1,8 +1,9 @@
 /* drawer */
 @import "./dialog.css";
+@import "./popover.css";
 @import "./card.css";
 
-dialog.drawer {
+.drawer:is(dialog, [popover]) {
   inset: 0;
   margin: 0;
   max-width: none;
@@ -13,14 +14,30 @@ dialog.drawer {
   translate: 100% 0;
   opacity: 1;
 
-  &[open] {
+  &:is([open], :popover-open) {
     translate: 0 0;
   }
 
   @starting-style {
-    &[open] {
+    &:is([open], :popover-open) {
       translate: 100% 0;
     }
+  }
+
+  /* As a popover the drawer has no backdrop and leaves the page usable */
+  &[popover] {
+    container-type: inline-size;
+    position-try-fallbacks: none;
+    min-width: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    filter: drop-shadow(0 4px 16px oklch(0% 0 0 / 0.08));
+
+    transition:
+      translate 300ms var(--ease-glide),
+      display 300ms allow-discrete,
+      overlay 300ms allow-discrete;
   }
 
   > article {
@@ -48,12 +65,12 @@ dialog.drawer {
     inset-inline-end: auto;
     translate: -100% 0;
 
-    &[open] {
+    &:is([open], :popover-open) {
       translate: 0 0;
     }
 
     @starting-style {
-      &[open] {
+      &:is([open], :popover-open) {
         translate: -100% 0;
       }
     }
@@ -74,12 +91,12 @@ dialog.drawer {
     height: min(420px, 100vh);
     translate: 0 -100%;
 
-    &[open] {
+    &:is([open], :popover-open) {
       translate: 0 0;
     }
 
     @starting-style {
-      &[open] {
+      &:is([open], :popover-open) {
         translate: 0 -100%;
       }
     }
@@ -100,12 +117,12 @@ dialog.drawer {
     height: min(420px, 100vh);
     translate: 0 100%;
 
-    &[open] {
+    &:is([open], :popover-open) {
       translate: 0 0;
     }
 
     @starting-style {
-      &[open] {
+      &:is([open], :popover-open) {
         translate: 0 100%;
       }
     }

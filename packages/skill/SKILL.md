@@ -60,7 +60,7 @@ Each rule links to a file with incorrect and correct code.
 - **Dropdowns, menus and popovers use `popover` + `popovertarget`.** Put the popover element right after its trigger. If the trigger is in a button group, put the popover after the `</fieldset>` instead, or the group's corners break.
 - **Menus are `<menu>` with `<li><button class="ghost">`.** Separators are `<li><hr /></li>`, group labels are `<li><small>`.
 - **Modals are `<dialog closedby="any">` with an `<article>` inside.** Close buttons sit in `<form method="dialog">`.
-- **Side panels are `<dialog class="drawer">`.** Set the edge with `data-position`.
+- **Side panels are `<dialog class="drawer">`.** Set the edge with `data-position`. For no backdrop, use `<div popover class="drawer">`.
 - **Tooltips are `data-tooltip` + `aria-label`** on the trigger. No wrapper element.
 - **Toasts are `<div popover class="toast">`** holding an alert `<article>`.
 
@@ -167,7 +167,7 @@ Each rule links to a file with incorrect and correct code.
 | Dropdown or menu | `[popover]` + `<menu>`. Nested menus with `data-placement="right top"` |  |
 | Floating panel | `[popover]` with an `<article>` inside | Notification lists, quick forms, share panels |
 | Modal | `<dialog>` + `<article>` | Confirmations, forms, login and signup |
-| Side panel | `<dialog class="drawer" data-position="right">` |  |
+| Side panel | `<dialog class="drawer" data-position="right">`, or `<div popover class="drawer">` without a backdrop |  |
 | Toast | `<div popover class="toast">` |  |
 | Tooltip | `data-tooltip` + `aria-label` |  |
 | Heading with subtitle | `<hgroup>` with a heading and a `<p>` (heading group) | Card titles, form titles, page headers |

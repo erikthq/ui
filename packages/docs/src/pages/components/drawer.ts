@@ -8,6 +8,7 @@ const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "position", label: "Position" },
+  { id: "popover", label: "As a popover" },
   { id: "with-header-footer", label: "With header & footer" },
   { id: "api-reference", label: "API reference" },
 ];
@@ -25,10 +26,11 @@ export async function DrawerPage(path: string) {
             ${raw(titleActions(path, "drawer"))}
           </div>
           <p>
-            A <code>&lt;dialog&gt;</code> variant that slides in from the edge
-            of the screen instead of appearing centered. It's built entirely on
-            top of the <a href="${url("/components/dialog")}">Dialog</a> component, just
-            add the <code>drawer</code> class.
+            A panel that slides in from the edge of the screen instead of
+            appearing centered. Add the <code>drawer</code> class to a
+            <a href="${url("/components/dialog")}">Dialog</a>, or to a
+            <a href="${url("/components/popover")}">Popover</a> when it
+            shouldn't block the page.
           </p>
         </hgroup>
 
@@ -36,6 +38,8 @@ export async function DrawerPage(path: string) {
         <dl class="composition">
           <dt><a href="${url("/components/dialog")}"><code>Dialog</code></a></dt>
           <dd>The modal it is built on</dd>
+          <dt><a href="${url("/components/popover")}"><code>Popover</code></a></dt>
+          <dd>The non-modal version, without a backdrop</dd>
           <dt><a href="${url("/components/card")}"><code>Card</code></a></dt>
           <dd>The surface inside the drawer</dd>
         </dl>
@@ -192,6 +196,63 @@ export async function DrawerPage(path: string) {
       </div>
 
       <div class="prose">
+        <h2 id="popover">As a popover</h2>
+        <p>
+          Put the <code>drawer</code> class on a <code>popover</code> element
+          to open it without a backdrop. The rest of the page stays usable
+          while it's open. Open it with <code>popovertarget</code>, no
+          JavaScript needed. Clicking outside or pressing
+          <kbd>Esc</kbd> closes it, and <code>data-position</code> works the
+          same way.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview">
+          <button popovertarget="drawer-popover">Open drawer</button>
+          <div id="drawer-popover" class="drawer" popover>
+            <article>
+              <header>
+                <strong>Notifications</strong>
+              </header>
+              <p>The page behind stays usable.</p>
+              <footer>
+                <button
+                  class="outlined"
+                  popovertarget="drawer-popover"
+                  popovertargetaction="hide"
+                >
+                  Close
+                </button>
+              </footer>
+            </article>
+          </div>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<button popovertarget="my-drawer">Open drawer</button>
+
+<div id="my-drawer" class="drawer" popover>
+  <article>
+    <header>
+      <strong>Notifications</strong>
+    </header>
+    <p>The page behind stays usable.</p>
+    <footer>
+      <button
+        class="outlined"
+        popovertarget="my-drawer"
+        popovertargetaction="hide"
+      >
+        Close
+      </button>
+    </footer>
+  </article>
+</div>`),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="with-header-footer">With header &amp; footer</h2>
         <p>
           Use the card's <code>&lt;header&gt;</code> and
@@ -243,7 +304,8 @@ export async function DrawerPage(path: string) {
 
       ${apiReference([
         { type: "Placement", values: ['[data-position="left"]', '[data-position="right"]', '[data-position="top"]', '[data-position="bottom"]'], description: "The edge the drawer slides in from. Right by default" },
-        { type: "Scroll lock", values: ["[scroll-lock]"], description: "Stops the page from scrolling while the drawer is open" },
+        { type: "Variant", values: ["dialog.drawer", "[popover].drawer"], description: "A dialog opens with a backdrop. A popover opens without one and leaves the page usable" },
+        { type: "Scroll lock", values: ["[scroll-lock]"], description: "Stops the page from scrolling while a dialog drawer is open" },
       ])}
     `,
   });

@@ -24,6 +24,7 @@ Every overlay uses a browser feature. Dialogs use `<dialog>`. Menus, popovers an
 | Small panel with controls | Popover with an `<article>` |
 | Ask the user to confirm or fill a form | `<dialog>` opened with `showModal()` |
 | Panel from the side or bottom | `<dialog class="drawer">` |
+| Side panel that leaves the page usable | `<div popover class="drawer">` |
 | Short label on hover | `data-tooltip` |
 | Short message that comes and goes | `<div popover class="toast">` |
 
@@ -216,6 +217,21 @@ A drawer is a dialog with `class="drawer"`. It slides in from an edge.
 ```
 
 `data-position` is `left`, `right`, `top` or `bottom`.
+
+For a drawer without a backdrop, put `class="drawer"` on a popover. The page behind stays usable. Clicking outside or pressing Esc closes it.
+
+```html
+<button popovertarget="notifications">Notifications</button>
+<div id="notifications" class="drawer" popover>
+  <article>
+    <header><strong>Notifications</strong></header>
+    <p>...</p>
+    <footer>
+      <button class="outlined" popovertarget="notifications" popovertargetaction="hide">Close</button>
+    </footer>
+  </article>
+</div>
+```
 
 ---
 
