@@ -37,7 +37,7 @@
 }
 
 .chat {
-  --ui-chat-radius: var(--ui-rounded-5);
+  --ui-chat-radius: var(--ui-rounded-3);
   --ui-chat-tail: var(--ui-rounded-1);
 
   display: flex;
