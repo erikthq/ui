@@ -67,6 +67,7 @@ import { FieldsetPage } from './pages/components/fieldset'
 import { FlowPage } from './pages/components/flow'
 import { FocusGroupPage } from './pages/components/focus-group'
 import { BlocksPage } from './pages/blocks'
+import { ComponentsPage } from './pages/components'
 import { CreatePage } from './pages/create'
 import { RichtextEditorPage } from './pages/blocks/richtext-editor'
 import { SignupFormPage } from './pages/blocks/signup-form'
@@ -160,6 +161,7 @@ app.get('/components/tabs', (c) => c.html(TabsPage(c.req.path)))
 app.get('/components/timeline', (c) => c.html(TimelinePage(c.req.path)))
 app.get('/components/tab-links', (c) => c.html(TabLinksPage(c.req.path)))
 app.get('/blocks', (c) => c.html(BlocksPage(c.req.path)))
+app.get('/components', (c) => c.html(ComponentsPage(c.req.path)))
 app.get('/create', (c) => c.html(CreatePage(c.req.path)))
 app.get('/blocks/richtext-editor', (c) => c.html(RichtextEditorPage(c.req.path)))
 app.get('/blocks/signup-form', (c) => c.html(SignupFormPage(c.req.path)))

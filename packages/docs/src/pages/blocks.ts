@@ -25,7 +25,7 @@ export async function BlocksPage(path: string) {
           style="display:flex;gap:var(--ui-spacing-3);justify-content:center"
         >
           <a href="${url(blocks[0].path)}" class="button">Browse blocks</a>
-          <a href="${url("/components/button")}" class="button ghost">
+          <a href="${url("/components")}" class="button ghost">
             View components
           </a>
         </div>

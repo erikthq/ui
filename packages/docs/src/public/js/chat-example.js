@@ -8,68 +8,176 @@ const messages = [
   },
   {
     sender: "them",
-    message: `Start by sorting the options into a few clear groups, like Account, Notifications and Privacy. Most people come to a settings page to change one thing, so the group names should match how they think about the app, not how the code is built.\n\nInside each group, put the options people change most at the top. Settings that are rarely touched, or that can break things, can go further down or behind an Advanced section. Short labels with a one line description below them are easier to scan than long labels.\n\nLast, save changes as soon as they are made where you can, and show a small confirmation. If some settings need a save button, keep it in the same place in every group, so people always know where to find it.`,
+    message: `Start by sorting the options into a few clear groups. Most people come to a settings page to change one thing, so the group names should match how they think about the app, not how the code is built.
+
+A good starting point for most apps:
+
+- **Account**: name, email, password and sign out
+- **Notifications**: what to hear about, and where
+- **Privacy**: who can see what, and data export
+- **Advanced**: anything rarely touched, or that can break things
+
+Inside each group, put the options people change most at the top. Short labels with a one line description below them are easier to scan than long labels.
+
+Last, save changes as soon as they are made where you can, and show a small confirmation.`,
+  },
+  {
+    sender: "me",
+    message: "Nice. Should the on/off options be checkboxes or switches?",
+  },
+  {
+    sender: "them",
+    message: `It depends on **when the change happens**:
+
+1. Use a **switch** when the setting applies right away, like turning on dark mode.
+2. Use a **checkbox** when the choice is only saved after the user presses a button, like picking options in a form.
+
+A switch looks like it does something the moment you flip it, so people expect it to save on its own. In erikt/ui a switch is a checkbox with a class:
+
+\`\`\`html
+<label>
+  <input type="checkbox" class="switch" checked />
+  Email me when someone replies
+</label>
+\`\`\`
+
+Always put the label in the \`<label>\`, so clicking the text flips it too. There is more on this in the [Nielsen Norman Group article on toggle switches](https://www.nngroup.com/articles/toggle-switch-guidelines/).`,
+  },
+  {
+    sender: "me",
+    message: "How do I make sure the page works well with a keyboard?",
+  },
+  {
+    sender: "them",
+    message: `If you use native elements, most of it works already. A few things to check:
+
+- **Tab order** follows the order on the page. Don't change it with \`tabindex\` values above 0.
+- **Focus is visible** on every control. Never remove the outline without putting something in its place.
+- **Groups have headings**, so screen reader users can jump between them. A \`<fieldset>\` with a \`<legend>\` works well for this.
+- **Dangerous actions ask first**. Deleting an account should open a \`<dialog>\`, and focus should go back to the button when it closes.
+
+Then try it yourself: put the mouse away and change a few settings with only *Tab*, *Space* and *Enter*. MDN has a good guide on [keyboard accessible pages](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Keyboard) if you want to go deeper.`,
   },
 ];
+
+const typing = `<p class="typing" aria-label="Typing"></p>`;
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// Mock AI endpoint. Replies with the message at `idx`, streamed one word at a
+// time like a model generating tokens
+const server = {
+  stream(text) {
+    const encoder = new TextEncoder();
+    const tokens = text.match(/\S+\s*/g) ?? [];
+
+    return new ReadableStream({
+      async pull(controller) {
+        // await wait(20 + Math.random() * 60);
+        await wait(10 + Math.random() * 20);
+
+        const token = tokens.shift();
+
+        if (token === undefined) controller.close();
+        else controller.enqueue(encoder.encode(token));
+      },
+    });
+  },
+
+  async fetch(idx) {
+    // time to first token
+    await wait(200);
+
+    const reply = messages[idx];
+
+    if (reply?.sender !== "them") return new Response(null, { status: 404 });
+
+    return new Response(this.stream(reply.message), {
+      headers: { "Content-Type": "text/plain; charset=utf-8" },
+    });
+  },
+};
 
 export const chat = () => ({
   idx: 0,
   messages: [],
   qued: null,
+  streaming: false,
+  // bumped on reset, so an ongoing stream knows to stop
+  session: 0,
 
   queNext() {
-    this.qued = messages[this.idx];
+    const next = messages[this.idx];
+    this.qued = next?.sender === "me" ? next : null;
   },
 
   onReset() {
+    this.session++;
     this.idx = 0;
     this.messages = [];
+    this.streaming = false;
+    this.queNext();
   },
 
-  async type(message) {
-    return new Promise((resolve) => {
-      const words = message.split(" ");
-
-      const writeWord = (words) => {
-        const [word, ...rest] = words;
-
-        setTimeout(() => {}, 50);
-      };
-
-      writeWord(words);
-    });
-  },
-
-  onSubmit(e) {
+  async onSubmit(e) {
     if (e) e.preventDefault();
 
-    if (this.idx >= messages.length) return;
+    if (this.streaming || !this.qued) return;
 
-    const msg = {
-      ...messages[this.idx],
-      message: marked.parse(messages[this.idx].message),
-    };
+    const session = this.session;
+    const stale = () => session !== this.session;
 
-    this.messages.push(msg);
+    this.streaming = true;
+    this.messages.push({
+      ...this.qued,
+      message: marked.parse(this.qued.message),
+    });
+    this.idx++;
     this.qued = null;
 
-    if (msg.sender === "me") {
-      this.idx++;
-      
-      setTimeout(() => {
-        this.onSubmit();
-      }, 500);
-    } else {
+    this.messages.push({ sender: "them", message: typing });
+    // read it back from the array to get Alpine's reactive proxy
+    const reply = this.messages[this.messages.length - 1];
+
+    const response = await server.fetch(this.idx);
+
+    if (stale()) return;
+
+    if (!response.ok) {
+      this.messages.pop();
+      this.streaming = false;
+      return;
     }
 
-    console.log(e);
+    const reader = response.body
+      .pipeThrough(new TextDecoderStream())
+      .getReader();
+
+    let text = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+
+      if (stale()) return reader.cancel();
+      if (done) break;
+
+      text += value;
+      reply.message = marked.parse(text);
+    }
+
+    this.idx++;
+    this.streaming = false;
+    this.queNext();
+  },
+
+  scrollToBottom() {
+    this.$refs.output.scrollTo({
+      top: this.$refs.output.scrollHeight,
+      behavior: "smooth",
+    });
   },
 
   init() {
     this.queNext();
-
-    console.log(
-      marked.parse("# Marked in the browser\n\nRendered by **marked**."),
-    );
   },
 });

@@ -97,12 +97,26 @@ export async function ChatPage(path: string) {
       <div class="example">
         <div class="preview preview-padded grid gap-2">
           <style>
+            @keyframes chat-read-more-hide {
+              50%,
+              to {
+                opacity: 0;
+                visibility: hidden;
+              }
+            }
+
             #chat-example {
+              width: 100%;
               max-width: 30rem;
-              min-height: 40rem;
+              height: 48rem;
               display: flex;
               flex-direction: column;
               margin-inline: auto;
+
+              section {
+                overflow-y: auto;
+                container-type: scroll-state;
+              }
 
               header {
                 button {
@@ -145,12 +159,7 @@ export async function ChatPage(path: string) {
             }
           </style>
 
-          <article
-            id="chat-example"
-            class="secondary"
-            style="width: 100%"
-            x-data="chat"
-          >
+          <article id="chat-example" class="secondary" x-data="chat">
             <header>
               <hgroup>
                 <h3>New chat</h3>
@@ -169,7 +178,7 @@ export async function ChatPage(path: string) {
 
             <hr />
 
-            <section x-ref="output">
+            <section x-ref="output" class="chat">
               <div class="empty" x-show="messages.length === 0">
                 ${raw(icon("message-circle"))}
                 <h3>Morning, erikt!</h3>
@@ -179,19 +188,29 @@ export async function ChatPage(path: string) {
                 </p>
               </div>
 
-              <ul x-show="messages.length > 0" class="chat">
+              <ul x-show="messages.length > 0">
                 <template x-for="message in messages">
                   <li
-                    :class="message.sender === 'me' ? 'sent' : ''"
+                    class="bubble prose"
+                    :class="message.sender === 'me' ? 'me' : ''"
                     x-html="message.message"
                   ></li>
                 </template>
               </ul>
+
+              <button
+                class="see-latest secondary square round"
+                aria-label="Go to bottom"
+                @click="scrollToBottom"
+              >
+                ${raw(icon("arrow-down"))}
+              </button>
             </section>
 
             <footer>
               <form x-ref="form" @submit="onSubmit">
                 <textarea x-text="qued?.message" name="textarea"></textarea>
+
                 <button class="square round" type="submit">
                   ${raw(icon("arrow-up"))}
                 </button>

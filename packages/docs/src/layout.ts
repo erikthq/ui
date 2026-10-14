@@ -465,6 +465,8 @@ export const components: {
 
 const pageDescriptions: Record<string, string> = {
   "/": "The CSS design system that lives in one <link> tag. Drop in a single stylesheet and get a full component library, theming, and dark mode — no build step required.",
+  "/components":
+    "Every component in @erikt/ui, with links to examples and API reference.",
   "/blocks":
     "Ready-to-use UI blocks built with @erikt/ui. Copy-paste layouts for authentication, dashboards, navigation, and more.",
   "/typography": "Typography scale and text utility styles in @erikt/ui.",
@@ -697,9 +699,11 @@ async function header(path: string) {
           ${raw(icon("book"))} Getting started
         </a>
         <a
-          href="${url("/components/button")}"
+          href="${url("/components")}"
           class="button ghost docs-nav-link"
-          ${path.startsWith("/components/") ? html`aria-current="page"` : ""}
+          ${path === "/components" || path.startsWith("/components/")
+            ? html`aria-current="page"`
+            : ""}
         >
           ${raw(icon("components"))} Components
         </a>

@@ -12,7 +12,9 @@ export function SidebarNav(path: string, section?: Section) {
     : sections.some((s) => slug(s.path) === slug(path));
   const isComponents = section
     ? section === "components"
-    : path.startsWith("/components/") || path.startsWith("/utilities/");
+    : path === "/components" ||
+      path.startsWith("/components/") ||
+      path.startsWith("/utilities/");
   const isBlocks = section
     ? section === "blocks"
     : path === "/blocks" || path.startsWith("/blocks/");

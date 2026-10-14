@@ -82,9 +82,9 @@ export function MobileMenu(path: string) {
           </li>
           <li>
             <a
-              href="${url("/components/button")}"
+              href="${url("/components")}"
               class="button secondary text-xl"
-              ${path.startsWith("/components/")
+              ${path === "/components" || path.startsWith("/components/")
                 ? html`aria-current="page"`
                 : ""}
             >

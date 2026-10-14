@@ -431,6 +431,44 @@ body {
   text-decoration: none;
 }
 
+/* Components landing page */
+.docs-component-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--ui-spacing-6) var(--ui-spacing-4);
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-1);
+    height: 100%;
+
+    color: currentColor;
+    text-decoration-color: transparent;
+
+    transition:
+      background-color 150ms var(--ease-glide),
+      border-color 150ms var(--ease-glide);
+
+    &:hover {
+      strong {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  strong {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-2);
+  }
+
+  span:not(.badge) {
+    font-size: 0.875rem;
+    color: var(--ui-neutral-600);
+  }
+}
+
 /* Component page title, with previous/next and view source next to it */
 .docs-title {
   display: flex;

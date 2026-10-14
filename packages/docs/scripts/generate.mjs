@@ -9,6 +9,7 @@ const routes = [
   "/getting-started/colors",
   "/getting-started/theming",
   "/getting-started/tokens",
+  "/components",
   "/components/prose",
   "/components/accordion",
   "/components/alert",
