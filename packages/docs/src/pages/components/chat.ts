@@ -8,62 +8,84 @@ import { icon } from "../../icon";
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "example", label: "Example" },
-  { id: "default", label: "Default" },
-  { id: "avatar-and-time", label: "Avatar and time" },
-  { id: "typing", label: "Typing" },
-  { id: "chat-box", label: "Chat box" },
+  { id: "bubble", label: "Bubble" },
+  { id: "avatar", label: "Avatar" },
+  { id: "pending", label: "Pending" },
+  { id: "jump-to-latest", label: "Jump to latest" },
   { id: "api-reference", label: "API reference" },
 ];
 
-const defaultCode = html`<ol class="chat">
-  <li>
-    <p>Hey, are we still on for Friday?</p>
-  </li>
-  <li class="sent">
-    <p>Yes!</p>
-    <p>I booked a table for seven.</p>
-  </li>
-  <li>
-    <p>Perfect, see you there.</p>
-  </li>
-</ol>`;
+const bubbleCode = html`<div class="chat" role="log" aria-label="Conversation">
+  <ul>
+    <li class="bubble me">Which fruit has the most vitamin C?</li>
+    <li class="bubble ghost">
+      <p>Per 100 grams, a few stand out:</p>
+      <ul>
+        <li><strong>Guava</strong>, about 230 mg</li>
+        <li><strong>Kiwi</strong>, about 90 mg</li>
+        <li><strong>Orange</strong>, about 50 mg</li>
+      </ul>
+    </li>
+    <li class="bubble me">Didn't expect guava!</li>
+    <li class="bubble">
+      Most people don't. It has about four times as much as an orange.
+    </li>
+  </ul>
+</div>`;
 
-const avatarCode = html`<ol class="chat">
-  <li>
-    <span class="avatar">AL</span>
-    <p>Did you see the new designs?</p>
-    <p>I think the colors are much better now.</p>
-    <small><time datetime="09:41">09:41</time></small>
-  </li>
-  <li class="sent">
-    <span class="avatar">ME</span>
-    <p>Just looked. I love the new buttons.</p>
-    <small><time datetime="09:43">09:43</time></small>
-  </li>
-</ol>`;
+const avatarCode = html`<div class="chat" role="log" aria-label="Conversation">
+  <ul>
+    <li>
+      <span class="avatar" role="img" aria-label="Alex Lee">AL</span>
+      <div class="bubble">Did you see the new designs?</div>
+      <div class="bubble">I think the colors are much better now.</div>
+    </li>
+    <li>
+      <span class="avatar" role="img" aria-label="You">JR</span>
+      <div class="bubble me">Just looked. I love the new buttons.</div>
+    </li>
+  </ul>
+</div>`;
 
-const typingCode = html`<ol class="chat">
-  <li>
-    <span class="avatar">AL</span>
-    <p class="typing" aria-label="Alex is typing"></p>
-  </li>
-</ol>`;
+const pendingCode = html`<div class="chat" role="log" aria-label="Conversation">
+  <ul>
+    <li class="bubble me">What's the tallest mountain in Europe?</li>
+    <li>
+      <p class="shimmer">Thinking...</p>
+    </li>
+  </ul>
+</div>`;
 
-const chatBoxMessages = html`<ol class="chat">
-  <li>
-    <span class="avatar">AL</span>
-    <p>Can you send me the report?</p>
-  </li>
-  <li class="sent">
-    <p>Sure, give me a minute.</p>
-    <p>Sent! Check your inbox.</p>
-    <small>Read</small>
-  </li>
-  <li>
-    <span class="avatar">AL</span>
-    <p>Got it, thanks!</p>
-  </li>
-</ol>`;
+const jumpCode = html`<div
+  class="chat"
+  role="log"
+  aria-label="Conversation"
+  tabindex="0"
+  style="height: 16rem"
+>
+  <ul>
+    <li class="bubble me">Can you help me plan a trip to Lisbon?</li>
+    <li class="bubble">Sure. How many days do you have?</li>
+    <li class="bubble me">Four, in May.</li>
+    <li class="bubble">
+      Four days is a good length. Spend the first in Alfama and Baixa, the
+      second in Belém, and take a day trip to Sintra on the third.
+    </li>
+    <li class="bubble me">And the last day?</li>
+    <li class="bubble">
+      Keep it slow. Walk along the river to LX Factory, and end the day at a
+      miradouro for the sunset.
+    </li>
+  </ul>
+
+  <button
+    class="jump secondary square round"
+    aria-label="Jump to latest"
+    onclick="const chat = this.parentElement; chat.focus(); chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' })"
+  >
+    <svg>...</svg>
+  </button>
+</div>`;
 
 export async function ChatPage(path: string) {
   return Layout({
@@ -78,9 +100,9 @@ export async function ChatPage(path: string) {
             ${raw(titleActions(path, "chat"))}
           </div>
           <p>
-            Messages in bubbles, using <code>&lt;ol class="chat"&gt;</code>.
-            Each <code>&lt;li&gt;</code> is one turn from one sender, and each
-            <code>&lt;p&gt;</code> in it is one bubble.
+            A conversation in bubbles. <code>.chat</code> holds a
+            <code>&lt;ul&gt;</code> of messages, and each
+            <code>&lt;li class="bubble"&gt;</code> is one message.
           </p>
         </hgroup>
 
@@ -97,14 +119,6 @@ export async function ChatPage(path: string) {
       <div class="example">
         <div class="preview preview-padded grid gap-2">
           <style>
-            @keyframes chat-read-more-hide {
-              50%,
-              to {
-                opacity: 0;
-                visibility: hidden;
-              }
-            }
-
             #chat-example {
               width: 100%;
               max-width: 30rem;
@@ -112,11 +126,6 @@ export async function ChatPage(path: string) {
               display: flex;
               flex-direction: column;
               margin-inline: auto;
-
-              section {
-                overflow-y: auto;
-                container-type: scroll-state;
-              }
 
               header {
                 button {
@@ -178,7 +187,13 @@ export async function ChatPage(path: string) {
 
             <hr />
 
-            <section x-ref="output" class="chat">
+            <section
+              x-ref="output"
+              class="chat"
+              role="log"
+              aria-label="Conversation"
+              tabindex="0"
+            >
               <div class="empty" x-show="messages.length === 0">
                 ${raw(icon("message-circle"))}
                 <h3>Morning, erikt!</h3>
@@ -190,17 +205,33 @@ export async function ChatPage(path: string) {
 
               <ul x-show="messages.length > 0">
                 <template x-for="message in messages">
-                  <li
-                    class="bubble prose"
-                    :class="message.sender === 'me' ? 'me' : ''"
-                    x-html="message.message"
-                  ></li>
+                  <li>
+                    <template x-if="message.sender === 'me'">
+                      <span class="avatar" role="img" aria-label="You">ET</span>
+                    </template>
+                    <template x-if="message.sender !== 'me'">
+                      <span class="avatar" role="img" aria-label="Assistant">
+                        ${raw(icon("sparkles"))}
+                      </span>
+                    </template>
+                    <template x-if="message.pending">
+                      <p class="shimmer">Thinking...</p>
+                    </template>
+                    <template x-if="!message.pending">
+                      <div
+                        class="bubble"
+                        :class="message.sender === 'me' ? 'me' : 'ghost'"
+                        :aria-busy="message.busy ? 'true' : 'false'"
+                        x-html="message.message"
+                      ></div>
+                    </template>
+                  </li>
                 </template>
               </ul>
 
               <button
-                class="see-latest secondary square round"
-                aria-label="Go to bottom"
+                class="jump secondary square round"
+                aria-label="Jump to latest"
                 @click="scrollToBottom"
               >
                 ${raw(icon("arrow-down"))}
@@ -209,9 +240,13 @@ export async function ChatPage(path: string) {
 
             <footer>
               <form x-ref="form" @submit="onSubmit">
-                <textarea x-text="qued?.message" name="textarea"></textarea>
+                <textarea
+                  x-text="qued?.message"
+                  name="textarea"
+                  aria-label="Message"
+                ></textarea>
 
-                <button class="square round" type="submit">
+                <button class="square round" type="submit" aria-label="Send">
                   ${raw(icon("arrow-up"))}
                 </button>
               </form>
@@ -225,25 +260,40 @@ export async function ChatPage(path: string) {
       </div>
 
       <div class="prose">
-        <h2 id="default">Default</h2>
+        <h2 id="bubble">Bubble</h2>
         <p>
-          Add <code>sent</code> to the <code>&lt;li&gt;</code> for the current
-          user's messages. They move to the other side and use the primary
-          color. Bubbles in the same turn get tighter corners where they meet.
+          Each message is an <code>&lt;li class="bubble"&gt;</code>. When the
+          <code>&lt;li&gt;</code> holds more than the message, like an avatar,
+          put the bubble on a <code>&lt;div&gt;</code> inside it instead. Add
+          <code>me</code> for the current user's messages. They move to the
+          other side and use the primary color. Give the chat
+          <code>role="log"</code> and a label, so new messages are announced as
+          they arrive.
+        </p>
+        <p>
+          Other messages have no background, which suits long answers from an
+          assistant. Add <code>secondary</code> to put them in a gray bubble,
+          like in a chat between people.
         </p>
       </div>
       <div class="example">
-        <div class="preview preview-padded">${raw(defaultCode)}</div>
-        <div class="code-block">${raw(await highlight(defaultCode))}</div>
+        <div class="preview preview-padded">${raw(bubbleCode)}</div>
+        <div class="code-block">${raw(await highlight(bubbleCode))}</div>
       </div>
 
       <div class="prose">
-        <h2 id="avatar-and-time">Avatar and time</h2>
+        <h2 id="avatar">Avatar</h2>
         <p>
           Put an <a href="${url("/components/avatar")}">Avatar</a> first in the
-          turn. It sits at the bottom, next to the last bubble. A
-          <code>&lt;small&gt;</code> last in the turn shows the time or the read
-          status.
+          <code>&lt;li&gt;</code> to show who sent the message. It sits next to
+          the last bubble, so one <code>&lt;li&gt;</code> can hold several
+          bubbles from the same sender. On <code>me</code> messages it moves to
+          the other side.
+        </p>
+        <p>
+          Give it <code>role="img"</code> and the sender's name in
+          <code>aria-label</code>, so screen readers read the name instead of
+          the initials. For an image avatar, put the name in <code>alt</code>.
         </p>
       </div>
       <div class="example">
@@ -252,80 +302,81 @@ export async function ChatPage(path: string) {
       </div>
 
       <div class="prose">
-        <h2 id="typing">Typing</h2>
+        <h2 id="pending">Pending</h2>
         <p>
-          Add <code>typing</code> to an empty bubble to show three dots while
-          the other person writes. Give it an <code>aria-label</code>, so screen
-          readers know what it means. The dots stop when the user prefers
-          reduced motion.
+          Show that a reply is on its way with a
+          <a href="${url("/components/shimmer")}">Shimmer</a> in the
+          <code>&lt;li&gt;</code>, in place of the bubble. It gets the bubble's
+          padding, so its text lines up with the reply. Swap it for a bubble
+          once the reply arrives. If the reply streams in, set
+          <code>aria-busy="true"</code> on the bubble until it is done, so
+          screen readers read it once instead of word by word.
         </p>
       </div>
       <div class="example">
-        <div class="preview preview-padded">${raw(typingCode)}</div>
-        <div class="code-block">${raw(await highlight(typingCode))}</div>
+        <div class="preview preview-padded">${raw(pendingCode)}</div>
+        <div class="code-block">${raw(await highlight(pendingCode))}</div>
       </div>
 
       <div class="prose">
-        <h2 id="chat-box">Chat box</h2>
+        <h2 id="jump-to-latest">Jump to latest</h2>
         <p>
-          Put the chat in a <a href="${url("/components/card")}">Card</a> with a
-          <a href="${url("/components/text-field")}">Text Field</a>
-          below it. Set a height on the list and let it scroll.
+          Put a <code>&lt;button class="jump"&gt;</code> last in the chat. It
+          sticks to the bottom while there are newer messages below, and hides
+          once the chat is scrolled to the end. Scroll up in the example to see
+          it. Give the chat a height so it scrolls.
+        </p>
+        <p>
+          Showing and hiding needs no JavaScript. Scrolling down on click does.
+          Move focus to the chat on click too, since the button hides once the
+          chat is scrolled down. In browsers without scroll-state queries the
+          button is always visible.
         </p>
       </div>
       <div class="example">
-        <div class="preview">
-          <article style="width: 100%; max-width: 24rem">
-            <header>Alex</header>
-            ${raw(
-              chatBoxMessages
-                .toString()
-                .replace(
-                  '<ol class="chat">',
-                  '<ol class="chat" style="padding: var(--ui-spacing-4); max-height: 20rem; overflow-y: auto">',
-                ),
-            )}
-            <footer>
-              <label style="width: 100%">
-                <input
-                  type="text"
-                  placeholder="Write a message"
-                  aria-label="Message"
-                />
-                <button data-suffix class="square" aria-label="Send">
-                  ${raw(icon("send"))}
-                </button>
-              </label>
-            </footer>
-          </article>
-        </div>
-        <div class="code-block">
+        <div class="preview preview-padded">
           ${raw(
-            await highlight(`<article>
-  <header>Alex</header>
-  ${chatBoxMessages.toString().replace('<ol class="chat">', '<ol class="chat" style="padding: var(--ui-spacing-4); max-height: 20rem; overflow-y: auto">')}
-  <footer>
-    <label>
-      <input type="text" placeholder="Write a message" aria-label="Message" />
-      <button data-suffix class="square" aria-label="Send"><svg>...</svg></button>
-    </label>
-  </footer>
-</article>`),
+            jumpCode.toString().replace("<svg>...</svg>", icon("arrow-down")),
           )}
         </div>
+        <div class="code-block">${raw(await highlight(jumpCode))}</div>
       </div>
 
       ${apiReference([
         {
-          type: "Sender",
-          values: [".sent"],
+          type: "Chat",
+          values: [".chat"],
           description:
-            "On the li. Moves the turn to the other side and uses the primary color",
+            "The scrolling container. Holds a ul of bubbles and an optional jump button",
         },
         {
-          type: "Typing",
-          values: [".typing"],
-          description: "On an empty p. Shows three animated dots",
+          type: "Bubble",
+          values: [".bubble"],
+          description:
+            "On an li, or a div inside one. One message, with no background",
+        },
+        {
+          type: "Avatar",
+          values: [".avatar"],
+          description:
+            "First in an li. Shows who sent the bubbles, next to the last one",
+        },
+        {
+          type: "Sender",
+          values: [".me"],
+          description:
+            "On a bubble. Moves it to the other side and uses the primary color",
+        },
+        {
+          type: "Style",
+          values: [".secondary"],
+          description: "On a bubble. A gray background",
+        },
+        {
+          type: "Jump to latest",
+          values: [".jump"],
+          description:
+            "On a button last in .chat. Shows while there are newer messages below",
         },
         {
           type: "Radius",
@@ -335,7 +386,7 @@ export async function ChatPage(path: string) {
         {
           type: "Tail",
           values: ["--ui-chat-tail"],
-          description: "Corner radius where bubbles in the same turn meet",
+          description: "Corner radius where bubbles meet",
         },
       ])}
     `,

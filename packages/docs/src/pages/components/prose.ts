@@ -120,7 +120,12 @@ export async function ProsePage(path: string) {
           <p>There are a few points to note regarding this.</p>
           <ul>
             <li>It is a long established fact that a reader will be distracted by the readable content of a page.</li>
-            <li>There are many variations of passages of Lorem Ipsum available.</li>
+            <li>There are many variations of passages of Lorem Ipsum available, but most of them read like filler once you look closely. Long items like this one wrap onto several lines, so the spacing between list items matters as much as the spacing within them.
+              <ul>
+                <li>Some were changed by injected humour, others by randomised words that don't look even slightly believable.</li>
+                <li>If you use a passage, make sure nothing embarrassing is hidden in the middle of the text.</li>
+              </ul>
+            </li>
             <li>The majority have suffered alteration in some form.</li>
           </ul>
         </div>
@@ -130,7 +135,13 @@ export async function ProsePage(path: string) {
   <p>There are a few points to note.</p>
   <ul>
     <li>First item.</li>
-    <li>Second item.</li>
+    <li>
+      Second item.
+      <ul>
+        <li>Nested item.</li>
+        <li>Another nested item.</li>
+      </ul>
+    </li>
     <li>Third item.</li>
   </ul>
 </div>`),
@@ -142,7 +153,13 @@ export async function ProsePage(path: string) {
           <p>Follow these steps to get started.</p>
           <ol>
             <li>Import the stylesheet into your project.</li>
-            <li>Write semantic HTML as you normally would.</li>
+            <li>
+              Write semantic HTML as you normally would.
+              <ol>
+                <li>Pick the element that matches the meaning of the content.</li>
+                <li>Reach for a class name only when no element fits.</li>
+              </ol>
+            </li>
             <li>Override CSS variables to match your brand.</li>
           </ol>
         </div>
@@ -152,7 +169,13 @@ export async function ProsePage(path: string) {
   <p>Follow these steps to get started.</p>
   <ol>
     <li>Import the stylesheet into your project.</li>
-    <li>Write semantic HTML as you normally would.</li>
+    <li>
+      Write semantic HTML as you normally would.
+      <ol>
+        <li>Pick the element that matches the meaning of the content.</li>
+        <li>Reach for a class name only when no element fits.</li>
+      </ol>
+    </li>
     <li>Override CSS variables to match your brand.</li>
   </ol>
 </div>`),

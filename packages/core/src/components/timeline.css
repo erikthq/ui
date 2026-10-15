@@ -41,7 +41,7 @@
       transition: background-color 300ms var(--ease-glide);
     }
 
-    &[aria-busy]::before {
+    &[aria-busy]:not([aria-busy="false"])::before {
       border: none;
       border-radius: 0;
       background-color: var(--ui-timeline-color);

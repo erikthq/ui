@@ -39,7 +39,7 @@
         inset-inline-start: 0;
       }
 
-      &[aria-busy]:before {
+      &[aria-busy]:not([aria-busy="false"]):before {
         background-color: var(--ui-timeline-color);
         mask-image: var(--ui-loading);
         border: none;

@@ -1,4 +1,7 @@
 /* chat */
+@import "./avatar.css";
+@import "./shimmer.css";
+
 @keyframes ui-chat-message {
   from {
     opacity: 0;
@@ -6,9 +9,21 @@
   }
 }
 
+@keyframes ui-chat-jump-hide {
+  50%,
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .chat {
-  --ui-chat-radius: var(--ui-rounded-3);
   --ui-chat-tail: var(--ui-rounded-1);
+
+  inline-size: stretch;
+  /* The chat scrolls on its own once it has a height. .jump reads its scroll state */
+  overflow-y: auto;
+  container-type: scroll-state;
 
   ul {
     display: flex;
@@ -18,10 +33,15 @@
   }
 
   .bubble {
+    width: fit-content;
     max-inline-size: min(80%, 60ch);
-    padding-inline: var(--ui-spacing-3);
-    padding-block: var(--ui-spacing-2);
-    border-radius: var(--ui-chat-radius);
+    border-radius: var(--ui-rounded-5);
+
+    &:not(.ghost) {
+      padding-inline: var(--ui-spacing-3);
+      padding-block: var(--ui-spacing-2);
+      background-color: var(--ui-neutral-200);
+    }
 
     * {
       text-wrap-style: auto;
@@ -33,12 +53,12 @@
       line-height: 1.3;
     }
 
-    &:not(:first-of-type) {
-      border-start-start-radius: var(--ui-chat-tail);
+    /* Several bubbles in one li. Bubbles that are li's are spaced by the list's gap */
+    &:not(li):not(:first-of-type) {
       margin-block-start: 0.63em;
     }
 
-    &:not(:last-of-type) {
+    &:not(.me) {
       border-end-start-radius: var(--ui-chat-tail);
     }
 
@@ -47,28 +67,60 @@
 
       background-color: var(--ui-primary);
       color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
-      border-radius: var(--ui-chat-radius);
+      border-end-end-radius: var(--ui-chat-tail);
 
-      align-self: flex-end;
+      margin-inline-start: auto;
 
-      &:not(:first-of-type) {
-        border-start-end-radius: var(--ui-chat-tail);
-      }
-
-      &:not(:last-of-type) {
-        border-end-end-radius: var(--ui-chat-tail);
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
       }
     }
 
-    &.secondary {
-      background-color: var(--ui-neutral-200);
-      color: var(--ui-text-color);
+    &.ghost {
     }
   }
 
-  .see-latest {
+  /* A pending reply: a Shimmer in place of the bubble, with its text where the bubble's text will be */
+  ul > li > .shimmer {
+    width: fit-content;
+    padding-inline: var(--ui-spacing-3);
+    padding-block: var(--ui-spacing-2);
+  }
+
+  /* An avatar shows who sent the message. It sits at the bottom, next to the last bubble */
+  ul > li:has(> .avatar) {
+    position: relative;
+    padding-inline-start: calc(20px + var(--ui-spacing-2));
+
+    > .avatar {
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-end: 0;
+
+      font-size: 10px;
+      height: 20px;
+    }
+
+    &:has(> .bubble.me) {
+      padding-inline: 0 calc(20px + var(--ui-spacing-2));
+
+      > .avatar {
+        inset-inline: auto 0;
+      }
+    }
+  }
+
+  /*
+    Jump to latest: a button last in .chat that sticks to the bottom while
+    there are newer messages below, and hides once the chat is scrolled down.
+    Browsers without scroll-state queries always show it
+  */
+  .jump {
     position: sticky;
     bottom: 0;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
 
     @supports (container-type: scroll-state) {
       opacity: 0;
@@ -77,7 +129,12 @@
         opacity 200ms var(--ease-glide),
         visibility 200ms allow-discrete;
 
-      animation: chat-read-more-hide linear both;
+      /*
+        The chat's height is often a fraction of a pixel and scrolling stops
+        on a whole pixel, so it can end just short of the bottom while
+        scrollable: bottom stays true. Fade out over the last stretch instead
+      */
+      animation: ui-chat-jump-hide linear both;
       animation-timeline: scroll();
       animation-range: calc(100% - 1rem) 100%;
 
@@ -88,7 +145,7 @@
     }
   }
 
-  /* ----------------------------------------------- */
+  /* deprecated ----------------------------------------------- */
 
   > li {
     position: relative;

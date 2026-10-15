@@ -2,7 +2,7 @@
 
 /* prose */
 @layer ui {
-  .prose {
+  .prose, .bubble {
     & > * + * {
       margin-block-start: 1em;
     }
@@ -16,13 +16,16 @@
       line-height: 1.6;
     }
 
-    & > ul, & > ol {
-      list-style: revert;
+    & ul, & ol {
       flex-direction: column;
       gap: .5lh;
       margin-block: 1.61em;
       list-style-position: outside;
       display: flex;
+
+      & ul, & ol {
+        margin-block: .61em;
+      }
 
       & li {
         margin-inline-start: 1.5em;
@@ -32,6 +35,18 @@
           font-variant-numeric: tabular-nums;
         }
       }
+    }
+
+    & ul {
+      list-style: outside;
+
+      & ol, & ul {
+        list-style: circle;
+      }
+    }
+
+    & ol {
+      list-style: decimal;
     }
 
     & > blockquote {

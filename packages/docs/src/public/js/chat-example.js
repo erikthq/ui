@@ -60,8 +60,6 @@ Then try it yourself: put the mouse away and change a few settings with only *Ta
   },
 ];
 
-const typing = `<p class="typing" aria-label="Typing"></p>`;
-
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Mock AI endpoint. Replies with the message at `idx`, streamed one word at a
@@ -135,7 +133,7 @@ export const chat = () => ({
     this.idx++;
     this.qued = null;
 
-    this.messages.push({ sender: "them", message: typing });
+    this.messages.push({ sender: "them", message: "", pending: true });
     // read it back from the array to get Alpine's reactive proxy
     const reply = this.messages[this.messages.length - 1];
 
@@ -162,15 +160,22 @@ export const chat = () => ({
       if (done) break;
 
       text += value;
+      // screen readers wait for the whole reply instead of reading each word
+      reply.pending = false;
+      reply.busy = true;
       reply.message = marked.parse(text);
     }
 
+    reply.pending = false;
+    reply.busy = false;
     this.idx++;
     this.streaming = false;
     this.queNext();
   },
 
   scrollToBottom() {
+    // the jump button hides once scrolled down, so focus would be lost
+    this.$refs.output.focus();
     this.$refs.output.scrollTo({
       top: this.$refs.output.scrollHeight,
       behavior: "smooth",

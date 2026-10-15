@@ -1,5 +1,6 @@
 /* prose */
-.prose {
+.prose,
+.bubble {
   > * + * {
     margin-block-start: 1em;
   }
@@ -20,9 +21,8 @@
     max-width: 65ch;
   }
 
-  > ul,
-  > ol {
-    list-style: revert;
+  ul,
+  ol {
     list-style-position: outside;
 
     display: flex;
@@ -30,6 +30,11 @@
     gap: 0.5lh;
 
     margin-block: 1.61em;
+
+    ul,
+    ol {
+      margin-block: 0.61em;
+    }
 
     li {
       margin-inline-start: 1.5em;
@@ -39,6 +44,19 @@
         font-variant-numeric: tabular-nums;
       }
     }
+  }
+
+  ul {
+    list-style: disc;
+
+    ol,
+    ul {
+      list-style: circle;
+    }
+  }
+
+  ol {
+    list-style: decimal;
   }
 
   > blockquote {

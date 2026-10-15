@@ -61,7 +61,7 @@
       margin-left: auto;
     }
 
-    &[aria-busy]:before {
+    &[aria-busy]:not([aria-busy="false"]):before {
       content: "";
       mask-image: var(--ui-loading);
       background-color: currentColor;
