@@ -36,12 +36,15 @@ export function MobileMenu(path: string) {
           z-index: 1;
         }
 
-        menu {
+        article > menu {
           padding-top: 2rem;
+
+          > li {
+            padding-bottom: var(--ui-spacing-8);
+          }
 
           menu {
             padding: var(--ui-spacing-4);
-            padding-bottom: var(--ui-spacing-8);
 
             + menu {
               padding-top: 0;
@@ -71,7 +74,7 @@ export function MobileMenu(path: string) {
           <li>
             <a
               href="${url("/getting-started/introduction")}"
-              class="button secondary text-xl"
+              class="button ghost text-xl"
               ${sections.some((s) => slug(s.path) === slug(path))
                 ? html`aria-current="page"`
                 : ""}
@@ -83,7 +86,7 @@ export function MobileMenu(path: string) {
           <li>
             <a
               href="${url("/components")}"
-              class="button secondary text-xl"
+              class="button ghost text-xl"
               ${path === "/components" || path.startsWith("/components/")
                 ? html`aria-current="page"`
                 : ""}
@@ -92,22 +95,22 @@ export function MobileMenu(path: string) {
             </a>
             ${SidebarNav(path, "components")}
           </li>
-          <li>
+          <!-- <li>
             <a
-              href="${url("/blocks")}"
-              class="button secondary text-xl"
-              ${path === "/blocks" || path.startsWith("/blocks/")
-                ? html`aria-current="page"`
+              href="{url("/blocks")}"
+              class="button ghost text-xl"
+              {path === "/blocks" || path.startsWith("/blocks/")
+                ? html'aria-current="page"'
                 : ""}
             >
-              ${raw(icon("layout"))} Blocks
+              {raw(icon("layout"))} Blocks
             </a>
-            ${SidebarNav(path, "blocks")}
-          </li>
+            {SidebarNav(path, "blocks")}
+          </li> -->
           <li>
             <a
               href="${url("/create")}"
-              class="button secondary text-xl"
+              class="button ghost text-xl"
               ${path === "/create" ? html`aria-current="page"` : ""}
             >
               ${raw(icon("wand"))} Create
@@ -115,7 +118,7 @@ export function MobileMenu(path: string) {
           </li>
           <li>
             <button
-              class="secondary text-xl"
+              class="ghost text-xl"
               onclick="document.getElementById('mobile-menu').close(); document.getElementById('icons-dialog').showModal()"
             >
               ${raw(icon("icons"))} Icons

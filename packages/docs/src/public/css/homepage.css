@@ -132,9 +132,12 @@
   > * {
     break-inside: avoid;
     margin-block-end: 1.5rem;
+  }
 
-    /* Fade in after the hero as a wave from the top left corner.
-       A script in showcase.ts sets --col and --row from where each card is */
+  /* On the homepage, fade in after the hero as a wave from the top left
+     corner. A script in showcase.ts sets --col and --row from where each
+     card is */
+  &.animate-in > * {
     animation: home-hero-in-scaled 800ms var(--ease-glide) backwards;
     animation-delay: calc(450ms + (var(--col, 0) + var(--row, 0)) * 50ms);
 

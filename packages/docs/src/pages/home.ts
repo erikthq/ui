@@ -244,7 +244,7 @@ export async function HomePage(path: string) {
           ${ColorSwatches()}
         </div>
 
-        ${Showcase()}
+        ${Showcase({ animate: true })}
       </section>
 
       <section class="home-cta prose">

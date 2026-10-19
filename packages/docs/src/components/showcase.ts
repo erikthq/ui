@@ -18,10 +18,14 @@ import { ClaimableBalance } from "./showcase/claimable-balance";
 import { SyncingAccounts } from "./showcase/syncing-accounts";
 
 // scopedTheme gives the showcase its own theme tokens, so they can be edited on it alone.
-// Leave it off where the page-wide pickers should reach the showcase
-export function Showcase({ scopedTheme = false } = {}) {
+// Leave it off where the page-wide pickers should reach the showcase.
+// animate fades the cards in after the homepage hero
+export function Showcase({ scopedTheme = false, animate = false } = {}) {
   return html`
-    <div class="components-showcase" ${scopedTheme ? "data-ui-theme" : ""}>
+    <div
+      class="components-showcase ${animate ? "animate-in" : ""}"
+      ${scopedTheme ? "data-ui-theme" : ""}
+    >
       ${LoginForm()} ${ReferralSurvey()} ${Tabs()} ${MilestoneForm()}
       ${SavingsTargets()} ${ComponentSampler()} ${Menus()}
       ${PayoutThreshold()} ${ButtonGroups()} ${ConnectBank()}
@@ -29,22 +33,24 @@ export function Showcase({ scopedTheme = false } = {}) {
       ${Faq()} ${ClaimableBalance()} ${SyncingAccounts()}
     </div>
 
-    <script>
-      // Give each card its column and its row, so the cards fade in as a wave
-      // from the top left. Runs before the first paint, so no card jumps
-      {
-        const showcase = document.currentScript.previousElementSibling;
-        const cards = [...showcase.querySelectorAll(":scope > :not(style)")];
-        const left = (card) => Math.round(card.getBoundingClientRect().left);
-        const columns = [...new Set(cards.map(left))].sort((a, b) => a - b);
-        const rows = columns.map(() => 0);
+    ${animate
+      ? html`<script>
+        // Give each card its column and its row, so the cards fade in as a wave
+        // from the top left. Runs before the first paint, so no card jumps
+        {
+          const showcase = document.currentScript.previousElementSibling;
+          const cards = [...showcase.querySelectorAll(":scope > :not(style)")];
+          const left = (card) => Math.round(card.getBoundingClientRect().left);
+          const columns = [...new Set(cards.map(left))].sort((a, b) => a - b);
+          const rows = columns.map(() => 0);
 
-        for (const card of cards) {
-          const col = columns.indexOf(left(card));
-          card.style.setProperty("--col", col);
-          card.style.setProperty("--row", rows[col]++);
+          for (const card of cards) {
+            const col = columns.indexOf(left(card));
+            card.style.setProperty("--col", col);
+            card.style.setProperty("--row", rows[col]++);
+          }
         }
-      }
-    </script>
+        </script>`
+      : ""}
   `;
 }

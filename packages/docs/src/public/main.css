@@ -486,3 +486,15 @@ body {
   display: inline-block;
   margin-bottom: 4px;
 }
+
+/* Previous and next links under a component page */
+.docs-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ui-spacing-4);
+  margin-top: 4rem;
+
+  [rel="next"] {
+    margin-inline-start: auto;
+  }
+}

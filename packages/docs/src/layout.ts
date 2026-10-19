@@ -768,6 +768,30 @@ export function HomeLayout({
     </html>`;
 }
 
+// Links to the previous and next component, in the sidebar's order
+function Pager(path: string) {
+  const index = components.findIndex((c) => c.path === path);
+  if (index === -1) return "";
+
+  const prev = components[index - 1];
+  const next = components[index + 1];
+
+  return html`
+    <nav class="docs-pager" aria-label="Components">
+      ${prev
+        ? html`<a href="${url(prev.path)}" class="button secondary" rel="prev">
+            ${raw(icon("arrow-left"))} ${prev.label}
+          </a>`
+        : ""}
+      ${next
+        ? html`<a href="${url(next.path)}" class="button secondary" rel="next">
+            ${next.label} ${raw(icon("arrow-right"))}
+          </a>`
+        : ""}
+    </nav>
+  `;
+}
+
 export function Layout({
   title,
   path,
@@ -801,7 +825,7 @@ export function Layout({
             });
           </script>
 
-          <main class="docs-content">${content}</main>
+          <main class="docs-content">${content} ${Pager(path)}</main>
 
           ${TableOfContents(toc)}
         </div>
