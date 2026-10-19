@@ -1,4 +1,4 @@
-import { html } from "hono/html";
+import { html, raw } from "hono/html";
 import { HomeLayout, url } from "../layout";
 import { ColorSwatches } from "../components/color-swatches";
 import { FontPicker } from "../components/font-picker";
@@ -7,6 +7,7 @@ import { Showcase } from "../components/showcase";
 import { readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { resolve } from "node:path";
+import { icon } from "../icon";
 
 const link = '<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />';
 
@@ -41,23 +42,175 @@ export async function HomePage(path: string) {
           <p class="md:text-lg">
             Write semantic HTML and it just looks good. No JavaScript, no build
             step, and your own CSS always wins.
-            ${cssSize ? html`<code>${cssSize} kB</code> gzipped.` : ""}
           </p>
         </hgroup>
 
-        <div class="flex gap-4">
-          <a href="${url("/getting-started/introduction")}" class="button">
-            Get started
-          </a>
-          <copy-to-clipboard value="${link}">
+        <div class="flex-col-center gap-4">
+          <copy-to-clipboard
+            class="homepage-copy-link-button"
+            value="${link}"
+            x-data="{ copied: false }"
+            @clipboard-copy="
+              document.startViewTransition({ update: async () => { copied = true; await $nextTick() }, types: ['copy-link'] });
+              setTimeout(() => document.startViewTransition({ update: async () => { copied = false; await $nextTick() }, types: ['copy-link'] }), 1500)
+            "
+          >
             <button
-              class="outlined home-copy-link"
+              class="outlined gap-4"
               style="background-color: var(--ui-background-color)"
-              data-tooltip="bottom"
+              :class="copied && 'copied'"
             >
-              Copy &lt;link&gt; tag
+              ${raw(icon("code", { attrs: "data-prefix" }))}
+
+              <span data-text-pre class="text-lg" :hidden="!copied">
+                Copied to clipboard
+              </span>
+
+              <span data-text-post class="text-lg" :hidden="copied">
+                <span class="hl-punct">&lt;</span
+                ><span class="hl-tag">link</span>
+                <span class="hl-attr">rel</span><span class="hl-punct">=</span
+                ><span class="hl-string">"stylesheet"</span>
+                <span class="hl-attr">href</span><span class="hl-punct">=</span
+                ><span class="hl-string">"https://esm.sh/@erikt/ui"</span>
+                <span class="hl-punct">/&gt;</span>
+              </span>
+
+              ${raw(icon("copy", { attrs: "data-suffix" }))}
             </button>
           </copy-to-clipboard>
+
+          <copy-to-clipboard
+            class="homepage-copy-button"
+            value="${link}"
+            x-data="{ copied: false }"
+            @clipboard-copy="
+              document.startViewTransition({ update: async () => { copied = true; await $nextTick() }, types: ['copy-skill'] });
+              setTimeout(() => document.startViewTransition({ update: async () => { copied = false; await $nextTick() }, types: ['copy-skill'] }), 1500)
+            "
+          >
+            <button
+              class="outlined gap-4"
+              style="background-color: var(--ui-background-color)"
+              :class="copied && 'copied'"
+            >
+              ${raw(icon("currency-dollar", { attrs: "data-prefix" }))}
+
+              <span data-text-pre class="text-lg" :hidden="!copied">
+                Copied to clipboard
+              </span>
+
+              <span data-text-post class="text-lg" :hidden="copied">
+                <span class="hl-tag">npx</span> skills add
+                <span class="hl-string">erikthq/ui/packages/skill</span>
+              </span>
+
+              ${raw(icon("copy", { attrs: "data-suffix" }))}
+            </button>
+          </copy-to-clipboard>
+
+          <style>
+            .homepage-copy-button,
+            .homepage-copy-link-button {
+              font-weight: 500;
+
+              span {
+                color: var(--ui-neutral-400);
+              }
+
+              .copied {
+                span,
+                svg {
+                  color: var(--ui-constructive);
+                }
+              }
+
+              .hl-punct {
+                color: var(--ui-neutral-300);
+              }
+
+              .hl-tag {
+                color: var(--ui-neutral-700);
+              }
+
+              .hl-attr {
+                color: var(--ui-neutral-400);
+              }
+
+              .hl-string {
+                color: var(--ui-neutral-900);
+              }
+            }
+
+            /* Only name the parts of the button that started the transition,
+               so the other button stays in the root snapshot. Names must be
+               unique on the page, so let each element get its own and target
+               them by class instead */
+            :root:active-view-transition-type(copy-link)
+              .homepage-copy-link-button,
+            :root:active-view-transition-type(copy-skill)
+              .homepage-copy-button {
+              button,
+              [data-prefix],
+              [data-suffix],
+              [data-text-pre],
+              [data-text-post] {
+                view-transition-name: match-element;
+              }
+
+              button {
+                view-transition-class: copy-button;
+                /* Nest the icon and text groups inside the button's group,
+                   so the button can clip them */
+                view-transition-group: contain;
+              }
+
+              [data-text-pre],
+              [data-text-post] {
+                view-transition-class: button-text;
+              }
+            }
+
+            /* The group animates its size by default, but the snapshots
+               inside it would stretch. Paint the button on the group instead */
+            ::view-transition-group(.copy-button) {
+              border-radius: var(--ui-rounded-3);
+              box-shadow: 0 0 0 1px var(--ui-neutral-300) inset;
+              background-color: var(--ui-background-color);
+              overflow: clip;
+            }
+
+            ::view-transition-old(.copy-button),
+            ::view-transition-new(.copy-button) {
+              display: none;
+            }
+
+            /* Each text only exists on one side, so the outgoing one is
+               always an old snapshot and the incoming one a new snapshot */
+            ::view-transition-old(.button-text) {
+              animation: button-text-out 250ms var(--ease-glide) both;
+            }
+
+            ::view-transition-new(.button-text) {
+              animation: button-text-in 250ms var(--ease-glide) both;
+            }
+
+            @keyframes button-text-out {
+              to {
+                opacity: 0;
+                translate: -2.5rem 0;
+                filter: blur(2px);
+              }
+            }
+
+            @keyframes button-text-in {
+              from {
+                opacity: 0;
+                translate: 2.5rem 0;
+                filter: blur(2px);
+              }
+            }
+          </style>
 
           <style>
             .home-copy-link[data-copied]::before,
