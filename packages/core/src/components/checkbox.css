@@ -5,6 +5,7 @@ label:not(.field):has(> input:where([type="checkbox"])) {
   gap: var(--ui-spacing-2);
   cursor: pointer;
   user-select: none;
+  font-weight: 500;
 
   &:has(> input:disabled) {
     opacity: 0.4;

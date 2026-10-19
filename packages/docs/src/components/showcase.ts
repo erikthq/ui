@@ -28,5 +28,23 @@ export function Showcase({ scopedTheme = false } = {}) {
       ${AccountAccess()} ${CoverArt()} ${Payments()} ${KitchenIsland()}
       ${Faq()} ${ClaimableBalance()} ${SyncingAccounts()}
     </div>
+
+    <script>
+      // Give each card its column and its row, so the cards fade in as a wave
+      // from the top left. Runs before the first paint, so no card jumps
+      {
+        const showcase = document.currentScript.previousElementSibling;
+        const cards = [...showcase.querySelectorAll(":scope > :not(style)")];
+        const left = (card) => Math.round(card.getBoundingClientRect().left);
+        const columns = [...new Set(cards.map(left))].sort((a, b) => a - b);
+        const rows = columns.map(() => 0);
+
+        for (const card of cards) {
+          const col = columns.indexOf(left(card));
+          card.style.setProperty("--col", col);
+          card.style.setProperty("--row", rows[col]++);
+        }
+      }
+    </script>
   `;
 }

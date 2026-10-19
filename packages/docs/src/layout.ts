@@ -56,11 +56,6 @@ export const sections: { label: string; path: string; description: string }[] =
       description: "Override design tokens to match your brand.",
     },
     {
-      label: "Theming",
-      path: "/getting-started/theming",
-      description: "Override components and custom properties with plain CSS.",
-    },
-    {
       label: "Tokens",
       path: "/getting-started/tokens",
       description: "Custom properties for radius and other shared values.",
@@ -79,6 +74,11 @@ export const sections: { label: string; path: string; description: string }[] =
       label: "Easings",
       path: "/getting-started/easings",
       description: "Curated easing curves for CSS transitions.",
+    },
+    {
+      label: "Shadows",
+      path: "/getting-started/shadows",
+      description: "Layered shadows that animate from one to another.",
     },
     {
       label: "Skills",
@@ -541,58 +541,7 @@ function head(
       };
 
   return html`
-    <script>
-      const colorScheme = (
-        localStorage.getItem("_x_scheme") ?? "system"
-      ).replaceAll('"', "");
-
-      if (colorScheme !== "system") {
-        document.documentElement.style.colorScheme = colorScheme;
-      }
-
-      const storedFont = localStorage.getItem("ui-font");
-
-      if (storedFont) {
-        document.documentElement.style.fontFamily = storedFont;
-      }
-
-      const storedRadius = localStorage.getItem("ui-rounded-scale");
-
-      if (storedRadius) {
-        document.documentElement.style.setProperty(
-          "--ui-rounded-scale",
-          storedRadius,
-        );
-      }
-
-      localStorage.removeItem("ui-primary-dark");
-
-      const storedColor = localStorage.getItem("ui-primary");
-
-      if (storedColor) {
-        document.documentElement.style.setProperty("--ui-primary", storedColor);
-      }
-
-      function syncSwatch() {
-        var stored = localStorage.getItem("ui-primary");
-
-        document.querySelectorAll('input[name="color"]').forEach(function (b) {
-          b.checked = b.value === stored;
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        syncSwatch();
-      });
-
-      window.updateColor = (form) => {
-        const color = new FormData(form).get("color");
-
-        document.documentElement.style.setProperty("--ui-primary", color);
-        localStorage.setItem("ui-primary", color);
-        syncSwatch();
-      };
-    </script>
+    <script src="${b}/js/critical.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${pageTitle}</title>
@@ -707,15 +656,15 @@ async function header(path: string) {
         >
           ${raw(icon("components"))} Components
         </a>
-        <a
-          href="${url("/blocks")}"
+        <!-- <a
+          href="{url("/blocks")}"
           class="button ghost docs-nav-link"
-          ${path === "/blocks" || path.startsWith("/blocks/")
+          {path === "/blocks" || path.startsWith("/blocks/")
             ? 'aria-current="page"'
             : ""}
         >
-          ${raw(icon("layout"))} Blocks
-        </a>
+          {raw(icon("layout"))} Blocks
+        </a> -->
         <a
           href="${url("/create")}"
           class="button ghost docs-nav-link"

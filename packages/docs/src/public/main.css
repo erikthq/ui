@@ -41,6 +41,10 @@ body {
   }
 }
 
+[x-cloak] {
+  display: none !important;
+}
+
 /* Layout */
 .docs-layout {
   display: grid;

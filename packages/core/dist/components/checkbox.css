@@ -8,6 +8,7 @@
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
+    font-weight: 500;
     display: flex;
 
     &:has( > input:disabled) {

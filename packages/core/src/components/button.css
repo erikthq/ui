@@ -20,6 +20,7 @@ button,
   border-radius: var(--ui-rounded-3);
 
   font: inherit;
+  font-weight: 500;
   line-height: calc((16 / 14) * 1rem);
   cursor: pointer;
   user-select: none;

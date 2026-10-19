@@ -5,6 +5,7 @@
 @import "./easings.css" layer(ui);
 @import "./colors.css" layer(ui);
 @import "./tokens.css" layer(ui);
+@import "./shadows.css" layer(ui);
 
 @import "./components/badge.css" layer(ui);
 @import "./components/avatar.css" layer(ui);

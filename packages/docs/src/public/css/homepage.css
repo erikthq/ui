@@ -27,6 +27,45 @@
     padding-top: 13rem;
   }
 
+  /* Fade the heading, the text and the two buttons in one after another */
+  hgroup > *,
+  copy-to-clipboard > button {
+    animation: home-hero-in 800ms var(--ease-glide) backwards;
+
+    will-change: transform;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  hgroup > :nth-child(2) {
+    animation-delay: 50ms;
+  }
+
+  copy-to-clipboard > button {
+    box-shadow: var(--ui-shadow-1), var(--ui-shadow-inset-0);
+    border: 1px solid var(--ui-neutral-200);
+
+    transition: box-shadow 300ms var(--ease-glide);
+    
+    &:hover {
+      box-shadow: var(--ui-shadow-2), var(--ui-shadow-inset-0);
+    }
+
+    &:active {
+      box-shadow: var(--ui-shadow-0), var(--ui-shadow-inset-1);
+    }
+  }
+
+  copy-to-clipboard:nth-of-type(1) > button {
+    animation-delay: 100ms;
+  }
+
+  copy-to-clipboard:nth-of-type(2) > button {
+    animation-delay: 150ms;
+  }
+
   hgroup {
     text-align: center;
 
@@ -36,6 +75,7 @@
 
     p {
       max-width: 45ch;
+      font-weight: 500;
 
       code {
         background-color: var(--ui-constructive-200);
@@ -87,11 +127,20 @@
   margin: 0 auto;
   padding: 0 1rem;
 
-  overflow-x: hidden;
+  overflow-x: clip;
 
   > * {
     break-inside: avoid;
     margin-block-end: 1.5rem;
+
+    /* Fade in after the hero as a wave from the top left corner.
+       A script in showcase.ts sets --col and --row from where each card is */
+    animation: home-hero-in-scaled 800ms var(--ease-glide) backwards;
+    animation-delay: calc(450ms + (var(--col, 0) + var(--row, 0)) * 50ms);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
   @supports (display: grid-lanes) {
@@ -119,4 +168,28 @@
   justify-content: center;
 
   color: var(--ui-neutral-600);
+}
+
+@keyframes home-hero-in {
+  from {
+    opacity: 0;
+    translate: 0 0.5rem;
+    filter: blur(20px);
+  }
+}
+
+@keyframes home-hero-in-scaled {
+  from {
+    opacity: 0;
+    translate: 0 0.5rem;
+    scale: 1.01;
+    filter: blur(2px);
+  }
+}
+
+.home-cta {
+  display: grid;
+  justify-items: center;
+  padding: 8rem 1rem;
+  text-align: center;
 }

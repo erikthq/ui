@@ -80,7 +80,7 @@ async function buildComponent(file) {
 const buildTokens = () =>
   buildStandalone(
     "tokens",
-    ["easings", "colors", "tokens"].map((f) => `@import "./${f}.css" layer(ui);`).join("\n"),
+    ["easings", "colors", "tokens", "shadows"].map((f) => `@import "./${f}.css" layer(ui);`).join("\n"),
     resolve(distDir, "tokens.css"),
   );
 

@@ -31,7 +31,7 @@ export async function HomePage(path: string) {
     title: "One stylesheet. That's it",
     path,
     content: html`
-      <div class="home-background"></div>
+      <!-- <div class="home-background"></div> -->
 
       <section class="home-hero prose">
         <hgroup class="flex-col-center gap-4">
@@ -39,10 +39,7 @@ export async function HomePage(path: string) {
             A UI library for building your next design system in a single CSS
             file
           </h1>
-          <p class="md:text-lg">
-            Write semantic HTML and it just looks good. No JavaScript, no build
-            step, and your own CSS always wins.
-          </p>
+          <p class="md:text-xl">Write semantic HTML and it just looks good.</p>
         </hgroup>
 
         <div class="flex-col-center gap-4">
@@ -62,7 +59,7 @@ export async function HomePage(path: string) {
             >
               ${raw(icon("code", { attrs: "data-prefix" }))}
 
-              <span data-text-pre class="text-lg" :hidden="!copied">
+              <span data-text-pre class="text-lg" :hidden="!copied" x-cloak>
                 Copied to clipboard
               </span>
 
@@ -96,7 +93,7 @@ export async function HomePage(path: string) {
             >
               ${raw(icon("currency-dollar", { attrs: "data-prefix" }))}
 
-              <span data-text-pre class="text-lg" :hidden="!copied">
+              <span data-text-pre class="text-lg" :hidden="!copied" x-cloak>
                 Copied to clipboard
               </span>
 
@@ -112,7 +109,14 @@ export async function HomePage(path: string) {
           <style>
             .homepage-copy-button,
             .homepage-copy-link-button {
-              font-weight: 500;
+              button {
+                max-width: calc(100vw - 2rem);
+                overflow: clip;
+                white-space: nowrap;
+              }
+
+              [data-text-post] {
+              }
 
               span {
                 color: var(--ui-neutral-400);
@@ -173,9 +177,14 @@ export async function HomePage(path: string) {
 
             /* The group animates its size by default, but the snapshots
                inside it would stretch. Paint the button on the group instead */
+            /* The shadow matches the hovered button, since the pointer is
+               still on it after the click. The inset ring stands in for the
+               button's border, so the group keeps the button's size */
             ::view-transition-group(.copy-button) {
               border-radius: var(--ui-rounded-3);
-              box-shadow: 0 0 0 1px var(--ui-neutral-300) inset;
+              box-shadow:
+                var(--ui-shadow-2),
+                0 0 0 1px var(--ui-neutral-200) inset;
               background-color: var(--ui-background-color);
               overflow: clip;
             }
@@ -192,7 +201,7 @@ export async function HomePage(path: string) {
             }
 
             ::view-transition-new(.button-text) {
-              animation: button-text-in 250ms var(--ease-glide) both;
+              animation: button-text-in 650ms var(--ease-glide) both;
             }
 
             @keyframes button-text-out {
@@ -206,8 +215,8 @@ export async function HomePage(path: string) {
             @keyframes button-text-in {
               from {
                 opacity: 0;
-                translate: 2.5rem 0;
-                filter: blur(2px);
+                translate: 0rem 0;
+                filter: blur(4px);
               }
             }
           </style>
@@ -218,29 +227,11 @@ export async function HomePage(path: string) {
               opacity: 1;
             }
           </style>
-
-          <script>
-            document.addEventListener("clipboard-copy", (e) => {
-              const btn = e.target.querySelector(".home-copy-link");
-              if (!btn) return;
-
-              // The tooltip reads its text from aria-label, so it only exists after a copy
-              btn.setAttribute("aria-label", "Copied");
-              btn.setAttribute("data-copied", "");
-
-              clearTimeout(btn.copiedTimer);
-              btn.copiedTimer = setTimeout(() => {
-                btn.removeAttribute("data-copied");
-                // Wait for the fade out before the tooltip text goes away
-                setTimeout(() => btn.removeAttribute("aria-label"), 100);
-              }, 1500);
-            });
-          </script>
         </div>
       </section>
 
       <section>
-        <div class="home-swatches">
+        <div class="home-swatches" style="display: none">
           <div class="flex-center gap-6">
             <span class="flex-center gap-3">
               <strong>Font Family:</strong> ${FontPicker()}
@@ -254,6 +245,19 @@ export async function HomePage(path: string) {
         </div>
 
         ${Showcase()}
+      </section>
+
+      <section class="home-cta prose">
+        <hgroup>
+          <h2 class="text-3xl md:text-4xl">Get started now</h2>
+          <p class="md:text-lg">
+            Add one stylesheet to your page and start writing HTML.
+          </p>
+        </hgroup>
+
+        <a href="${url("/getting-started/introduction")}" class="button">
+          Get started ${raw(icon("arrow-right"))}
+        </a>
       </section>
 
       <footer class="home-footer prose">

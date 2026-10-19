@@ -86,13 +86,15 @@ body:has(.home-content) > header {
   &::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: 0 0 0 0;
     z-index: -1;
     background-color: var(--ui-neutral-50);
 
     animation: header-background linear both;
     animation-timeline: scroll(root);
     animation-range: 0 var(--site-header-height);
+
+    mask-image: linear-gradient(black 90%, transparent);
   }
 }
 

@@ -37,6 +37,7 @@
     user-select: none;
     align-items: center;
     gap: .5em;
+    font-weight: 500;
     display: flex;
 
     &:has( > input:disabled) {
