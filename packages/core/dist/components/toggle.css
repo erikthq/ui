@@ -24,6 +24,10 @@
     line-height: 1.14286rem;
     display: inline-grid;
 
+    @media (width < 600px) {
+      font-size: 16px;
+    }
+
     & > input[type="checkbox"], & > input[type="radio"] {
       appearance: none;
       opacity: 0;

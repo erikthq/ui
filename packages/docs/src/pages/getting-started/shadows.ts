@@ -5,6 +5,8 @@ import { highlight } from "../../highlight";
 const toc = [
   { id: "scale", label: "Scale" },
   { id: "inset", label: "Inset" },
+  { id: "shiny", label: "Shiny" },
+  { id: "classes", label: "Classes" },
   { id: "animate", label: "Animate" },
   { id: "stack", label: "Stack" },
   { id: "color", label: "Color" },
@@ -12,6 +14,7 @@ const toc = [
 
 const levels = [0, 1, 2, 3, 4, 5];
 const insetLevels = [0, 1, 2, 3];
+const shinyLevels = [0, 1, 2, 3];
 
 export async function ShadowsPage(path: string) {
   return Layout({
@@ -33,7 +36,8 @@ export async function ShadowsPage(path: string) {
           padding: var(--ui-spacing-4);
         }
 
-        .shadow-sample {
+        .shadow-sample,
+        .shadow-tile {
           display: grid;
           place-items: center;
           aspect-ratio: 1;
@@ -41,6 +45,10 @@ export async function ShadowsPage(path: string) {
           background-color: var(--ui-neutral-0);
           color: var(--ui-neutral-500);
           font-size: var(--ui-text-sm);
+        }
+
+        /* A tile gets its shadow from a helper class, so it sets none here */
+        .shadow-sample {
           box-shadow: var(--shadow);
           transition: box-shadow 400ms var(--ease-glide);
         }
@@ -71,6 +79,16 @@ export async function ShadowsPage(path: string) {
         /* A well has the color of the surface it is pressed into */
         .shadow-well {
           background-color: var(--ui-neutral-100);
+        }
+
+        /* The light only shows on a surface darker than white */
+        .shadow-shiny {
+          background-color: var(--ui-neutral-100);
+          cursor: pointer;
+
+          &:hover {
+            box-shadow: var(--shadow-hover);
+          }
         }
 
         .shadow-press {
@@ -175,6 +193,90 @@ export async function ShadowsPage(path: string) {
       </div>
 
       <div class="prose">
+        <h2 id="shiny">Shiny</h2>
+        <p>
+          <code>--ui-shadow-shiny-1</code> to <code>--ui-shadow-shiny-3</code>
+          make a surface look rounded and glossy, as if it catches the light.
+          Each one is a lit rim and an inner glow on top of the drop shadow of
+          the same level. <code>--ui-shadow-shiny-0</code> is no shiny shadow.
+          The light shows best on a surface that is darker than white. Hover a
+          card to raise it one level.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview shadow-preview">
+          <div class="shadow-grid">
+            ${shinyLevels.map(
+              (n) =>
+                html`<div
+                  class="shadow-sample shadow-shiny"
+                  style="--shadow: var(--ui-shadow-shiny-${n}); --shadow-hover: var(--ui-shadow-shiny-${Math.min(n + 1, 3)})"
+                >
+                  ${n}
+                </div>`,
+            )}
+          </div>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `.button {\n  box-shadow: var(--ui-shadow-shiny-1);\n  transition: box-shadow 400ms var(--ease-glide);\n\n  &:hover {\n    box-shadow: var(--ui-shadow-shiny-2);\n  }\n}`,
+              80,
+              "css",
+            ),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          The light is white by default and weaker in dark mode. Change it with
+          <code>--ui-shadow-shine-color</code>. It also has no value until you
+          set one, and works the same way as
+          <a href="#color"><code>--ui-shadow-color</code></a>.
+        </p>
+      </div>
+
+      <div class="prose">
+        <h2 id="classes">Classes</h2>
+        <p>
+          Every shadow also has a class with the same name, without the
+          <code>--ui-</code> prefix: <code>.shadow-0</code> to
+          <code>.shadow-5</code>, <code>.shadow-inset-0</code> to
+          <code>.shadow-inset-3</code> and <code>.shadow-shiny-0</code> to
+          <code>.shadow-shiny-3</code>. Use them when an element has no CSS of
+          its own. Set <code>--ui-shadow-color</code> on the element, or on a
+          parent, to color its shadow.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview shadow-preview">
+          <div class="shadow-grid">
+            <div class="shadow-tile shadow-3">shadow-3</div>
+            <div class="shadow-tile shadow-well shadow-inset-2">
+              shadow-inset-2
+            </div>
+            <div class="shadow-tile shadow-well shadow-shiny-2">
+              shadow-shiny-2
+            </div>
+            <div
+              class="shadow-tile shadow-3"
+              style="--ui-shadow-color: color-mix(in oklch, var(--ui-primary) 40%, transparent)"
+            >
+              Tinted
+            </div>
+          </div>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `<article class="shadow-3">...</article>\n<div class="shadow-inset-2">...</div>\n<button class="shadow-shiny-2">Generate</button>\n<article class="shadow-3" style="--ui-shadow-color: color-mix(in oklch, var(--ui-primary) 40%, transparent)">...</article>`,
+            ),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
         <h2 id="animate">Animate</h2>
         <p>
           Transition <code>box-shadow</code> between two tokens. To animate a
@@ -254,9 +356,14 @@ export async function ShadowsPage(path: string) {
       <div class="prose">
         <h2 id="color">Color</h2>
         <p>
-          All layers get their color from <code>--ui-shadow-color</code>. Set
-          it on <code>:root</code> or on a <code>[data-ui-theme]</code>
-          element. The layers use the color you set there.
+          All layers get their color from <code>--ui-shadow-color</code>. It
+          has no value until you set one, so the default is used. Set it on
+          <code>:root</code> to change every shadow on the page, also inside
+          <code>[data-ui-theme]</code> elements. Set it on a
+          <code>[data-ui-theme]</code> element to change the shadows of that
+          element and everything inside it. The
+          <a href="#classes">shadow classes</a> also pick up a color set on
+          the element itself.
         </p>
       </div>
       <div class="example">

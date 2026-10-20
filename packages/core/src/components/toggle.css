@@ -23,6 +23,10 @@ label:not(.field).toggle {
   font-weight: 500;
   line-height: calc(16 / 14 * 1rem);
 
+  @media (width < 600px) {
+    font-size: 16px;
+  }
+
   > input[type="checkbox"],
   > input[type="radio"] {
     appearance: none;

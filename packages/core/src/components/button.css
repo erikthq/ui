@@ -1,13 +1,15 @@
 /* button */
 button,
 .button {
+  --contrast-color: light-dark(color-mix(var(--ui-primary), black 15%), color-mix(var(--ui-primary), black 25%));
+
   transition-property: translate, background-color;
   transition-duration: 100ms;
   transition-timing-function: ease-out;
 
   background-color: var(--ui-primary);
   border: none;
-  color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
+  color: var(--ui-primary-fg, contrast-color(var(--contrast-color)));
 
   display: inline-flex;
   align-items: center;
@@ -25,6 +27,10 @@ button,
   cursor: pointer;
   user-select: none;
   text-decoration: none;
+
+  @media (width < 600px) {
+    font-size: 16px;
+  }
 
   &:not(:disabled):not([aria-disabled="true"]) {
     @media (hover: hover) {
@@ -175,7 +181,13 @@ button,
     }
   }
 
+  &:not(.secondary):not(.outlined):not(.ghost):not(.link):not(.destructive) {
+    --ui-shadow-shine-color: light-dark(var(--ui-primary-300), var(--ui-primary-700));
+  }
+
   &.destructive {
+    --ui-shadow-shine-color: light-dark(var(--ui-destructive-300), var(--ui-destructive-700));
+
     background-color: var(--ui-destructive);
     color: var(--ui-destructive-100);
 

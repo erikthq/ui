@@ -49,6 +49,10 @@ const shadows = [
   ["inset-1", "A light dent, like an input or a track."],
   ["inset-2", "A pressed button, or a well that holds content."],
   ["inset-3", "A deep well."],
+  ["shiny-0", "No shiny shadow. Start from it when a shine animates in."],
+  ["shiny-1", "A glossy button or chip that catches the light."],
+  ["shiny-2", "A larger glossy control, like a call to action."],
+  ["shiny-3", "A glossy card or panel."],
 ];
 
 export async function TokensPage(path: string) {
@@ -85,7 +89,8 @@ export async function TokensPage(path: string) {
             border-radius: var(--ui-rounded-5);
           }
 
-          .inset {
+          .inset,
+          .shiny {
             background-color: var(--ui-neutral-100);
           }
         }
@@ -295,8 +300,9 @@ export async function TokensPage(path: string) {
       <div class="prose">
         <h2 id="shadow">Shadow</h2>
         <p>
-          Five shadows that lift an element off the page, and three inset
-          shadows that press it in. The higher the element sits, the higher
+          Five shadows that lift an element off the page, three inset
+          shadows that press it in, and three shiny shadows that make it look
+          rounded and lit. The higher the element sits, the higher
           the step. The
           <a href="/getting-started/shadows">Shadows</a> page shows how to
           animate and stack them.
@@ -324,11 +330,11 @@ export async function TokensPage(path: string) {
         <div class="preview tokens-shadow-preview">
           <div class="tokens-shadow">
             ${shadows
-              .filter(([name]) => name !== "0" && name !== "inset-0")
+              .filter(([name]) => !/^(inset-|shiny-)?0$/.test(name))
               .map(
                 ([name]) => html`
                   <div
-                    class="${name.startsWith("inset") ? "inset" : ""}"
+                    class="${name.match(/^(inset|shiny)/)?.[0] ?? ""}"
                     style="box-shadow: var(--ui-shadow-${name})"
                   >
                     ${name}

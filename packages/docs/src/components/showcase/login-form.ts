@@ -9,8 +9,8 @@ export function LoginForm() {
 
         > button {
           position: absolute;
-          top: var(--ui-spacing-3);
-          right: var(--ui-spacing-3);
+          top: var(--ui-spacing-4);
+          right: var(--ui-spacing-4);
         }
 
         .empty {

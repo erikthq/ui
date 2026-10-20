@@ -42,7 +42,7 @@ export async function HomePage(path: string) {
           <p class="md:text-xl">Write semantic HTML and it just looks good.</p>
         </hgroup>
 
-        <div class="flex-col-center gap-4">
+        <div class="home-hero-actions flex-col-center gap-4">
           <copy-to-clipboard
             class="homepage-copy-link-button"
             value="${link}"
@@ -53,7 +53,7 @@ export async function HomePage(path: string) {
             "
           >
             <button
-              class="outlined gap-4"
+              class="secondary"
               style="background-color: var(--ui-background-color)"
               :class="copied && 'copied'"
             >
@@ -87,7 +87,7 @@ export async function HomePage(path: string) {
             "
           >
             <button
-              class="outlined gap-4"
+              class="secondary"
               style="background-color: var(--ui-background-color)"
               :class="copied && 'copied'"
             >
@@ -107,15 +107,29 @@ export async function HomePage(path: string) {
           </copy-to-clipboard>
 
           <style>
+            /* The hero is a grid whose column grows to fit its content, so
+               cap this item at the column's width to let the buttons shrink */
+            .home-hero-actions {
+              min-width: 0;
+              max-width: 100%;
+            }
+
             .homepage-copy-button,
             .homepage-copy-link-button {
               button {
-                max-width: calc(100vw - 2rem);
+                max-width: 100%;
                 overflow: clip;
                 white-space: nowrap;
               }
 
+              svg {
+                flex-shrink: 0;
+              }
+
               [data-text-post] {
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
 
               span {
@@ -182,9 +196,7 @@ export async function HomePage(path: string) {
                button's border, so the group keeps the button's size */
             ::view-transition-group(.copy-button) {
               border-radius: var(--ui-rounded-3);
-              box-shadow:
-                var(--ui-shadow-2),
-                0 0 0 1px var(--ui-neutral-200) inset;
+              box-shadow: var(--ui-shadow-shiny-3);
               background-color: var(--ui-background-color);
               overflow: clip;
             }
@@ -218,13 +230,6 @@ export async function HomePage(path: string) {
                 translate: 0rem 0;
                 filter: blur(4px);
               }
-            }
-          </style>
-
-          <style>
-            .home-copy-link[data-copied]::before,
-            .home-copy-link[data-copied]::after {
-              opacity: 1;
             }
           </style>
         </div>

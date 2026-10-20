@@ -481,51 +481,30 @@
     --ui-text-9xl: 8rem;
   }
 
-  :root, :host, [data-ui-theme] {
-    --ui-shadow-color: light-dark(oklch(0% 0 0 / .12), oklch(0% 0 0 / .5));
-    --ui-shadow-color-1: color-mix(in oklch, var(--ui-shadow-color) 70%, transparent);
-    --ui-shadow-color-2: color-mix(in oklch, var(--ui-shadow-color) 55%, transparent);
-    --ui-shadow-color-3: color-mix(in oklch, var(--ui-shadow-color) 40%, transparent);
-    --ui-shadow-color-4: color-mix(in oklch, var(--ui-shadow-color) 25%, transparent);
-    --ui-shadow-0: 0 0 0 transparent,
-    0 0 0 transparent,
-    0 0 0 transparent,
-    0 0 0 transparent;
-    --ui-shadow-1: 0 .5px 1px var(--ui-shadow-color-1),
-    0 1px 2px var(--ui-shadow-color-2),
-    0 2px 4px var(--ui-shadow-color-3),
-    0 4px 8px var(--ui-shadow-color-4);
-    --ui-shadow-2: 0 1px 2px var(--ui-shadow-color-1),
-    0 2px 4px var(--ui-shadow-color-2),
-    0 4px 8px var(--ui-shadow-color-3),
-    0 8px 16px var(--ui-shadow-color-4);
-    --ui-shadow-3: 0 2px 4px var(--ui-shadow-color-1),
-    0 4px 8px var(--ui-shadow-color-2),
-    0 8px 16px var(--ui-shadow-color-3),
-    0 16px 32px var(--ui-shadow-color-4);
-    --ui-shadow-4: 0 4px 8px var(--ui-shadow-color-1),
-    0 8px 16px var(--ui-shadow-color-2),
-    0 16px 32px var(--ui-shadow-color-3),
-    0 32px 64px var(--ui-shadow-color-4);
-    --ui-shadow-5: 0 6px 12px var(--ui-shadow-color-1),
-    0 12px 24px var(--ui-shadow-color-2),
-    0 24px 48px var(--ui-shadow-color-3),
-    0 48px 96px var(--ui-shadow-color-4);
-    --ui-shadow-inset-0: inset 0 0 0 transparent,
-    inset 0 0 0 transparent,
-    inset 0 0 0 transparent,
-    inset 0 0 0 transparent;
-    --ui-shadow-inset-1: inset 0 .5px 1px var(--ui-shadow-color-1),
-    inset 0 1px 2px var(--ui-shadow-color-2),
-    inset 0 2px 4px var(--ui-shadow-color-3),
-    inset 0 3px 6px var(--ui-shadow-color-4);
-    --ui-shadow-inset-2: inset 0 1px 2px var(--ui-shadow-color-1),
-    inset 0 2px 4px var(--ui-shadow-color-2),
-    inset 0 4px 8px var(--ui-shadow-color-3),
-    inset 0 6px 12px var(--ui-shadow-color-4);
-    --ui-shadow-inset-3: inset 0 2px 4px var(--ui-shadow-color-1),
-    inset 0 4px 8px var(--ui-shadow-color-2),
-    inset 0 8px 16px var(--ui-shadow-color-3),
-    inset 0 12px 24px var(--ui-shadow-color-4);
+  :root, :host, [data-ui-theme], .shadow-0, .shadow-1, .shadow-2, .shadow-3, .shadow-4, .shadow-5, .shadow-inset-0, .shadow-inset-1, .shadow-inset-2, .shadow-inset-3, .shadow-shiny-0, .shadow-shiny-1, .shadow-shiny-2, .shadow-shiny-3 {
+    --ui-shadow-color-base: var(--ui-shadow-color, light-dark(oklch(0% 0 0 / .12), oklch(100% 0 0 / .075)));
+    --ui-shadow-color-1: color-mix(in oklch, var(--ui-shadow-color-base) 70%, transparent);
+    --ui-shadow-color-2: color-mix(in oklch, var(--ui-shadow-color-base) 55%, transparent);
+    --ui-shadow-color-3: color-mix(in oklch, var(--ui-shadow-color-base) 40%, transparent);
+    --ui-shadow-color-4: color-mix(in oklch, var(--ui-shadow-color-base) 25%, transparent);
+    --ui-shadow-0: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent;
+    --ui-shadow-1: 0 .5px 1px var(--ui-shadow-color-1), 0 1px 2px var(--ui-shadow-color-2), 0 2px 4px var(--ui-shadow-color-3), 0 4px 8px var(--ui-shadow-color-4);
+    --ui-shadow-2: 0 1px 2px var(--ui-shadow-color-1), 0 2px 4px var(--ui-shadow-color-2), 0 4px 8px var(--ui-shadow-color-3), 0 8px 16px var(--ui-shadow-color-4);
+    --ui-shadow-3: 0 2px 4px var(--ui-shadow-color-1), 0 4px 8px var(--ui-shadow-color-2), 0 8px 16px var(--ui-shadow-color-3), 0 16px 32px var(--ui-shadow-color-4);
+    --ui-shadow-4: 0 4px 8px var(--ui-shadow-color-1), 0 8px 16px var(--ui-shadow-color-2), 0 16px 32px var(--ui-shadow-color-3), 0 32px 64px var(--ui-shadow-color-4);
+    --ui-shadow-5: 0 6px 12px var(--ui-shadow-color-1), 0 12px 24px var(--ui-shadow-color-2), 0 24px 48px var(--ui-shadow-color-3), 0 48px 96px var(--ui-shadow-color-4);
+    --ui-shadow-inset-0: inset 0 0 0 transparent, inset 0 0 0 transparent, inset 0 0 0 transparent, inset 0 0 0 transparent;
+    --ui-shadow-inset-1: inset 0 .5px 1px var(--ui-shadow-color-1), inset 0 1px 2px var(--ui-shadow-color-2), inset 0 2px 4px var(--ui-shadow-color-3), inset 0 3px 6px var(--ui-shadow-color-4);
+    --ui-shadow-inset-2: inset 0 1px 2px var(--ui-shadow-color-1), inset 0 2px 4px var(--ui-shadow-color-2), inset 0 4px 8px var(--ui-shadow-color-3), inset 0 6px 12px var(--ui-shadow-color-4);
+    --ui-shadow-inset-3: inset 0 2px 4px var(--ui-shadow-color-1), inset 0 4px 8px var(--ui-shadow-color-2), inset 0 8px 16px var(--ui-shadow-color-3), inset 0 12px 24px var(--ui-shadow-color-4);
+    --ui-shadow-shine-color-1: var(--ui-shadow-shine-color, light-dark(oklch(100% 0 0 / .9), oklch(100% 0 0 / .3)));
+    --ui-shadow-shine-color-2: color-mix(in oklch, var(--ui-shadow-shine-color-1) 50%, transparent);
+    --ui-shadow-shiny-0: inset 0 0 0 transparent, inset 0 0 0 transparent, inset 0 0 0 0 transparent, inset 0 0 0 transparent, inset 0 0 0 transparent, var(--ui-shadow-0);
+    --ui-shadow-shiny-1: inset 0 -1px 0 var(--ui-shadow-shine-color-1), inset 0 1px 0 var(--ui-shadow-shine-color-2), inset 0 0 0 1px var(--ui-shadow-color-base), inset 0 2px 4px var(--ui-shadow-shine-color-2),
+    inset 0 -2px 4px var(--ui-shadow-color-3), var(--ui-shadow-1);
+    --ui-shadow-shiny-2: inset 0 -1px 0 var(--ui-shadow-shine-color-1), inset 0 1px 0 var(--ui-shadow-shine-color-2), inset 0 0 0 1px var(--ui-shadow-color-base), inset 0 4px 8px var(--ui-shadow-shine-color-2),
+    inset 0 -4px 8px var(--ui-shadow-color-3), var(--ui-shadow-2);
+    --ui-shadow-shiny-3: inset 0 -1px 0 var(--ui-shadow-shine-color-1), inset 0 1px 0 var(--ui-shadow-shine-color-2), inset 0 0 0 1px var(--ui-shadow-color-base), inset 0 8px 16px var(--ui-shadow-shine-color-2),
+    inset 0 -8px 16px var(--ui-shadow-color-3), var(--ui-shadow-3);
   }
 }

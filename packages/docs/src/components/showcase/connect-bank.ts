@@ -3,9 +3,7 @@ import { icon } from "../../icon";
 
 export function ConnectBank() {
   return html`
-    <style>
-
-    </style>
+    <style></style>
 
     <article class="secondary showcase-connect-bank">
       <section class="empty">

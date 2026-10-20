@@ -489,7 +489,7 @@ function head(
   const description =
     descriptionOverride ?? pageDescriptions[path] ?? FALLBACK_DESC;
   const canonicalUrl = `${siteUrl}${path === "/" ? "" : path}`;
-  const pageTitle = `${title} – @erikt/ui`;
+  const pageTitle = `${title} – erikt/ui`;
   const isHome = path === "/";
 
   const jsonLd = isHome
@@ -551,14 +551,14 @@ function head(
     <link rel="canonical" href="${canonicalUrl}" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="@erikt/ui" />
+    <meta property="og:site_name" content="erikt/ui" />
     <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:title" content="${pageTitle}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:image" content="${COVER_IMAGE}" />
     <meta property="og:image:width" content="1456" />
     <meta property="og:image:height" content="816" />
-    <meta property="og:image:alt" content="@erikt/ui component library demo" />
+    <meta property="og:image:alt" content="erikt/ui component library demo" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${pageTitle}" />
@@ -730,13 +730,7 @@ async function header(path: string) {
         <copy-to-clipboard
           value='<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />'
         >
-          <button
-            class="square"
-            aria-label="Copy <link> tag"
-            data-tooltip="left"
-          >
-            ${raw(icon("link"))}
-          </button>
+          <button class="shadow-shiny-3">Get link ${raw(icon("link"))}</button>
         </copy-to-clipboard>
       </div>
     </header>
