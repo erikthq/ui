@@ -3,7 +3,6 @@ article {
   --border-radius: var(--ui-rounded-5);
 
   background-color: var(--ui-neutral-0);
-  box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100));
   border-radius: var(--border-radius);
   overflow: hidden;
   padding: var(--ui-spacing-6);
@@ -12,30 +11,39 @@ article {
     border-radius: calc(var(--border-radius) - var(--ui-spacing-2));
   }
 
+  &:not(.secondary):not(.tertiary) {
+    box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100));
+
+    & > header,
+    & > footer {
+      box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100));
+    }
+  }
+
   &.secondary {
     --border-color: var(--ui-neutral-300);
     --bg: var(--ui-neutral-200);
 
-    box-shadow: none;
+    /* box-shadow: none; */
     background-color: var(--ui-neutral-100);
 
-    > header,
+    /* > header,
     > footer {
       box-shadow: none;
-    }
+    } */
   }
 
   &.tertiary {
     --border-color: var(--ui-neutral-400);
     --bg: var(--ui-neutral-300);
 
-    box-shadow: none;
+    /* box-shadow: none; */
     background-color: var(--ui-neutral-200);
 
-    > header,
+    /* > header,
     > footer {
       box-shadow: none;
-    }
+    } */
   }
 
   &.transparent {
@@ -51,7 +59,7 @@ article {
     display: flex;
     align-items: center;
     gap: var(--ui-spacing-2);
-    box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100));
+    /* box-shadow: 0 0 0 1px inset var(--border-color, var(--ui-neutral-100)); */
   }
 
   & > header {

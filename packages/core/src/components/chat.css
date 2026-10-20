@@ -18,7 +18,7 @@
 }
 
 .chat {
-  --ui-chat-tail: var(--ui-rounded-1);
+  --ui-chat-tail: var(--ui-rounded-2);
 
   inline-size: stretch;
   /* The chat scrolls on its own once it has a height. .jump reads its scroll state */
@@ -35,7 +35,7 @@
   .bubble {
     width: fit-content;
     max-inline-size: min(80%, 60ch);
-    border-radius: var(--ui-rounded-5);
+    border-radius: var(--ui-rounded-3);
 
     &:not(.ghost) {
       padding-inline: var(--ui-spacing-3);

@@ -120,7 +120,7 @@
   }
 
   .chat {
-    --ui-chat-tail: var(--ui-rounded-1);
+    --ui-chat-tail: var(--ui-rounded-2);
     inline-size: -webkit-fill-available;
     inline-size: -moz-available;
     inline-size: stretch;
@@ -138,7 +138,7 @@
 
     & .bubble {
       width: fit-content;
-      border-radius: var(--ui-rounded-5);
+      border-radius: var(--ui-rounded-3);
       max-inline-size: min(80%, 60ch);
 
       &:not(.ghost) {

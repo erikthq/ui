@@ -44,17 +44,15 @@
   }
 
   copy-to-clipboard > button {
-    box-shadow: var(--ui-shadow-1), var(--ui-shadow-inset-0);
-    border: 1px solid var(--ui-neutral-200);
+    box-shadow: var(--ui-shadow-shiny-3);
+    transition: box-shadow 200ms var(--ease-glide);
 
-    transition: box-shadow 300ms var(--ease-glide);
-    
     &:hover {
-      box-shadow: var(--ui-shadow-2), var(--ui-shadow-inset-0);
+      box-shadow: var(--ui-shadow-shiny-1);
     }
 
     &:active {
-      box-shadow: var(--ui-shadow-0), var(--ui-shadow-inset-1);
+      box-shadow: var(--ui-shadow-shiny-2);
     }
   }
 
