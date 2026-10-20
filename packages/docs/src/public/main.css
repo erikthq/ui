@@ -498,3 +498,17 @@ body {
     margin-inline-start: auto;
   }
 }
+
+.scheme-picker {
+  &.mobile-only {
+    @media ((min-width: 1025px)) {
+      display: none;
+    }
+  }
+
+  &:not(.mobile-only) {
+    @media ((max-width: 1024px)) {
+      display: none;
+    }
+  }
+}

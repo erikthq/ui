@@ -2,6 +2,7 @@ import { html, raw } from "hono/html";
 import { icon } from "../icon";
 import { sections, url } from "../layout";
 import { SidebarNav } from "./sidebar-nav";
+import { SchemePicker } from "./scheme-picker";
 
 const slug = (p: string) => "/" + p.split("/").pop();
 
@@ -11,7 +12,7 @@ export function MobileMenu(path: string) {
       .docs-mobile-menu {
         flex-shrink: 0;
 
-        @media (min-width: 769px) {
+        @media (min-width: 1024px) {
           display: none;
         }
       }
@@ -29,15 +30,18 @@ export function MobileMenu(path: string) {
           --border-radius: 0;
         }
 
-        .docs-mobile-menu-close {
+        header {
           position: absolute;
-          top: var(--ui-spacing-3);
-          right: var(--ui-spacing-3);
+          padding: var(--ui-spacing-3) var(--ui-spacing-6);
+          inset: 0 0 auto 0;
           z-index: 1;
+
+          display: flex;
+          justify-content: space-between;
         }
 
         article > menu {
-          padding-top: 2rem;
+          padding-top: 4rem;
 
           > li {
             padding-bottom: var(--ui-spacing-8);
@@ -63,11 +67,15 @@ export function MobileMenu(path: string) {
     </button>
 
     <dialog id="mobile-menu" closedby="any">
-      <form method="dialog" class="docs-mobile-menu-close">
-        <button class="ghost square" aria-label="Close menu">
-          ${raw(icon("x"))}
-        </button>
-      </form>
+      <header>
+        ${SchemePicker({ mobile: true })}
+
+        <form method="dialog" class="docs-mobile-menu-close">
+          <button class="ghost square" aria-label="Close menu">
+            ${raw(icon("x"))}
+          </button>
+        </form>
+      </header>
 
       <article>
         <menu>
