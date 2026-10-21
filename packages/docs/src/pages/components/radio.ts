@@ -34,16 +34,14 @@ export async function RadioPage(path: string) {
         <h2 id="standalone">Standalone</h2>
       </div>
       <div class="example">
-        <div class="code-block">
-          ${raw(await standaloneLink("radio"))}
-        </div>
+        <div class="code-block">${raw(await standaloneLink("radio"))}</div>
       </div>
 
       <div class="prose">
         <h2 id="default">Default</h2>
       </div>
       <div class="example">
-        <div class="preview">
+        <div class="preview gap-2">
           <input type="radio" name="bare" />
           <input type="radio" name="bare" checked />
         </div>
@@ -137,104 +135,102 @@ export async function RadioPage(path: string) {
           style="flex-direction:column;width:100%"
         >
           <style>
-            .choice-card {
+            .choice-card article {
               display: flex;
               justify-content: space-between;
               align-items: flex-start;
-              gap: var(--ui-spacing-4);
-              padding: var(--ui-spacing-4);
-              border: 1px solid var(--ui-neutral-300);
-              border-radius: var(--ui-spacing-3);
-
-              > div {
-                display: grid;
-                gap: 0.25rem;
-              }
-
-              small {
-                color: var(--ui-neutral-500);
-              }
             }
-            .choice-card:has(input:checked) {
-              background: var(--ui-neutral-50);
+
+            .choice-card article:has(input:checked) {
+              background: var(--ui-neutral-100);
               border-color: var(--ui-neutral-600);
             }
           </style>
-          <fieldset
-            style="border:none;display:flex;flex-direction:column;gap:var(--ui-spacing-3);width:100%;flex-direction:column;width:100%;max-width:400px;margin:auto"
-          >
+          <fieldset style="width: min(100%, 400px); margin: auto;">
             <label class="choice-card">
-              <div>
-                <h4>Plus</h4>
-                <small>For individuals and small teams.</small>
-              </div>
-              <input type="radio" name="plan" value="plus" />
+              <article>
+                <small>
+                  <hgroup>
+                    <h3>Plus</h3>
+                    <p>For individuals and small teams.</p>
+                  </hgroup>
+                </small>
+                <input type="radio" name="plan" value="plus" />
+              </article>
             </label>
             <label class="choice-card">
-              <div>
-                <h4>Pro</h4>
-                <small> For growing businesses. </small>
-              </div>
-              <input type="radio" name="plan" value="pro" checked />
+              <article>
+                <small>
+                  <hgroup>
+                    <h3>Pro</h3>
+                    <p>For growing businesses.</p>
+                  </hgroup>
+                </small>
+                <input type="radio" name="plan" value="pro" checked />
+              </article>
             </label>
             <label class="choice-card">
-              <div>
-                <h4>Enterprise</h4>
-                <small> For large teams and enterprises. </small>
-              </div>
-              <input type="radio" name="plan" value="enterprise" />
+              <article>
+                <small>
+                  <hgroup>
+                    <h3>Enterprise</h3>
+                    <p>For large teams and enterprises.</p>
+                  </hgroup>
+                </small>
+                <input type="radio" name="plan" value="enterprise" />
+              </article>
             </label>
           </fieldset>
         </div>
         <div class="code-block">
           ${raw(
             await highlight(`<style>
-  .choice-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--ui-spacing-2);
-    padding: var(--ui-spacing-4);
-    border: 1px solid var(--ui-neutral-300);
-    border-radius: var(--ui-spacing-3);
+  .choice-card article {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+            }
 
-    > div {
-      display: grid;
-      gap: 0.5rem;
-    }
-    
-    small {
-      color:var(--ui-neutral-500);
-    }
-  }
-  .choice-card:has(input:checked) {
-    background: var(--ui-neutral-100);
-    border-color: var(--ui-neutral-400);
-  }
+            .choice-card article:has(input:checked) {
+              background: var(--ui-neutral-100);
+              border-color: var(--ui-neutral-600);
+            }
 </style>
 
 <fieldset>
   <label class="choice-card">
-    <div>
-      <h4>Plus</h4>
-      <small>For individuals and small teams.</small>
-    </div>
-    <input type="radio" name="plan" value="plus" />
-  </label>
-  <label class="choice-card">
-    <div>
-      <h4>Pro</h4>
-      <small>For growing businesses.</small>
-    </div>
-    <input type="radio" name="plan" value="pro" checked />
-  </label>
+              <article>
+                <small>
+                  <hgroup>
+                    <h3>Plus</h3>
+                    <p>For individuals and small teams.</p>
+                  </hgroup>
+                </small>
+                <input type="radio" name="plan" value="plus" />
+              </article>
+            </label>
+            <label class="choice-card">
+              <article>
+                <small>
+                  <hgroup>
+                    <h3>Pro</h3>
+                    <p>For growing businesses.</p>
+                  </hgroup>
+                </small>
+                <input type="radio" name="plan" value="pro" checked />
+              </article>
+            </label>
 </fieldset>`),
           )}
         </div>
       </div>
 
       ${apiReference([
-        { type: "Disabled", values: ["[disabled]"], description: "Fades the radio and its label and blocks input" },
+        {
+          type: "Disabled",
+          values: ["[disabled]"],
+          description: "Fades the radio and its label and blocks input",
+        },
       ])}
     `,
   });

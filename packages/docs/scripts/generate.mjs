@@ -90,6 +90,7 @@ const routes = [
   "/getting-started/skills",
   "/utilities/relative-time",
   "/utilities/copy-to-clipboard",
+  "/utilities/text-morph",
   "/llms.txt",
 ];
 

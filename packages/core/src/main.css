@@ -67,6 +67,7 @@
 @import "./components/carousel.css" layer(ui);
 @import "./components/chat.css" layer(ui);
 @import "./components/text.css" layer(ui);
+@import "./components/text-morph.css" layer(ui);
 @import "./components/shadow.css" layer(ui);
 @import "./components/flow.css" layer(ui);
 
