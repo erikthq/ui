@@ -1,111 +1,103 @@
 /* tooltip */
 /* zero specificity so components that position the host themselves (e.g. absolute) still win */
-:where([data-tooltip][aria-label]:not(input, select, textarea)) {
-  position: relative;
-}
-
-[data-tooltip][aria-label]:not(input, select, textarea) {
-  &::before,
-  &::after {
-    position: absolute;
-    z-index: 2147483647;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 100ms;
+@media (hover: hover) {
+  :where([data-tooltip][aria-label]:not(input, select, textarea)) {
+    position: relative;
   }
 
-  &::before {
-    content: attr(aria-label);
-    background: var(--ui-neutral-950);
-    color: var(--ui-neutral-50);
-    padding: 0.4em 0.75em;
-    border-radius: var(--ui-rounded-3);
-    font-size: 0.875rem;
-    line-height: 1;
-    white-space: nowrap;
-  }
+  [data-tooltip][aria-label]:not(input, select, textarea) {
+    &::before,
+    &::after {
+      position: absolute;
+      z-index: 2147483647;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 100ms;
+    }
 
-  &::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    rotate: 45deg;
-    background: var(--ui-neutral-950);
-  }
+    &::before {
+      content: attr(aria-label);
+      background: var(--ui-neutral-950);
+      color: var(--ui-neutral-50);
+      padding: 0.4em 0.75em;
+      border-radius: var(--ui-rounded-3);
+      font-size: 0.875rem;
+      line-height: 1;
+      white-space: nowrap;
+    }
 
-  /* top (default) */
-  &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::before {
-    bottom: calc(100% + 0.5rem);
-    left: 50%;
-    translate: -50% 0;
-  }
-  &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::after {
-    bottom: calc(100% + 0.5rem);
-    left: 50%;
-    translate: -50% 50%;
-    mask-image: linear-gradient(-45deg, black 51%, transparent 50%);
-    border-end-end-radius: 2px;
-  }
+    &::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      rotate: 45deg;
+      background: var(--ui-neutral-950);
+    }
 
-  /* bottom */
-  &[data-tooltip="bottom"]::before {
-    top: calc(100% + 0.5rem);
-    left: 50%;
-    translate: -50% 0;
-  }
-  &[data-tooltip="bottom"]::after {
-    top: calc(100% + 0.5rem);
-    left: 50%;
-    translate: -50% -50%;
-    mask-image: linear-gradient(-45deg, transparent 50%, black 50%);
-    border-start-start-radius: 2px;
-  }
+    /* top (default) */
+    &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::before {
+      bottom: calc(100% + 0.5rem);
+      left: 50%;
+      translate: -50% 0;
+    }
+    &:not([data-tooltip="bottom"], [data-tooltip="left"], [data-tooltip="right"])::after {
+      bottom: calc(100% + 0.5rem);
+      left: 50%;
+      translate: -50% 50%;
+      mask-image: linear-gradient(-45deg, black 51%, transparent 50%);
+      border-end-end-radius: 2px;
+    }
 
-  /* left */
-  &[data-tooltip="left"]::before {
-    right: calc(100% + 0.5rem);
-    top: 50%;
-    translate: 0 -50%;
-  }
-  &[data-tooltip="left"]::after {
-    right: calc(100% + 0.5rem);
-    top: 50%;
-    translate: 50% -50%;
-    mask-image: linear-gradient(45deg, transparent 50%, black 50%);
-    border-start-end-radius: 2px;
-  }
+    /* bottom */
+    &[data-tooltip="bottom"]::before {
+      top: calc(100% + 0.5rem);
+      left: 50%;
+      translate: -50% 0;
+    }
+    &[data-tooltip="bottom"]::after {
+      top: calc(100% + 0.5rem);
+      left: 50%;
+      translate: -50% -50%;
+      mask-image: linear-gradient(-45deg, transparent 50%, black 50%);
+      border-start-start-radius: 2px;
+    }
 
-  /* right */
-  &[data-tooltip="right"]::before {
-    left: calc(100% + 0.5rem);
-    top: 50%;
-    translate: 0 -50%;
-  }
-  &[data-tooltip="right"]::after {
-    left: calc(100% + 0.5rem);
-    top: 50%;
-    translate: -50% -50%;
-    mask-image: linear-gradient(45deg, black 50%, transparent 50%);
-    border-end-start-radius: 2px;
-  }
+    /* left */
+    &[data-tooltip="left"]::before {
+      right: calc(100% + 0.5rem - 1px);
+      top: 50%;
+      translate: 0 -50%;
+    }
+    &[data-tooltip="left"]::after {
+      right: calc(100% + 0.5rem);
+      top: 50%;
+      translate: 50% -50%;
+      mask-image: linear-gradient(45deg, transparent 50%, black 50%);
+      border-start-end-radius: 2px;
+    }
 
-  @media (hover: hover) {
+    /* right */
+    &[data-tooltip="right"]::before {
+      left: calc(100% + 0.5rem - 1px);
+      top: 50%;
+      translate: 0 -50%;
+    }
+    &[data-tooltip="right"]::after {
+      left: calc(100% + 0.5rem);
+      top: 50%;
+      translate: -50% -50%;
+      mask-image: linear-gradient(45deg, black 50%, transparent 50%);
+      border-end-start-radius: 2px;
+    }
+
     &:hover::before,
     &:hover::after {
       opacity: 1;
     }
-  }
 
-  &:focus-visible::before,
-  &:focus-visible::after {
-    opacity: 1;
-  }
-
-  /* no hover on touch screens, so the tooltip is not drawn at all */
-  @media (hover: none) {
-    &::before,
-    &::after {
-      display: none;
+    &:focus-visible::before,
+    &:focus-visible::after {
+      opacity: 1;
     }
   }
 }

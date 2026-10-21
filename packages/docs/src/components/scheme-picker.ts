@@ -1,9 +1,10 @@
 import { html, raw } from "hono/html";
 import { icon } from "../icon";
 
-export function SchemePicker() {
+export function SchemePicker(props: { mobile: boolean }) {
   return html`
     <fieldset
+      class="scheme-picker ${props?.mobile && "mobile-only"}"
       role="group"
       x-data="{ scheme: $persist('system') }"
       x-init="$watch('scheme', () => { if (scheme !== 'system') { document.documentElement.style.colorScheme = scheme } else document.documentElement.style.removeProperty('color-scheme') })"

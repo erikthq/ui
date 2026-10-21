@@ -291,7 +291,7 @@
       margin-right: 0;
       line-height: 1.14286rem;
 
-      &:has( > input:checked) {
+      &:has( > input[checked]) {
         anchor-name: --toggle-highlight;
         background-color: #0000;
 
