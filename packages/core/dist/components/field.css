@@ -20,6 +20,14 @@
       color: var(--ui-destructive);
     }
 
+    & :user-invalid {
+      --border-color: var(--ui-destructive);
+
+      &:focus-visible {
+        box-shadow: 0 0 0 1px var(--ui-destructive) inset;
+      }
+    }
+
     & > small[data-error] {
       color: var(--ui-destructive);
       display: none;

@@ -102,7 +102,8 @@ export async function FieldPage(path: string) {
           <code>:placeholder-shown</code> separates an empty required field from
           one holding a bad value, and <code>:out-of-range</code> catches
           <code>min</code>/<code>max</code>. Each message animates in with
-          <code>@starting-style</code>. Submit the form below empty, then with
+          <code>@starting-style</code>, and the input gets a destructive
+          outline. Submit the form below empty, then with
           an age outside the range, then with a broken email.
         </p>
         <p>

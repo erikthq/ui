@@ -42,7 +42,7 @@ Each rule links to a file with incorrect and correct code.
 
 - **Wrap each control in `label.field`.** `<span>` is the label, then the control, then an optional `<small>` hint.
 - **Groups of checkboxes or radios use `<fieldset>` + `<legend>`**, or `div.field` with a `<span>` title.
-- **Validation is CSS only.** Add `required`, `min`, `max` or `type="email"` to the input. Add `<small data-error="required|invalid|range">` messages inside the field. An input with `data-error="required"` needs a `placeholder`.
+- **Validation is CSS only.** Add `required`, `min`, `max` or `type="email"` to the input. Add `<small data-error="required|invalid|range">` messages inside the field. An input with `data-error="required"` needs a `placeholder`. The input gets a destructive outline while it's invalid.
 - **Icons, units and buttons inside an input go in the same `<label>`** with `data-prefix` or `data-suffix`.
 - **On/off settings use `class="switch"`.** Short option sets use a toggle group. Don't loop buttons with a manual active class.
 
