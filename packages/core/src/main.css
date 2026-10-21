@@ -41,6 +41,7 @@
 @import "./components/kbd.css" layer(ui);
 @import "./components/loading.css" layer(ui);
 @import "./components/progress.css" layer(ui);
+@import "./components/meter.css" layer(ui);
 @import "./components/popover.css" layer(ui);
 @import "./components/menu.css" layer(ui);
 @import "./components/dropdown.css" layer(ui);

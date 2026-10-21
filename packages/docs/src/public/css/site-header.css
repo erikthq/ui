@@ -117,3 +117,56 @@ body:has(.home-content) .docs-burger {
     display: none;
   }
 }
+
+/* The header's copy button. Its parts get names only during its own
+   transition, so the homepage buttons stay out of it. The animation rules
+   are in main.css */
+:root:active-view-transition-type(copy-header) {
+  --copy-button-background: var(--ui-primary);
+
+  /* The button changes width, so the buttons next to it move. Named, they
+     slide to their new place instead of fading out of the header snapshot */
+  .site-header-actions > :not(.header-copy-button) {
+    view-transition-name: match-element;
+  }
+
+  .header-copy-button {
+    button,
+    [data-text-pre],
+    [data-text-post] {
+      view-transition-name: match-element;
+    }
+
+    button {
+      view-transition-class: copy-button;
+      view-transition-group: contain;
+    }
+
+    [data-text-pre],
+    [data-text-post] {
+      view-transition-class: button-text;
+    }
+  }
+}
+
+.header-copy-button {
+  button {
+    white-space: nowrap;
+  }
+
+  /* Not on [hidden], or the display would show the hidden text */
+  :is([data-text-pre], [data-text-post]):not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  /* Monospace, but not a chip inside the button */
+  code {
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 0.9em;
+  }
+}

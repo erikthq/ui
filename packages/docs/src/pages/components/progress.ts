@@ -7,6 +7,7 @@ const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
   { id: "indeterminate", label: "Indeterminate" },
+  { id: "round", label: "Round" },
   { id: "labeled", label: "Labeled" },
 ];
 
@@ -60,6 +61,48 @@ export async function ProgressPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(await highlight(`<progress></progress>`))}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="round">Round</h2>
+        <p>
+          Add <code>.round</code> for a ring that fills clockwise from the
+          top. It is <code>2em</code> wide, so it follows the font size. Set
+          <code>width</code> to make it bigger, and <code>--thickness</code>
+          for a thicker ring.
+        </p>
+      </div>
+      <div class="example">
+        <div class="preview">
+          <progress class="round" value="25" max="100" style="--value: 0.25"></progress>
+          <progress class="round" value="65" max="100" style="--value: 0.65"></progress>
+          <progress class="round" style="width: 3em; --thickness: 0.375em"></progress>
+        </div>
+        <div class="code-block">
+          ${raw(
+            await highlight(`<progress class="round" value="25" max="100"></progress>
+<progress class="round" value="65" max="100"></progress>
+
+<!-- indeterminate, bigger and thicker -->
+<progress class="round" style="width: 3em; --thickness: 0.375em"></progress>`),
+          )}
+        </div>
+      </div>
+      <div class="prose">
+        <p>
+          The ring reads <code>value</code> and <code>max</code> with typed
+          <code>attr()</code>. Browsers without it need the fill as
+          <code>--value</code>, from <code>0</code> to <code>1</code>.
+        </p>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `<progress class="round" value="65" max="100" style="--value: 0.65"></progress>`,
+            ),
+          )}
         </div>
       </div>
 

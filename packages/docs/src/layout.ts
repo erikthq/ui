@@ -324,6 +324,11 @@ export const components: {
     description: "Vertical list of actions with icons and shortcuts.",
   },
   {
+    label: "Meter",
+    path: "/components/meter",
+    description: "A value inside a known range, with good and bad states.",
+  },
+  {
     label: "Number Field",
     path: "/components/number-field",
     description: "Native number input with unit suffix support.",
@@ -682,26 +687,13 @@ async function header(path: string) {
         ${MobileMenu(path)}
       </nav>
 
-      <div class="flex gap-4" style="margin-left: auto;">
+      <div class="site-header-actions flex gap-4" style="margin-left: auto;">
         <button
           class="search-field outlined"
           style="min-width: 150px"
           onclick="document.getElementById('search-dialog').showModal()"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-            <path d="M21 21l-6 -6" />
-          </svg>
+          ${raw(icon('search'))}
 
           Search
 
@@ -727,10 +719,28 @@ async function header(path: string) {
           </small>
         </a>
 
+        <!-- Says what it copies, then what to do with it. Each text swaps in
+             with a view transition, styled in main.css and site-header.css -->
         <copy-to-clipboard
+          class="header-copy-button"
           value='<link rel="stylesheet" href="https://esm.sh/@erikt/ui" />'
+          x-data="{ copied: false, timer: null }"
+          @clipboard-copy="
+            clearTimeout(timer);
+            if (!copied) document.startViewTransition({ update: async () => { copied = true; await $nextTick() }, types: ['copy-header'] });
+            timer = setTimeout(() => document.startViewTransition({ update: async () => { copied = false; await $nextTick() }, types: ['copy-header'] }), 2000)
+          "
         >
-          <button class="shadow-shiny-3">Get link ${raw(icon("link"))}</button>
+          <button class="shadow-shiny-3" aria-live="polite">
+            <span data-text-pre :hidden="!copied" x-cloak>
+              <span>Copied <code>&lt;link&gt;</code></span>
+              ${raw(icon("check"))}
+            </span>
+            <span data-text-post :hidden="copied">
+              <span>Copy tag</span>
+              ${raw(icon("code"))}
+            </span>
+          </button>
         </copy-to-clipboard>
       </div>
     </header>

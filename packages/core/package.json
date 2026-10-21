@@ -1,6 +1,6 @@
 {
   "name": "@erikt/ui",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "type": "module",
   "homepage": "https://ui.erikt.me",
   "exports": {
@@ -42,6 +42,7 @@
     "./loading.css": "./dist/components/loading.css",
     "./marquee.css": "./dist/components/marquee.css",
     "./menu.css": "./dist/components/menu.css",
+    "./meter.css": "./dist/components/meter.css",
     "./pagination.css": "./dist/components/pagination.css",
     "./popover.css": "./dist/components/popover.css",
     "./progress.css": "./dist/components/progress.css",

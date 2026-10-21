@@ -1,0 +1,68 @@
+/* meter */
+
+/* A meter shows a value inside a known range, like disk use or a score.
+   The browser picks the state from low, high and optimum, and the fill
+   color follows it: good, not so good, or bad */
+meter {
+  --meter-good: var(--ui-constructive);
+  /* Halfway between good and bad. In oklch that lands on a warm yellow */
+  --meter-average: color-mix(in oklch, var(--ui-constructive), var(--ui-destructive));
+  --meter-bad: var(--ui-destructive);
+
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: var(--ui-spacing-2);
+  border: none;
+  border-radius: var(--ui-rounded-full);
+  overflow: hidden;
+  background: var(--border-color, var(--ui-neutral-200));
+
+  /* Chrome and Safari split the meter's height between the bar and other
+     parts. A grid with the bar in the first cell gives it the full height */
+  &::-webkit-meter-inner-element {
+    display: grid;
+  }
+
+  &::-webkit-meter-bar {
+    grid-area: 1 / 1;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+    background: transparent;
+  }
+
+  &::-webkit-meter-optimum-value,
+  &::-webkit-meter-suboptimum-value,
+  &::-webkit-meter-even-less-good-value {
+    height: 100%;
+    border-radius: var(--ui-rounded-full);
+  }
+
+  &::-webkit-meter-optimum-value {
+    background: var(--meter-good);
+  }
+
+  &::-webkit-meter-suboptimum-value {
+    background: var(--meter-average);
+  }
+
+  &::-webkit-meter-even-less-good-value {
+    background: var(--meter-bad);
+  }
+
+  /* Firefox pseudo elements in rules of their own, since a browser drops a
+     whole rule with a pseudo element it does not know */
+  &::-moz-meter-bar {
+    border-radius: var(--ui-rounded-full);
+    background: var(--meter-good);
+  }
+
+  &:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: var(--meter-average);
+  }
+
+  &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: var(--meter-bad);
+  }
+}

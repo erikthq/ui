@@ -189,48 +189,6 @@ export async function HomePage(path: string) {
               }
             }
 
-            /* The group animates its size by default, but the snapshots
-               inside it would stretch. Paint the button on the group instead */
-            /* The shadow matches the hovered button, since the pointer is
-               still on it after the click. The inset ring stands in for the
-               button's border, so the group keeps the button's size */
-            ::view-transition-group(.copy-button) {
-              border-radius: var(--ui-rounded-3);
-              box-shadow: var(--ui-shadow-shiny-3);
-              background-color: var(--ui-background-color);
-              overflow: clip;
-            }
-
-            ::view-transition-old(.copy-button),
-            ::view-transition-new(.copy-button) {
-              display: none;
-            }
-
-            /* Each text only exists on one side, so the outgoing one is
-               always an old snapshot and the incoming one a new snapshot */
-            ::view-transition-old(.button-text) {
-              animation: button-text-out 250ms var(--ease-glide) both;
-            }
-
-            ::view-transition-new(.button-text) {
-              animation: button-text-in 650ms var(--ease-glide) both;
-            }
-
-            @keyframes button-text-out {
-              to {
-                opacity: 0;
-                translate: -2.5rem 0;
-                filter: blur(2px);
-              }
-            }
-
-            @keyframes button-text-in {
-              from {
-                opacity: 0;
-                translate: 0rem 0;
-                filter: blur(4px);
-              }
-            }
           </style>
         </div>
       </section>

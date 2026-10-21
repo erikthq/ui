@@ -43,3 +43,74 @@ progress {
     &::-moz-progress-bar { background: transparent; }
   }
 }
+
+/* Lets the ring animate when the value changes */
+@property --ui-progress-fill {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes ui-progress-spin {
+  to { rotate: 1turn; }
+}
+
+progress.round {
+  --thickness: var(--ui-spacing-1);
+  /* Fallback for browsers without typed attr(): set --value from 0 to 1 */
+  --ui-progress-fill: var(--value, 0);
+
+  width: 2em;
+  height: auto;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+
+  /* Round ends: a dot at the top where the fill starts, and a dot where it
+     ends. The end dot sits on the middle of the ring, at the fill's angle.
+     Both shrink to nothing at 0, so an empty ring shows no dot */
+  --cap: calc(var(--thickness) / 2 * min(1, var(--ui-progress-fill) * 100));
+  --angle: calc(var(--ui-progress-fill) * 1turn);
+  --center: calc(50% - var(--thickness) / 2);
+
+  background:
+    radial-gradient(
+      circle var(--cap) at 50% calc(var(--thickness) / 2),
+      var(--ui-primary) calc(100% - 0.5px),
+      transparent
+    ),
+    radial-gradient(
+      circle var(--cap) at calc(50% + sin(var(--angle)) * var(--center))
+        calc(50% - cos(var(--angle)) * var(--center)),
+      var(--ui-primary) calc(100% - 0.5px),
+      transparent
+    ),
+    conic-gradient(
+      var(--ui-primary) var(--angle),
+      var(--border-color, var(--ui-neutral-200)) 0
+    );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - var(--thickness) - 0.5px),
+    black calc(100% - var(--thickness))
+  );
+  transition: --ui-progress-fill 400ms var(--ease-glide);
+
+  @supports (width: attr(x type(<length>))) {
+    --ui-progress-fill: min(
+      attr(value type(<number>), 0) / attr(max type(<number>), 1),
+      1
+    );
+  }
+
+  /* Each on its own, since a browser drops a whole rule with a pseudo
+     element it does not know */
+  &::-webkit-progress-bar { background: transparent; }
+  &::-webkit-progress-value { background: transparent; }
+  &::-moz-progress-bar { background: transparent; }
+
+  /* A quarter of the ring spins around */
+  &:indeterminate {
+    --ui-progress-fill: 0.25;
+    animation: ui-progress-spin 1s linear infinite;
+  }
+}

@@ -1,7 +1,7 @@
 import { html, raw } from "hono/html";
 import { icon } from "../icon";
 
-export function SchemePicker(props: { mobile: boolean }) {
+export function SchemePicker(props?: { mobile: boolean }) {
   return html`
     <fieldset
       class="scheme-picker ${props?.mobile && "mobile-only"}"

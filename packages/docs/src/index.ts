@@ -33,6 +33,7 @@ import { PopoverPage } from './pages/components/popover'
 import { RadioPage } from './pages/components/radio'
 import { SeparatorPage } from './pages/components/separator'
 import { ProgressPage } from './pages/components/progress'
+import { MeterPage } from './pages/components/meter'
 import { ColorInputPage } from './pages/components/color-input'
 import { DateInputPage } from './pages/components/date-input'
 import { DescriptionListPage } from './pages/components/description-list'
@@ -113,6 +114,7 @@ app.get('/components/popover', (c) => c.html(PopoverPage(c.req.path)))
 app.get('/components/radio', (c) => c.html(RadioPage(c.req.path)))
 app.get('/components/separator', (c) => c.html(SeparatorPage(c.req.path)))
 app.get('/components/progress', (c) => c.html(ProgressPage(c.req.path)))
+app.get('/components/meter', (c) => c.html(MeterPage(c.req.path)))
 app.get('/components/color-input', (c) => c.html(ColorInputPage(c.req.path)))
 app.get('/components/date-input', (c) => c.html(DateInputPage(c.req.path)))
 app.get('/components/description-list', (c) => c.html(DescriptionListPage(c.req.path)))

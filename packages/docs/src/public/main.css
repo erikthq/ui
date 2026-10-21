@@ -241,8 +241,8 @@ body {
 
 /* Search dialog */
 .search-dialog {
-  max-width: min(560px, calc(100vw - 2rem));
-  width: 100%;
+  width: min(560px, calc(100vw - 2rem));
+  max-width: none;
 
   > article {
     header {
@@ -510,5 +510,50 @@ body {
     @media ((max-width: 1024px)) {
       display: none;
     }
+  }
+}
+
+/* Copy buttons that spell out what they did, used on the homepage and in
+   the header. A button names its parts during its own transition type, and
+   these rules animate them.
+
+   The group animates its size by default, but the snapshots inside it would
+   stretch. Paint the button on the group instead. Set
+   --copy-button-background to the button's color */
+::view-transition-group(.copy-button) {
+  border-radius: var(--ui-rounded-3);
+  box-shadow: var(--ui-shadow-shiny-3);
+  background-color: var(--copy-button-background, var(--ui-background-color));
+  overflow: clip;
+}
+
+::view-transition-old(.copy-button),
+::view-transition-new(.copy-button) {
+  display: none;
+}
+
+/* Each text only exists on one side, so the outgoing one is
+   always an old snapshot and the incoming one a new snapshot */
+::view-transition-old(.button-text) {
+  animation: button-text-out 250ms var(--ease-glide) both;
+}
+
+::view-transition-new(.button-text) {
+  animation: button-text-in 650ms var(--ease-glide) both;
+}
+
+@keyframes button-text-out {
+  to {
+    opacity: 0;
+    translate: -2.5rem 0;
+    filter: blur(2px);
+  }
+}
+
+@keyframes button-text-in {
+  from {
+    opacity: 0;
+    translate: 0rem 0;
+    filter: blur(4px);
   }
 }

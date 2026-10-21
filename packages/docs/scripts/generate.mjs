@@ -51,6 +51,7 @@ const routes = [
   "/components/loading",
   "/components/popover",
   "/components/progress",
+  "/components/meter",
   "/components/radio",
   "/components/separator",
   "/components/slider",

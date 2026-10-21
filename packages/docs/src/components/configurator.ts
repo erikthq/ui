@@ -5,7 +5,7 @@ import { fonts } from "./font-picker";
 // Based on the color swatches on the homepage. Light primaries are darkened to fit their
 // data-lightness range. Harbor matches the library defaults
 const presets = [
-  { name: "Harbor", primaryLight: "#1e90ff", primaryDark: "#5aa8ff", neutralLight: "#93949d", neutralDark: "#8b8c93", radius: "1", font: "" },
+  { name: "Harbor", primaryLight: "#1e90ff", primaryDark: "#5aa8ff", neutralLight: "#93949d", neutralDark: "#8b8c93", radius: "1.75", font: "" },
   { name: "Lagoon", primaryLight: "#41c8a0", primaryDark: "#9fffdd", neutralLight: "#8a9590", neutralDark: "#858f8b", radius: "1.5", font: '"DM Sans", system-ui' },
   { name: "Meadow", primaryLight: "#6ac76b", primaryDark: "#a8f2a7", neutralLight: "#8d958c", neutralDark: "#888e88", radius: "2", font: "Rubik, system-ui" },
   { name: "Honey", primaryLight: "#d0a900", primaryDark: "#ffe064", neutralLight: "#959288", neutralDark: "#8e8c84", radius: "1.25", font: "Manrope, system-ui" },
@@ -164,7 +164,7 @@ export function Configurator() {
 
       <label class="field">
         <span>Radius</span>
-        <input type="range" name="radius" min="0" max="2" step="0.25" value="1" />
+        <input type="range" name="radius" min="0" max="2" step="0.25" value="1.75" />
       </label>
 
       <label class="field">
@@ -205,7 +205,7 @@ export function Configurator() {
           primaryDark: "#5aa8ff",
           neutralLight: "#93949d",
           neutralDark: "#8b8c93",
-          radius: "1",
+          radius: "1.75",
          
           font: "",
         };
