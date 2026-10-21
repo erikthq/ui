@@ -11,13 +11,13 @@ packages/
   skill/     — Downloadable AI agent skill (SKILL.md), edited by hand
 ```
 
-`packages/core/dist/ui.css` (+ `.map`) is the built stylesheet. It's committed to the repo (unlike the rest of `dist/`) so the readme's size badge can read it. The build also writes one standalone file per component to `dist/components/`, the tokens to `dist/tokens.css`, the reset to `dist/reset.css`, and writes an exact `exports` entry per component to `package.json` (esm.sh does not resolve wildcard exports). npm publishes all of `dist/`.
+`packages/core/dist/ui.css` (+ `.map`) is the built stylesheet. `dist/` is not committed. The readme's size badge reads the published file from jsDelivr. The build also writes one standalone file per component to `dist/components/`, the tokens to `dist/tokens.css`, the reset to `dist/reset.css`, and writes an exact `exports` entry per component to `package.json` (esm.sh does not resolve wildcard exports). npm publishes all of `dist/`.
 
 ## Dev commands
 
 ```bash
 pnpm dev        # Run core + docs in parallel (watch mode)
-pnpm build      # Build core CSS + generate static docs
+pnpm build      # Build core CSS, then generate static docs
 ```
 
 From `packages/docs`:
