@@ -2,9 +2,11 @@
 @import "./checkbox.css";
 
 input[type="checkbox"].switch {
+  --height: 1.2lh;
+
   appearance: none;
   width: 2.25rem;
-  height: 1.2lh;
+  height: var(--height);
   /* border-radius: var(--ui-rounded-full); */
   border-radius: var(--ui-rounded-full-fixed);
   box-shadow: none;
@@ -17,11 +19,15 @@ input[type="checkbox"].switch {
   transition: background-color 100ms;
   mask-image: none;
 
+  @media (width < 600px) {
+    --height: 20px;
+  }
+
   &::after {
     content: "";
     position: absolute;
     left: 0;
-    width: calc(1.2lh - 2px);
+    width: calc(var(--height) - 2px);
     aspect-ratio: 1;
     margin-inline: 1px;
     border-radius: var(--ui-rounded-full-fixed);
@@ -35,7 +41,7 @@ input[type="checkbox"].switch {
     mask-image: none;
 
     &::after {
-      left: calc(100% - 1lh - 2px - 1px);
+      left: calc(100% - var(--height));
     }
   }
 

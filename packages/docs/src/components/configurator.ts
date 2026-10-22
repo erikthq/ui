@@ -5,14 +5,78 @@ import { fonts } from "./font-picker";
 // Based on the color swatches on the homepage. Light primaries are darkened to fit their
 // data-lightness range. Harbor matches the library defaults
 const presets = [
-  { name: "Harbor", primaryLight: "#1e90ff", primaryDark: "#5aa8ff", neutralLight: "#93949d", neutralDark: "#8b8c93", radius: "1.75", font: "" },
-  { name: "Lagoon", primaryLight: "#41c8a0", primaryDark: "#9fffdd", neutralLight: "#8a9590", neutralDark: "#858f8b", radius: "1.5", font: '"DM Sans", system-ui' },
-  { name: "Meadow", primaryLight: "#6ac76b", primaryDark: "#a8f2a7", neutralLight: "#8d958c", neutralDark: "#888e88", radius: "2", font: "Rubik, system-ui" },
-  { name: "Honey", primaryLight: "#d0a900", primaryDark: "#ffe064", neutralLight: "#959288", neutralDark: "#8e8c84", radius: "1.25", font: "Manrope, system-ui" },
-  { name: "Ember", primaryLight: "#f09700", primaryDark: "#ffb85c", neutralLight: "#989188", neutralDark: "#918b84", radius: "0.5", font: '"Clarity City", system-ui' },
-  { name: "Reef", primaryLight: "#ff7f50", primaryDark: "#ff9b76", neutralLight: "#9b8f8b", neutralDark: "#938a87", radius: "1.75", font: '"DM Sans", system-ui' },
-  { name: "Blossom", primaryLight: "#de97a2", primaryDark: "#ffc5cd", neutralLight: "#9b8f90", neutralDark: "#93898a", radius: "2", font: "Rubik, system-ui" },
-  { name: "Ink", primaryLight: "#111111", primaryDark: "#ffffff", neutralLight: "#919191", neutralDark: "#8b8b8b", radius: "0", font: '"Sono", ui-monospace' },
+  {
+    name: "Harbor",
+    primaryLight: "#1e90ff",
+    primaryDark: "#5aa8ff",
+    neutralLight: "#93949d",
+    neutralDark: "#8b8c93",
+    radius: "1.75",
+    font: "",
+  },
+  {
+    name: "Lagoon",
+    primaryLight: "#41c8a0",
+    primaryDark: "#9fffdd",
+    neutralLight: "#8a9590",
+    neutralDark: "#858f8b",
+    radius: "1.5",
+    font: '"DM Sans", system-ui',
+  },
+  {
+    name: "Meadow",
+    primaryLight: "#6ac76b",
+    primaryDark: "#a8f2a7",
+    neutralLight: "#8d958c",
+    neutralDark: "#888e88",
+    radius: "2",
+    font: "Rubik, system-ui",
+  },
+  {
+    name: "Honey",
+    primaryLight: "#d0a900",
+    primaryDark: "#ffe064",
+    neutralLight: "#959288",
+    neutralDark: "#8e8c84",
+    radius: "1.25",
+    font: "Manrope, system-ui",
+  },
+  {
+    name: "Ember",
+    primaryLight: "#f09700",
+    primaryDark: "#ffb85c",
+    neutralLight: "#989188",
+    neutralDark: "#918b84",
+    radius: "0.5",
+    font: '"Clarity City", system-ui',
+  },
+  {
+    name: "Reef",
+    primaryLight: "#ff7f50",
+    primaryDark: "#ff9b76",
+    neutralLight: "#9b8f8b",
+    neutralDark: "#938a87",
+    radius: "1.75",
+    font: '"DM Sans", system-ui',
+  },
+  {
+    name: "Blossom",
+    primaryLight: "#de97a2",
+    primaryDark: "#ffc5cd",
+    neutralLight: "#9b8f90",
+    neutralDark: "#93898a",
+    radius: "2",
+    font: "Rubik, system-ui",
+  },
+  {
+    name: "Ink",
+    primaryLight: "#111111",
+    primaryDark: "#ffffff",
+    neutralLight: "#919191",
+    neutralDark: "#8b8b8b",
+    radius: "0",
+    font: '"Sono", ui-monospace',
+  },
 ];
 
 // Edits the theme tokens on .components-showcase (it has data-ui-theme, so the scales follow)
@@ -87,7 +151,7 @@ export function Configurator() {
         /* Looks like the docs code blocks, with a file name on top */
         .configurator-code {
           border: 1px solid var(--border);
-          border-radius: var(--ui-rounded-4);
+          border-radius: var(--ui-rounded-2);
           background: var(--ui-neutral-100);
           overflow: hidden;
 
@@ -118,10 +182,17 @@ export function Configurator() {
       }
     </style>
 
-    <form class="configurator" oninput="updateConfig(this)" onreset="resetConfig(this)">
+    <form
+      class="configurator"
+      oninput="updateConfig(this)"
+      onreset="resetConfig(this)"
+    >
       <label class="field">
         <span>Preset</span>
-        <select name="preset" oninput="applyPreset(this); event.stopPropagation()">
+        <select
+          name="preset"
+          oninput="applyPreset(this); event.stopPropagation()"
+        >
           <button>
             <selectedcontent></selectedcontent>
             ${raw(icon("chevron-down"))}
@@ -129,7 +200,10 @@ export function Configurator() {
           ${presets.map(
             (p) => html`
               <option value="${p.name}">
-                <span class="configurator-dot" style="background: ${p.primaryLight}"></span>
+                <span
+                  class="configurator-dot"
+                  style="background: ${p.primaryLight}"
+                ></span>
                 ${p.name}
               </option>
             `,
@@ -142,11 +216,21 @@ export function Configurator() {
         <legend>Primary color</legend>
         <label class="field">
           <span>Light</span>
-          <input type="color" name="primaryLight" value="#1e90ff" data-lightness="0.0 0.75" />
+          <input
+            type="color"
+            name="primaryLight"
+            value="#1e90ff"
+            data-lightness="0.0 0.75"
+          />
         </label>
         <label class="field">
           <span>Dark</span>
-          <input type="color" name="primaryDark" value="#5aa8ff" data-lightness="0.2 1.0" />
+          <input
+            type="color"
+            name="primaryDark"
+            value="#5aa8ff"
+            data-lightness="0.2 1.0"
+          />
         </label>
       </fieldset>
 
@@ -154,17 +238,36 @@ export function Configurator() {
         <legend>Neutral color</legend>
         <label class="field">
           <span>Light</span>
-          <input type="color" name="neutralLight" value="#93949d" data-lightness="0.0 1.0" data-chroma="0.04" />
+          <input
+            type="color"
+            name="neutralLight"
+            value="#93949d"
+            data-lightness="0.0 1.0"
+            data-chroma="0.04"
+          />
         </label>
         <label class="field">
           <span>Dark</span>
-          <input type="color" name="neutralDark" value="#8b8c93" data-lightness="0.0 1.0" data-chroma="0.04" />
+          <input
+            type="color"
+            name="neutralDark"
+            value="#8b8c93"
+            data-lightness="0.0 1.0"
+            data-chroma="0.04"
+          />
         </label>
       </fieldset>
 
       <label class="field">
         <span>Radius</span>
-        <input type="range" name="radius" min="0" max="2" step="0.25" value="1.75" />
+        <input
+          type="range"
+          name="radius"
+          min="0"
+          max="2"
+          step="0.25"
+          value="1.75"
+        />
       </label>
 
       <label class="field">
@@ -176,7 +279,10 @@ export function Configurator() {
           </button>
           ${fonts.map(
             (f) => html`
-              <option value="${f.family}" style="font-family: ${f.family || "system-ui"}">
+              <option
+                value="${f.family}"
+                style="font-family: ${f.family || "system-ui"}"
+              >
                 ${f.name}
               </option>
             `,
@@ -206,7 +312,7 @@ export function Configurator() {
           neutralLight: "#93949d",
           neutralDark: "#8b8c93",
           radius: "1.75",
-         
+
           font: "",
         };
 
@@ -221,14 +327,24 @@ export function Configurator() {
         };
 
         // sRGB hex <-> OKLab, so the limits follow how light a color looks
-        const toLinear = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
-        const toGamma = (c) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
+        const toLinear = (c) =>
+          c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+        const toGamma = (c) =>
+          c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055;
 
         const hexToOklab = (hex) => {
-          const [r, g, b] = [1, 3, 5].map((i) => toLinear(parseInt(hex.slice(i, i + 2), 16) / 255));
-          const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
-          const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
-          const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+          const [r, g, b] = [1, 3, 5].map((i) =>
+            toLinear(parseInt(hex.slice(i, i + 2), 16) / 255),
+          );
+          const l = Math.cbrt(
+            0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b,
+          );
+          const m = Math.cbrt(
+            0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b,
+          );
+          const s = Math.cbrt(
+            0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b,
+          );
           return [
             0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
             1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s,
@@ -247,7 +363,9 @@ export function Configurator() {
               -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
               -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
             ]
-              .map((c) => Math.round(Math.min(1, Math.max(0, toGamma(c))) * 255))
+              .map((c) =>
+                Math.round(Math.min(1, Math.max(0, toGamma(c))) * 255),
+              )
               .map((c) => c.toString(16).padStart(2, "0"))
               .join("")
           );
@@ -270,14 +388,17 @@ export function Configurator() {
 
         window.applyPreset = (select) => {
           const preset = presets.find((p) => p.name === select.value);
-          for (const name of Object.keys(tokens)) select.form.elements[name].value = preset[name];
+          for (const name of Object.keys(tokens))
+            select.form.elements[name].value = preset[name];
           updateConfig(select.form);
         };
 
         // Shows the preset that matches the current values, or Custom
         const syncPreset = (form) => {
           const match = presets.find((p) =>
-            Object.keys(tokens).every((name) => form.elements[name].value === p[name]),
+            Object.keys(tokens).every(
+              (name) => form.elements[name].value === p[name],
+            ),
           );
           form.elements.preset.value = match?.name ?? "";
         };
@@ -307,7 +428,8 @@ export function Configurator() {
         // Hovering a preset option previews it on the showcase. Leaving it restores the form's values
         const setupPresetPreview = (form) => {
           const select = form.elements.preset;
-          const restore = () => applyTheme(Object.fromEntries(new FormData(form)));
+          const restore = () =>
+            applyTheme(Object.fromEntries(new FormData(form)));
 
           select.addEventListener("mouseover", (event) => {
             const option = event.target.closest("option");
@@ -320,7 +442,10 @@ export function Configurator() {
           });
 
           // The picker can close without a mouseout, for example with Escape
-          select.addEventListener("keydown", (event) => event.key === "Escape" && restore());
+          select.addEventListener(
+            "keydown",
+            (event) => event.key === "Escape" && restore(),
+          );
           select.addEventListener("blur", restore);
         };
 
@@ -329,8 +454,12 @@ export function Configurator() {
           syncPreset(form);
 
           const lines = applyTheme(Object.fromEntries(new FormData(form)));
-          const css = lines.length ? ":root {\\n" + lines.join("\\n") + "\\n}" : "";
-          document.getElementById("configurator-copy").setAttribute("value", css);
+          const css = lines.length
+            ? ":root {\\n" + lines.join("\\n") + "\\n}"
+            : "";
+          document
+            .getElementById("configurator-copy")
+            .setAttribute("value", css);
           renderOutput(css || "/* No changes yet */");
         };
 
@@ -380,7 +509,10 @@ export function Configurator() {
       window.setConfigRenderer(async (css) => {
         // Formatting is async, so drop results that a newer input has replaced
         const id = ++run;
-        const formatted = await format(css, { parser: "css", plugins: [postcss] });
+        const formatted = await format(css, {
+          parser: "css",
+          plugins: [postcss],
+        });
         if (id !== run) return;
 
         output.innerHTML = highlighter.codeToHtml(formatted.trimEnd(), {

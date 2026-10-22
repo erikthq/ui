@@ -41,9 +41,7 @@ export async function FieldPage(path: string) {
         <h2 id="standalone">Standalone</h2>
       </div>
       <div class="example">
-        <div class="code-block">
-          ${raw(await standaloneLink("field"))}
-        </div>
+        <div class="code-block">${raw(await standaloneLink("field"))}</div>
       </div>
 
       <div class="prose">
@@ -103,8 +101,8 @@ export async function FieldPage(path: string) {
           one holding a bad value, and <code>:out-of-range</code> catches
           <code>min</code>/<code>max</code>. Each message animates in with
           <code>@starting-style</code>, and the input gets a destructive
-          outline. Submit the form below empty, then with
-          an age outside the range, then with a broken email.
+          outline. Submit the form below empty, then with an age outside the
+          range, then with a broken email.
         </p>
         <p>
           <code>novalidate</code> on the <code>&lt;form&gt;</code> hides the
@@ -126,12 +124,19 @@ export async function FieldPage(path: string) {
             <label class="field">
               <span>Email</span>
               <input type="email" placeholder="you@example.com" required />
+              <small>We'll never share your email.</small>
               <small data-error="required">Email is required.</small>
               <small data-error="invalid">Enter a valid email address.</small>
             </label>
             <label class="field">
               <span>Age</span>
-              <input type="number" placeholder="18" min="18" max="99" required />
+              <input
+                type="number"
+                placeholder="18"
+                min="18"
+                max="99"
+                required
+              />
               <small data-error="required">Age is required.</small>
               <small data-error="range">Must be between 18 and 99.</small>
             </label>
@@ -414,8 +419,20 @@ export async function FieldPage(path: string) {
       </div>
 
       ${apiReference([
-        { type: "Required", values: ["[required]"], description: "Adds a red asterisk to the label" },
-        { type: "Error message", values: ['[data-error="required"]', '[data-error="range"]', '[data-error="invalid"]'], description: "Shows the message when the input fails that check" },
+        {
+          type: "Required",
+          values: ["[required]"],
+          description: "Adds a red asterisk to the label",
+        },
+        {
+          type: "Error message",
+          values: [
+            '[data-error="required"]',
+            '[data-error="range"]',
+            '[data-error="invalid"]',
+          ],
+          description: "Shows the message when the input fails that check",
+        },
       ])}
     `,
   });
