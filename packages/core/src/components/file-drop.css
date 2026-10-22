@@ -13,8 +13,8 @@
   color: var(--ui-neutral-500);
   text-align: center;
   transition:
-    color 0.15s var(--ease-glide),
-    border-color 0.15s var(--ease-glide);
+    color var(--ease-glide-2),
+    border-color var(--ease-glide-2);
 
   > svg {
     width: 1.75rem;

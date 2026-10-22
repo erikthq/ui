@@ -53,7 +53,7 @@
 
       position-anchor: --hovered-link;
 
-      transition: var(--ease-glide) 200ms;
+      transition: var(--ease-glide-3);
     }
 
     > label {
@@ -107,7 +107,7 @@
 
   [role="tabpanel"] {
     transition:
-      opacity 250ms var(--ease-glide),
+      opacity var(--ease-glide-3),
       display 50ms ease allow-discrete;
 
     display: none;

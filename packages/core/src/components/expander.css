@@ -7,7 +7,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     interpolate-size: allow-keywords;
-    transition: max-height 400ms var(--ease-glide);
+    transition: max-height var(--ease-glide-5);
   }
 
   > label {
@@ -32,7 +32,7 @@
       mask-position: center;
       width: 1rem;
       aspect-ratio: 1;
-      transition: transform 400ms var(--ease-glide);
+      transition: transform var(--ease-glide-5);
     }
   }
 }
@@ -42,7 +42,7 @@
   line-clamp: var(--lines, 3);
   max-height: calc(var(--lines, 3) * 1lh);
   transition:
-    max-height 400ms var(--ease-glide),
+    max-height var(--ease-glide-5),
     -webkit-line-clamp 0s 400ms allow-discrete,
     line-clamp 0s 400ms allow-discrete;
 }
@@ -52,7 +52,7 @@
   line-clamp: none;
   max-height: max-content;
   transition:
-    max-height 400ms var(--ease-glide),
+    max-height var(--ease-glide-5),
     -webkit-line-clamp 0s allow-discrete,
     line-clamp 0s allow-discrete;
 }

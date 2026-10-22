@@ -11,7 +11,7 @@ details {
 
   &::details-content {
     transition:
-      block-size 300ms var(--ease-glide),
+      block-size var(--ease-glide-4),
       content-visibility 200ms allow-discrete;
     overflow: hidden;
     block-size: 0;
@@ -50,7 +50,7 @@ details {
       width: 1rem;
       aspect-ratio: 1;
       flex-shrink: 0;
-      transition: rotate 300ms var(--ease-glide);
+      transition: rotate var(--ease-glide-4);
     }
 
     @media (hover: hover) {

@@ -35,7 +35,7 @@
     filter: drop-shadow(0 4px 16px oklch(0% 0 0 / 0.08));
 
     transition:
-      translate 300ms var(--ease-glide),
+      translate var(--ease-glide-4),
       display 300ms allow-discrete,
       overlay 300ms allow-discrete;
   }

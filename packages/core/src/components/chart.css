@@ -99,7 +99,7 @@ table.chart {
           min-height: 3px;
           background: var(--chart-color);
           border-radius: var(--ui-rounded-full);
-          transition: height 0.3s var(--ease-glide);
+          transition: height var(--ease-glide-4);
         }
       }
     }

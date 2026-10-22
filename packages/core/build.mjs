@@ -28,10 +28,15 @@ async function buildCss() {
     sourceMap: true,
   });
 
+  const { version, homepage } = JSON.parse(await readFile(resolve(__dirname, "package.json"), "utf8"));
+  const banner = `/*! @erikt/ui v${version} | ${homepage} */\n`;
+
   const mapJson = JSON.parse(map.toString());
   mapJson.sources = mapJson.sources.map(s => relative(distDir, "/" + s));
+  // The banner adds a line above the code, so the mappings start one line down
+  mapJson.mappings = ";" + mapJson.mappings;
 
-  await writeFile(dest, code + "\n/*# sourceMappingURL=ui.css.map */");
+  await writeFile(dest, banner + code + "\n/*# sourceMappingURL=ui.css.map */");
   await writeFile(dest + ".map", JSON.stringify(mapJson));
   console.log("  dist/ui.css written");
 }

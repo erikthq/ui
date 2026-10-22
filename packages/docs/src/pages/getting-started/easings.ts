@@ -6,10 +6,14 @@ const toc = [
   { id: "ease-glide", label: "Glide" },
   { id: "ease-snap", label: "Snap" },
   { id: "ease-heavy", label: "Heavy" },
-  { id: "ease-in", label: "In" },
-  { id: "ease-out", label: "Out" },
-  { id: "ease-in-out", label: "In Out" },
+  { id: "standard", label: "Standard Curves" },
 ];
+
+const durations: Record<string, string[]> = {
+  glide: ["100ms", "150ms", "200ms", "300ms", "400ms"],
+  snap: ["400ms", "550ms", "750ms", "1000ms", "1300ms"],
+  heavy: ["600ms", "700ms", "850ms", "1000ms", "1200ms"],
+};
 
 const families = [
   "sine",
@@ -22,46 +26,75 @@ const families = [
   "back",
 ];
 
-function easingDemo(variable: string, label: string) {
-  return html`
-    <div style="width:100%">
-      <div class="easing-demo">
-        <div class="easing-track" style="container-type:inline-size">
-          <div
-            class="easing-dot"
-            style="transition-timing-function:${variable}"
-          ></div>
-        </div>
-      </div>
-      <p
-        style="color:var(--ui-neutral-400);font-size:0.8em;margin-top:var(--ui-spacing-1)"
-      >
-        ${label}
-      </p>
-    </div>
-  `;
-}
+const animateToggle = html`
+  <label class="easing-animate-toggle">
+    <input type="checkbox" class="switch" />
+    Animate
+  </label>
+`;
 
-async function directionGroup(direction: string) {
-  const varName = (family: string) => `--ease-${direction}-${family}`;
-  const codeLines = families
-    .map((f) => `  transition: transform 300ms var(${varName(f)});`)
-    .join("\n");
+async function curveSection(name: string, title: string, description: string) {
   return html`
+    <div class="prose">
+      <h2 id="ease-${name}">${title}</h2>
+      <p>${description}</p>
+      <p>
+        The <code>--ease-${name}-*</code> variables pair ${name} with a set
+        duration. Put the property in front.
+      </p>
+      <table class="align-left">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${durations[name].map(
+            (duration, i) => html`
+              <tr>
+                <td><code>--ease-${name}-${i + 1}</code></td>
+                <td><code>${duration} var(--ease-${name})</code></td>
+              </tr>
+            `,
+          )}
+        </tbody>
+      </table>
+    </div>
     <div class="example">
       <div
-        class="preview preview-padded"
+        class="preview preview-padded easing-preview"
         style="display:flex;flex-direction:column;gap:var(--ui-spacing-4)"
       >
-        ${families.map(
-          (f) =>
-            html`<div style="width:100%">
-              ${easingDemo(`var(${varName(f)})`, f)}
-            </div>`,
+        ${animateToggle}
+        ${durations[name].map(
+          (_, i) => html`
+            <div style="width:100%">
+              <div class="easing-demo">
+                <div class="easing-track" style="container-type:inline-size">
+                  <div
+                    class="easing-dot"
+                    style="transition:translate var(--ease-${name}-${i + 1})"
+                  ></div>
+                </div>
+              </div>
+              <p
+                style="color:var(--ui-neutral-400);font-size:0.8em;margin-top:var(--ui-spacing-1);text-align:center"
+              >
+                ${name}-${i + 1}
+              </p>
+            </div>
+          `,
         )}
       </div>
       <div class="code-block">
-        ${raw(await highlight(`.element {\n${codeLines}\n}`, 80, "css"))}
+        ${raw(
+          await highlight(
+            `.element {\n  transition: opacity var(--ease-${name}-3);\n}\n\n/* several properties */\n.element {\n  transition:\n    opacity var(--ease-${name}-3),\n    translate var(--ease-${name}-4);\n}\n\n/* your own duration */\n.element {\n  transition: transform 300ms var(--ease-${name});\n}`,
+            80,
+            "css",
+          ),
+        )}
       </div>
     </div>
   `;
@@ -81,88 +114,51 @@ export async function EasingsPage(path: string) {
           </p>
         </hgroup>
       </div>
-      <label class="easings-animate-toggle">
-        <input type="checkbox" class="switch" />
-        Animate
-      </label>
+
+      ${await curveSection(
+        "glide",
+        "Glide",
+        "Slows down gently and lands soft. The default choice for drawers, modals, and anything that expands.",
+      )}
+      ${await curveSection(
+        "snap",
+        "Snap",
+        "Leaves fast, overshoots a little, settles. Good for toggles and selections, where the response should feel immediate.",
+      )}
+      ${await curveSection(
+        "heavy",
+        "Heavy",
+        "A big elastic overshoot. It draws the eye, which is exactly why one per screen is plenty.",
+      )}
 
       <div class="prose">
-        <h2 id="ease-glide">Glide</h2>
+        <h2 id="standard">Standard Curves</h2>
         <p>
-          Slows down gently and lands soft. The default choice for drawers,
-          modals, and anything that expands.
+          The classic curves, from gentle (sine) to strong (expo), in three
+          directions. <em>In</em> starts slow and speeds up. <em>Out</em>
+          starts fast and slows down. <em>In out</em> is slow at both ends.
         </p>
+        <table class="align-left">
+          <thead>
+            <tr>
+              <th>In</th>
+              <th>Out</th>
+              <th>In out</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${families.map(
+              (f) => html`
+                <tr>
+                  <td><code>--ease-in-${f}</code></td>
+                  <td><code>--ease-out-${f}</code></td>
+                  <td><code>--ease-in-out-${f}</code></td>
+                </tr>
+              `,
+            )}
+          </tbody>
+        </table>
       </div>
-      <div class="example">
-        <div class="preview">${easingDemo("var(--ease-glide)", "glide")}</div>
-        <div class="code-block">
-          ${raw(
-            await highlight(
-              `.element {\n  transition: transform 300ms var(--ease-glide);\n}`,
-              80,
-              "css",
-            ),
-          )}
-        </div>
-      </div>
-
-      <div class="prose">
-        <h2 id="ease-snap">Snap</h2>
-        <p>
-          Leaves fast, overshoots a little, settles. Good for toggles and
-          selections, where the response should feel immediate.
-        </p>
-      </div>
-      <div class="example">
-        <div class="preview">${easingDemo("var(--ease-snap)", "snap")}</div>
-        <div class="code-block">
-          ${raw(
-            await highlight(
-              `.element {\n  transition: transform 300ms var(--ease-snap);\n}`,
-              80,
-              "css",
-            ),
-          )}
-        </div>
-      </div>
-
-      <div class="prose">
-        <h2 id="ease-heavy">Heavy</h2>
-        <p>
-          A big elastic overshoot. It draws the eye, which is exactly why one
-          per screen is plenty.
-        </p>
-      </div>
-      <div class="example">
-        <div class="preview">${easingDemo("var(--ease-heavy)", "heavy")}</div>
-        <div class="code-block">
-          ${raw(
-            await highlight(
-              `.element {\n  transition: transform 300ms var(--ease-heavy);\n}`,
-              80,
-              "css",
-            ),
-          )}
-        </div>
-      </div>
-
-      <div class="prose">
-        <h2 id="ease-in">In</h2>
-        <p>Starts slow, accelerates toward the end.</p>
-      </div>
-      ${await directionGroup("in")}
-
-      <div class="prose">
-        <h2 id="ease-out">Out</h2>
-        <p>Starts fast, decelerates toward the end.</p>
-      </div>
-      ${await directionGroup("out")}
-
-      <div class="prose">
-        <h2 id="ease-in-out">In Out</h2>
-        <p>Slow at both ends, fast in the middle.</p>
-      </div>
-      ${await directionGroup("in-out")}
     `,
   });
 }

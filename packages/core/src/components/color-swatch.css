@@ -33,12 +33,12 @@ fieldset.color-swatch {
     mask-image: radial-gradient(black, black var(--mask-position), transparent var(--mask-position), transparent 59%, black 59%);
 
     transition:
-      scale 100ms var(--ease-glide),
+      scale var(--ease-glide-1),
       translate 100ms ease-out,
-      --mask-position var(--mask-transition, 200ms var(--ease-glide));
+      --mask-position var(--mask-transition, var(--ease-glide-3));
 
     &:checked {
-      --mask-transition: 500ms var(--ease-snap);
+      --mask-transition: var(--ease-snap-2);
       --mask-position: 50%;
 
       background:

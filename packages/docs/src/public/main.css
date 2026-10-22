@@ -27,7 +27,6 @@ body {
   --toc-w: 0px;
   --header-h: 56px;
   --border: var(--ui-neutral-200);
-  --bg-subtle: var(--ui-neutral-100);
   --code-bg: #24292e; /* github-dark background */
 
   scroll-behavior: smooth;
@@ -194,17 +193,19 @@ body {
 }
 
 /* Easing demos */
-.easings-animate-toggle {
-  position: sticky;
-  top: var(--header-h);
-  z-index: 10;
+.easing-preview {
+  position: relative;
+}
+
+.easing-animate-toggle {
+  position: absolute;
+  top: var(--ui-spacing-3);
+  right: var(--ui-spacing-3);
   display: flex;
   align-items: center;
-  gap: var(--ui-spacing-3);
-  padding: var(--ui-spacing-3) var(--ui-spacing-4);
-  margin-inline: calc(var(--ui-spacing-4) * -1);
-  background: var(--ui-background-color);
-  border-bottom: 1px solid var(--border);
+  gap: var(--ui-spacing-2);
+  font-size: 0.8em;
+  color: var(--ui-neutral-500);
 }
 
 .easing-demo {
@@ -212,9 +213,10 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 0.75rem;
-  background: var(--bg-subtle);
-  border-radius: 8px;
-  width: 100%;
+  background: var(--ui-neutral-100);
+  border-radius: var(--ui-rounded-5);
+  width: min(200px, 100%);
+  margin: auto;
 }
 
 .easing-track {
@@ -229,7 +231,7 @@ body {
   transition: translate 600ms linear;
 }
 
-.docs-content:has(.switch:checked) .easing-dot {
+.easing-preview:has(.switch:checked) .easing-dot {
   translate: calc(100cqi - 2rem) 0;
 }
 

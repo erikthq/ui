@@ -36,9 +36,7 @@ input:not([type]) {
   font: inherit;
   line-height: calc((16 / 14) * 1rem);
 
-  transition-property: padding-inline-start;
-  transition-duration: 150ms;
-  transition-timing-function: var(--ease-glide);
+  transition: padding-inline-start var(--ease-glide-2);
 
   @media (width < 600px) {
     font-size: 16px;
@@ -95,7 +93,7 @@ label:not(.toggle):has(> [data-prefix], > [data-suffix]) {
   > [data-prefix] {
     grid-column: 1;
     margin-inline: var(--ui-spacing-3) var(--ui-spacing-2);
-    transition: opacity 150ms var(--ease-glide);
+    transition: opacity var(--ease-glide-2);
   }
 
   > [data-suffix]:last-child {
@@ -135,7 +133,7 @@ label:not(.toggle):has(> [data-prefix], > [data-suffix]) {
     mask-repeat: no-repeat;
     margin-inline: var(--ui-spacing-3) var(--ui-spacing-2);
     opacity: 0;
-    transition: opacity 150ms var(--ease-glide);
+    transition: opacity var(--ease-glide-2);
   }
 
   &:has(> input[aria-busy]:not([aria-busy="false"])) {
@@ -175,7 +173,7 @@ label:not(.toggle):not(:has(> [data-prefix], > [data-suffix])):has(> input[aria-
     mask-size: contain;
     mask-repeat: no-repeat;
     margin-inline: var(--ui-spacing-3) var(--ui-spacing-2);
-    transition: opacity 150ms var(--ease-glide);
+    transition: opacity var(--ease-glide-2);
 
     @starting-style {
       opacity: 0;

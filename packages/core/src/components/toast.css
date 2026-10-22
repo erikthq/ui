@@ -22,9 +22,9 @@
   translate: var(--_translate-from);
   scale: var(--_scale-from);
   transition:
-    opacity 200ms var(--ease-glide),
-    translate 600ms var(--ease-snap),
-    scale 200ms var(--ease-glide),
+    opacity var(--ease-glide-3),
+    translate var(--ease-snap-2),
+    scale var(--ease-glide-3),
     display 200ms allow-discrete,
     overlay 200ms allow-discrete;
 

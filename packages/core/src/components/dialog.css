@@ -21,8 +21,8 @@ dialog {
   opacity: 0;
   translate: 0 4px;
   transition:
-    opacity 300ms var(--ease-glide),
-    translate 300ms var(--ease-glide),
+    opacity var(--ease-glide-4),
+    translate var(--ease-glide-4),
     display 300ms allow-discrete,
     overlay 300ms allow-discrete;
 
@@ -44,7 +44,7 @@ dialog {
     background: oklch(0% 0 0 / 0.4);
     backdrop-filter: blur(2px);
     transition:
-      opacity 200ms var(--ease-glide),
+      opacity var(--ease-glide-3),
       display 200ms allow-discrete,
       overlay 200ms allow-discrete;
   }

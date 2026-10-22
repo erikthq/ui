@@ -37,8 +37,8 @@
     opacity: 1;
     translate: 0 0;
     transition:
-      opacity 150ms var(--ease-glide),
-      translate 150ms var(--ease-glide),
+      opacity var(--ease-glide-2),
+      translate var(--ease-glide-2),
       display 150ms allow-discrete;
   }
 

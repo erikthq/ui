@@ -22,7 +22,7 @@
     padding-inline-start: calc(var(--ui-timeline-dot) + var(--ui-spacing-4));
     color: var(--ui-text-color);
 
-    animation: --ui-timeline-ring 300ms var(--ease-glide);
+    animation: --ui-timeline-ring var(--ease-glide-4);
 
     /* The dot. It paints over the connector, so the line can run behind it. */
     &::before {
@@ -38,7 +38,7 @@
       border: var(--ui-timeline-ring) solid var(--ui-timeline-color);
       background-color: Canvas;
 
-      transition: background-color 300ms var(--ease-glide);
+      transition: background-color var(--ease-glide-4);
     }
 
     &[aria-busy]:not([aria-busy="false"])::before {
@@ -66,7 +66,7 @@
       width: var(--ui-timeline-line);
       height: calc(100% + var(--ui-timeline-gap));
       background-color: var(--ui-neutral-200);
-      transition: height 400ms var(--ease-glide);
+      transition: height var(--ease-glide-5);
     }
 
     &:last-child::after {

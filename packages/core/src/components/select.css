@@ -84,7 +84,7 @@ select {
 
   /* Chevron rotation when open */
   select > button > svg:last-child {
-    transition: rotate 100ms var(--ease-glide);
+    transition: rotate var(--ease-glide-1);
   }
 
   select:open > button > svg:last-child {
@@ -108,8 +108,8 @@ select {
     opacity: 0;
     translate: 0 -2px;
     transition:
-      opacity 100ms var(--ease-glide),
-      translate 100ms var(--ease-glide),
+      opacity var(--ease-glide-1),
+      translate var(--ease-glide-1),
       display 100ms allow-discrete,
       overlay 100ms allow-discrete;
   }

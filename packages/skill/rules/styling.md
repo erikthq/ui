@@ -4,6 +4,8 @@
 
 - Use tokens, not raw values
 - Radius uses the rounded scale
+- Shadows use tokens
+- Transitions use the ease variables
 - CSS is for layout
 - Change things once
 - No `!important`
@@ -78,12 +80,12 @@ Don't use `border-radius: 50%` or a large pixel value for circles. Those ignore 
 
 ### Nested corners
 
-Two steps next to each other differ by `--ui-spacing-1` at the default scale. To nest a rounded box in another, pad the outer box by the difference between the two steps. The corners then run parallel.
+Two steps next to each other differ by `--ui-spacing-1` times `--ui-rounded-scale`. To nest a rounded box in another, pad the outer box by the difference between the two steps. The corners then run parallel.
 
 ```css
 .outer {
   border-radius: var(--ui-rounded-5);
-  padding: var(--ui-spacing-3); /* 5 - 2 = 3 */
+  padding: calc(var(--ui-spacing-3) * var(--ui-rounded-scale)); /* 5 - 2 = 3 */
 }
 .inner {
   border-radius: var(--ui-rounded-2);
@@ -102,7 +104,7 @@ To make the whole UI rounder or sharper, set `--ui-rounded-scale` on `:root`. Do
 
 | Property | Default | Effect |
 | --- | --- | --- |
-| `--ui-rounded-scale` | `1` | Multiplies every step and `--ui-rounded-full`. `0` is square, `2` is twice as round |
+| `--ui-rounded-scale` | `1.75` | Multiplies every step and `--ui-rounded-full`. `0` is square |
 | `--ui-rounded` | `2px` | The seed that every step starts from |
 
 The library computes the steps on `:root`. Setting `--ui-rounded-scale` or `--ui-rounded` on a smaller element does nothing, unless that element has `data-ui-theme` (see [Scoped themes](#scoped-themes)). Without it, set the steps there:
@@ -116,9 +118,87 @@ The library computes the steps on `:root`. Setting `--ui-rounded-scale` or `--ui
 
 ---
 
+## Shadows use tokens
+
+Shadows go from `--ui-shadow-1` (smallest) to `--ui-shadow-5` (largest). `--ui-shadow-inset-1` to `-3` make a surface look pressed in. `--ui-shadow-shiny-1` to `-3` add a lit rim and look glossy. Each `-0` is no shadow.
+
+Every token has a class with the same name, without `--ui-`: `.shadow-2`, `.shadow-inset-1`, `.shadow-shiny-3`. Use the class on an element that has no CSS of its own.
+
+**Incorrect:**
+
+```css
+.panel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.panel:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+```
+
+**Correct:**
+
+```css
+.panel {
+  box-shadow: var(--ui-shadow-2);
+  transition: box-shadow var(--ease-glide-3);
+}
+.panel:hover {
+  box-shadow: var(--ui-shadow-4);
+}
+```
+
+- Every shadow has the same four layers, so one animates into another. To animate in from nothing, start at `--ui-shadow-0`, not `none`.
+- Tint shadows with `--ui-shadow-color` on `:root` or on any parent. Tint the shine of the shiny shadows with `--ui-shadow-shine-color`.
+- To add your own layer, put it after the token, separated by a comma. Give both states of a transition the same number of layers.
+
+---
+
+## Transitions use the ease variables
+
+Each curve has five ready-made pairs of duration and curve. Put the property in front. Don't add a duration, the variable has one.
+
+| Curve | Variables | Durations | Use for |
+| --- | --- | --- | --- |
+| Glide | `--ease-glide-1` to `-5` | `100ms`, `150ms`, `200ms`, `300ms`, `400ms` | The default. Hover states, popovers, dialogs, drawers |
+| Snap | `--ease-snap-1` to `-5` | `400ms`, `550ms`, `750ms`, `1000ms`, `1300ms` | Small overshoot. Toasts, toggles, selections |
+| Heavy | `--ease-heavy-1` to `-5` | `600ms`, `700ms`, `850ms`, `1000ms`, `1200ms` | Big elastic overshoot. One per screen at most |
+
+**Incorrect:**
+
+```css
+.panel {
+  transition: opacity 200ms ease-out, translate 300ms ease-out;
+}
+```
+
+**Correct:**
+
+```css
+.panel {
+  transition:
+    opacity var(--ease-glide-3),
+    translate var(--ease-glide-4);
+}
+```
+
+For a duration that isn't in the list, use the curve alone: `transition: opacity 250ms var(--ease-glide)`. For longhands like `animation-timing-function`, also use the curve alone.
+
+The classic curves are there too: `--ease-in-*`, `--ease-out-*` and `--ease-in-out-*`, each in `sine`, `quad`, `cubic`, `quart`, `quint`, `expo`, `circ` and `back`.
+
+---
+
 ## CSS is for layout
 
-erikt/ui has no layout utilities. Write `flex` and `grid` yourself. Leave the look of components alone.
+Write `flex` and `grid` yourself, or use the flow helpers below. Leave the look of components alone.
+
+| Class | Does |
+| --- | --- |
+| `.flex`, `.flex-col` | A row or a column |
+| `.flex-center`, `.flex-col-center` | Centered on both axes. Add `-x` or `-y` to center on one axis only |
+| `.grid` | A grid |
+| `.gap-1` to `.gap-8` | The gap, from `--ui-spacing-1` to `--ui-spacing-8` |
+
+For anything else, like columns or wrapping, write the CSS.
 
 **Incorrect:**
 
@@ -131,7 +211,7 @@ erikt/ui has no layout utilities. Write `flex` and `grid` yourself. Leave the lo
 **Correct:**
 
 ```html
-<div style="display: flex; gap: var(--ui-spacing-2)">
+<div class="flex gap-2">
   <button>Save</button>
 </div>
 ```
@@ -281,6 +361,10 @@ Some components read their own variables. Set them on the element, not on `:root
 | Spacing | `--ui-spacing` (base, `0.25em`), `--ui-spacing-1` to `--ui-spacing-8` |
 | Radius | `--ui-rounded-scale` (multiplier, `1`), `--ui-rounded` (seed, `2px`), `--ui-rounded-1` to `--ui-rounded-8`, `--ui-rounded-full` (pills and circles). Controls use `-3`, cards and dialogs `-5` |
 | Surface | `--ui-background-color`, `--ui-text-color` |
+| Text size | `--ui-text-xs`, `-sm`, `-base`, `-lg`, `-xl`, `-2xl` to `-9xl`. Classes `.text-xs` to `.text-9xl`, with `md:` and `lg:` prefixes |
+| Shadow | `--ui-shadow-0` to `-5`, `--ui-shadow-inset-0` to `-3`, `--ui-shadow-shiny-0` to `-3`. Color: `--ui-shadow-color`, `--ui-shadow-shine-color` |
+| Classic easing | `--ease-in-*`, `--ease-out-*`, `--ease-in-out-*` in `sine`, `quad`, `cubic`, `quart`, `quint`, `expo`, `circ`, `back` |
 | Easing | `--ease-glide`, `--ease-snap`, `--ease-heavy` |
+| Transition | `--ease-glide-1` to `-5`, `--ease-snap-1` to `-5`, `--ease-heavy-1` to `-5` (duration + curve). Use as `transition: opacity var(--ease-glide-3)` |
 
 Use `--ui-neutral-500` for muted text and `--ui-neutral-200` or `-300` for borders.

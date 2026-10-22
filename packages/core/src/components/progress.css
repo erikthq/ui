@@ -93,7 +93,7 @@ progress.round {
     transparent calc(100% - var(--thickness) - 0.5px),
     black calc(100% - var(--thickness))
   );
-  transition: --ui-progress-fill 400ms var(--ease-glide);
+  transition: --ui-progress-fill var(--ease-glide-5);
 
   @supports (width: attr(x type(<length>))) {
     --ui-progress-fill: min(

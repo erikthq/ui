@@ -34,7 +34,7 @@ nav[aria-label="Breadcrumb"] {
   a {
     color: inherit;
     text-decoration: none;
-    transition: color 150ms var(--ease-glide);
+    transition: color var(--ease-glide-2);
 
     &:hover {
       color: var(--ui-neutral-950);

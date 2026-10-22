@@ -98,4 +98,23 @@
   --ease-in-back: cubic-bezier(0.36, 0, 0.66, -0.56);
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+  /* transitions */
+  --ease-glide-1: 100ms var(--ease-glide);
+  --ease-glide-2: 150ms var(--ease-glide);
+  --ease-glide-3: 200ms var(--ease-glide);
+  --ease-glide-4: 300ms var(--ease-glide);
+  --ease-glide-5: 400ms var(--ease-glide);
+
+  --ease-snap-1: 400ms var(--ease-snap);
+  --ease-snap-2: 550ms var(--ease-snap);
+  --ease-snap-3: 750ms var(--ease-snap);
+  --ease-snap-4: 1000ms var(--ease-snap);
+  --ease-snap-5: 1300ms var(--ease-snap);
+
+  --ease-heavy-1: 600ms var(--ease-heavy);
+  --ease-heavy-2: 700ms var(--ease-heavy);
+  --ease-heavy-3: 850ms var(--ease-heavy);
+  --ease-heavy-4: 1000ms var(--ease-heavy);
+  --ease-heavy-5: 1200ms var(--ease-heavy);
 }

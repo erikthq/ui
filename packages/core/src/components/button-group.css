@@ -18,11 +18,21 @@ fieldset[role="group"]:not(.color-swatch) {
 
     &:first-child {
       border-radius: var(--ui-rounded-3) 0 0 var(--ui-rounded-3);
+      padding-inline-end: var(--ui-spacing-3);
+      
+      &.round, &.square {
+        padding-inline-end: var(--ui-spacing-2);
+      }
     }
 
     &:last-child {
       border-radius: 0 var(--ui-rounded-3) var(--ui-rounded-3) 0;
       margin-right: 0;
+      padding-inline-start: var(--ui-spacing-3);
+
+      &.round, &.square {
+        padding-inline-start: var(--ui-spacing-2);
+      }
     }
 
     &:hover,
@@ -99,7 +109,7 @@ fieldset[role="group"]:has(> label.toggle > input[type="radio"]) {
     background-color: var(--ui-neutral-50);
     pointer-events: none;
 
-    transition: var(--ease-glide) 200ms;
+    transition: var(--ease-glide-3);
   }
 }
 

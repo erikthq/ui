@@ -16,7 +16,7 @@ label:not(.field).toggle {
     background-color 100ms,
     box-shadow 100ms,
     color 100ms,
-    grid-template-columns var(--toggle-duration) var(--ease-glide);
+    grid-template-columns var(--ease-glide-2);
 
   --toggle-duration: 150ms;
 

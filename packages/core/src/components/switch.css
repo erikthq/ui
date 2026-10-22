@@ -32,7 +32,7 @@ input[type="checkbox"].switch {
     margin-inline: 1px;
     border-radius: var(--ui-rounded-full-fixed);
     background-color: var(--ui-background-color);
-    transition: left 300ms var(--ease-glide);
+    transition: left var(--ease-glide-4);
   }
 
   &:checked {

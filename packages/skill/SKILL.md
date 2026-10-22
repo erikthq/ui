@@ -18,7 +18,7 @@ Full docs live at https://ui.erikt.me. Every component has a page at `https://ui
 1. **Pick the right element first.** Most components are a native element. Card is `<article>`, accordion is `<details>`, separator is `<hr>`, progress is `<progress>`.
 2. **Compose, don't reinvent.** A settings page is tabs, cards and fields. A row menu is a ghost button plus a popover with a `<menu>`.
 3. **Use built-in variants before custom styles.** `class="outlined"`, `class="ghost destructive"`, `class="badge constructive"`.
-4. **Write CSS for layout only.** erikt/ui has no layout utilities on purpose. Use `flex` and `grid` to arrange things. Leave colors, borders, padding and type to the library.
+4. **Write CSS for layout only.** Use `flex` and `grid` to arrange things. A few flow helpers (`.flex`, `.flex-col`, `.grid`, `.gap-1` to `.gap-8`) cover the common cases. Leave colors, borders, padding and type to the library.
 5. **Use the platform, not JavaScript.** Popover API for menus and toasts, `<dialog>` for modals, `<details>` for disclosure, radio inputs plus `:has()` for tabs.
 6. **Fit the project.** Write any extra code the way the project already does. JSX in React, Tailwind classes for layout in a Tailwind project. See [rules/frameworks.md](./rules/frameworks.md).
 
@@ -32,6 +32,8 @@ Each rule links to a file with incorrect and correct code.
 - **Change things once, on `:root`.** To match a brand, set seed variables like `--ui-primary` on `:root`. Don't put inline `style` overrides on each element.
 - **No `!important`.** erikt/ui lives in `@layer ui`. Any unlayered rule you write already wins.
 - **Spacing uses tokens.** `gap: var(--ui-spacing-4)`, not `gap: 13px`.
+- **Transitions use the ease variables.** `transition: opacity var(--ease-glide-3)` sets the duration and the curve. Don't write `200ms ease`.
+- **Shadows use tokens.** `box-shadow: var(--ui-shadow-2)`, or the class `.shadow-2`. Never a hand-written `box-shadow`.
 - **Radius uses the rounded scale.** `var(--ui-rounded-3)` for controls, `var(--ui-rounded-5)` for surfaces, `var(--ui-rounded-full)` for pills and circles. Never `px` values or `50%`.
 - **Change roundness with `--ui-rounded-scale` on `:root`.** `0` makes every corner square. Don't override each component's radius.
 - **Don't size icons.** SVGs are `1lh` square by default, so they match the text next to them. No `width`/`height` on icons inside buttons, badges or menus.
@@ -122,8 +124,8 @@ Each rule links to a file with incorrect and correct code.
 <span class="badge constructive">Active</span>
 <span class="badge destructive">Failed</span>
 
-<!-- Layout is plain CSS -->
-<div style="display: flex; gap: var(--ui-spacing-2)">...</div>
+<!-- Layout: flow helpers, or plain CSS -->
+<div class="flex gap-2">...</div>
 ```
 
 ## Component selection
@@ -175,6 +177,9 @@ Each rule links to a file with incorrect and correct code.
 | Keyboard shortcut | `<kbd>` | Shortcut hints in menus, buttons and search inputs |
 | Article text | `.prose`, `<hgroup>`, `<blockquote>` |  |
 | Chat messages | `ol.chat`: one `<li>` per turn, one `<p>` per bubble, `li.sent` for the current user, `p.typing` for the typing dots | Support chats, AI assistants, comment threads |
+| Elevation | `.shadow-1` to `.shadow-5`, `.shadow-inset-1` to `-3`, `.shadow-shiny-1` to `-3`. Or `var(--ui-shadow-*)` in CSS | Raised cards, wells, glossy buttons |
+| Text size | `.text-xs` to `.text-9xl`. Responsive with `md:` (600px) and `lg:` (1200px), like `text-2xl md:text-4xl` | Hero titles, stat numbers, fine print |
+| Row, column or grid | Flow helpers: `.flex`, `.flex-col`, `.flex-center`, `.grid`, `.gap-1` to `.gap-8` | Button rows, centered empty states |
 | Divider | `<hr>`. With a label: `<hr data-label="...">` | "OR" between login options, section breaks in menus and cards |
 | Scrolling logos or tags | `div.marquee` |  |
 | Bar chart | `<table class="chart">` |  |
@@ -208,9 +213,10 @@ Override seed variables on `:root`. Every color scale (50 to 950) derives from i
   --ui-constructive: #5dbb55; /* success */
   --ui-destructive: #ef5655; /* danger */
   --ui-color1: crimson; /* accents, color1 to color6 */
-  --ui-rounded-scale: 1; /* 0 = square, 2 = twice as round */
+  --ui-rounded-scale: 1.75; /* default. 0 = square, 2 = twice the base */
   --ui-rounded: 2px; /* seed for --ui-rounded-1 to -8 */
   --ui-spacing: 0.25em; /* base step for --ui-spacing-1 to -8 */
+  --ui-shadow-color: oklch(0% 0 0 / 0.12); /* tints every shadow */
 }
 ```
 
@@ -235,6 +241,6 @@ More in [rules/styling.md](./rules/styling.md).
 - [rules/forms.md](./rules/forms.md): field, validation, prefix and suffix, fieldsets, switches, toggle groups, select
 - [rules/composition.md](./rules/composition.md): card, alert, badge, empty, loading, buttons vs links, tabs, typography, heading group
 - [rules/overlays.md](./rules/overlays.md): popover, menu, dialog, drawer, tooltip, toast
-- [rules/styling.md](./rules/styling.md): tokens, radius scale, layout, overrides, icons, dark mode
+- [rules/styling.md](./rules/styling.md): tokens, radius scale, shadows, transitions, text sizes, layout, overrides, icons, dark mode
 - [rules/recipes.md](./rules/recipes.md): login card, settings page, confirmation modal, table with toolbar, stat tiles, pricing card
 - [rules/frameworks.md](./rules/frameworks.md): React, Vue, Svelte and Tailwind

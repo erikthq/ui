@@ -50,7 +50,7 @@
     mask-size: contain;
 
     filter: drop-shadow(0 1px 3px oklch(0% 0 0 / 0.5));
-    transition: opacity 150ms var(--ease-glide);
+    transition: opacity var(--ease-glide-2);
 
     @media (hover: hover) {
       &:hover {
@@ -100,8 +100,8 @@
     border-radius: var(--ui-rounded-full);
     background-color: var(--ui-neutral-200);
     transition:
-      background-color 150ms var(--ease-glide),
-      scale 150ms var(--ease-glide);
+      background-color var(--ease-glide-2),
+      scale var(--ease-glide-2);
   }
 
   li::scroll-marker:target-current {

@@ -6,7 +6,7 @@ label:has(> .badge):has(> input[type="checkbox"], > input[type="radio"]) {
   cursor: pointer;
   user-select: none;
   border-radius: var(--ui-rounded-full);
-  transition: box-shadow 200ms var(--ease-glide);
+  transition: box-shadow var(--ease-glide-3);
 
   > input[type="checkbox"],
   > input[type="radio"] {

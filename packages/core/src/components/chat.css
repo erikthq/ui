@@ -63,7 +63,7 @@
     }
 
     &.me {
-      animation: ui-chat-message 600ms var(--ease-snap);
+      animation: ui-chat-message var(--ease-snap-2);
 
       background-color: var(--ui-primary);
       color: var(--ui-primary-fg, contrast-color(color-mix(var(--ui-primary), black 15%)));
@@ -126,7 +126,7 @@
       opacity: 0;
       visibility: hidden;
       transition:
-        opacity 200ms var(--ease-glide),
+        opacity var(--ease-glide-3),
         visibility 200ms allow-discrete;
 
       /*
