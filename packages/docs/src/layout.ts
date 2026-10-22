@@ -135,12 +135,6 @@ export const utilities: { label: string; path: string; description: string }[] =
       description:
         "Copy text or an element's content to the clipboard from a CSS selector or a literal string.",
     },
-    {
-      label: "Text Morph",
-      path: "/utilities/text-morph",
-      description:
-        "Animate text when it changes. Shared letters slide, the others fade.",
-    },
   ];
 
 export const components: {

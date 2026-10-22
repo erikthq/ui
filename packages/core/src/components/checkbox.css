@@ -28,7 +28,7 @@ input[type="checkbox"]:not(:where(.color-swatch *)) {
     box-shadow 100ms;
 
   @media (width < 600px) {
-    width: 20px;
+    width: 18px;
     border-radius: 6px;
   }
 

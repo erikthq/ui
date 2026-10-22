@@ -62,7 +62,6 @@
     "./tabs.css": "./dist/components/tabs.css",
     "./tag-group.css": "./dist/components/tag-group.css",
     "./text-field.css": "./dist/components/text-field.css",
-    "./text-morph.css": "./dist/components/text-morph.css",
     "./text.css": "./dist/components/text.css",
     "./textarea.css": "./dist/components/textarea.css",
     "./timeline.css": "./dist/components/timeline.css",

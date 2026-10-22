@@ -27,7 +27,7 @@ input[type="radio"] {
     box-shadow 100ms;
 
   @media (width < 600px) {
-    width: 20px;
+    width: 18px;
   }
 
   &:checked:not(.color-swatch &) {

@@ -12,7 +12,7 @@ export function SchemePicker(props?: { mobile: boolean }) {
       <label class="toggle square" aria-label="Light" data-tooltip="bottom">
         <input
           type="radio"
-          name="theme"
+          name="${props?.mobile ? "theme-mobile" : "theme"}"
           value="light"
           :checked="scheme === 'light'"
           @change="scheme = $event.target.value"
@@ -22,7 +22,7 @@ export function SchemePicker(props?: { mobile: boolean }) {
       <label class="toggle square" aria-label="Dark" data-tooltip="bottom">
         <input
           type="radio"
-          name="theme"
+          name="${props?.mobile ? "theme-mobile" : "theme"}"
           value="dark"
           :checked="scheme === 'dark'"
           @change="scheme = $event.target.value"
@@ -32,7 +32,7 @@ export function SchemePicker(props?: { mobile: boolean }) {
       <label class="toggle square" aria-label="System" data-tooltip="bottom">
         <input
           type="radio"
-          name="theme"
+          name="${props?.mobile ? "theme-mobile" : "theme"}"
           value="system"
           :checked="scheme === 'system'"
           @change="scheme = 'system'"

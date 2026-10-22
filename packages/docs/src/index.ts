@@ -84,7 +84,6 @@ import { LlmsPage } from './pages/llms'
 import { SkillsPage } from './pages/getting-started/skills'
 import { RelativeTimePage } from './pages/utilities/relative-time'
 import { CopyToClipboardPage } from './pages/utilities/copy-to-clipboard'
-import { TextMorphPage } from './pages/utilities/text-morph'
 
 const app = new Hono()
 
@@ -177,6 +176,5 @@ app.get('/llms.txt', (c) => c.text(LlmsPage()))
 app.get('/getting-started/skills', (c) => c.html(SkillsPage(c.req.path)))
 app.get('/utilities/relative-time', (c) => c.html(RelativeTimePage(c.req.path)))
 app.get('/utilities/copy-to-clipboard', (c) => c.html(CopyToClipboardPage(c.req.path)))
-app.get('/utilities/text-morph', (c) => c.html(TextMorphPage(c.req.path)))
 
 export default app
