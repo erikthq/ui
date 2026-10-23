@@ -29,6 +29,7 @@ input[type="checkbox"]:not(:where(.color-swatch *)) {
 
   @media (width < 600px) {
     width: 18px;
+    height: 18px;
     border-radius: 6px;
   }
 

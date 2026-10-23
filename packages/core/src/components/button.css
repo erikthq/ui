@@ -60,13 +60,9 @@ button,
     flex-shrink: 0;
   }
 
-  kbd {
-    padding-block: 0;
-    padding-inline: var(--ui-spacing);
-    margin-left: auto;
-  }
-
+  kbd,
   .badge {
+    margin-right: calc((var(--ui-spacing-1) * clamp(0, var(--ui-rounded-scale) * 0.75, 1.3)) * -1);
     margin-left: auto;
   }
 
@@ -166,17 +162,22 @@ button,
   &.link {
     background-color: transparent;
     text-decoration: underline;
+    text-decoration-color: transparent;
     color: var(--ui-neutral-950);
 
+    transition: text-decoration-color var(--ease-glide-2);
+    
     &:not(:disabled):not([aria-disabled="true"]) {
       @media (hover: hover) {
         &:hover {
           background-color: transparent;
+          text-decoration-color: currentColor;
         }
       }
-
+      
       &:active {
         background-color: transparent;
+        text-decoration-color: currentColor;
       }
     }
   }
