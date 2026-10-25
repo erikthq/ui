@@ -44,12 +44,6 @@
     }
   }
 
-  > article {
-    box-shadow:
-      0 0 0 1px var(--ui-neutral-100) inset,
-      0 12px 32px oklch(0% 0 0 / 0.14);
-  }
-
   /* bottom right (and the unset default) */
   &:is(:not([data-placement]), [data-placement="bottom right"]) {
     bottom: var(--ui-spacing-4);

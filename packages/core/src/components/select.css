@@ -102,7 +102,7 @@ select {
     border: 1px solid var(--ui-neutral-200);
     border-radius: calc(var(--ui-rounded-3) + var(--ui-spacing-1));
     background: var(--ui-background-color);
-    box-shadow: 0 4px 16px oklch(0% 0 0 / 0.08);
+    box-shadow: var(--ui-shadow-3);
     min-width: anchor-size(width);
 
     opacity: 0;

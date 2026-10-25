@@ -21,7 +21,7 @@
   position-try-fallbacks: --popover-right, --popover-above, --popover-above-right;
 
   /* visual */
-  box-shadow: 0 4px 16px oklch(0% 0 0 / 0.08);
+  box-shadow: var(--ui-shadow-3);
 
   &:not(:has(article)) {
     background: var(--ui-background-color);

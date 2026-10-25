@@ -21,6 +21,9 @@ export function MobileMenu(path: string) {
         height: stretch;
         margin: 0;
         max-width: none;
+        overscroll-behavior: contain;
+        height: 100dvh;
+        overflow-y: auto;
 
         &::backdrop {
           display: none;

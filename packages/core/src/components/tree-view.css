@@ -22,6 +22,7 @@
       user-select: none;
       text-decoration: none;
       padding-block: var(--ui-spacing-2);
+      font-weight: 500;
 
       &::after {
         order: -1;

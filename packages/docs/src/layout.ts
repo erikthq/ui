@@ -408,8 +408,6 @@ export const components: {
     path: "/components/tab-links",
     description:
       "Tab bar built from links, with a highlight that animates between pages.",
-    badge: "New",
-    badgeClass: "constructive",
   },
   {
     label: "Tabs",
@@ -693,9 +691,7 @@ async function header(path: string) {
           style="min-width: 150px"
           onclick="document.getElementById('search-dialog').showModal()"
         >
-          ${raw(icon('search'))}
-
-          Search
+          ${raw(icon("search"))} Search
 
           <kbd>⌘F</kbd>
         </button>

@@ -58,6 +58,10 @@ dialog {
       opacity: 0;
     }
   }
+
+  article:not(.secondary):not(.tertiary) {
+    box-shadow: var(--ui-shadow-1);
+  }
 }
 
 body:has(dialog[scroll-lock][open], details[scroll-lock][open]) {
