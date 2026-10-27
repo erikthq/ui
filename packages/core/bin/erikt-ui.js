@@ -75,6 +75,14 @@ function serveDocs() {
   ${dim("➜")}  ${dim("Press Ctrl+C to stop")}
 `);
   });
+
+  // Exit cleanly on Ctrl+C, so package runners like pnpm don't report the stop as a failure
+  for (const signal of ["SIGINT", "SIGTERM"]) {
+    process.on(signal, () => {
+      server.closeAllConnections();
+      server.close(() => process.exit(0));
+    });
+  }
 }
 
 const [command] = process.argv.slice(2);
