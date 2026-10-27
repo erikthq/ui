@@ -1,6 +1,6 @@
 {
   "name": "@erikt/ui",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "type": "module",
   "homepage": "https://ui.erikt.me",
   "exports": {
@@ -87,7 +87,7 @@
   "devDependencies": {
     "browserslist": "^4.28.1",
     "vite": "catalog:",
-    "docs": "workspace:*"
+    "@erikt/ui-docs": "workspace:*"
   },
   "prettier": {
     "printWidth": 200

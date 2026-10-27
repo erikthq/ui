@@ -97,23 +97,6 @@ export async function IntroPage(path: string) {
       </div>
 
       <div class="prose">
-        <h2 id="docs">Built in docs</h2>
-        <p>
-          When installing through npm, the package ships with a copy of these
-          docs, built for the installed version. They work offline and always
-          match the version in your project. Start the docs server and open
-          <a href="http://localhost:3456" target="_blank" rel="noopener"
-            >http://localhost:3456</a
-          >:
-        </p>
-      </div>
-      <div class="example">
-        <div class="code-block terminal">
-          ${raw(await highlight(`npx @erikt/ui docs`, 80, "bash"))}
-        </div>
-      </div>
-
-      <div class="prose">
         <h3>Theme</h3>
         <p>Optionally change the overall theme:</p>
       </div>
@@ -127,6 +110,23 @@ export async function IntroPage(path: string) {
               "css",
             ),
           )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="docs">Built in docs</h2>
+        <p>
+          When installing through npm, the package ships with a copy of these
+          docs, built for the installed version. They work offline and always
+          match the version in your project. Start the docs server and open
+          <a href="http://localhost:3456" target="_blank" rel="noopener"
+            >http://localhost:3456</a
+          >:
+        </p>
+      </div>
+      <div class="example">
+        <div class="code-block terminal">
+          ${raw(await highlight(`npx @erikt/ui docs`, 80, "bash"))}
         </div>
       </div>
 

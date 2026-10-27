@@ -16,12 +16,12 @@ importers:
 
   packages/core:
     devDependencies:
+      '@erikt/ui-docs':
+        specifier: workspace:*
+        version: link:../docs
       browserslist:
         specifier: ^4.28.1
         version: 4.28.1
-      docs:
-        specifier: workspace:*
-        version: link:../docs
       vite:
         specifier: 'catalog:'
         version: 8.0.2(@types/node@25.5.0)(jiti@2.6.1)
