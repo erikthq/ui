@@ -1,4 +1,4 @@
-import { mkdir, writeFile, copyFile, cp } from "node:fs/promises";
+import { mkdir, writeFile, copyFile, cp, readdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 
 const { default: app } = await import("../dist/.server/index.js");
@@ -94,6 +94,11 @@ const routes = [
 ];
 
 const outDir = new URL("../dist", import.meta.url).pathname;
+
+// Clear pages from earlier builds, keeping the server bundle this build just wrote
+for (const entry of await readdir(outDir)) {
+  if (entry !== ".server") await rm(join(outDir, entry), { recursive: true, force: true });
+}
 
 for (const route of routes) {
   const response = await app.fetch(new Request(`http://localhost${route}`));

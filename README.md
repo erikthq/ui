@@ -30,6 +30,14 @@ A couple of optional, dependency-free custom elements ship alongside the stylesh
 
 See the [docs](https://ui.erikt.me/utilities/relative-time) for usage.
 
+## Local docs
+
+The docs ship with the npm package. After installing, serve them on http://localhost:3456:
+
+```bash
+npx @erikt/ui docs
+```
+
 ## License
 
 MIT

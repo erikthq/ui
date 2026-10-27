@@ -38,7 +38,7 @@ bunx skills add erikthq/ui/packages/skill`,
       </div>
 
       <div class="example">
-        <div class="code-block">${raw(pnpmInstall)}</div>
+        <div class="code-block terminal">${raw(pnpmInstall)}</div>
       </div>
 
       <div class="prose">
@@ -46,7 +46,7 @@ bunx skills add erikthq/ui/packages/skill`,
       </div>
 
       <div class="example">
-        <div class="code-block">${raw(npmBunInstall)}</div>
+        <div class="code-block terminal">${raw(npmBunInstall)}</div>
       </div>
 
       <div class="prose">

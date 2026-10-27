@@ -11,7 +11,7 @@ packages/
   skill/     — Downloadable AI agent skill (SKILL.md), edited by hand
 ```
 
-`packages/core/dist/ui.css` (+ `.map`) is the built stylesheet. `dist/` is not committed. The readme's size badge reads the published file from jsDelivr. The build also writes one standalone file per component to `dist/components/`, the tokens to `dist/tokens.css`, the reset to `dist/reset.css`, and writes an exact `exports` entry per component to `package.json` (esm.sh does not resolve wildcard exports). npm publishes all of `dist/`.
+`packages/core/dist/ui.css` (+ `.map`) is the built stylesheet. `dist/` is not committed. The readme's size badge reads the published file from jsDelivr. The build also writes one standalone file per component to `dist/components/`, the tokens to `dist/tokens.css`, the reset to `dist/reset.css`, and writes an exact `exports` entry per component to `package.json` (esm.sh does not resolve wildcard exports). The core `build` script then builds the docs and runs `copy-docs.mjs`, which copies the `docs` package's exported `dist/` (a devDependency of core) into `dist/docs/`, so it ships on npm. Docs reads the built CSS from `../core/dist` by path and does not depend on `@erikt/ui`, which keeps the two packages from depending on each other. `packages/core/bin/erikt-ui.js` is the package's CLI: `npx @erikt/ui docs` serves `dist/docs` on http://localhost:3456 (override with `PORT`). npm publishes `bin/` and all of `dist/`.
 
 ## Dev commands
 
@@ -30,7 +30,7 @@ pnpm build      # Build + generate all static HTML pages
 From `packages/core`:
 
 ```bash
-pnpm build      # Bundle src/main.css → ../../main.css (minified)
+pnpm build      # Bundle src/main.css → dist/ (minified), build docs, copy them into dist/docs
 ```
 
 ## Core CSS (`packages/core/src/`)
@@ -118,6 +118,7 @@ export async function MyPage(path: string) {
 - `<div class="preview">` — renders the live component
 - `<div class="preview preview-padded">` — left-aligned, column layout
 - `<div class="code-block">` — syntax-highlighted code (use `highlight()`)
+- `<div class="code-block terminal">` — a code block styled as a terminal window, for shell commands (use `highlight(code, 80, "bash")`)
 - `highlight(code, lang?)` — Shiki syntax highlighter, defaults to HTML
 
 ## Generated files

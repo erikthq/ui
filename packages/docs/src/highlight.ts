@@ -29,5 +29,13 @@ export async function highlight(
     lang,
     themes: { light: "github-light", dark: "github-dark" },
     defaultColor: false,
+    // Lets the CSS pick the gutter per language (line numbers, or "$" for bash)
+    transformers: [
+      {
+        pre(node) {
+          node.properties["data-lang"] = lang;
+        },
+      },
+    ],
   });
 }

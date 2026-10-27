@@ -30,11 +30,8 @@ jobs:
 
       - run: pnpm install
 
-      - name: Build core CSS
+      - name: Build core CSS and docs
         run: pnpm --filter @erikt/ui build
-
-      - name: Build docs
-        run: pnpm --filter docs build
         env:
           BASE_URL: /
           SITE_URL: https://ui.erikt.me

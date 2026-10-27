@@ -41,6 +41,24 @@
   }
 }
 
+/* Shell commands get a "$" prompt instead of line numbers. Pseudo-element
+   content is left out of the copied text */
+.code-block pre[data-lang="bash"] {
+  padding-left: 1.25rem;
+
+  .line::before {
+    content: "$";
+    position: static;
+    display: inline-block;
+    width: auto;
+    margin-right: 1ch;
+  }
+
+  .line:empty::before {
+    content: none;
+  }
+}
+
 /* Shiki dual-theme */
 .shiki {
   background: transparent !important;
@@ -48,4 +66,29 @@
 
 .shiki span {
   color: light-dark(var(--shiki-light), var(--shiki-dark));
+}
+
+/* Terminal: a window title bar with traffic lights, for commands to run in a shell */
+.code-block.terminal {
+  --terminal-bar-height: 2.25rem;
+  --terminal-red: oklch(0.68 0.19 25);
+  --terminal-yellow: oklch(0.83 0.15 85);
+  --terminal-green: oklch(0.75 0.19 145);
+  background: var(--ui-neutral-50);
+
+  &::before {
+    content: "";
+    display: block;
+    height: var(--terminal-bar-height);
+    border-bottom: 1px solid var(--border);
+    background:
+      radial-gradient(circle closest-side, var(--terminal-red) 92%, transparent) 0.875rem 50% / 0.75rem 0.75rem no-repeat,
+      radial-gradient(circle closest-side, var(--terminal-yellow) 92%, transparent) 2.125rem 50% / 0.75rem 0.75rem no-repeat,
+      radial-gradient(circle closest-side, var(--terminal-green) 92%, transparent) 3.375rem 50% / 0.75rem 0.75rem no-repeat,
+      var(--ui-neutral-100);
+  }
+
+  .code-copy-btn {
+    top: calc(var(--terminal-bar-height) + 0.5rem);
+  }
 }

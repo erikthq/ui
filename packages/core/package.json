@@ -1,6 +1,6 @@
 {
   "name": "@erikt/ui",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "type": "module",
   "homepage": "https://ui.erikt.me",
   "exports": {
@@ -72,17 +72,22 @@
     "./elements": "./dist/elements.js"
   },
   "style": "./dist/ui.css",
+  "bin": {
+    "erikt-ui": "./bin/erikt-ui.js"
+  },
   "files": [
+    "bin",
     "dist",
     "README.md"
   ],
   "scripts": {
     "dev": "node build.mjs --watch",
-    "build": "node build.mjs"
+    "build": "node build.mjs && pnpm -C ../docs build && node copy-docs.mjs"
   },
   "devDependencies": {
     "browserslist": "^4.28.1",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "docs": "workspace:*"
   },
   "prettier": {
     "printWidth": 200
