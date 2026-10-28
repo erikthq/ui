@@ -7,9 +7,10 @@ import { apiReference } from "../../components/api-reference";
 
 const toc = [
   { id: "standalone", label: "Standalone" },
-  { id: "live", label: "Live demo" },
-  { id: "markup", label: "Markup" },
+  { id: "example", label: "Example" },
+  { id: "usage", label: "Usage" },
   { id: "view-transitions", label: "View transitions" },
+  { id: "morph", label: "Without view transitions" },
   { id: "icons", label: "With icons" },
   { id: "disabled", label: "Disabled link" },
   { id: "multiple", label: "Several bars per page" },
@@ -18,30 +19,9 @@ const toc = [
 ];
 
 const demo = [
-  {
-    label: "Overview",
-    body: html`<p>
-      Every tab here is an <code>&lt;a&gt;</code>. The click handler cancels the
-      navigation and moves <code>aria-current</code> inside
-      <code>document.startViewTransition()</code>, so this panel and the
-      highlight change in the same frame.
-    </p>`,
-  },
-  {
-    label: "Activity",
-    body: html`<p>
-      Nothing was loaded to get here. The browser took one snapshot before the
-      swap and one after, then interpolated between them.
-    </p>`,
-  },
-  {
-    label: "Settings",
-    body: html`<p>
-      The active state is still only <code>aria-current</code> in the HTML.
-      Move the attribute and the highlight follows, because it is anchored to
-      whichever link carries it.
-    </p>`,
-  },
+  { label: "Overview", body: html`<p>The overview page.</p>` },
+  { label: "Activity", body: html`<p>The activity page.</p>` },
+  { label: "Settings", body: html`<p>The settings page.</p>` },
 ];
 
 export async function TabLinksPage(path: string) {
@@ -57,11 +37,8 @@ export async function TabLinksPage(path: string) {
             ${raw(titleActions(path, "tab-links"))}
           </div>
           <p>
-            A <code>.tab-links</code> bar that looks like
-            <a href="${url("/components/tabs")}">Tabs</a> but navigates. The
-            items are links, the one matching the current page carries
-            <code>aria-current</code>, and the highlight is a pseudo element so
-            it can animate from one position to the next.
+            Links that look like <a href="${url("/components/tabs")}">Tabs</a>.
+            Use it to move between pages.
           </p>
         </hgroup>
 
@@ -74,13 +51,7 @@ export async function TabLinksPage(path: string) {
       </div>
 
       <div class="prose">
-        <h2 id="live">Live demo</h2>
-        <p>
-          Every bar on this page switches in place. A click handler cancels the
-          navigation and hands the change to
-          <code>document.startViewTransition()</code>, so the highlight slides
-          instead of jumping.
-        </p>
+        <h2 id="example">Example</h2>
       </div>
       <div class="example">
         <div class="preview preview-padded" style="gap: 1.5rem">
@@ -88,7 +59,7 @@ export async function TabLinksPage(path: string) {
             ${demo.map(
               (tab, i) =>
                 html`<a
-                  href="#live"
+                  href="#example"
                   ${i === 0 ? raw('aria-current="page"') : ""}
                   >${tab.label}</a
                 >`,
@@ -105,7 +76,7 @@ export async function TabLinksPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<nav class="tab-links" aria-label="Demo views">
+            await highlight(`<nav class="tab-links" aria-label="Sections">
   <a href="/overview" aria-current="page">Overview</a>
   <a href="/activity">Activity</a>
   <a href="/settings">Settings</a>
@@ -115,32 +86,19 @@ export async function TabLinksPage(path: string) {
       </div>
 
       <div class="prose">
-        <h2 id="markup">Markup</h2>
+        <h2 id="usage">Usage</h2>
         <ul>
           <li>
-            Wrap the links in a <code>nav.tab-links</code> with an
-            <code>aria-label</code>. <br /><small
-              >A list of links to other pages is navigation, not a tab widget,
-              so there is no <code>role="tablist"</code> here. Screen readers
-              announce it as a labelled navigation landmark.</small
-            >
+            Put the links directly inside <code>.tab-links</code>. Use a
+            <code>&lt;nav&gt;</code>.
           </li>
           <li>
-            Put <code>aria-current="page"</code> on the link for the current
-            URL. <br /><small
-              >This is the only piece of state. The highlight is anchored to
-              that link with <code>anchor-name</code>, so moving the attribute
-              moves the highlight. With no current link the highlight is
-              hidden.</small
-            >
+            Add <code>aria-current="page"</code> to the link for the current
+            page. The highlight goes there.
           </li>
           <li>
-            Use <code>aria-disabled="true"</code> to soften a link you do not
-            want followed yet. <br /><small
-              >There is no <code>disabled</code> attribute on
-              <code>&lt;a&gt;</code>. Drop the <code>href</code> as well if the
-              link should be unreachable by keyboard.</small
-            >
+            Add an <code>aria-label</code> to the <code>&lt;nav&gt;</code> if
+            the page has more than one <code>&lt;nav&gt;</code>.
           </li>
         </ul>
       </div>
@@ -148,27 +106,13 @@ export async function TabLinksPage(path: string) {
       <div class="prose">
         <h2 id="view-transitions">View transitions</h2>
         <p>
-          The highlight is a <code>::before</code> on the bar rather than a
-          background on the active link. One element, present in both the old
-          and the new state, in a different place each time. That is exactly
-          what a view transition needs to interpolate.
-        </p>
-        <p>
-          The component names it and tags it with a view transition class. It
-          also names each link, which matters more than it sounds: a named
-          element is lifted out of the page snapshot and drawn on top of it, so
-          if only the highlight were named it would slide <em>over</em> the
-          labels for the length of the transition. Naming the links lifts them
-          out too, and because they paint after the highlight they land back on
-          top of it. They use <code>view-transition-name: match-element</code>,
-          so the names stay unique however many bars a page holds.
+          The highlight slides to the new link during a view transition.
         </p>
 
-        <h3>Switching in place</h3>
+        <h3>On the same page</h3>
         <p>
           Move <code>aria-current</code> inside
-          <code>document.startViewTransition()</code>. This is the handler every
-          demo on this page runs.
+          <code>document.startViewTransition()</code>.
         </p>
       </div>
       <div class="example">
@@ -184,7 +128,6 @@ export async function TabLinksPage(path: string) {
   document.startViewTransition(() => {
     for (const a of bar.querySelectorAll("a")) a.removeAttribute("aria-current");
     link.setAttribute("aria-current", "page");
-    // ...and render whatever the tab controls.
   });
 });`,
               72,
@@ -193,24 +136,43 @@ export async function TabLinksPage(path: string) {
           )}
         </div>
       </div>
+
       <div class="prose">
+        <h3>Between pages</h3>
         <p>
-          A router does the same thing with the route change in the callback.
-          Tune the motion through the view transition classes, which every bar
-          and every link share:
+          Add this to the <code>&lt;head&gt;</code> of every page with the bar.
+          It must be in the <code>&lt;head&gt;</code>, or the transition
+          sometimes does not run.
         </p>
       </div>
       <div class="example">
         <div class="code-block">
           ${raw(
             await highlight(
-              `/* the sliding highlight */
+              `<style>
+  @view-transition {
+    navigation: auto;
+  }
+</style>`,
+            ),
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <h3>Change the motion</h3>
+      </div>
+      <div class="example">
+        <div class="code-block">
+          ${raw(
+            await highlight(
+              `/* the highlight */
 ::view-transition-group(.ui-tab-links) {
   animation-duration: 400ms;
   animation-timing-function: var(--ease-snap);
 }
 
-/* the labels riding above it */
+/* the labels */
 ::view-transition-group(.ui-tab-link),
 ::view-transition-old(.ui-tab-link),
 ::view-transition-new(.ui-tab-link) {
@@ -224,57 +186,39 @@ export async function TabLinksPage(path: string) {
       </div>
 
       <div class="prose">
-        <h3>Across documents</h3>
+        <h2 id="morph">Without view transitions</h2>
         <p>
-          The bar also works with no JavaScript at all. Let the links navigate,
-          render <code>aria-current</code> on the server, and add the
-          <code>@view-transition</code> opt-in to both documents.
+          Add <code>.morph</code> if you update the bar without a view
+          transition, for example with htmx morphing. The highlight still
+          slides.
         </p>
       </div>
       <div class="example">
+        <div class="preview preview-padded">
+          <nav
+            class="tab-links morph"
+            aria-label="Morph example"
+            data-demo="morph"
+          >
+            <a href="#morph" aria-current="page">Overview</a>
+            <a href="#morph">Activity</a>
+            <a href="#morph">Settings</a>
+          </nav>
+        </div>
         <div class="code-block">
           ${raw(
-            await highlight(
-              `<!-- in the head of every page that shows the bar -->
-<style>
-  @view-transition {
-    navigation: auto;
-  }
-</style>
-
-<!-- optional: hold the first render until the bar has been parsed.
-     Name an element that comes after the bar, not the bar itself. -->
-<link rel="expect" blocking="render" href="#after-views" />`,
-            ),
+            await highlight(`<nav class="tab-links morph">
+  <a href="/overview" aria-current="page">Overview</a>
+  <a href="/activity">Activity</a>
+  <a href="/settings">Settings</a>
+</nav>`),
           )}
         </div>
-      </div>
-      <div class="prose">
-        <p>
-          <strong>Put the opt-in in the <code>&lt;head&gt;</code>.</strong> The
-          browser captures the incoming page right before its first rendering
-          opportunity, so it has to know the page opted in by then. A
-          <code>&lt;style&gt;</code> further down the body is a race, and it is
-          the kind of race that flips depending on how fast the stylesheets
-          load. A transition that runs with devtools open and not without it is
-          almost always this: an empty cache slows the first paint down enough
-          for the parser to reach the rule in time, and a warm cache does not.
-        </p>
-        <p>
-          <code>&lt;link rel="expect"&gt;</code> covers the other end of the
-          same problem. It holds the first render until the named element shows
-          up, so the browser cannot capture the new page before the bar exists.
-          Without it, a bar far down a long page can be missing at capture time
-          and the highlight fades instead of gliding. Point it at an element
-          that comes <em>after</em> the bar: the block lifts as soon as the
-          named element itself lands in the DOM, which for the bar would be
-          before its links have been parsed.
-        </p>
       </div>
 
       <div class="prose">
         <h2 id="icons">With icons</h2>
-        <p>Links accept an inline icon next to the label.</p>
+        <p>Put an icon before the label.</p>
       </div>
       <div class="example">
         <div class="preview preview-padded">
@@ -293,10 +237,13 @@ export async function TabLinksPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<nav class="tab-links" aria-label="Views">
-  <a href="/board" aria-current="page"><svg><!-- icon --></svg> Board</a>
-  <a href="/table"><svg><!-- icon --></svg> Table</a>
-  <a href="/chart"><svg><!-- icon --></svg> Chart</a>
+            await highlight(`<nav class="tab-links">
+  <a href="/board" aria-current="page">
+  <svg><!-- icon --></svg> Board</a>
+  <a href="/table">
+  <svg><!-- icon --></svg> Table</a>
+  <a href="/chart">
+  <svg><!-- icon --></svg> Chart</a>
 </nav>`),
           )}
         </div>
@@ -324,7 +271,7 @@ export async function TabLinksPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<nav class="tab-links" aria-label="Dashboard">
+            await highlight(`<nav class="tab-links">
   <a href="/overview" aria-current="page">Overview</a>
   <a href="/analytics">Analytics</a>
   <a aria-disabled="true">Reports</a>
@@ -336,16 +283,9 @@ export async function TabLinksPage(path: string) {
       <div class="prose">
         <h2 id="multiple">Several bars per page</h2>
         <p>
-          A view transition name has to be unique in a document. Every bar uses
-          <code>ui-tab-links</code> by default, so give each extra bar its own
-          name through <code>--ui-tab-links-name</code>, or set it to
-          <code>none</code> to leave that bar out of the transition entirely.
-        </p>
-        <p>
-          <small
-            >Each bar on this page carries its own name, which is why all of
-            them animate.</small
-          >
+          Give each extra bar its own <code>--ui-tab-links-name</code>. Without
+          it, only one bar animates. A <code>.morph</code> bar does not need
+          a name.
         </p>
       </div>
       <div class="example">
@@ -384,12 +324,13 @@ export async function TabLinksPage(path: string) {
         </div>
       </div>
 
+        </div>
+      </div>
+
       <div class="prose">
         <h2 id="custom-properties">Custom properties</h2>
         <p>
-          Set these on the bar to override its built-in styling. Each one
-          falls back to a global token, so an unset property keeps the bar in
-          line with the rest of the system.
+          Set these on the bar.
         </p>
 
         <table class="align-left">
@@ -426,6 +367,11 @@ export async function TabLinksPage(path: string) {
               <td><code>var(--ui-neutral-950)</code></td>
               <td>Text color of the current link.</td>
             </tr>
+            <tr>
+              <td><code>--ui-tab-links-name</code></td>
+              <td><code>ui-tab-links</code></td>
+              <td>Name for the highlight. Unique per bar on a page.</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -444,16 +390,17 @@ export async function TabLinksPage(path: string) {
       ${apiReference([
         { type: "State", values: ['[aria-current="page"]'], description: "Marks the active link and moves the highlight to it" },
         { type: "Disabled", values: ['[aria-disabled="true"]'], description: "Fades the link and blocks clicks" },
+        { type: "Modifier", values: [".morph"], description: "Slides the highlight with a CSS transition instead of a view transition, for DOM morphing" },
         { type: "Transition name", values: ["--ui-tab-links-name: ui-sort"], description: "View transition name, unique per tab bar on a page" },
         { type: "Track", values: ["--bg: var(--ui-neutral-200)"], description: "Background of the bar" },
-        { type: "Highlight", values: ["--bg-active: var(--ui-neutral-50)"], description: "Background of the active link" },
+        { type: "Highlight", values: ["--bg-active: var(--ui-neutral-50)"], description: "Background of the highlight behind the active link" },
         { type: "Text", values: ["--fg: var(--ui-neutral-800)"], description: "Text color of links" },
         { type: "Hover text", values: ["--fg-hover: var(--ui-neutral-950)"], description: "Text color of a hovered link" },
         { type: "Active text", values: ["--fg-active: var(--ui-neutral-950)"], description: "Text color of the active link" },
       ])}
 
       <script type="module">
-        // One handler for every bar on the page. The live demo also swaps its
+        // One handler for every bar on the page. The first demo also swaps its
         // panel; the rest only move aria-current.
         const switchTab = (bar, link) => {
           const links = [...bar.querySelectorAll("a")];
@@ -469,7 +416,8 @@ export async function TabLinksPage(path: string) {
             panels.forEach((panel, i) => (panel.hidden = i !== index));
           };
 
-          if (document.startViewTransition) document.startViewTransition(update);
+          if (document.startViewTransition && !bar.classList.contains("morph"))
+            document.startViewTransition(update);
           else update();
         };
 

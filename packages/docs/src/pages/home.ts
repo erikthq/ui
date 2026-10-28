@@ -79,7 +79,7 @@ export async function HomePage(path: string) {
 
           <copy-to-clipboard
             class="homepage-copy-button"
-            value="${link}"
+            value="npx skills add erikthq/ui/packages/skill"
             x-data="{ copied: false }"
             @clipboard-copy="
               document.startViewTransition({ update: async () => { copied = true; await $nextTick() }, types: ['copy-skill'] });

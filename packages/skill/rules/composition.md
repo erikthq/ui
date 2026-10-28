@@ -224,6 +224,8 @@ Tabs that go to other pages are links:
 </nav>
 ```
 
+The highlight slides with a view transition. If the page updates the bar in place with a DOM morph (htmx with morphing, idiomorph), add `.morph`. The highlight then slides with a plain CSS transition.
+
 ---
 
 ## Typography

@@ -10,7 +10,7 @@ dialog {
   z-index: 1;
   background-color: transparent;
   border: none;
-  
+
   padding: 0;
   max-width: min(480px, calc(100vw - 2rem));
   max-height: none;
@@ -59,7 +59,7 @@ dialog {
     }
   }
 
-  article:not(.secondary):not(.tertiary) {
+  &:not(.drawer) article:not(.secondary):not(.tertiary) {
     box-shadow: var(--ui-shadow-1);
   }
 }

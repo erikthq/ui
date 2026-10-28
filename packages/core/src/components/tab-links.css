@@ -25,6 +25,7 @@
 
     background-color: var(--bg);
     border-radius: calc(var(--ui-rounded-3) + 1px);
+    user-select: none;
 
     anchor-name: --ui-active-tab-link;
     anchor-scope: --ui-active-tab-link;
@@ -52,6 +53,24 @@
       view-transition-class: ui-tab-links;
 
       /* transition: var(--ease-glide) 200ms; */
+    }
+
+    /*
+      .morph: the highlight slides with a plain CSS transition instead of a
+      view transition. For pages that update the bar in place, like a DOM
+      morph (htmx with morphing, idiomorph), where no view transition runs.
+    */
+    &.morph::before {
+      view-transition-name: none;
+      transition: var(--ease-glide) 200ms;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &.morph > a {
+      view-transition-name: none;
     }
 
     /* Nothing is current, so there is nothing to highlight. */
