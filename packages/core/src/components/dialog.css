@@ -61,6 +61,16 @@ dialog {
 
   &:not(.drawer) article:not(.secondary):not(.tertiary) {
     box-shadow: var(--ui-shadow-1);
+
+    > header {
+      box-shadow: none;
+      border-bottom: 1px solid var(--ui-neutral-200);
+    }
+
+    > footer {
+      box-shadow: none;
+      border-top: 1px solid var(--ui-neutral-200);
+    }
   }
 }
 
