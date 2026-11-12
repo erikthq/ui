@@ -60,8 +60,9 @@ export async function AlertPage(path: string) {
       <div class="prose">
         <h2 id="default">Default</h2>
         <p>
-          An alert is an <code>&lt;article&gt;</code>, so it shares its
-          surface with <a href="${url("/components/card")}">Card</a>. Add
+          An alert is an <code>&lt;article&gt;</code> with a role. It shares
+          its surface with <a href="${url("/components/card")}">Card</a>, so
+          it needs no <code>card</code> class. Add
           <code>role="alert"</code> for urgent messages that should interrupt
           a screen reader, and <code>role="status"</code> for calmer ones like
           success or progress updates.

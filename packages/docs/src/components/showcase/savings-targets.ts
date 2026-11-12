@@ -18,7 +18,7 @@ export function SavingsTargets() {
       }
     </style>
 
-    <article class="secondary showcase-savings-targets grid gap-4">
+    <article class="card secondary showcase-savings-targets grid gap-4">
       <hgroup>
         <h3>Savings targets</h3>
         <p>
@@ -29,7 +29,7 @@ export function SavingsTargets() {
 
       ${targets.map(
         (target) => html`
-          <article class="tertiary grid gap-3">
+          <article class="card tertiary grid gap-3">
             <small>${target.label}</small>
 
             <strong class="text-3xl">${target.goal}</strong>

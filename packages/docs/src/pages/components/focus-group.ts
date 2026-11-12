@@ -47,7 +47,7 @@ export async function FocusGroupPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article data-focus-within style="width:100%">
+          <article class="card" data-focus-within style="width:100%">
             <header>
               ${raw(icon("brand-javascript", { size: 18 }))}
               <span style="margin-right:auto">script.js</span>
@@ -77,7 +77,7 @@ export async function FocusGroupPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(`<style>
-  article {
+  .card {
     & header span {
       margin-right: auto;
     }
@@ -96,7 +96,7 @@ export async function FocusGroupPage(path: string) {
   }
 </style>
 
-<article data-focus-within>
+<article class="card" data-focus-within>
   <header>
     <svg>...</svg>
     <span>script.js</span>

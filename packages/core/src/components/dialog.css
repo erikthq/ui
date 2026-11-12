@@ -59,7 +59,7 @@ dialog {
     }
   }
 
-  &:not(.drawer) article:not(.secondary):not(.tertiary) {
+  &:not(.drawer) .card:not(.secondary):not(.tertiary) {
     box-shadow: var(--ui-shadow-1);
 
     > header {

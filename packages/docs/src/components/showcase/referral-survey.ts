@@ -13,7 +13,7 @@ export function ReferralSurvey() {
       }
     </style>
 
-    <article class="outlined showcase-referral-survey grid gap-4">
+    <article class="card outlined showcase-referral-survey grid gap-4">
       <hgroup>
         <h3 id="referral-title">How did you hear about us?</h3>
         <p>Select the option that best describes how you found us.</p>

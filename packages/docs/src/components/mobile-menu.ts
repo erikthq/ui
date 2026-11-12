@@ -80,7 +80,7 @@ export function MobileMenu(path: string) {
         </form>
       </header>
 
-      <article>
+      <article class="card">
         <menu>
           <li>
             <a

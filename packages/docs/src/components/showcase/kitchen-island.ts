@@ -38,7 +38,7 @@ export function KitchenIsland() {
       }
     </style>
 
-    <article class="secondary showcase-kitchen-island grid gap-4">
+    <article class="card secondary showcase-kitchen-island grid gap-4">
       <div class="flex gap-4">
         <hgroup>
           <h3>Kitchen island</h3>

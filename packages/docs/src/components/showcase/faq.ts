@@ -71,7 +71,7 @@ export function Faq() {
       }
     </style>
 
-    <article class="secondary showcase-faq">
+    <article class="card secondary showcase-faq">
       <section class="tabs gap-4">
         <header role="tablist" aria-label="FAQ topics">
           ${topics.map(

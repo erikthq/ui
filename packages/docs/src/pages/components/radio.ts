@@ -135,20 +135,20 @@ export async function RadioPage(path: string) {
           style="flex-direction:column;width:100%"
         >
           <style>
-            .choice-card article {
+            .choice-card .card {
               display: flex;
               justify-content: space-between;
               align-items: flex-start;
             }
 
-            .choice-card article:has(input:checked) {
+            .choice-card .card:has(input:checked) {
               background: var(--ui-neutral-100);
               border-color: var(--ui-neutral-600);
             }
           </style>
           <fieldset style="width: min(100%, 400px); margin: auto;">
             <label class="choice-card">
-              <article>
+              <article class="card">
                 <small>
                   <hgroup>
                     <h3>Plus</h3>
@@ -159,7 +159,7 @@ export async function RadioPage(path: string) {
               </article>
             </label>
             <label class="choice-card">
-              <article>
+              <article class="card">
                 <small>
                   <hgroup>
                     <h3>Pro</h3>
@@ -170,7 +170,7 @@ export async function RadioPage(path: string) {
               </article>
             </label>
             <label class="choice-card">
-              <article>
+              <article class="card">
                 <small>
                   <hgroup>
                     <h3>Enterprise</h3>
@@ -185,13 +185,13 @@ export async function RadioPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(`<style>
-  .choice-card article {
+  .choice-card .card {
               display: flex;
               justify-content: space-between;
               align-items: flex-start;
             }
 
-            .choice-card article:has(input:checked) {
+            .choice-card .card:has(input:checked) {
               background: var(--ui-neutral-100);
               border-color: var(--ui-neutral-600);
             }
@@ -199,7 +199,7 @@ export async function RadioPage(path: string) {
 
 <fieldset>
   <label class="choice-card">
-              <article>
+              <article class="card">
                 <small>
                   <hgroup>
                     <h3>Plus</h3>
@@ -210,7 +210,7 @@ export async function RadioPage(path: string) {
               </article>
             </label>
             <label class="choice-card">
-              <article>
+              <article class="card">
                 <small>
                   <hgroup>
                     <h3>Pro</h3>

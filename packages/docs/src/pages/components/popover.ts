@@ -75,7 +75,7 @@ export async function PopoverPage(path: string) {
       <div class="prose">
         <h2 id="with-card">With card</h2>
         <p>
-          Use an <code>&lt;article&gt;</code> inside for structured content with
+          Use an <code>&lt;article class="card"&gt;</code> inside for structured content with
           header and footer sections.
         </p>
       </div>
@@ -83,7 +83,7 @@ export async function PopoverPage(path: string) {
         <div class="preview">
           <button class="outlined" popovertarget="popover-card">Options</button>
           <div id="popover-card" popover>
-            <article>
+            <article class="card">
               <header>Settings</header>
               <div style="display:grid;gap:0.5rem">
                 <label> <input type="checkbox" checked /> Notifications </label>
@@ -102,7 +102,7 @@ export async function PopoverPage(path: string) {
             await highlight(`<button popovertarget="my-popover">Options</button>
 
 <div id="my-popover" popover>
-  <article>
+  <article class="card">
     <header>Settings</header>
     <div style="display:grid;gap:0.5rem">
       <label> <input type="checkbox" checked /> Notifications </label>
@@ -179,7 +179,7 @@ export async function PopoverPage(path: string) {
               Filters
             </button>
             <div id="popover-manual-filters" popover="manual">
-              <article>
+              <article class="card">
                 <header>Filters</header>
                 <div style="display:grid;gap:0.5rem">
                   <label><input type="checkbox" checked /> Open</label>
@@ -200,7 +200,7 @@ export async function PopoverPage(path: string) {
               Sort
             </button>
             <div id="popover-manual-sort" popover="manual">
-              <article>
+              <article class="card">
                 <header>Sort</header>
                 <div style="display:grid;gap:0.5rem">
                   <label><input type="radio" name="manual-sort" checked /> Newest</label>
@@ -223,7 +223,7 @@ export async function PopoverPage(path: string) {
             await highlight(`<button popovertarget="my-popover">Filters</button>
 
 <div id="my-popover" popover="manual">
-  <article>
+  <article class="card">
     <header>Filters</header>
     <div style="display:grid;gap:0.5rem">
       <label><input type="checkbox" checked /> Open</label>

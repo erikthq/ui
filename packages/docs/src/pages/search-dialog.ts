@@ -50,7 +50,7 @@ export function SearchDialog() {
   };
 
   return html`<dialog id="search-dialog" class="search-dialog" scroll-lock>
-    <article>
+    <article class="card">
       <header>
         <label>
           ${raw(icon("search", { attrs: "data-prefix" }))}

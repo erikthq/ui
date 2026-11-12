@@ -20,7 +20,7 @@ export function ComponentSampler() {
       }
     </style>
 
-    <article class="secondary showcase-component-sampler grid gap-5">
+    <article class="card secondary showcase-component-sampler grid gap-5">
       <div class="flex gap-2">
         <button>Button ${raw(icon("arrow-right"))}</button>
         <button class="secondary">Secondary</button>
@@ -55,7 +55,7 @@ export function ComponentSampler() {
           Alert dialog
         </button>
         <dialog id="sampler-dialog" role="alertdialog">
-          <article>
+          <article class="card">
             <header><strong>Discard changes?</strong></header>
             <p>Your unsaved changes will be lost.</p>
             <footer>

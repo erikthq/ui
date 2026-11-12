@@ -270,7 +270,7 @@ export async function ShadowsPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(
-              `<article class="shadow-3">...</article>\n<div class="shadow-inset-2">...</div>\n<button class="shadow-shiny-2">Generate</button>\n<article class="shadow-3" style="--ui-shadow-color: color-mix(in oklch, var(--ui-primary) 40%, transparent)">...</article>`,
+              `<article class="card shadow-3">...</article>\n<div class="shadow-inset-2">...</div>\n<button class="shadow-shiny-2">Generate</button>\n<article class="card shadow-3" style="--ui-shadow-color: color-mix(in oklch, var(--ui-primary) 40%, transparent)">...</article>`,
             ),
           )}
         </div>

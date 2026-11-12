@@ -21,7 +21,7 @@ Every overlay uses a browser feature. Dialogs use `<dialog>`. Menus, popovers an
 | Need | Use |
 | --- | --- |
 | List of actions from a button | Popover with a `<menu>` |
-| Small panel with controls | Popover with an `<article>` |
+| Small panel with controls | Popover with an `<article class="card">` |
 | Ask the user to confirm or fill a form | `<dialog>` opened with `showModal()` |
 | Panel from the side or bottom | `<dialog class="drawer">` |
 | Side panel that leaves the page usable | `<div popover class="drawer">` |
@@ -59,7 +59,7 @@ Popover options:
 
 - `data-placement` changes the side, for example `"top"`, `"bottom right"`, `"right top"`.
 - `popover="manual"` stays open until the user closes it. Close it with a button that has `popovertarget="id"` and `popovertargetaction="hide"`.
-- Put an `<article>` inside for a panel with a header and footer.
+- Put an `<article class="card">` inside for a panel with a header and footer.
 
 Every popover `id` on the page must be unique. In a list or table, add the row id: `popovertarget="actions-42"`.
 
@@ -161,7 +161,7 @@ Put the child popover inside the parent `<li>`, next to its trigger. Set `data-p
 
 ## Dialog
 
-A dialog holds an `<article>`. The article gives it the card surface. `closedby="any"` lets the user close it with Escape or a click outside. Buttons inside `<form method="dialog">` close it with no JavaScript.
+A dialog holds an `<article class="card">`. The card gives it its surface. `closedby="any"` lets the user close it with Escape or a click outside. Buttons inside `<form method="dialog">` close it with no JavaScript.
 
 **Incorrect:**
 
@@ -177,7 +177,7 @@ A dialog holds an `<article>`. The article gives it the card surface. `closedby=
 <button onclick="document.getElementById('confirm').showModal()">Delete</button>
 
 <dialog id="confirm" closedby="any">
-  <article>
+  <article class="card">
     <header><strong>Delete project?</strong></header>
     <p>This can't be undone.</p>
     <footer>
@@ -203,7 +203,7 @@ A drawer is a dialog with `class="drawer"`. It slides in from an edge.
 
 ```html
 <dialog id="filters" class="drawer" data-position="right" closedby="any">
-  <article>
+  <article class="card">
     <header><strong>Filters</strong></header>
     <p>...</p>
     <footer>
@@ -223,7 +223,7 @@ For a drawer without a backdrop, put `class="drawer"` on a popover. The page beh
 ```html
 <button popovertarget="notifications">Notifications</button>
 <div id="notifications" class="drawer" popover>
-  <article>
+  <article class="card">
     <header><strong>Notifications</strong></header>
     <p>...</p>
     <footer>
@@ -262,7 +262,7 @@ Set the side with `data-tooltip="bottom"`, `"left"` or `"right"`. The default is
 
 ## Toast
 
-A toast is a popover with `class="toast"`. Put an alert `<article>` inside.
+A toast is a popover with `class="toast"`. Put an alert `<article role="status">` inside.
 
 ```html
 <button popovertarget="saved">Save</button>

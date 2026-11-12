@@ -27,8 +27,9 @@ export async function CardPage(path: string) {
             ${raw(titleActions(path, "card"))}
           </div>
           <p>
-            A surface for grouping related content using the native
-            <code>&lt;article&gt;</code> element.
+            A surface for grouping related content. Add the
+            <code>card</code> class to an <code>&lt;article&gt;</code>
+            element.
           </p>
         </hgroup>
 
@@ -45,13 +46,13 @@ export async function CardPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article style="width:100%">
+          <article class="card" style="width:100%">
             <p>This is a simple card with some content inside.</p>
           </article>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article>
+            await highlight(`<article class="card">
   <p>This is a simple card with some content inside.</p>
 </article>`),
           )}
@@ -67,13 +68,13 @@ export async function CardPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article class="secondary" style="width:100%">
+          <article class="card secondary" style="width:100%">
             <p>This is a secondary card variant.</p>
           </article>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article class="secondary">
+            await highlight(`<article class="card secondary">
   <p>This is a secondary card variant.</p>
 </article>`),
           )}
@@ -86,13 +87,13 @@ export async function CardPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article class="tertiary" style="width:100%">
+          <article class="card tertiary" style="width:100%">
             <p>This is a tertiary card variant.</p>
           </article>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article class="tertiary">
+            await highlight(`<article class="card tertiary">
   <p>This is a tertiary card variant.</p>
 </article>`),
           )}
@@ -108,13 +109,13 @@ export async function CardPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article class="transparent" style="width:100%">
+          <article class="card transparent" style="width:100%">
             <p>This is a transparent card variant.</p>
           </article>
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article class="transparent">
+            await highlight(`<article class="card transparent">
   <p>This is a transparent card variant.</p>
 </article>`),
           )}
@@ -130,7 +131,7 @@ export async function CardPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article style="width:100%">
+          <article class="card" style="width:100%">
             <header>Header</header>
             <div>Body</div>
             <footer>Footer</footer>
@@ -138,7 +139,7 @@ export async function CardPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article>
+            await highlight(`<article class="card">
   <header>Header</header>
   Body
   <footer>Footer</footer>

@@ -15,7 +15,7 @@ export function SyncingAccounts() {
       }
     </style>
 
-    <article class="secondary showcase-syncing-accounts">
+    <article class="card secondary showcase-syncing-accounts">
       <section class="empty">
         <span class="grid" aria-busy="true" aria-label="Syncing"></span>
 

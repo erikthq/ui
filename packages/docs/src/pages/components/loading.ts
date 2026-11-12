@@ -80,13 +80,13 @@ export async function LoadingPage(path: string) {
       <div class="prose">
         <h2 id="card">Loading card</h2>
         <p>
-          Center a spinner in an <code>article</code> for a panel that blocks
+          Center a spinner in a <code>.card</code> for a panel that blocks
           the view while something loads.
         </p>
       </div>
       <div class="example">
         <div class="preview">
-          <article class="empty">
+          <article class="card empty">
             <span
               aria-busy
               style="width:2.5rem;height:2.5rem;border-radius:8px;background:var(--ui-neutral-100);display:grid;place-items:center;"
@@ -101,7 +101,7 @@ export async function LoadingPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article class="empty">
+            await highlight(`<article class="card empty">
               <span
                 aria-busy
                 style="width:2.5rem;height:2.5rem;border-radius:8px;background:var(--ui-neutral-100);display:grid;place-items:center;"

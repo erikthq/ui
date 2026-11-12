@@ -25,7 +25,7 @@ export function AccountAccess() {
       }
     </style>
 
-    <article class="secondary showcase-account-access">
+    <article class="card secondary showcase-account-access">
       <form id="account-access" class="grid gap-5" onsubmit="event.preventDefault()">
         <hgroup>
           <h3>Account access</h3>

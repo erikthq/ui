@@ -32,7 +32,7 @@ export function ClaimableBalance() {
       }
     </style>
 
-    <article class="secondary showcase-claimable-balance">
+    <article class="card secondary showcase-claimable-balance">
       <div class="grid gap-3">
         <small>Claimable balance</small>
         <strong class="text-6xl">$0.00</strong>
@@ -40,7 +40,7 @@ export function ClaimableBalance() {
           ${raw(icon("circle", { filled: true }))} Pending setup
         </span>
 
-        <article class="tertiary">
+        <article class="card tertiary">
           <dl>
             <div>
               <dt>Net royalties</dt>

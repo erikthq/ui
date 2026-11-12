@@ -18,7 +18,7 @@ export async function CreatePage(path: string) {
         closedby="any"
         scroll-lock
       >
-        <article>
+        <article class="card">
           <header>
             <h2>Theme</h2>
             <form method="dialog">

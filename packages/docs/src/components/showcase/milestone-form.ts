@@ -19,7 +19,7 @@ export function MilestoneForm() {
       }
     </style>
 
-    <article class="tertiary showcase-milestone-form">
+    <article class="card tertiary showcase-milestone-form">
       <form onsubmit="event.preventDefault()" class="grid gap-8">
         <hgroup>
           <h3>Set a new milestone</h3>

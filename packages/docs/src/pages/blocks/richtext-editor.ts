@@ -221,7 +221,7 @@ export async function RichtextEditorPage(path: string) {
 
 <!-- Insert image dialog -->
 <dialog id="image-dialog" closedby="any">
-  <article>
+  <article class="card">
     <header><h3>Insert image</h3></header>
     <form id="image-form" method="dialog">
       <label class="file-drop">
@@ -241,7 +241,7 @@ export async function RichtextEditorPage(path: string) {
         </div>
       </div>
       <dialog id="rte-image-dialog" closedby="any">
-        <article>
+        <article class="card">
           <header>
             <h3>Insert image</h3>
           </header>

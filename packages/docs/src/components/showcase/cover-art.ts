@@ -31,7 +31,7 @@ export function CoverArt() {
       }
     </style>
 
-    <article class="secondary showcase-cover-art">
+    <article class="card secondary showcase-cover-art">
       <div class="grid gap-4">
         <small>Cover art</small>
 

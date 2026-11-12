@@ -168,7 +168,7 @@ export async function ChatPage(path: string) {
             }
           </style>
 
-          <article id="chat-example" class="secondary" x-data="chat">
+          <article id="chat-example" class="card secondary" x-data="chat">
             <header>
               <hgroup>
                 <h3>New chat</h3>

@@ -77,7 +77,7 @@ export async function DrawerPage(path: string) {
             Open drawer
           </button>
           <dialog id="drawer-demo" class="drawer" closedby="any">
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem;">
                 This is a drawer. It slides in from the right edge.
               </p>
@@ -94,7 +94,7 @@ export async function DrawerPage(path: string) {
 </button>
 
 <dialog id="my-drawer" class="drawer" closedby="any">
-  <article>
+  <article class="card">
     <p style="margin-bottom: 1rem;">This is a drawer.</p>
     <form method="dialog">
       <button class="outlined">Close</button>
@@ -124,7 +124,7 @@ export async function DrawerPage(path: string) {
             data-position="left"
             closedby="any"
           >
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem;">Slides in from the left.</p>
               <form method="dialog">
                 <button class="outlined">Close</button>
@@ -141,7 +141,7 @@ export async function DrawerPage(path: string) {
             data-position="right"
             closedby="any"
           >
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem;">Slides in from the right.</p>
               <form method="dialog">
                 <button class="outlined">Close</button>
@@ -158,7 +158,7 @@ export async function DrawerPage(path: string) {
             data-position="top"
             closedby="any"
           >
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem;">Slides in from the top.</p>
               <form method="dialog">
                 <button class="outlined">Close</button>
@@ -177,7 +177,7 @@ export async function DrawerPage(path: string) {
             data-position="bottom"
             closedby="any"
           >
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem;">Slides in from the bottom.</p>
               <form method="dialog">
                 <button class="outlined">Close</button>
@@ -210,7 +210,7 @@ export async function DrawerPage(path: string) {
         <div class="preview">
           <button popovertarget="drawer-popover">Open drawer</button>
           <div id="drawer-popover" class="drawer" popover>
-            <article>
+            <article class="card">
               <header>
                 <strong>Notifications</strong>
               </header>
@@ -232,7 +232,7 @@ export async function DrawerPage(path: string) {
             await highlight(`<button popovertarget="my-drawer">Open drawer</button>
 
 <div id="my-drawer" class="drawer" popover>
-  <article>
+  <article class="card">
     <header>
       <strong>Notifications</strong>
     </header>
@@ -268,7 +268,7 @@ export async function DrawerPage(path: string) {
             Open drawer
           </button>
           <dialog id="drawer-header-footer" class="drawer" closedby="any">
-            <article>
+            <article class="card">
               <header>
                 <strong>Filters</strong>
               </header>
@@ -285,7 +285,7 @@ export async function DrawerPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(`<dialog class="drawer" closedby="any">
-  <article>
+  <article class="card">
     <header>
       <strong>Filters</strong>
     </header>

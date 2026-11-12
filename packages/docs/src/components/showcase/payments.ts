@@ -49,7 +49,7 @@ export function Payments() {
       }
     </style>
 
-    <article class="secondary showcase-payments grid gap-4">
+    <article class="card secondary showcase-payments grid gap-4">
       <nav aria-label="Breadcrumb">
         <ol>
           <li><a href="#">Home</a></li>

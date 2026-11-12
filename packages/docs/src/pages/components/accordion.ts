@@ -194,7 +194,7 @@ export async function AccordionPage(path: string) {
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article style="width:100%" class="secondary">
+          <article style="width:100%" class="card secondary">
             <details name="card-faq">
               <summary>Getting started</summary>
               <div>Import <code>@erikt/ui</code> and start writing HTML.</div>
@@ -214,7 +214,7 @@ export async function AccordionPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article class="secondary">
+            await highlight(`<article class="card secondary">
   <details name="faq">
     <summary>Getting started</summary>
     <div>...</div>

@@ -58,13 +58,13 @@ export async function TextareaPage(path: string) {
         <h2 id="composition">Composition</h2>
         <p>
           A <code>&lt;textarea&gt;</code> sits flush inside an
-          <code>&lt;article&gt;</code> card with a toolbar header and status
+          <code>&lt;article class="card"&gt;</code> with a toolbar header and status
           footer.
         </p>
       </div>
       <div class="example">
         <div class="preview preview-padded">
-          <article style="width:100%" data-focus-within>
+          <article class="card" style="width:100%" data-focus-within>
             <header
               style="display:flex;align-items:center;gap:var(--ui-spacing-2)"
             >
@@ -99,7 +99,7 @@ console.log('Hello, world!');</textarea
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article data-focus-within>
+            await highlight(`<article class="card" data-focus-within>
   <header style="display:flex;align-items:center;gap:8px">
     <svg><!-- brand-javascript --></svg>
     <span>script.js</span>

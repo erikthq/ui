@@ -28,7 +28,7 @@ export async function DialogPage(path: string) {
           </div>
           <p>
             A native <code>&lt;dialog&gt;</code> element for popovers and modal
-            overlays. Use an <code>&lt;article&gt;</code> inside for the card
+            overlays. Use an <code>&lt;article class="card"&gt;</code> inside for the card
             styling.
           </p>
         </hgroup>
@@ -67,7 +67,7 @@ export async function DialogPage(path: string) {
             Open dialog
           </button>
           <dialog id="dialog-demo" closedby="any">
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem;">This is a non-modal dialog.</p>
               <form method="dialog">
                 <button class="outlined">Close</button>
@@ -82,7 +82,7 @@ export async function DialogPage(path: string) {
 </button>
 
 <dialog id="my-dialog" closedby="any">
-  <article>
+  <article class="card">
     <p style="margin-bottom: 1rem;">This is a non-modal dialog.</p>
     <form method="dialog">
       <button class="outlined">Close</button>
@@ -106,7 +106,7 @@ export async function DialogPage(path: string) {
             Open modal
           </button>
           <dialog id="modal-demo" closedby="any">
-            <article>
+            <article class="card">
               <p style="margin-bottom: 1rem">
                 This is a modal dialog. It blocks the page behind it.
               </p>
@@ -124,7 +124,7 @@ export async function DialogPage(path: string) {
 </button>
 
 <dialog id="my-modal" closedby="any">
-  <article>
+  <article class="card">
     <p>This is a modal dialog.</p>
     <form method="dialog">
       <button>Confirm</button>
@@ -151,7 +151,7 @@ export async function DialogPage(path: string) {
             Open modal
           </button>
           <dialog id="modal-header-footer" closedby="any">
-            <article>
+            <article class="card">
               <header>
                 <strong>Confirm action</strong>
               </header>
@@ -168,7 +168,7 @@ export async function DialogPage(path: string) {
         <div class="code-block">
           ${raw(
             await highlight(`<dialog id="my-modal" closedby="any">
-  <article>
+  <article class="card">
     <header>
       <strong>Confirm action</strong>
     </header>
@@ -214,7 +214,7 @@ export async function DialogPage(path: string) {
             closedby="none"
           </button>
           <dialog id="closedby-none" closedby="none">
-            <article>
+            <article class="card">
               <p style="margin-bottom:1rem">
                 This dialog can only be closed via the button.
               </p>
@@ -244,7 +244,7 @@ export async function DialogPage(path: string) {
             Open modal
           </button>
           <dialog id="scroll-lock-demo" scroll-lock closedby="any">
-            <article>
+            <article class="card">
               <p style="margin-bottom:1rem">
                 Page scrolling is locked while this dialog is open.
               </p>

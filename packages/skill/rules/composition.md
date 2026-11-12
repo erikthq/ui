@@ -2,7 +2,7 @@
 
 ## Contents
 
-- Card is `<article>`
+- Card is `<article class="card">`
 - Callouts are alerts
 - Use badges for status
 - Empty states use `.empty`
@@ -15,14 +15,14 @@
 
 ---
 
-## Card is `<article>`
+## Card is `<article class="card">`
 
-`<article>` is the card. `<header>` and `<footer>` must be direct children to get the card's header and footer styling.
+`<article class="card">` is the card. A bare `<article>` gets no card styles. `<header>` and `<footer>` must be direct children to get the card's header and footer styling.
 
 **Incorrect:**
 
 ```html
-<div class="card" style="border: 1px solid #ddd; border-radius: 8px; padding: 16px">
+<div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px">
   <div class="card-title">Team</div>
   <div class="card-body">Invite people.</div>
 </div>
@@ -31,7 +31,7 @@
 **Correct:**
 
 ```html
-<article>
+<article class="card">
   <header><strong>Team</strong></header>
   <p>Invite people to collaborate.</p>
   <footer>
@@ -47,7 +47,7 @@ Variants: `secondary`, `tertiary`, `transparent`. Don't wrap the card's body in 
 
 ## Callouts are alerts
 
-An alert is an `<article>` with a role. Use `role="alert"` for urgent messages and `role="status"` for calm ones. The icon, `<strong>` title and `<p>` body lay out on their own.
+An alert is an `<article>` with a role. It gets the card surface without the `card` class. Use `role="alert"` for urgent messages and `role="status"` for calm ones. The icon, `<strong>` title and `<p>` body lay out on their own.
 
 **Incorrect:**
 

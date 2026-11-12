@@ -40,7 +40,7 @@
       overlay 300ms allow-discrete;
   }
 
-  > article {
+  > .card {
     height: stretch;
     display: flex;
     flex-direction: column;
@@ -52,9 +52,9 @@
 
   &:not([data-position]),
   &[data-position="right"] {
-    > article,
-    > article header,
-    > article footer {
+    > .card,
+    > .card header,
+    > .card footer {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -75,9 +75,9 @@
       }
     }
 
-    > article,
-    > article header,
-    > article footer {
+    > .card,
+    > .card header,
+    > .card footer {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -101,9 +101,9 @@
       }
     }
 
-    > article,
-    > article header,
-    > article footer {
+    > .card,
+    > .card header,
+    > .card footer {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
@@ -127,9 +127,9 @@
       }
     }
 
-    > article,
-    > article header,
-    > article footer {
+    > .card,
+    > .card header,
+    > .card footer {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }

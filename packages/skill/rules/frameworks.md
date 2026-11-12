@@ -81,7 +81,7 @@ const ref = useRef<HTMLDialogElement>(null);
 <>
   <button onClick={() => ref.current?.showModal()}>Edit profile</button>
   <dialog ref={ref} closedby="any">
-    <article>
+    <article class="card">
       <header><strong>Edit profile</strong></header>
       ...
       <footer>

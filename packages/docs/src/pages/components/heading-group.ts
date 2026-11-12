@@ -70,7 +70,7 @@ export async function HeadingGroupPage(path: string) {
       </div>
       <div class="example">
         <div class="preview">
-          <article style="max-width:22rem">
+          <article class="card" style="max-width:22rem">
             <hgroup>
               <h3>Team</h3>
               <p>Invite people to collaborate on this project.</p>
@@ -79,7 +79,7 @@ export async function HeadingGroupPage(path: string) {
         </div>
         <div class="code-block">
           ${raw(
-            await highlight(`<article>
+            await highlight(`<article class="card">
   <hgroup>
     <h3>Team</h3>
     <p>Invite people to collaborate on this project.</p>

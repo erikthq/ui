@@ -1,5 +1,7 @@
 /* card */
-article {
+/* Alerts (article with role "alert" or "status") share the card surface */
+.card,
+:where(article:is([role="alert"], [role="status"])) {
   --border-radius: var(--ui-rounded-5);
 
   background-color: var(--ui-neutral-0);
@@ -87,15 +89,16 @@ article {
 
 /* Nested cards get a tighter radius. The scope stops at a dialog, so a card
    inside a dialog inside a card is not treated as nested */
-@scope (article) to (dialog) {
-  :where(:scope) article {
+@scope (.card, article:is([role="alert"], [role="status"])) to (dialog) {
+  :where(:scope) :is(.card, article:is([role="alert"], [role="status"])) {
     border-radius: calc(var(--border-radius) - var(--ui-spacing-2));
   }
 }
 
 /* Reduce padding when the card's parent container is narrow */
 @container (max-width: 320px) {
-  article {
+  .card,
+  :where(article:is([role="alert"], [role="status"])) {
     padding: var(--ui-spacing-3);
 
     & > header,

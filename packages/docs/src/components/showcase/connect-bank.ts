@@ -5,7 +5,7 @@ export function ConnectBank() {
   return html`
     <style></style>
 
-    <article class="secondary showcase-connect-bank">
+    <article class="card secondary showcase-connect-bank">
       <section class="empty">
         ${raw(icon("credit-card"))}
 

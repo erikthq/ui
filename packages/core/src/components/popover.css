@@ -23,13 +23,13 @@
   /* visual */
   box-shadow: var(--ui-shadow-3);
 
-  &:not(:has(article)) {
+  &:not(:has(.card, article:is([role="alert"], [role="status"]))) {
     background: var(--ui-background-color);
     border: 1px solid var(--ui-neutral-200);
     border-radius: calc(var(--ui-rounded-3) + var(--ui-spacing-1));
   }
 
-  &:has(article) {
+  &:has(.card, article:is([role="alert"], [role="status"])) {
     background: transparent;
     border-radius: var(--ui-rounded-5);
   }

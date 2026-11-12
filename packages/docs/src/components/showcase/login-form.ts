@@ -27,7 +27,7 @@ export function LoginForm() {
       }
     </style>
 
-    <article class="secondary showcase-login-form">
+    <article class="card secondary showcase-login-form">
       <button class="secondary round" aria-label="Close">
         ${raw(icon("x"))}
       </button>

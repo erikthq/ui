@@ -17,12 +17,12 @@ The rule for every recipe: the library styles the parts. Your CSS only places th
 
 ## Login or signup card
 
-Built from: `<article>` (the card), `.empty` (centered icon, heading, text and actions), round buttons, `<hr data-label>` (the "OR" divider).
+Built from: `<article class="card">` (the card), `.empty` (centered icon, heading, text and actions), round buttons, `<hr data-label>` (the "OR" divider).
 
 `.empty` is not only for empty lists. Use it for any centered block of icon + heading + text + actions. Inside a card, lower its padding to `var(--ui-spacing-4)`, because the card already has padding.
 
 ```html
-<article style="position: relative; max-width: 22rem">
+<article class="card" style="position: relative; max-width: 22rem">
   <button
     class="secondary round"
     aria-label="Close"
@@ -48,7 +48,7 @@ Built from: `<article>` (the card), `.empty` (centered icon, heading, text and a
 </article>
 ```
 
-To show it as a modal, put the `<article>` inside `<dialog closedby="any">` and make the close button a `<form method="dialog">` button.
+To show it as a modal, put the `<article class="card">` inside `<dialog closedby="any">` and make the close button a `<form method="dialog">` button.
 
 For a form with email and password, put `label.field` inputs after the `<p>`, inside a `<form>` with `width: 100%`.
 
@@ -56,7 +56,7 @@ For a form with email and password, put `label.field` inputs after the `<p>`, in
 
 ## Settings page
 
-Built from: `section.tabs` (sections), `<article>` with `<header>` and `<footer>` (one card per group), `label.field` (inputs), `.switch` (settings that apply right away).
+Built from: `section.tabs` (sections), `<article class="card">` with `<header>` and `<footer>` (one card per group), `label.field` (inputs), `.switch` (settings that apply right away).
 
 ```html
 <section class="tabs">
@@ -66,7 +66,7 @@ Built from: `section.tabs` (sections), `<article>` with `<header>` and `<footer>
   </header>
 
   <div role="tabpanel" id="panel-profile" aria-labelledby="tab-profile" tabindex="0">
-    <article>
+    <article class="card">
       <header><strong>Profile</strong></header>
       <div style="display: grid; gap: var(--ui-spacing-4)">
         <label class="field">
@@ -86,7 +86,7 @@ Built from: `section.tabs` (sections), `<article>` with `<header>` and `<footer>
   </div>
 
   <div role="tabpanel" id="panel-alerts" aria-labelledby="tab-alerts" tabindex="0">
-    <article style="display: grid; gap: var(--ui-spacing-3)">
+    <article class="card" style="display: grid; gap: var(--ui-spacing-3)">
       <label><input type="checkbox" class="switch" checked /> Email notifications</label>
       <label><input type="checkbox" class="switch" /> Weekly summary</label>
     </article>
@@ -98,7 +98,7 @@ Built from: `section.tabs` (sections), `<article>` with `<header>` and `<footer>
 
 ## Confirmation modal
 
-Built from: `<dialog>` (top layer, backdrop, Escape to close), `<article>` (the surface), `<footer>` with a `<form method="dialog">` (closes with no JavaScript), a `destructive` button.
+Built from: `<dialog>` (top layer, backdrop, Escape to close), `<article class="card">` (the surface), `<footer>` with a `<form method="dialog">` (closes with no JavaScript), a `destructive` button.
 
 ```html
 <button class="ghost destructive" onclick="document.getElementById('delete-project').showModal()">
@@ -106,7 +106,7 @@ Built from: `<dialog>` (top layer, backdrop, Escape to close), `<article>` (the 
 </button>
 
 <dialog id="delete-project" closedby="any">
-  <article>
+  <article class="card">
     <header><strong>Delete project?</strong></header>
     <p>All files in this project are removed. You can't undo this.</p>
     <footer>
@@ -123,10 +123,10 @@ Built from: `<dialog>` (top layer, backdrop, Escape to close), `<article>` (the 
 
 ## Table with toolbar and pagination
 
-Built from: `<article>` with `<header>` (toolbar) and `<footer>` (pagination), a search `<label>` with `data-prefix`, `<table>`, `.badge` (status), a ghost `square` button with a popover `<menu>` (row actions), `nav.pagination`.
+Built from: `<article class="card">` with `<header>` (toolbar) and `<footer>` (pagination), a search `<label>` with `data-prefix`, `<table>`, `.badge` (status), a ghost `square` button with a popover `<menu>` (row actions), `nav.pagination`.
 
 ```html
-<article>
+<article class="card">
   <header style="justify-content: space-between">
     <strong>Orders</strong>
     <label>
@@ -176,16 +176,16 @@ If the table has no rows, show a `section.empty` in its place.
 
 ## Stat tiles
 
-Built from: `<article class="secondary">` (a quiet surface), `<small>` (label), `<strong>` (value), `.badge` (change).
+Built from: `<article class="card secondary">` (a quiet surface), `<small>` (label), `<strong>` (value), `.badge` (change).
 
 ```html
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--ui-spacing-3)">
-  <article class="secondary" style="display: grid; gap: var(--ui-spacing-1)">
+  <article class="card secondary" style="display: grid; gap: var(--ui-spacing-1)">
     <small>Revenue</small>
     <strong>$12,400</strong>
     <span class="badge constructive">+12%</span>
   </article>
-  <article class="secondary" style="display: grid; gap: var(--ui-spacing-1)">
+  <article class="card secondary" style="display: grid; gap: var(--ui-spacing-1)">
     <small>Refunds</small>
     <strong>$320</strong>
     <span class="badge destructive">+4%</span>
@@ -197,10 +197,10 @@ Built from: `<article class="secondary">` (a quiet surface), `<small>` (label), 
 
 ## Pricing card
 
-Built from: `<article>` with `<header>` and `<footer>`, `<hgroup>` (plan name and price), `.badge` (highlight), a plain `<ul>` (features), a full-width button.
+Built from: `<article class="card">` with `<header>` and `<footer>`, `<hgroup>` (plan name and price), `.badge` (highlight), a plain `<ul>` (features), a full-width button.
 
 ```html
-<article>
+<article class="card">
   <header style="justify-content: space-between">
     <strong>Pro</strong>
     <span class="badge primary">Popular</span>

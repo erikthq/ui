@@ -15,7 +15,7 @@ Full docs live at https://ui.erikt.me. Every component has a page at `https://ui
 
 ## Principles
 
-1. **Pick the right element first.** Most components are a native element. Card is `<article>`, accordion is `<details>`, separator is `<hr>`, progress is `<progress>`.
+1. **Pick the right element first.** Most components are a native element. Card is `<article class="card">`, accordion is `<details>`, separator is `<hr>`, progress is `<progress>`.
 2. **Compose, don't reinvent.** A settings page is tabs, cards and fields. A row menu is a ghost button plus a popover with a `<menu>`.
 3. **Use built-in variants before custom styles.** `class="outlined"`, `class="ghost destructive"`, `class="badge constructive"`.
 4. **Write CSS for layout only.** Use `flex` and `grid` to arrange things. A few flow helpers (`.flex`, `.flex-col`, `.grid`, `.gap-1` to `.gap-8`) cover the common cases. Leave colors, borders, padding and type to the library.
@@ -50,7 +50,7 @@ Each rule links to a file with incorrect and correct code.
 
 ### Composition → [rules/composition.md](./rules/composition.md)
 
-- **Card is `<article>`.** Put a title in `<header>` and actions in `<footer>`, as direct children.
+- **Card is `<article class="card">`.** A bare `<article>` gets no card styles. Put a title in `<header>` and actions in `<footer>`, as direct children.
 - **Callouts are `<article role="status">` or `<article role="alert">`.** Not a styled `div`.
 - **Use the built-in pieces.** `.badge` for status labels, `.empty` for empty states, `.skeleton` for loading, `aria-busy` for spinners, `<hr>` for separators.
 - **Button loading state is `aria-busy`** plus `disabled`. No custom spinner markup.
@@ -61,7 +61,7 @@ Each rule links to a file with incorrect and correct code.
 
 - **Dropdowns, menus and popovers use `popover` + `popovertarget`.** Put the popover element right after its trigger. If the trigger is in a button group, put the popover after the `</fieldset>` instead, or the group's corners break.
 - **Menus are `<menu>` with `<li><button class="ghost">`.** Separators are `<li><hr /></li>`, group labels are `<li><small>`.
-- **Modals are `<dialog closedby="any">` with an `<article>` inside.** Close buttons sit in `<form method="dialog">`.
+- **Modals are `<dialog closedby="any">` with an `<article class="card">` inside.** Close buttons sit in `<form method="dialog">`.
 - **Side panels are `<dialog class="drawer">`.** Set the edge with `data-position`. For no backdrop, use `<div popover class="drawer">`.
 - **Tooltips are `data-tooltip` + `aria-label`** on the trigger. No wrapper element.
 - **Toasts are `<div popover class="toast">`** holding an alert `<article>`.
@@ -78,7 +78,7 @@ Each rule links to a file with incorrect and correct code.
 </label>
 
 <!-- Card with header and footer -->
-<article>
+<article class="card">
   <header><strong>Team</strong></header>
   <p>Invite people to collaborate.</p>
   <footer>
@@ -108,7 +108,7 @@ Each rule links to a file with incorrect and correct code.
 <!-- Modal -->
 <button onclick="document.getElementById('confirm').showModal()">Delete</button>
 <dialog id="confirm" closedby="any">
-  <article>
+  <article class="card">
     <header><strong>Delete project?</strong></header>
     <p>This can't be undone.</p>
     <footer>
@@ -150,7 +150,7 @@ Each rule links to a file with incorrect and correct code.
 | File upload | `label.file-drop` |  |
 | One-time code | `<span class="otp"><input maxlength="6" /></span>` |  |
 | Slider | `<input type="range">` |  |
-| Surface | `<article>`. Variants: `secondary`, `tertiary`, `transparent` | Any boxed area: login card, pricing tier, stat tile, sidebar panel |
+| Surface | `<article class="card">`. Variants: `secondary`, `tertiary`, `transparent` | Any boxed area: login card, pricing tier, stat tile, sidebar panel |
 | Callout | `<article role="status">` or `role="alert"`. Colors: `primary`, `constructive`, `destructive`, `color1` to `color6` | Inline form errors, info banners, the body of a toast |
 | Status label | `<span class="badge">` with the same color classes, plus `outlined` | Counts, "New" tags, plan names, role labels |
 | Empty state | `<section class="empty">` | Any centered block of icon + heading + text + actions: login and signup cards, success screens, onboarding steps, 404 pages |
@@ -168,8 +168,8 @@ Each rule links to a file with incorrect and correct code.
 | Breadcrumbs | `<nav aria-label="Breadcrumb"><ol>` |  |
 | Pagination | `<nav class="pagination">` |  |
 | Dropdown or menu | `[popover]` + `<menu>`. Nested menus with `data-placement="right top"` |  |
-| Floating panel | `[popover]` with an `<article>` inside | Notification lists, quick forms, share panels |
-| Modal | `<dialog>` + `<article>` | Confirmations, forms, login and signup |
+| Floating panel | `[popover]` with an `<article class="card">` inside | Notification lists, quick forms, share panels |
+| Modal | `<dialog>` + `<article class="card">` | Confirmations, forms, login and signup |
 | Side panel | `<dialog class="drawer" data-position="right">`, or `<div popover class="drawer">` without a backdrop |  |
 | Toast | `<div popover class="toast">` |  |
 | Tooltip | `data-tooltip` + `aria-label` |  |

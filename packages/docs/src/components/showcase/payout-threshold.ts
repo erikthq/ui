@@ -33,7 +33,7 @@ export function PayoutThreshold() {
       }
     </style>
 
-    <article class="secondary showcase-payout-threshold">
+    <article class="card secondary showcase-payout-threshold">
       <button class="secondary round" aria-label="Close">
         ${raw(icon("x"))}
       </button>

@@ -21,7 +21,7 @@ export function IconsSearchDialog() {
   const minisearchUrl = `${b}/minisearch.js`;
 
   return html`<dialog id="icons-dialog" class="icons-dialog" scroll-lock>
-    <article>
+    <article class="card">
       <header>
         <label>
           ${raw(icon("search", { size: 14, attrs: "data-prefix" }))}
