@@ -7,7 +7,6 @@ import { apiReference } from "../../components/api-reference";
 const toc = [
   { id: "standalone", label: "Standalone" },
   { id: "default", label: "Default" },
-  { id: "filled", label: "Filled" },
   { id: "step", label: "Step" },
   { id: "disabled", label: "Disabled" },
   { id: "api-reference", label: "API reference" },
@@ -26,7 +25,8 @@ export async function SliderPage(path: string) {
             ${raw(titleActions(path, "slider"))}
           </div>
           <p>
-            A range input using <code>&lt;input type="range"&gt;</code>.
+            A range input using <code>&lt;input type="range"&gt;</code>. The
+            track fills up to the thumb, with no JavaScript.
           </p>
         </hgroup>
 
@@ -51,36 +51,6 @@ export async function SliderPage(path: string) {
       </div>
 
       <div class="prose">
-        <h2 id="filled">Filled</h2>
-        <p>
-          Set <code>--pct</code> on the element to show a filled track. Update it
-          on <code>input</code> events to keep it in sync with the value.
-        </p>
-      </div>
-      <div class="example">
-        <div class="preview" style="width:100%;padding-inline:2rem">
-          <input
-            type="range"
-            id="slider-filled"
-            style="width:100%;--pct:0.5"
-            oninput="this.style.setProperty('--pct', (this.value - this.min) / (this.max - this.min || 100))"
-          />
-        </div>
-        <div class="code-block">
-          ${raw(
-            await highlight(
-              `<input type="range" style="--pct: 0.5"
-  oninput="this.style.setProperty(
-    '--pct',
-    (this.value-this.min)/(this.max-this.min)
-  )"
-/>`,
-            ),
-          )}
-        </div>
-      </div>
-
-      <div class="prose">
         <h2 id="step">Step</h2>
         <p>Use <code>step</code> to snap the thumb to discrete intervals.</p>
       </div>
@@ -89,8 +59,7 @@ export async function SliderPage(path: string) {
           <input
             type="range"
             step="25"
-            style="width:100%;--pct:0.5"
-            oninput="this.style.setProperty('--pct', (this.value - this.min) / (this.max - this.min || 100))"
+            style="width:100%;"
           />
         </div>
         <div class="code-block">
@@ -103,7 +72,7 @@ export async function SliderPage(path: string) {
       </div>
       <div class="example">
         <div class="preview" style="width:100%;padding-inline:2rem">
-          <input type="range" style="width:100%;--pct:0" disabled />
+          <input type="range" style="width:100%;" disabled />
         </div>
         <div class="code-block">
           ${raw(await highlight(`<input type="range" disabled />`))}
@@ -111,7 +80,6 @@ export async function SliderPage(path: string) {
       </div>
 
       ${apiReference([
-        { type: "Fill", values: ["--pct: 0.5"], description: "Fills the track up to this fraction, from 0 to 1" },
         { type: "Disabled", values: ["[disabled]"], description: "Fades the slider and blocks input" },
       ])}
     `,

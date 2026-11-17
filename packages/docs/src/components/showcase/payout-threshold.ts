@@ -69,8 +69,7 @@ export function PayoutThreshold() {
             max="10000"
             step="50"
             value="2500"
-            style="--pct:${(2500 - 50) / (10000 - 50)}"
-            oninput="this.style.setProperty('--pct', (this.value - this.min) / (this.max - this.min)); this.previousElementSibling.querySelector('output').value = '$' + this.value"
+            oninput="this.previousElementSibling.querySelector('output').value = '$' + this.value"
           />
           <span class="flex">
             <small>$50 (min)</small>

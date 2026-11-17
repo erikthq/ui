@@ -1,38 +1,100 @@
 /* slider */
+
+/*
+ * The filled part of the track needs the value, and CSS cannot read it.
+ * - Chrome, Edge, Safari 26+: a scroll-driven animation follows the thumb's place
+ *   in the slider and writes it to --ui-slider-progress (0 to 1).
+ * - Firefox: draws the filled part itself with ::-moz-range-progress.
+ * - Older browsers: no filled part.
+ */
+@property --ui-slider-progress {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* The thumb's place: at the right end the timeline is at 0, at the left end at 1. */
+@keyframes ui-slider-progress {
+  from { --ui-slider-progress: 1; }
+  to { --ui-slider-progress: 0; }
+}
+
 input[type="range"] {
+  --ui-slider-thumb-size: 1.125rem;
+  --ui-slider-track-size: var(--ui-spacing-2);
+  /* Room around the thumb for the focus outline (2px wide, 2px offset) */
+  --ui-slider-gap: 4px;
+
   appearance: none;
+  box-sizing: border-box;
   width: 100%;
-  height: var(--ui-spacing-2);
-  border-radius: var(--ui-rounded-full);
-  background: linear-gradient(to right, var(--ui-primary) calc(var(--pct, 0) * 100%), var(--ui-neutral-200) calc(var(--pct, 0) * 100%));
+  height: calc(var(--ui-slider-thumb-size) + 2 * var(--ui-slider-gap));
+  padding: 0 var(--ui-slider-gap);
+  margin-block: 1px;
+  background: transparent;
   cursor: pointer;
   outline: none;
-  margin-block: calc(var(--ui-spacing-2) + 2px);
+
+  /* Makes the slider a scroll container, so the thumb's view timeline is measured inside it */
+  overflow: hidden;
+  timeline-scope: --ui-slider-thumb;
+  animation: ui-slider-progress linear both;
+  animation-timeline: --ui-slider-thumb;
+  animation-range: contain;
+
+  /*
+   * The timeline is measured in the padding box, but the track sits in the content box.
+   * The fill ends at the thumb's middle:
+   * thumb / 2 - gap + progress * (track + 2 * gap - thumb)
+   */
+  &::-webkit-slider-runnable-track {
+    box-sizing: border-box;
+    height: var(--ui-slider-track-size);
+    border-radius: var(--ui-rounded-full);
+    background:
+      linear-gradient(var(--ui-primary) 0 0) no-repeat,
+      var(--ui-neutral-200);
+    background-size:
+      calc(
+        var(--ui-slider-thumb-size) / 2 - var(--ui-slider-gap) +
+        var(--ui-slider-progress) * (100% + 2 * var(--ui-slider-gap) - var(--ui-slider-thumb-size))
+      )
+      100%;
+  }
 
   &::-webkit-slider-thumb {
     appearance: none;
-    width: 1.125rem;
+    width: var(--ui-slider-thumb-size);
     aspect-ratio: 1;
+    margin-top: calc((var(--ui-slider-track-size) - var(--ui-slider-thumb-size)) / 2);
     border-radius: var(--ui-rounded-full-fixed);
     background: var(--ui-background-color);
     box-shadow: 0 0 0 2px var(--ui-primary) inset;
     transition: outline-color 100ms;
+    view-timeline: --ui-slider-thumb inline;
+  }
+
+  &::-moz-range-track {
+    height: var(--ui-slider-track-size);
+    border-radius: var(--ui-rounded-full);
+    background: var(--ui-neutral-200);
+  }
+
+  &::-moz-range-progress {
+    height: var(--ui-slider-track-size);
+    border-radius: var(--ui-rounded-full);
+    background: var(--ui-primary);
   }
 
   &::-moz-range-thumb {
-    width: 1.125rem;
-    height: 1.125rem;
+    width: var(--ui-slider-thumb-size);
+    height: var(--ui-slider-thumb-size);
     border-radius: var(--ui-rounded-full-fixed);
     border: none;
     background: var(--ui-background-color);
     box-shadow: 0 0 0 2px var(--ui-primary) inset;
     cursor: pointer;
   }
-
-  /* &:focus-visible {
-    outline: 2px solid var(--ui-neutral-950);
-    outline-offset: 2px;
-    } */
 
   &:focus-visible::-webkit-slider-thumb {
     outline: 2px solid var(--ui-neutral-950);
@@ -47,5 +109,12 @@ input[type="range"] {
   &:disabled {
     cursor: default;
     opacity: 0.4;
+  }
+}
+
+/* No scroll-driven animations: show the track without a filled part */
+@supports not (animation-timeline: view()) {
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--ui-neutral-200);
   }
 }

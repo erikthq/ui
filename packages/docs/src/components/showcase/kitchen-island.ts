@@ -66,8 +66,6 @@ export function KitchenIsland() {
             <input
               type="range"
               value="${slider.value}"
-              style="--pct:${slider.value / 100}"
-              oninput="this.style.setProperty('--pct', this.value / 100)"
             />
           </label>
         `,
